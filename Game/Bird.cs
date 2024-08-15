@@ -1,42 +1,58 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+using System;
 
 public class Bird
 {
-    const float GRAVITY = 9.8f;
-    public static Vector2 Gravity = new Vector2(0, GRAVITY);
-    const float FRICTION = 0.1f;
+    const float FRICTION = 1f;
+    const float SPEED = 100f;
+    public static Vector2 Friction = new Vector2(FRICTION, FRICTION);
 
-    Vector2 position;
-    Vector2 velocity;
-    Vector2 acceleration;
-    float friction;
+    private PhysicsObject _physicsObject;
 
-    //constructor no fields all init to zero
-    public Bird()
+    public Vector2 Position
     {
-        position = Vector2.Zero;
-        acceleration = Vector2.Zero;
-        velocity = Vector2.Zero;
-        friction = FRICTION;
+        get { return _physicsObject.Position; }
     }
-    public Bird(Vector2 position, Vector2 acceleration, Vector2 velocity, float friction)
+    public Vector2 Velocity
     {
-        this.position = position;
-        this.acceleration = acceleration;
-        this.velocity = velocity;
-        this.friction = friction;
+        get { return _physicsObject.Velocity; }
+    }
+
+    public Vector2 Acceleration
+    {
+        get { return _physicsObject.Acceleration; }
+    }
+
+    public Bird(Vector2 initialPosition)
+    {
+        _physicsObject = new PhysicsObject(initialPosition);
     }
 
 
     public void Update(GameTime gameTime)
     {
-
-
-        //apply physics see https://guide.handmadehero.org/code/day043/#3683 for more info
+        //apply physics (see commit description for the link to doc) https://guide.handmadehero.org/code/day043/#1535
         float time = (float)gameTime.ElapsedGameTime.TotalSeconds;
-        acceleration += velocity * -friction;
-        position += (acceleration * 0.5f * time*time) + (velocity * time);
-        velocity += acceleration * time;
-        
+
+        // Example of applying a force based on user input
+        if (Keyboard.GetState().IsKeyDown(Keys.Left))
+        {
+            _physicsObject.ApplyForce(new Vector2(-100, 0));
+        }
+        if (Keyboard.GetState().IsKeyDown(Keys.Right))
+        {
+            _physicsObject.ApplyForce(new Vector2(100, 0));
+        }
+        if (Keyboard.GetState().IsKeyDown(Keys.Up))
+        {
+            _physicsObject.ApplyForce(new Vector2(0, -100));
+        }
+        if (Keyboard.GetState().IsKeyDown(Keys.Down))
+        {
+            _physicsObject.ApplyForce(new Vector2(0, 100));
+        }
+
+        _physicsObject.Update(gameTime);
     }
 }

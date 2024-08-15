@@ -17,11 +17,14 @@ namespace flappyrogue_mg
         private Texture2D _spriteTexture;
         Dictionary<string, Rectangle> atlasData;
 
+        private Bird _bird;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            _bird = new Bird(new Vector2(100, 100));
         }
 
         protected override void Initialize()
@@ -52,7 +55,7 @@ namespace flappyrogue_mg
 
             // Update sprite position based on elapsed time
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            _spritePosition.X += _spriteSpeed * deltaTime;
+            _bird.Update(gameTime);
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -63,11 +66,19 @@ namespace flappyrogue_mg
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin();
-            _spriteBatch.Draw(_spriteTexture, _spritePosition, atlasData["bird-1"], Color.White);
-            _spriteBatch.End();
+            _spriteBatch.Draw(_spriteTexture, _bird.Position, atlasData["bird-1"], Color.White);
+
+            //drw debug of bird fields
+            _spriteBatch.DrawString(Content.Load<SpriteFont>("fonts/04B_19"), $"Position: {_bird.Position}", new Vector2(10, 10), Color.White);
+            _spriteBatch.DrawString(Content.Load<SpriteFont>("fonts/04B_19"), $"Velocity: {_bird.Velocity}", new Vector2(10, 30), Color.White);
+            _spriteBatch.DrawString(Content.Load<SpriteFont>("fonts/04B_19"), $"Acceleration: {_bird.Acceleration}", new Vector2(10, 50), Color.White);
+
             // TODO: Add your drawing code here
 
+            _spriteBatch.End();
             base.Draw(gameTime);
         }
     }
 }
+
+
