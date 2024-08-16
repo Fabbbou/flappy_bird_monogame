@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended.BitmapFonts;
 using MonoGame.Extended.ViewportAdapters;
 
 public class Bird
@@ -11,7 +12,7 @@ public class Bird
 
     public readonly PhysicsObject physicsObject;
     private AnimatedTexture _animatedTexture;
-    private SpriteFont _font;
+    private BitmapFont _font;
 
     private Vector2 _jumpForce = new Vector2(0, -SPEED);
 
@@ -25,7 +26,7 @@ public class Bird
     public void Load(ContentManager content)
     {
         _animatedTexture.Load(content);
-        _font = content.Load<SpriteFont>("fonts/04B_19");
+        _font = content.Load<BitmapFont>("fonts/04b19");
     }
 
     public void Update(GameTime gameTime)
@@ -51,8 +52,9 @@ public class Bird
 
     private void DrawDebug(SpriteBatch spriteBatch, ContentManager content, ViewportAdapter viewportAdapter)
     {
-        spriteBatch.DrawString(_font, $"Position: {physicsObject.Position}", new Vector2(10, 10), Color.White);
-        spriteBatch.DrawString(_font, $"Velocity: {physicsObject.Velocity}", new Vector2(10, 30), Color.White);
-        spriteBatch.DrawString(_font, $"Acceleration: {physicsObject.Acceleration}", new Vector2(10, 50), Color.White);
+        float scale = 0.5f;
+        spriteBatch.DrawString(_font, $"Position: {physicsObject.Position}", new Vector2(10, 10), Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
+        spriteBatch.DrawString(_font, $"Velocity: {physicsObject.Velocity}", new Vector2(10, 30), Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
+        spriteBatch.DrawString(_font, $"Acceleration: {physicsObject.Acceleration}", new Vector2(10, 50), Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
     }
 }

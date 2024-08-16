@@ -14,15 +14,22 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin fonts/04B_19__.TTF
-/copy:fonts/04B_19__.TTF
-
-#begin fonts/04B_19.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
+#begin fonts/04b19_0.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
 /processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:fonts/04B_19.spritefont
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:fonts/04b19_0.png
+
+#begin fonts/04b19.fnt
+/importer:BitmapFontImporter
+/processor:BitmapFontProcessor
+/build:fonts/04b19.fnt
 
 #begin sounds/sfx_die.wav
 /importer:WavImporter
