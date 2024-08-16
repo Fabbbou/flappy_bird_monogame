@@ -11,11 +11,6 @@ namespace flappyrogue_mg
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        
-        private Vector2 _spritePosition;
-        private float _spriteSpeed = 100f; // pixels per second
-        private Texture2D _spriteTexture;
-        Dictionary<string, Rectangle> atlasData;
 
         private Bird _bird;
 
@@ -37,15 +32,7 @@ namespace flappyrogue_mg
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // Load a texture from the Content pipeline
-
-            string json = File.ReadAllText("Content/sprites/bird.json");
-            atlasData = JsonConvert.DeserializeObject<Dictionary<string, Rectangle>>(json);
-
-            //set _spriteTexture to the bird texture from the Content pipeline
-            _spriteTexture = Content.Load<Texture2D>("sprites/bird");
-
+            _bird.Load(Content);
         }
 
         protected override void Update(GameTime gameTime)
@@ -56,7 +43,6 @@ namespace flappyrogue_mg
             // Update sprite position based on elapsed time
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             _bird.Update(gameTime);
-            // TODO: Add your update logic here
 
             base.Update(gameTime);
         }
@@ -66,14 +52,8 @@ namespace flappyrogue_mg
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin();
-            _spriteBatch.Draw(_spriteTexture, _bird.Position, atlasData["bird-1"], Color.White);
-
-            //drw debug of bird fields
-            _spriteBatch.DrawString(Content.Load<SpriteFont>("fonts/04B_19"), $"Position: {_bird.Position}", new Vector2(10, 10), Color.White);
-            _spriteBatch.DrawString(Content.Load<SpriteFont>("fonts/04B_19"), $"Velocity: {_bird.Velocity}", new Vector2(10, 30), Color.White);
-            _spriteBatch.DrawString(Content.Load<SpriteFont>("fonts/04B_19"), $"Acceleration: {_bird.Acceleration}", new Vector2(10, 50), Color.White);
-
-            // TODO: Add your drawing code here
+            
+            _bird.Draw(gameTime, _spriteBatch, Content);
 
             _spriteBatch.End();
             base.Draw(gameTime);

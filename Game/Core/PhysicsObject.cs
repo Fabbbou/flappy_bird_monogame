@@ -1,19 +1,24 @@
 ﻿using Microsoft.Xna.Framework;
 
+//apply physics https://guide.handmadehero.org/code/day043/#1535
 public class PhysicsObject
 {
-    public Vector2 Position { get; private set; }
-    public Vector2 Velocity { get; private set; }
+    public const float GRAVITY = 9.8f;
+    public const float FrictionCoefficient = 0.1f;
+
+    public Vector2 Position;
+    public Vector2 Velocity;
     public Vector2 Acceleration { get; private set; }
 
-    private const float Gravity = 9.8f;
-    private const float FrictionCoefficient = 0.1f;
+    public Vector2 Gravity { get; set; }
+
 
     public PhysicsObject(Vector2 initialPosition)
     {
         Position = initialPosition;
         Velocity = Vector2.Zero;
         Acceleration = Vector2.Zero;
+        Gravity = new Vector2(0, GRAVITY);
     }
 
     public void ApplyForce(Vector2 force)
@@ -39,7 +44,7 @@ public class PhysicsObject
         float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
         // Apply gravity
-        ApplyForce(new Vector2(0, Gravity));
+        ApplyForce(Gravity);
 
         // Apply friction
         Vector2 friction = -FrictionCoefficient * Velocity;

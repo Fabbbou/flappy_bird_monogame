@@ -1,58 +1,56 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
 
 public class Bird
 {
-    const float FRICTION = 1f;
-    const float SPEED = 100f;
-    public static Vector2 Friction = new Vector2(FRICTION, FRICTION);
+    private const float SPEED = 400f;
+    private const float GRAVITY = 1300f;
 
-    private PhysicsObject _physicsObject;
+    public readonly PhysicsObject physicsObject;
+    private AnimatedTexture _animatedTexture;
 
-    public Vector2 Position
-    {
-        get { return _physicsObject.Position; }
-    }
-    public Vector2 Velocity
-    {
-        get { return _physicsObject.Velocity; }
-    }
-
-    public Vector2 Acceleration
-    {
-        get { return _physicsObject.Acceleration; }
-    }
+    private Vector2 _jumpForce = new Vector2(0, -SPEED);
 
     public Bird(Vector2 initialPosition)
     {
-        _physicsObject = new PhysicsObject(initialPosition);
+        physicsObject = new PhysicsObject(initialPosition);
+        _animatedTexture = new AnimatedTexture(0.1f, "sprites/bird", "sprites/bird.json");
     }
 
+    public void Load(ContentManager content)
+    {
+        _animatedTexture.Load(content);
+        physicsObject.Gravity = new Vector2(0, GRAVITY);
+    }
 
     public void Update(GameTime gameTime)
     {
-        //apply physics (see commit description for the link to doc) https://guide.handmadehero.org/code/day043/#1535
-        float time = (float)gameTime.ElapsedGameTime.TotalSeconds;
+        float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+        _animatedTexture.Update(gameTime);
 
-        // Example of applying a force based on user input
-        if (Keyboard.GetState().IsKeyDown(Keys.Left))
+        // crossplatform jump input
+        if (Keyboard.GetState().IsKeyDown(Keys.Space) || GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed)
         {
-            _physicsObject.ApplyForce(new Vector2(-100, 0));
-        }
-        if (Keyboard.GetState().IsKeyDown(Keys.Right))
-        {
-            _physicsObject.ApplyForce(new Vector2(100, 0));
-        }
-        if (Keyboard.GetState().IsKeyDown(Keys.Up))
-        {
-            _physicsObject.ApplyForce(new Vector2(0, -100));
-        }
-        if (Keyboard.GetState().IsKeyDown(Keys.Down))
-        {
-            _physicsObject.ApplyForce(new Vector2(0, 100));
+            physicsObject.Velocity = _jumpForce;     
         }
 
-        _physicsObject.Update(gameTime);
+        physicsObject.Update(gameTime);
+    }
+
+    public void Draw(GameTime gameTime, SpriteBatch spriteBatch, ContentManager content)
+    {
+        _animatedTexture.Draw(spriteBatch, physicsObject.Position);
+
+        DrawDebug(spriteBatch, content);
+    }
+
+    private void DrawDebug(SpriteBatch spriteBatch, ContentManager content)
+    {
+        //drw debug of bird fields
+        spriteBatch.DrawString(content.Load<SpriteFont>("fonts/04B_19"), $"Position: {physicsObject.Position}", new Vector2(10, 10), Color.White);
+        spriteBatch.DrawString(content.Load<SpriteFont>("fonts/04B_19"), $"Velocity: {physicsObject.Velocity}", new Vector2(10, 30), Color.White);
+        spriteBatch.DrawString(content.Load<SpriteFont>("fonts/04B_19"), $"Acceleration: {physicsObject.Acceleration}", new Vector2(10, 50), Color.White);
     }
 }
