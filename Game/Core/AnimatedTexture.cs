@@ -7,50 +7,23 @@ using System.IO;
 
 /// <summary>
 /// Represents an animated texture that can be drawn on the screen.
-/// Example of json structure:
-/// {
-///     "bird1": {
-///         "x": 0,
-///         "y": 0,
-///         "width": 34,
-///         "height": 24
-///     },
-///     "bird2": {
-///         "x": 34,
-///         "y": 0,
-///         "width": 34,
-///         "height": 24
-///     },
-/// }
 /// 
 /// </summary>
 public class AnimatedTexture
 {
-    private string _contentPathTexture;
-    private string _contentPathJsonAtlas;
+    private AtlasTexture _atlasTexture;
     private float _frameTime = 0.1f; // time to wait before changing the frame in seconds
-
-    private Texture2D _spriteTexture;
-    private List<Rectangle> _atlasData;
-    private int _indexAtlas = 0;
     private float _timerFrameAtlas = 0;
 
     public AnimatedTexture(float frameTime, string contentPathTexture, string contentPathJsonAtlas)
     {
         _frameTime = frameTime;
-        _contentPathTexture = contentPathTexture;
-        _contentPathJsonAtlas = contentPathJsonAtlas;
+        _atlasTexture = new AtlasTexture(contentPathTexture, contentPathJsonAtlas);
     }
 
     public void Load(ContentManager content)
     {
-        string json = File.ReadAllText($"Content/{_contentPathJsonAtlas}");
-        Dictionary<string, Rectangle> atlasDataDict = JsonConvert.DeserializeObject<Dictionary<string, Rectangle>>(json);
-        //convert the dictionary values to a list of Rectangles
-        _atlasData = new List<Rectangle>(atlasDataDict.Values);
-
-        //set _spriteTexture to the bird texture from the Content pipeline
-        _spriteTexture = content.Load<Texture2D>(_contentPathTexture);
+        _atlasTexture.Load(content);
     }
 
     public void Update(GameTime gameTime)
@@ -61,13 +34,13 @@ public class AnimatedTexture
         _timerFrameAtlas += deltaTime;
         if (_timerFrameAtlas >= _frameTime)
         {
-            _indexAtlas = (_indexAtlas + 1) % _atlasData.Count;
+            _atlasTexture.Index = (_atlasTexture.Index + 1) % _atlasTexture.Count;
             _timerFrameAtlas = 0;
         }
     }
 
     public void Draw(SpriteBatch spriteBatch, Vector2 position)
     {
-        spriteBatch.Draw(_spriteTexture, position, _atlasData[_indexAtlas], Color.White);
+        _atlasTexture.Draw(spriteBatch, position);
     }
 }
