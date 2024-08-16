@@ -8,9 +8,6 @@
 *.userosscache
 *.sln.docstates
 
-# User-specific files (MonoGame)
-*.mgcb
-
 # Mono auto generated files
 mono_crash.*
 
@@ -30,7 +27,7 @@ bld/
 [Ll]ogs/
 
 # MonoGame Pipeline Tool
-*.mgcb
+#*.mgcb
 *.xnb
 
 # Visual Studio Code
