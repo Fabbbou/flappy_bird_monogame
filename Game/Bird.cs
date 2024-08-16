@@ -11,16 +11,15 @@ public class Bird
     private const float GRAVITY = 0;//1300f;
 
     public readonly PhysicsObject physicsObject;
-    private AnimatedTexture _animatedTexture;
     private BitmapFont _font;
+    private AnimatedTexture _animatedTexture = new AnimatedTexture(0.1f, "sprites/bird", "sprites/bird.json");
 
     private Vector2 _jumpForce = new Vector2(0, -SPEED);
 
     public Bird(Vector2 initialPosition)
     {
-        physicsObject = new PhysicsObject(initialPosition);
+        physicsObject = PhysicsObject.Rectangle(initialPosition,17,12,ColliderType.Physics);
         physicsObject.Gravity = new Vector2(0, GRAVITY);
-        _animatedTexture = new AnimatedTexture(0.1f, "sprites/bird", "sprites/bird.json");
     }
 
     public void Load(ContentManager content)
