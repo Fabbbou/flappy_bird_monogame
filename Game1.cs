@@ -27,6 +27,7 @@ namespace flappyrogue_mg
             Window.AllowUserResizing = true;
             Content.RootDirectory = "Content";
             _graphics = new GraphicsDeviceManager(this);
+            //set up a fullscreen portrait mode for the game default window
             _graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
             _graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height * 9/16;
             _graphics.ApplyChanges();
@@ -38,7 +39,10 @@ namespace flappyrogue_mg
         protected override void Initialize()
         {
             base.Initialize();
-            _viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, 144, 256); // viewport as to be the exact size of the background img to be pixel perfect
+            // setting the viewport dimensions to be the same as the background (bg) image
+            // as the bg is portrait, the game will be portrait to
+            // for a pixel perfect game, the viewport has to be the exact size of the background img
+            _viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, 144, 256); 
         }
 
         protected override void LoadContent()
