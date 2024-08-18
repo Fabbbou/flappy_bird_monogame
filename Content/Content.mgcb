@@ -11,6 +11,7 @@
 #-------------------------------- References --------------------------------#
 
 /reference:..\pipeline-references\MonoGame.Extended.Content.Pipeline.dll
+/reference:..\pipeline-references\Monogame.Aseprite.Content.Pipeline.dll
 
 #---------------------------------- Content ---------------------------------#
 
@@ -61,10 +62,7 @@
 /processorParam:Quality=Best
 /build:sounds/sfx_wing.wav
 
-#begin sprites/bg.json
-/copy:sprites/bg.json
-
-#begin sprites/bg.png
+#begin sprites/background.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -74,22 +72,13 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:sprites/bg.png
+/build:sprites/background.png
 
-#begin sprites/bird.json
-/copy:sprites/bird.json
-
-#begin sprites/bird.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
+#begin sprites/bird.aseprite
+/importer:AsepriteFileContentImporter
+/processor:AsepriteFileContentProcessor
 /processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:sprites/bird.png
+/build:sprites/bird.aseprite
 
 #begin sprites/floor.png
 /importer:TextureImporter

@@ -1,5 +1,0 @@
-{
-    "bird-1": { "x": 0, "y": 0, "width": 17, "height": 13 },
-    "bird-2": { "x": 28, "y": 0, "width": 17, "height": 13 },
-    "bird-3": { "x": 56, "y": 0, "width": 17, "height": 13 }
-}

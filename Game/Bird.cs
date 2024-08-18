@@ -1,7 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AsepriteDotNet.Aseprite;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Aseprite;
 using MonoGame.Extended.BitmapFonts;
 using MonoGame.Extended.ViewportAdapters;
 
@@ -12,9 +14,10 @@ public class Bird
 
     public readonly PhysicsObject physicsObject;
     private BitmapFont _font;
-    private AnimatedTexture _animatedTexture = new AnimatedTexture(0.1f, "sprites/bird", "sprites/bird.json");
-
+    private SpriteSheet _spriteSheet;
+    private AnimatedSprite _idleCycle;
     private Vector2 _jumpForce = new Vector2(0, -SPEED);
+
 
     public Bird(Vector2 initialPosition)
     {
@@ -22,16 +25,19 @@ public class Bird
         physicsObject.Gravity = new Vector2(0, GRAVITY);
     }
 
-    public void Load(ContentManager content)
+    public void Load(ContentManager content, GraphicsDeviceManager graphicsDeviceManager)
     {
-        _animatedTexture.Load(content);
         _font = content.Load<BitmapFont>("fonts/04b19");
+        AsepriteFile aseFile = content.Load<AsepriteFile>("sprites/bird");
+        _spriteSheet = aseFile.CreateSpriteSheet(graphicsDeviceManager.GraphicsDevice);
+        _idleCycle = _spriteSheet.CreateAnimatedSprite("idle"); //tag created in aseprite file selecting the frames to be animated
+        _idleCycle.Play();
     }
 
-    public void Update(GameTime gameTime)
+    public void Update(GameTime gameTime, GraphicsDeviceManager graphicsDeviceManager)
     {
         float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-        _animatedTexture.Update(gameTime);
+        _idleCycle.Update(deltaTime);
 
         // crossplatform jump input
         if (Keyboard.GetState().IsKeyDown(Keys.Space) || GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed)
@@ -41,12 +47,13 @@ public class Bird
 
         physicsObject.Update(gameTime);
     }
-
-    public void Draw(GameTime gameTime, SpriteBatch spriteBatch, ContentManager content, ViewportAdapter viewportAdapter)
+    private Vector2 _scale;
+    public void Draw(GameTime gameTime, SpriteBatch spriteBatch, ContentManager content, ViewportAdapter viewportAdapter, GraphicsDeviceManager graphicsDeviceManager)
     {
-        _animatedTexture.Draw(spriteBatch, physicsObject.Position);
+        spriteBatch.Draw(_idleCycle, physicsObject.Position);
 
         DrawDebug(spriteBatch, content, viewportAdapter); //to be fixed with bitmapfonts
+
     }
 
     private void DrawDebug(SpriteBatch spriteBatch, ContentManager content, ViewportAdapter viewportAdapter)
