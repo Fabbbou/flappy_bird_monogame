@@ -25,15 +25,4 @@ public class ColliderRegistry
     {
         colliders.Remove(collider);
     }
-    public bool CheckCollision(Collider collider)
-    {
-        foreach (Collider c in colliders)
-        {
-            if (collider.Intersects(c))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
 }

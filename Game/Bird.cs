@@ -21,20 +21,20 @@ public class Bird
 
     public Bird(Vector2 initialPosition)
     {
-        physicsObject = PhysicsObject.Rectangle(initialPosition,17,12,ColliderType.Physics);
+        physicsObject = PhysicsObject.Rectangle(initialPosition,17,12);
         physicsObject.Gravity = new Vector2(0, GRAVITY);
     }
 
-    public void Load(ContentManager content, GraphicsDeviceManager graphicsDeviceManager)
+    public void Load(ContentManager content, GraphicsDevice graphicsDevice)
     {
         _font = content.Load<BitmapFont>("fonts/04b19");
         AsepriteFile aseFile = content.Load<AsepriteFile>("sprites/bird");
-        _spriteSheet = aseFile.CreateSpriteSheet(graphicsDeviceManager.GraphicsDevice);
+        _spriteSheet = aseFile.CreateSpriteSheet(graphicsDevice);
         _idleCycle = _spriteSheet.CreateAnimatedSprite("idle"); //tag created in aseprite file selecting the frames to be animated
         _idleCycle.Play();
     }
 
-    public void Update(GameTime gameTime, GraphicsDeviceManager graphicsDeviceManager)
+    public void Update(GameTime gameTime, GraphicsDevice graphicsDevice)
     {
         float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
         _idleCycle.Update(deltaTime);
@@ -48,7 +48,7 @@ public class Bird
         physicsObject.Update(gameTime);
     }
     private Vector2 _scale;
-    public void Draw(GameTime gameTime, SpriteBatch spriteBatch, ContentManager content, ViewportAdapter viewportAdapter, GraphicsDeviceManager graphicsDeviceManager)
+    public void Draw(GameTime gameTime, SpriteBatch spriteBatch, ContentManager content, ViewportAdapter viewportAdapter, GraphicsDevice graphicsDevice)
     {
         spriteBatch.Draw(_idleCycle, physicsObject.Position);
 

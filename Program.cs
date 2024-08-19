@@ -1,3 +1,3 @@
 ﻿
-using var game = new flappyrogue_mg.Game1();
+using var game = new flappyrogue_mg.DebugCollision();
 game.Run();

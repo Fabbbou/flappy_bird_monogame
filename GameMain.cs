@@ -1,5 +1,4 @@
-﻿using AsepriteDotNet.Aseprite;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Aseprite;
@@ -9,7 +8,7 @@ using MonoGame.Extended.ViewportAdapters;
 
 namespace flappyrogue_mg
 {
-    public class Game1 : Game
+    public class GameMain : Microsoft.Xna.Framework.Game
     {
         private GraphicsDeviceManager _graphics;
         private BoxingViewportAdapter _viewportAdapter;
@@ -21,7 +20,7 @@ namespace flappyrogue_mg
 
         private Bird _bird;
 
-        public Game1()
+        public GameMain()
         {
             IsMouseVisible = true;
             Window.AllowUserResizing = true;
@@ -59,7 +58,7 @@ namespace flappyrogue_mg
             _dayBackground = _atlas[0];
             _nightBackground = _atlas[1];
 
-            _bird.Load(Content, _graphics);
+            _bird.Load(Content, _graphics.GraphicsDevice);
         }
 
         protected override void Update(GameTime gameTime)
@@ -68,7 +67,7 @@ namespace flappyrogue_mg
                 Exit();
             // Update sprite position based on elapsed time
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            _bird.Update(gameTime, _graphics);
+            _bird.Update(gameTime, _graphics.GraphicsDevice);
 
             base.Update(gameTime);
         }
@@ -78,7 +77,7 @@ namespace flappyrogue_mg
             GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin(transformMatrix: _viewportAdapter.GetScaleMatrix(), samplerState: SamplerState.PointClamp);
             _spriteBatch.Draw(_dayBackground, Vector2.Zero, Color.White);
-            _bird.Draw(gameTime, _spriteBatch, Content, _viewportAdapter, _graphics);
+            _bird.Draw(gameTime, _spriteBatch, Content, _viewportAdapter, _graphics.GraphicsDevice);
 
             _spriteBatch.End();
             base.Draw(gameTime);
