@@ -9,17 +9,6 @@ namespace flappyrogue_mg.Game.Core.Collider
 {
     public class Collides
     {
-        public const float APPROX = 0.01f;
-        public static bool RectVsRect(RectangleCollider a, RectangleCollider b)
-        {
-            return a.Rectangle.Intersects(b.Rectangle);
-        }
-
-        public static bool PointVsRect(Point a, RectangleCollider b)
-        {
-            return b.Rectangle.Contains(a);
-        }
-
         /// <summary>
         /// A Ray Cast to a Rectangle. The Collision object is the FIRST collision point.
         /// This algorithm is inspired from a YT video from OneLoneCoder.
@@ -34,14 +23,14 @@ namespace flappyrogue_mg.Game.Core.Collider
         ///     A collision object if there is a collision between the rectangle and the ray
         ///     null if there is no collision.
         /// </returns>
-        public static RayVsRectCollision RayVsRect(Vector2 rayOrigin, Vector2 rayDirection, Rectangle target)
+        public static RayVsRectCollision RayVsRect(Vector2 rayOrigin, Vector2 rayDirection, Rect target)
         {
             //nearTimeIntersectionPoint.X is a pourcentage of the ray direction on the x axis (between 0 and 1) for the nearest intersection point
             //farTimeIntersectionPoint.X is a pourcentage of the ray direction on the x axis (between 0 and 1) for the farthest intersection point
 
             Vector2 invDir = new Vector2(1.0f / rayDirection.X, 1.0f / rayDirection.Y);
-            Vector2 nearTimeIntersectionPoint = (target.Location.ToVector2() - rayOrigin) * invDir; //is known as tNear or Nx and Ny in the video
-            Vector2 farTimeIntersectionPoint = (target.Location.ToVector2() + target.Size.ToVector2() - rayOrigin) * invDir; //is known as tFar is Fx and Fy in the video
+            Vector2 nearTimeIntersectionPoint = (target.Position - rayOrigin) * invDir; //is known as tNear or Nx and Ny in the video
+            Vector2 farTimeIntersectionPoint = (target.Position + target.Size - rayOrigin) * invDir; //is known as tFar is Fx and Fy in the video
 
             //swaping the values if the near is greater than the far
             // i.e. we make sure near is always the nearest intersection point (and far the farthest)
@@ -99,37 +88,20 @@ namespace flappyrogue_mg.Game.Core.Collider
                 return null;
             }
 
-            Rectangle expandedTargetRect = new Rectangle(
-                rStatic.Rectangle.Location - new Point(rDynamic.Rectangle.Width/2, rDynamic.Rectangle.Width/2),
-                rStatic.Rectangle.Size + rDynamic.Rectangle.Size);
+            Rect expandedTargetRect = new Rect(
+                rStatic.Rect.Position - new Vector2(rDynamic.Rect.Width/2, rDynamic.Rect.Width/2),
+                rStatic.Rect.Size + rDynamic.Rect.Size);
             RayVsRectCollision rayVsRectCollision = RayVsRect(
-                rDynamic.Rectangle.Center.ToVector2(),
+                rDynamic.Rect.Center,
                 rDynamic.PhysicsObject.Velocity * (float) gameTime.ElapsedGameTime.TotalSeconds,
                 expandedTargetRect);
-
-            if (rayVsRectCollision == null || rayVsRectCollision.THitNear > 1f || rayVsRectCollision.THitNear < 0)
+            if (rayVsRectCollision == null)
                 return null;
+
+            //if (rayVsRectCollision.THitNear > 1f || rayVsRectCollision.THitNear < 0)
+            //    return null;
             
             return new Collision(rayVsRectCollision, rStatic);
         }
     }
 }
-
-//extension for Point template
-public static class PointExtension
-{
-    public static Point Divide(this Point point, int divider)
-    {
-        return new Point(point.X / divider, point.Y / divider);
-    }
-}
-
-// extension for Rectangle based on expandedTargetRect
-public static class RectangleExtension
-{
-    public static Rectangle Expand(this Rectangle rStatic, Rectangle rDynamic)
-    {
-        return new Rectangle();
-    }
-}
-

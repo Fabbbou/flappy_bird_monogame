@@ -9,9 +9,9 @@ public class RayVsRectCollision
 
     public Vector2 RayOrigin { get; private set;}
     public Vector2 RayDirection { get; private set;}
-    public Rectangle Target { get; private set; }
+    public Rect Target { get; private set; }
 
-    public RayVsRectCollision(Vector2 rayOrigin, Vector2 rayDirection, Rectangle target, Vector2 normal, Vector2 position, float tHitNear)
+    public RayVsRectCollision(Vector2 rayOrigin, Vector2 rayDirection, Rect target, Vector2 normal, Vector2 position, float tHitNear)
     {
         RayOrigin = rayOrigin;
         RayDirection = rayDirection;

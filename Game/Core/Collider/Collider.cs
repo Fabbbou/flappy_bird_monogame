@@ -7,10 +7,10 @@ using System.Collections.Generic;
 public abstract class Collider
 {
     public PhysicsObject PhysicsObject { get; private set; }
-    public Point RelativePosition;
+    public Vector2 RelativePosition;
     List<Collider> Colliders = new();
 
-    public Collider(PhysicsObject physicsObject, Point position)
+    public Collider(PhysicsObject physicsObject, Vector2 position)
     {
         PhysicsObject = physicsObject;
         RelativePosition = position;

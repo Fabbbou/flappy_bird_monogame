@@ -17,7 +17,7 @@ public class PhysicsObject
             _position = value;
             if (Collider != null)
             {
-                Collider.RelativePosition = value.ToPoint();
+                Collider.RelativePosition = value;
             }
         }
     }
@@ -38,7 +38,7 @@ public class PhysicsObject
     public static PhysicsObject Create(Vector2 initialPosition, int width, int height)
     {
         PhysicsObject physicsObject = new(initialPosition);
-        RectangleCollider collider = new(physicsObject, Vector2.Zero.ToPoint(), width, height);
+        RectangleCollider collider = new(physicsObject, Vector2.Zero, width, height);
         physicsObject.Collider = collider;
         return physicsObject;
     }

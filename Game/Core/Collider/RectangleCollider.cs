@@ -1,15 +1,16 @@
-﻿using Microsoft.Xna.Framework;
+﻿using flappyrogue_mg.Game.Core.Collider;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 
 public class RectangleCollider : Collider
 {
-    public int Width { get; }
-    public int Height { get; }
+    public float Width { get; }
+    public float Height { get; }
 
-    public Rectangle Rectangle => new(RelativePosition+PhysicsObject.Position.ToPoint(), new(Width, Height));
+    public Rect Rect => new(RelativePosition+PhysicsObject.Position, new(Width, Height));
 
-    public RectangleCollider(PhysicsObject physicsObject, Point position, int width, int height) : base(physicsObject, position)
+    public RectangleCollider(PhysicsObject physicsObject, Vector2 position, int width, int height) : base(physicsObject, position)
     {
         Width = width;
         Height = height;
@@ -17,12 +18,12 @@ public class RectangleCollider : Collider
 
     public override void DrawDebug(SpriteBatch spriteBatch, Color color)
     {
-        spriteBatch.DrawRectangle(Rectangle, color, 2);
+        spriteBatch.DrawRectangle(Rect.Render, color, 2);
     }
 
     public override string ToString()
     {
-        return $"Rectangle: {Rectangle}";
+        return $"Rectangle: {Rect}";
     }
 
 }

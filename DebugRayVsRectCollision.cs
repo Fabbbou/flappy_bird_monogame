@@ -60,7 +60,7 @@ namespace flappyrogue_mg
                 _ray_origin = Mouse.GetState().Position;
             }
 
-            _collision = Collides.RayVsRect(_ray_origin.ToVector2(), (_ray_target - _ray_origin).ToVector2(), ((RectangleCollider)_rectangle.Collider).Rectangle);
+            _collision = Collides.RayVsRect(_ray_origin.ToVector2(), (_ray_target - _ray_origin).ToVector2(), ((RectangleCollider)_rectangle.Collider).Rect);
 
             base.Update(gameTime);
         }
@@ -70,7 +70,7 @@ namespace flappyrogue_mg
             GraphicsDevice.Clear(Color.CornflowerBlue);
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-            if (_collision != null)
+            if (_collision != null && _collision.THitNear >=0 && _collision.THitNear <=1)
             {
                 _rectangle.Collider.DrawDebug(_spriteBatch, Color.LightPink);
                 _spriteBatch.DrawCircle(new CircleF(_collision.Position, 10),10, Color.Red, 10);
