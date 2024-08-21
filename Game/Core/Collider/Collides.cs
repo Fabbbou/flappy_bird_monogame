@@ -9,6 +9,7 @@ namespace flappyrogue_mg.Game.Core.Collider
 {
     public class Collides
     {
+        public const float APPROX = 0.01f;
         /// <summary>
         /// A Ray Cast to a Rectangle. The Collision object is the FIRST collision point.
         /// This algorithm is inspired from a YT video from OneLoneCoder.
@@ -63,8 +64,8 @@ namespace flappyrogue_mg.Game.Core.Collider
             
             // Means the ray is ending before the rectangle (1 is a pourcent of the ray direction)
             //i.e. the first hit on the rectangle will be after the end of the ray
-            //if (tHitNear > 1f || tHitNear < 0)
-            //    return null;
+            if (tHitNear > 1f + APPROX || tHitNear < 0 - APPROX)
+                return null;
 
             //Computing the contact point
             Vector2 contactNormal;

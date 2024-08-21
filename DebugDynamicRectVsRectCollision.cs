@@ -82,19 +82,11 @@ namespace flappyrogue_mg
             _collision = ColliderRegistry.Instance.isColliding(_rectangleMoving.Collider, gameTime);
             if (_collision != null)
             {
-                if (_collision.RayVsRectCollision.THitNear > 1f || _collision.RayVsRectCollision.THitNear < -0.01)
-                {
                     _lastCollision = _collision;
-                }
-                else
-                {
-                    _lastCollision = _collision;
-                    _rectangleMoving.Velocity = Vector2.Zero;
-                    //_rectangleMoving.Velocity
-                    //    + _collision.RayVsRectCollision.Normal
-                    //    * new Vector2(Math.Abs(_rectangleMoving.Velocity.X), Math.Abs(_rectangleMoving.Velocity.Y)) 
-                    //    * (1 - _collision.RayVsRectCollision.THitNear);
-                }
+                _rectangleMoving.Velocity = Vector2.Zero;
+                        // _collision.RayVsRectCollision.Normal
+                        //* new Vector2(Math.Abs(_rectangleMoving.Velocity.X), Math.Abs(_rectangleMoving.Velocity.Y))
+                        //* (1 - _collision.RayVsRectCollision.THitNear);
             }
             _rectangleMoving.Update(gameTime);
             base.Update(gameTime);
