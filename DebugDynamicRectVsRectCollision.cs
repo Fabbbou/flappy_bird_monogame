@@ -82,7 +82,7 @@ namespace flappyrogue_mg
             _collision = ColliderRegistry.Instance.isColliding(_rectangleMoving.Collider, gameTime);
             if (_collision != null)
             {
-                if (_collision.RayVsRectCollision.THitNear > 1f || _collision.RayVsRectCollision.THitNear < 0)
+                if (_collision.RayVsRectCollision.THitNear > 1f || _collision.RayVsRectCollision.THitNear < -0.01)
                 {
                     _lastCollision = _collision;
                 }
