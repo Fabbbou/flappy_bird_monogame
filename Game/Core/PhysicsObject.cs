@@ -1,16 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 //apply physics https://guide.handmadehero.org/code/day043/#1535
 public class PhysicsObject
 {
     public const float GRAVITY = 9.8f;
     public const float FrictionCoefficient = 0.1f;
-    private Vector2 _position;
     public Collider Collider;
+    public Vector2 Gravity { get; set; }
+    private Vector2 _position;
     public Vector2 Position
     {
         get => _position;
-        private set
+        set
         {
             _position = value;
             if (Collider != null)
@@ -20,10 +22,9 @@ public class PhysicsObject
         }
     }
     public Vector2 Velocity;
-    public Vector2 Acceleration { get; private set; }
+    public Vector2 Acceleration;
 
-    public Vector2 Gravity { get; set; }
-
+    public bool IsNotMoving => Velocity == Vector2.Zero && Acceleration == Vector2.Zero;
 
     public PhysicsObject(Vector2 initialPosition)
     {
@@ -34,7 +35,7 @@ public class PhysicsObject
         Gravity = new Vector2(0, GRAVITY);
     }
 
-    public static PhysicsObject Rectangle(Vector2 initialPosition, int width, int height)
+    public static PhysicsObject Create(Vector2 initialPosition, int width, int height)
     {
         PhysicsObject physicsObject = new(initialPosition);
         RectangleCollider collider = new(physicsObject, Vector2.Zero.ToPoint(), width, height);
@@ -67,20 +68,14 @@ public class PhysicsObject
         // Apply gravity
         ApplyForce(Gravity);
         // Apply friction
-        Vector2 friction = -FrictionCoefficient * Velocity;
-        ApplyForce(friction);
+        //Vector2 friction = -FrictionCoefficient * Velocity;
+        //ApplyForce(friction);
         // Update velocity
         Velocity += Acceleration * deltaTime;
         // Update position
         Position += Velocity * deltaTime + 0.5f * Acceleration * deltaTime * deltaTime;
         // Reset acceleration for the next frame
         Acceleration = Vector2.Zero;
-
-        //Collider collider = ColliderRegistry.Instance.isAABBCollision(Collider);
-        //if (collider != null)
-        //{
-
-        //}
     }
 }
 public enum ForceType

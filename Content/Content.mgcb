@@ -32,6 +32,16 @@
 /processor:BitmapFontProcessor
 /build:fonts/04b19.fnt
 
+#begin fonts/arial.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:fonts/arial.spritefont
+
+#begin fonts/Arial.ttf
+/copy:fonts/Arial.ttf
+
 #begin sounds/sfx_die.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

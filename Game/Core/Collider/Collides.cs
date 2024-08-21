@@ -9,6 +9,7 @@ namespace flappyrogue_mg.Game.Core.Collider
 {
     public class Collides
     {
+        public const float APPROX = 0.01f;
         public static bool RectVsRect(RectangleCollider a, RectangleCollider b)
         {
             return a.Rectangle.Intersects(b.Rectangle);
@@ -33,13 +34,14 @@ namespace flappyrogue_mg.Game.Core.Collider
         ///     A collision object if there is a collision between the rectangle and the ray
         ///     null if there is no collision.
         /// </returns>
-        public static Collision RayVsRect(Vector2 rayOrigin, Vector2 rayDirection, RectangleCollider rect)
+        public static RayVsRectCollision RayVsRect(Vector2 rayOrigin, Vector2 rayDirection, Rectangle target)
         {
-            Rectangle target = rect.Rectangle; //the target is the rectangle origin i.e. the top left corner
             //nearTimeIntersectionPoint.X is a pourcentage of the ray direction on the x axis (between 0 and 1) for the nearest intersection point
             //farTimeIntersectionPoint.X is a pourcentage of the ray direction on the x axis (between 0 and 1) for the farthest intersection point
-            Vector2 nearTimeIntersectionPoint = (target.Location.ToVector2() - rayOrigin) / rayDirection; //is known as tNear or Nx and Ny in the video
-            Vector2 farTimeIntersectionPoint = (target.Location.ToVector2() + target.Size.ToVector2() - rayOrigin) / rayDirection; //is known as tFar is Fx and Fy in the video
+
+            Vector2 invDir = new Vector2(1.0f / rayDirection.X, 1.0f / rayDirection.Y);
+            Vector2 nearTimeIntersectionPoint = (target.Location.ToVector2() - rayOrigin) * invDir; //is known as tNear or Nx and Ny in the video
+            Vector2 farTimeIntersectionPoint = (target.Location.ToVector2() + target.Size.ToVector2() - rayOrigin) * invDir; //is known as tFar is Fx and Fy in the video
 
             //swaping the values if the near is greater than the far
             // i.e. we make sure near is always the nearest intersection point (and far the farthest)
@@ -69,10 +71,11 @@ namespace flappyrogue_mg.Game.Core.Collider
 
             // Closest 'time' will be the first contact
             float tHitNear = Math.Max(nearTimeIntersectionPoint.X, nearTimeIntersectionPoint.Y);
+            
             // Means the ray is ending before the rectangle (1 is a pourcent of the ray direction)
             //i.e. the first hit on the rectangle will be after the end of the ray
-            if (tHitNear > 1f)
-                return null;
+            //if (tHitNear > 1f || tHitNear <0)
+            //    return null;
 
             //Computing the contact point
             Vector2 contactNormal;
@@ -86,8 +89,77 @@ namespace flappyrogue_mg.Game.Core.Collider
             //Computing the contact point
             Vector2 contactPoint = rayOrigin + tHitNear * rayDirection;
 
-            return new Collision(contactPoint, contactNormal, tHitNear);
+            return new RayVsRectCollision(rayOrigin, rayDirection, target, contactNormal, contactPoint, tHitNear);
         }
+
+        public static RayVsRectCollision RayVsRect2(Vector2 rayOrigin, Vector2 rayDir, Rectangle rect)
+        {
+            float tNear = float.MinValue;
+            float tFar = float.MaxValue;
+
+            Vector2 invDir = new Vector2(1.0f / rayDir.X, 1.0f / rayDir.Y);
+
+            Vector2 t1 = (rect.Location.ToVector2() - rayOrigin) * invDir;
+            Vector2 t2 = ((rect.Location.ToVector2() + rect.Size.ToVector2()) - rayOrigin) * invDir;
+
+            Vector2 tMin = Vector2.Min(t1, t2);
+            Vector2 tMax = Vector2.Max(t1, t2);
+
+            tNear = Math.Max(tMin.X, tMin.Y);
+            tFar = Math.Min(tMax.X, tMax.Y);
+
+            if (tNear > tFar || tFar < 0)
+                return null;
+
+            //Computing the contact point
+            Vector2 contactNormal;
+            if (tMin.X > tMin.Y)
+                contactNormal = rayDir.X < 0 ? new Vector2(1, 0) : new Vector2(-1, 0);
+            else if (tMin.X < tMin.Y)
+                contactNormal = rayDir.Y < 0 ? new Vector2(0, 1) : new Vector2(0, -1);
+            else
+                contactNormal = new Vector2(0, 0);
+
+            //Computing the contact point
+            Vector2 contactPoint = rayOrigin + tNear * rayDir;
+
+            return new(rayOrigin, rayDir, rect, contactNormal, contactPoint, tNear);
+        }
+
+        public static Collision DynamicRectVsRect(RectangleCollider rDynamic, RectangleCollider rStatic, GameTime gameTime)
+        {
+            if(rDynamic.PhysicsObject.IsNotMoving)
+            {
+                return null;
+            }
+
+            Rectangle expandedTargetRect = new Rectangle(
+                rStatic.Rectangle.Location - new Point(rDynamic.Rectangle.Width/2, rDynamic.Rectangle.Width/2),
+                rStatic.Rectangle.Size + rDynamic.Rectangle.Size);
+            RayVsRectCollision rayVsRectCollision = RayVsRect(
+                rDynamic.Rectangle.Center.ToVector2(),
+                rDynamic.PhysicsObject.Velocity * (float) gameTime.ElapsedGameTime.TotalSeconds,
+                expandedTargetRect);
+            return rayVsRectCollision == null ? null : new Collision(rayVsRectCollision, rStatic);
+        }
+    }
+}
+
+//extension for Point template
+public static class PointExtension
+{
+    public static Point Divide(this Point point, int divider)
+    {
+        return new Point(point.X / divider, point.Y / divider);
+    }
+}
+
+// extension for Rectangle based on expandedTargetRect
+public static class RectangleExtension
+{
+    public static Rectangle Expand(this Rectangle rStatic, Rectangle rDynamic)
+    {
+        return new Rectangle();
     }
 }
 

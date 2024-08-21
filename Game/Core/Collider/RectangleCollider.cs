@@ -17,6 +17,12 @@ public class RectangleCollider : Collider
 
     public override void DrawDebug(SpriteBatch spriteBatch, Color color)
     {
-        spriteBatch.DrawRectangle(Rectangle, color, 5);
+        spriteBatch.DrawRectangle(Rectangle, color, 2);
     }
+
+    public override string ToString()
+    {
+        return $"Rectangle: {Rectangle}";
+    }
+
 }

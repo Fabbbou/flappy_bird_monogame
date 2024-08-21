@@ -1,15 +1,24 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class Collision
+namespace flappyrogue_mg.Game.Core.Collider
 {
-    public Vector2 Normal { get; private set; }
-    public Vector2 Position { get; private set; }
-    public float THitNear { get; private set; }
-
-    public Collision(Vector2 position, Vector2 collisionNormal, float tHitNear)
+    public class Collision
     {
-        Position = position;
-        Normal = collisionNormal;
-        THitNear = tHitNear;
+        public RayVsRectCollision RayVsRectCollision { get; private set; }
+        public RectangleCollider RectangleCollider { get; private set; }
+
+        public Collision(RayVsRectCollision rayVsRectCollision, RectangleCollider rectangleCollider)
+        {
+            RayVsRectCollision = rayVsRectCollision;
+            RectangleCollider = rectangleCollider;
+        }
+
+        public override string ToString() {
+            return $"RayVsRectCollision: {RayVsRectCollision}, RectangleCollider: {RectangleCollider}";
+        }   
     }
 }

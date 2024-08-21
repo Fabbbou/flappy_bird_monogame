@@ -21,7 +21,7 @@ public class Bird
 
     public Bird(Vector2 initialPosition)
     {
-        physicsObject = PhysicsObject.Rectangle(initialPosition,17,12);
+        physicsObject = PhysicsObject.Create(initialPosition,17,12);
         physicsObject.Gravity = new Vector2(0, GRAVITY);
     }
 

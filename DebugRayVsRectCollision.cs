@@ -8,7 +8,7 @@ using MonoGame.Extended.ViewportAdapters;
 
 namespace flappyrogue_mg
 {
-    public class DebugCollision : Microsoft.Xna.Framework.Game
+    public class DebugRayVsRectCollision : Microsoft.Xna.Framework.Game
     {
         private GraphicsDeviceManager _graphics;
         private BoxingViewportAdapter _viewportAdapter;
@@ -17,9 +17,9 @@ namespace flappyrogue_mg
         private PhysicsObject _rectangle;
         private Point _ray_origin;
         private Point _ray_target;
-        private Collision _collision;
+        private RayVsRectCollision _collision;
 
-        public DebugCollision()
+        public DebugRayVsRectCollision()
         {
             IsMouseVisible = true;
             Window.AllowUserResizing = true;
@@ -30,7 +30,7 @@ namespace flappyrogue_mg
             _graphics.PreferredBackBufferWidth = 1000;
             _graphics.ApplyChanges();
 
-            _rectangle = PhysicsObject.Rectangle(new Vector2(200, 200), 100, 100);
+            _rectangle = PhysicsObject.Create(new Vector2(200, 200), 100, 100);
             _rectangle.Gravity = new Vector2(0, 0);
             _ray_origin = new Point(100, 20);
             _ray_target = new Point(100, 20);
@@ -60,7 +60,7 @@ namespace flappyrogue_mg
                 _ray_origin = Mouse.GetState().Position;
             }
 
-            _collision = Collides.RayVsRect(_ray_origin.ToVector2(), (_ray_target - _ray_origin).ToVector2(), (RectangleCollider) _rectangle.Collider);
+            _collision = Collides.RayVsRect(_ray_origin.ToVector2(), (_ray_target - _ray_origin).ToVector2(), ((RectangleCollider)_rectangle.Collider).Rectangle);
 
             base.Update(gameTime);
         }
