@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.ViewportAdapters;
+using System;
 
 
 namespace flappyrogue_mg
@@ -78,21 +79,15 @@ namespace flappyrogue_mg
                 _rectangleMoving.Velocity = new Vector2(0, 0);
             }
 
-            Vector2 position = _rectangleMoving.Position;
             _collision = ColliderRegistry.Instance.isColliding(_rectangleMoving.Collider, gameTime);
             if (_collision != null)
             {
-                if (_collision.RayVsRectCollision.THitNear > 1f || _collision.RayVsRectCollision.THitNear < 0 )
-                {
-                    //no collision, but printing still
-                    _lastCollision = _collision;
-                }
-                else
-                {
-                    _lastCollision = _collision;
-                    _rectangleMoving.Velocity = Vector2.Zero;
-                    _rectangleMoving.Position = position;// bad, should be a matching edges or something
-                }
+                _lastCollision = _collision;
+                _rectangleMoving.Velocity =
+                    _rectangleMoving.Velocity
+                        + _collision.RayVsRectCollision.Normal
+                        * new Vector2(Math.Abs(_rectangleMoving.Velocity.X), Math.Abs(_rectangleMoving.Velocity.Y)) 
+                        * (1 - _collision.RayVsRectCollision.THitNear);
             }
             _rectangleMoving.Update(gameTime);
             base.Update(gameTime);

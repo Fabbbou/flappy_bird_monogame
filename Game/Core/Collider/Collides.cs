@@ -92,40 +92,6 @@ namespace flappyrogue_mg.Game.Core.Collider
             return new RayVsRectCollision(rayOrigin, rayDirection, target, contactNormal, contactPoint, tHitNear);
         }
 
-        public static RayVsRectCollision RayVsRect2(Vector2 rayOrigin, Vector2 rayDir, Rectangle rect)
-        {
-            float tNear = float.MinValue;
-            float tFar = float.MaxValue;
-
-            Vector2 invDir = new Vector2(1.0f / rayDir.X, 1.0f / rayDir.Y);
-
-            Vector2 t1 = (rect.Location.ToVector2() - rayOrigin) * invDir;
-            Vector2 t2 = ((rect.Location.ToVector2() + rect.Size.ToVector2()) - rayOrigin) * invDir;
-
-            Vector2 tMin = Vector2.Min(t1, t2);
-            Vector2 tMax = Vector2.Max(t1, t2);
-
-            tNear = Math.Max(tMin.X, tMin.Y);
-            tFar = Math.Min(tMax.X, tMax.Y);
-
-            if (tNear > tFar || tFar < 0)
-                return null;
-
-            //Computing the contact point
-            Vector2 contactNormal;
-            if (tMin.X > tMin.Y)
-                contactNormal = rayDir.X < 0 ? new Vector2(1, 0) : new Vector2(-1, 0);
-            else if (tMin.X < tMin.Y)
-                contactNormal = rayDir.Y < 0 ? new Vector2(0, 1) : new Vector2(0, -1);
-            else
-                contactNormal = new Vector2(0, 0);
-
-            //Computing the contact point
-            Vector2 contactPoint = rayOrigin + tNear * rayDir;
-
-            return new(rayOrigin, rayDir, rect, contactNormal, contactPoint, tNear);
-        }
-
         public static Collision DynamicRectVsRect(RectangleCollider rDynamic, RectangleCollider rStatic, GameTime gameTime)
         {
             if(rDynamic.PhysicsObject.IsNotMoving)
@@ -140,7 +106,11 @@ namespace flappyrogue_mg.Game.Core.Collider
                 rDynamic.Rectangle.Center.ToVector2(),
                 rDynamic.PhysicsObject.Velocity * (float) gameTime.ElapsedGameTime.TotalSeconds,
                 expandedTargetRect);
-            return rayVsRectCollision == null ? null : new Collision(rayVsRectCollision, rStatic);
+
+            if (rayVsRectCollision == null || rayVsRectCollision.THitNear > 1f || rayVsRectCollision.THitNear < 0)
+                return null;
+            
+            return new Collision(rayVsRectCollision, rStatic);
         }
     }
 }

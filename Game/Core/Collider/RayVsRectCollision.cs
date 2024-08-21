@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using flappyrogue_mg.Game.Core.Collider;
+using Microsoft.Xna.Framework;
 
 public class RayVsRectCollision
 {
