@@ -10,7 +10,7 @@ public class RectangleCollider : Collider
 
     public Rect Rect => new(RelativePosition+PhysicsObject.Position, new(Width, Height));
 
-    public RectangleCollider(PhysicsObject physicsObject, Vector2 position, int width, int height) : base(physicsObject, position)
+    public RectangleCollider(PhysicsObject physicsObject, Vector2 position, float width, float height) : base(physicsObject, position)
     {
         Width = width;
         Height = height;

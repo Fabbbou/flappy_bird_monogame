@@ -35,7 +35,7 @@ public class PhysicsObject
         Gravity = new Vector2(0, GRAVITY);
     }
 
-    public static PhysicsObject Create(Vector2 initialPosition, int width, int height)
+    public static PhysicsObject Create(Vector2 initialPosition, float width, float height)
     {
         PhysicsObject physicsObject = new(initialPosition);
         RectangleCollider collider = new(physicsObject, Vector2.Zero, width, height);

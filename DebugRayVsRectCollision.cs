@@ -15,8 +15,8 @@ namespace flappyrogue_mg
         private SpriteBatch _spriteBatch;
 
         private PhysicsObject _rectangle;
-        private Point _ray_origin;
-        private Point _ray_target;
+        private Vector2 _ray_origin;
+        private Vector2 _ray_target;
         private RayVsRectCollision _collision;
 
         public DebugRayVsRectCollision()
@@ -32,8 +32,8 @@ namespace flappyrogue_mg
 
             _rectangle = PhysicsObject.Create(new Vector2(200, 200), 100, 100);
             _rectangle.Gravity = new Vector2(0, 0);
-            _ray_origin = new Point(100, 20);
-            _ray_target = new Point(100, 20);
+            _ray_origin = new Vector2(100, 20);
+            _ray_target = new Vector2(100, 20);
         }
 
         protected override void Initialize()
@@ -54,13 +54,13 @@ namespace flappyrogue_mg
             _rectangle.Update(gameTime);
 
             //Mouse position set to a point
-            _ray_target = Mouse.GetState().Position;
+            _ray_target = Mouse.GetState().Position.ToVector2();
             if (Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
-                _ray_origin = Mouse.GetState().Position;
+                _ray_origin = Mouse.GetState().Position.ToVector2();
             }
 
-            _collision = Collides.RayVsRect(_ray_origin.ToVector2(), (_ray_target - _ray_origin).ToVector2(), ((RectangleCollider)_rectangle.Collider).Rect);
+            _collision = Collides.RayVsRect(_ray_origin, (_ray_target - _ray_origin), ((RectangleCollider)_rectangle.Collider).Rect);
 
             base.Update(gameTime);
         }
@@ -80,7 +80,7 @@ namespace flappyrogue_mg
             {
                 _rectangle.Collider.DrawDebug(_spriteBatch, Color.LightYellow);
             }
-            _spriteBatch.DrawLine(_ray_origin.ToVector2(), _ray_target.ToVector2(), Color.LightGreen);
+            _spriteBatch.DrawLine(_ray_origin, _ray_target, Color.LightGreen);
 
             _spriteBatch.End();
             base.Draw(gameTime);

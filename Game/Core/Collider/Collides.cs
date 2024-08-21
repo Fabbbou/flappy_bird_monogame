@@ -63,7 +63,7 @@ namespace flappyrogue_mg.Game.Core.Collider
             
             // Means the ray is ending before the rectangle (1 is a pourcent of the ray direction)
             //i.e. the first hit on the rectangle will be after the end of the ray
-            //if (tHitNear > 1f || tHitNear <0)
+            //if (tHitNear > 1f || tHitNear < 0)
             //    return null;
 
             //Computing the contact point
