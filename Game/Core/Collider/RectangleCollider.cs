@@ -7,8 +7,9 @@ public class RectangleCollider : Collider
 {
     public float Width { get; }
     public float Height { get; }
-
     public Rect Rect => new(RelativePosition+PhysicsObject.Position, new(Width, Height));
+
+    public override Vector2 Center => Rect.Center;
 
     public RectangleCollider(PhysicsObject physicsObject, Vector2 position, float width, float height) : base(physicsObject, position)
     {

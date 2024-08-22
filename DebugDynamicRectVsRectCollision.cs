@@ -23,6 +23,10 @@ namespace flappyrogue_mg
         private Collision _collision;
         private Collision _lastCollision;
 
+        private Vector2 _rayOrigin;
+        private Vector2 _rayTarget;
+        private Vector2 _direction;
+
         public DebugDynamicRectVsRectCollision()
         {
             IsMouseVisible = true;
@@ -78,6 +82,20 @@ namespace flappyrogue_mg
             {
                 _rectangleMoving.Velocity = new Vector2(0, 0);
             }
+
+            var velocityMouse = 5f;
+
+            //Mouse position set to a point
+
+            if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+            {
+                _rayOrigin = _rectangleMoving.Collider.Center;
+                _rayTarget = Mouse.GetState().Position.ToVector2();
+                _direction = (_rayTarget - _rayOrigin);
+                _direction.Normalize();
+                _rectangleMoving.Velocity += _direction * velocityMouse;
+            }
+
 
             _collision = ColliderRegistry.Instance.isColliding(_rectangleMoving.Collider, gameTime);
             if (_collision != null)

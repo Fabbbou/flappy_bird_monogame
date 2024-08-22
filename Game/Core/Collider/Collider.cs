@@ -10,6 +10,8 @@ public abstract class Collider
     public Vector2 RelativePosition;
     List<Collider> Colliders = new();
 
+    public abstract Vector2 Center { get; }
+
     public Collider(PhysicsObject physicsObject, Vector2 position)
     {
         PhysicsObject = physicsObject;
