@@ -35,6 +35,14 @@ namespace flappyrogue_mg.Game.Core.Collider
             return point.X >= X && point.X <= X + Width && point.Y >= Y && point.Y <= Y + Height;
         }
 
+        public bool Intersects(Rect other)
+        {
+            return X < other.X + other.Width &&
+                   X + Width > other.X &&
+                   Y < other.Y + other.Height &&
+                   Y + Height > other.Y;
+        }
+
         public override string ToString()
         {
             return $"X: {X}, Y: {Y}, Width: {Width}, Height: {Height}";

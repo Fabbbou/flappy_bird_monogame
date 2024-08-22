@@ -36,10 +36,7 @@ public class ColliderRegistry
             {
                 continue; // Skip self
             }
-            if (collider is RectangleCollider rectangleCollider && other is RectangleCollider otherRectangleCollider)
-            {
-                return Collides.DynamicRectVsRect(rectangleCollider, otherRectangleCollider, gameTime);
-            }
+            return Collides.AABB(collider, other, gameTime);
         }
         return null;
     }

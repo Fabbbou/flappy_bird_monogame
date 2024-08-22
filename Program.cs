@@ -1,3 +1,3 @@
 ﻿
-using var game = new flappyrogue_mg.DebugDynamicRectVsRectCollision();
+using var game = new flappyrogue_mg.DebugRectVsRectCollision();
 game.Run();

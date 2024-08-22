@@ -8,19 +8,7 @@ public class PhysicsObject
     public const float FrictionCoefficient = 0.1f;
     public Collider Collider;
     public Vector2 Gravity { get; set; }
-    private Vector2 _position;
-    public Vector2 Position
-    {
-        get => _position;
-        set
-        {
-            _position = value;
-            if (Collider != null)
-            {
-                Collider.RelativePosition = value;
-            }
-        }
-    }
+    public Vector2 Position;
     public Vector2 Velocity;
     public Vector2 Acceleration;
 
@@ -38,7 +26,7 @@ public class PhysicsObject
     public static PhysicsObject Create(Vector2 initialPosition, float width, float height)
     {
         PhysicsObject physicsObject = new(initialPosition);
-        RectangleCollider collider = new(physicsObject, Vector2.Zero, width, height);
+        Collider collider = new(physicsObject, width, height);
         physicsObject.Collider = collider;
         return physicsObject;
     }

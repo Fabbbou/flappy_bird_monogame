@@ -10,7 +10,7 @@ using System;
 
 namespace flappyrogue_mg
 {
-    public class DebugDynamicRectVsRectCollision : Microsoft.Xna.Framework.Game
+    public class DebugRectVsRectCollision : Microsoft.Xna.Framework.Game
     {
         private GraphicsDeviceManager _graphics;
         private BoxingViewportAdapter _viewportAdapter;
@@ -27,7 +27,7 @@ namespace flappyrogue_mg
         private Vector2 _rayTarget;
         private Vector2 _direction;
 
-        public DebugDynamicRectVsRectCollision()
+        public DebugRectVsRectCollision()
         {
             IsMouseVisible = true;
             Window.AllowUserResizing = true;
@@ -96,17 +96,8 @@ namespace flappyrogue_mg
                 _rectangleMoving.Velocity += _direction * velocityMouse;
             }
 
-
-            _collision = ColliderRegistry.Instance.isColliding(_rectangleMoving.Collider, gameTime);
-            if (_collision != null)
-            {
-                    _lastCollision = _collision;
-                _rectangleMoving.Velocity = Vector2.Zero;
-                        // _collision.RayVsRectCollision.Normal
-                        //* new Vector2(Math.Abs(_rectangleMoving.Velocity.X), Math.Abs(_rectangleMoving.Velocity.Y))
-                        //* (1 - _collision.RayVsRectCollision.THitNear);
-            }
             _rectangleMoving.Update(gameTime);
+            _collision = ColliderRegistry.Instance.isColliding(_rectangleMoving.Collider, gameTime);
             base.Update(gameTime);
         }
 
@@ -119,21 +110,6 @@ namespace flappyrogue_mg
             DebugDraw.Draw(new Rectangle(150,150,350,200), _spriteBatch, Color.DeepSkyBlue);
             _rectangleStatic.Collider.DrawDebug(_spriteBatch, Color.LightYellow);
             _rectangleMoving.Collider.DrawDebug(_spriteBatch, Color.LightPink);
-
-
-            if (_lastCollision != null)
-            {
-                DebugDraw.Draw(_lastCollision, _spriteBatch, _font, 1f, new(10,70));
-            }
-
-            if(_collision != null)
-            {
-                _spriteBatch.DrawCircle(new CircleF(_collision.RayVsRectCollision.Position, 3), 5, Color.Red, 10);
-                _spriteBatch.DrawLine(_collision.RayVsRectCollision.Position, _collision.RayVsRectCollision.Position + _collision.RayVsRectCollision.Normal * 50, Color.Yellow);
-                _spriteBatch.DrawLine(_collision.RayVsRectCollision.RayOrigin, _collision.RayVsRectCollision.RayOrigin + _collision.RayVsRectCollision.RayDirection, Color.Green, 2);
-                _spriteBatch.DrawPoint(_lastCollision.RayVsRectCollision.RayOrigin.ToPoint().X, _lastCollision.RayVsRectCollision.RayOrigin.ToPoint().Y, Color.Pink,3);
-                DebugDraw.Draw(_collision, _spriteBatch, _font, 1f, new(10, 110));
-            }
 
             _spriteBatch.End();
             base.Draw(gameTime);

@@ -14,12 +14,6 @@ namespace flappyrogue_mg.Game.Core
             spriteBatch.DrawString(font, $"Acceleration: {physicsObject.Acceleration}", new Vector2(10, 50), Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
         }
 
-        public static void Draw(Collision collision, SpriteBatch spriteBatch, SpriteFont font, float scale, Vector2 position)
-        {
-            spriteBatch.DrawString(font, $"collision.RectangleCollider: {collision.RectangleCollider.Rect}", position, Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
-            spriteBatch.DrawString(font, $"collision.RayVsRectCollision: {collision.RayVsRectCollision}", position + new Vector2(0, 20), Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
-        }
-
         //Rectangle Draw
         public static void Draw(Rectangle rectangle, SpriteBatch spriteBatch, Color color)
         {

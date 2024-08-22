@@ -8,17 +8,11 @@ namespace flappyrogue_mg.Game.Core.Collider
 {
     public class Collision
     {
-        public RayVsRectCollision RayVsRectCollision { get; private set; }
-        public RectangleCollider RectangleCollider { get; private set; }
+          public CollisionSide CollisionSide { get; private set; }
 
-        public Collision(RayVsRectCollision rayVsRectCollision, RectangleCollider rectangleCollider)
+        public Collision(CollisionSide collisionSide)
         {
-            RayVsRectCollision = rayVsRectCollision;
-            RectangleCollider = rectangleCollider;
+            CollisionSide = collisionSide;
         }
-
-        public override string ToString() {
-            return $"RayVsRectCollision: {RayVsRectCollision}, RectangleCollider: {RectangleCollider}";
-        }   
-    }
+}
 }
