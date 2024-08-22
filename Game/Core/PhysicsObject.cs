@@ -1,16 +1,22 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-//apply physics https://guide.handmadehero.org/code/day043/#1535
+/// <summary>
+/// Represents a physics object in the game world.
+/// It has a position, velocity, acceleration, gravity, and friction.
+/// Gravity is defaulted to 9.8f and friction is defaulted to 1f.
+/// It can apply forces to itself and update its position based on the forces applied.
+/// </summary>
 public class PhysicsObject
 {
     public const float GRAVITY = 9.8f;
-    public const float FrictionCoefficient = 0.1f;
+    public const float FRICTION = 1f;
     public Collider Collider;
-    public Vector2 Gravity { get; set; }
+    public Vector2 Gravity;
     public Vector2 Position;
     public Vector2 Velocity;
     public Vector2 Acceleration;
+    public Vector2 Friction;
 
     public bool IsNotMoving => Velocity == Vector2.Zero && Acceleration == Vector2.Zero;
 
@@ -21,6 +27,7 @@ public class PhysicsObject
         Velocity = Vector2.Zero;
         Acceleration = Vector2.Zero;
         Gravity = new Vector2(0, GRAVITY);
+        Friction = new Vector2(FRICTION, FRICTION);
     }
 
     public static PhysicsObject Create(Vector2 initialPosition, float width, float height)
@@ -56,8 +63,8 @@ public class PhysicsObject
         // Apply gravity
         ApplyForce(Gravity);
         // Apply friction
-        //Vector2 friction = -FrictionCoefficient * Velocity;
-        //ApplyForce(friction);
+        Vector2 friction = -Friction * Velocity;
+        ApplyForce(friction);
         // Update velocity
         Velocity += Acceleration * deltaTime;
         // Update position

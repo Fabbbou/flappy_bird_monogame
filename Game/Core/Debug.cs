@@ -1,11 +1,10 @@
-﻿using flappyrogue_mg.Game.Core.Collider;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 
 namespace flappyrogue_mg.Game.Core
 {
-    public class DebugDraw
+    public class Debug
     {
         public static void Draw(PhysicsObject physicsObject, SpriteBatch spriteBatch, SpriteFont font, float scale)
         {

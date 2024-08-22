@@ -21,7 +21,7 @@ public class Collider
     public Collider(PhysicsObject physicsObject, float width, float height)
     {
         PhysicsObject = physicsObject;
-        ColliderRegistry.Instance.Register(this);
+        PhysicsEngine.Instance.AddCollider(this);
         Width = width;
         Height = height;
     }
@@ -31,7 +31,12 @@ public class Collider
         spriteBatch.DrawRectangle(Rect.Render, color, 2);
     }
 
-    public CollisionSide GetCollisionSide(Collider other)
+    /// <summary>
+    ///     Check if the collider is colliding with another collider and return the side of the collision.
+    /// </summary>
+    /// <param name="other"></param>
+    /// <returns></returns>
+    public CollisionSide CheckIfCollision(Collider other)
     {
         if (!Rect.Intersects(other.Rect))
             return CollisionSide.None;
@@ -46,9 +51,9 @@ public class Collider
             other.Y + other.Height - Y
         );
 
+        // The collision is on the X axis
         if (overlapX < overlapY)
         {
-            // Collision on the X axis
             if (X < other.X)
                 return CollisionSide.Right;
             else
@@ -64,9 +69,16 @@ public class Collider
         }
     }
 
-    public CollisionSide HandleCollision(Collider other)
+    /// <summary>
+    /// Process the collision and position the collider's PhysicObject correctly.
+    /// This mean you already processed the physics for this frame and know you want to pixelperfectly position the collider.
+    /// 
+    /// </summary>
+    /// <param name="other">the other collider you are placing with</param>
+    /// <returns>The collision side you collide </returns>
+    public CollisionSide CollidePostPhysics(Collider other)
     {
-        CollisionSide side = GetCollisionSide(other);
+        CollisionSide side = CheckIfCollision(other);
         if (side == CollisionSide.None)
             return side;
 

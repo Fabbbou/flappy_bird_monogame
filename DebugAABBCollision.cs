@@ -10,7 +10,7 @@ using System;
 
 namespace flappyrogue_mg
 {
-    public class DebugRectVsRectCollision : Microsoft.Xna.Framework.Game
+    public class DebugAABBCollision : Microsoft.Xna.Framework.Game
     {
         private GraphicsDeviceManager _graphics;
         private BoxingViewportAdapter _viewportAdapter;
@@ -27,7 +27,7 @@ namespace flappyrogue_mg
         private Vector2 _rayTarget;
         private Vector2 _direction;
 
-        public DebugRectVsRectCollision()
+        public DebugAABBCollision()
         {
             IsMouseVisible = true;
             Window.AllowUserResizing = true;
@@ -39,7 +39,7 @@ namespace flappyrogue_mg
             _graphics.ApplyChanges();
 
             _rectangleMoving = PhysicsObject.Create(new Vector2(0, 150), 100, 100);
-            _rectangleMoving.Gravity = GravityZero;
+            //_rectangleMoving.Gravity = GravityZero;
             _rectangleStatic = PhysicsObject.Create(new Vector2(200, 200), 250, 100);
             _rectangleStatic.Gravity = GravityZero;
             _collision = null;
@@ -60,8 +60,10 @@ namespace flappyrogue_mg
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            var velocity = 500f;
+
+
             //up down left right keys to move the rectangle
+            var velocity = 500f;
             if (Keyboard.GetState().IsKeyDown(Keys.Up))
             {
                 _rectangleMoving.Velocity = new Vector2(0, -velocity);
@@ -83,10 +85,8 @@ namespace flappyrogue_mg
                 _rectangleMoving.Velocity = new Vector2(0, 0);
             }
 
-            var velocityMouse = 5f;
-
             //Mouse position set to a point
-
+            var velocityMouse = 5f;
             if (Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
                 _rayOrigin = _rectangleMoving.Collider.Center;
@@ -96,8 +96,10 @@ namespace flappyrogue_mg
                 _rectangleMoving.Velocity += _direction * velocityMouse;
             }
 
-            _rectangleMoving.Update(gameTime);
-            _collision = ColliderRegistry.Instance.isColliding(_rectangleMoving.Collider, gameTime);
+            //This block is actually acting like a physics engine move_and_slide from Godot for example
+            _collision = PhysicsEngine.Instance.MoveAndSlide(_rectangleMoving, gameTime);
+            
+            
             base.Update(gameTime);
         }
 
@@ -105,9 +107,10 @@ namespace flappyrogue_mg
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-
-            DebugDraw.Draw(_rectangleMoving, _spriteBatch, _font, 1f);
-            DebugDraw.Draw(new Rectangle(150,150,350,200), _spriteBatch, Color.DeepSkyBlue);
+            if (_collision != null)
+                _spriteBatch.DrawString(_font, $"side collision: {_collision.CollisionSide}", new Vector2(0, 0), Color.White);
+            Debug.Draw(_rectangleMoving, _spriteBatch, _font, 1f);
+            Debug.Draw(new Rectangle(150,150,350,200), _spriteBatch, Color.DeepSkyBlue);
             _rectangleStatic.Collider.DrawDebug(_spriteBatch, Color.LightYellow);
             _rectangleMoving.Collider.DrawDebug(_spriteBatch, Color.LightPink);
 
