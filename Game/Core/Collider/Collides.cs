@@ -10,6 +10,8 @@ namespace flappyrogue_mg.Game.Core.Collider
     public class Collides
     {
         public const float APPROX = 0.01f;
+        public const int DIGIT_ROUND = 2;
+
         /// <summary>
         /// A Ray Cast to a Rectangle. The Collision object is the FIRST collision point.
         /// This algorithm is inspired from a YT video from OneLoneCoder.
@@ -84,14 +86,14 @@ namespace flappyrogue_mg.Game.Core.Collider
 
         public static Collision DynamicRectVsRect(RectangleCollider rDynamic, RectangleCollider rStatic, GameTime gameTime)
         {
+            Rect expandedTargetRect = new Rect(
+                rStatic.Rect.Position - new Vector2(rDynamic.Rect.Width/2, rDynamic.Rect.Width/2),
+                rStatic.Rect.Size + rDynamic.Rect.Size);
             if(rDynamic.PhysicsObject.IsNotMoving)
             {
                 return null;
             }
 
-            Rect expandedTargetRect = new Rect(
-                rStatic.Rect.Position - new Vector2(rDynamic.Rect.Width/2, rDynamic.Rect.Width/2),
-                rStatic.Rect.Size + rDynamic.Rect.Size);
             RayVsRectCollision rayVsRectCollision = RayVsRect(
                 rDynamic.Rect.Center,
                 rDynamic.PhysicsObject.Velocity * (float) gameTime.ElapsedGameTime.TotalSeconds,
@@ -103,6 +105,12 @@ namespace flappyrogue_mg.Game.Core.Collider
             //    return null;
             
             return new Collision(rayVsRectCollision, rStatic);
+        }
+
+        public static float Round(float value)
+        {
+            //return a round of value by DIGIT_ROUND
+            return (float)Math.Round(value, DIGIT_ROUND);
         }
     }
 }

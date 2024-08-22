@@ -30,13 +30,9 @@ namespace flappyrogue_mg.Game.Core.Collider
             Width = size.X;
             Height = size.Y;
         }
-
-        public bool Intersects(Rect other)
+        public bool Contains(Vector2 point)
         {
-            return X < other.X + other.Width &&
-                   X + Width > other.X &&
-                   Y < other.Y + other.Height &&
-                   Y + Height > other.Y;
+            return point.X >= X && point.X <= X + Width && point.Y >= Y && point.Y <= Y + Height;
         }
 
         public override string ToString()
