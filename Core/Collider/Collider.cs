@@ -1,4 +1,4 @@
-using flappyrogue_mg.Game.Core.Collider;
+using flappyrogue_mg.Core.Collider;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;

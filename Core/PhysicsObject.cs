@@ -14,28 +14,42 @@ public class PhysicsObject
     public Collider Collider;
     public Vector2 Gravity;
     public Vector2 Position;
+    public float X => Position.X;
+    public float Y => Position.Y;
     public Vector2 Velocity;
     public Vector2 Acceleration;
     public Vector2 Friction;
 
     public bool IsNotMoving => Velocity == Vector2.Zero && Acceleration == Vector2.Zero;
 
-    public PhysicsObject(Vector2 initialPosition)
+    public PhysicsObject(float x, float y, float widthCollider, float heightCollider)
     {
-        Position = initialPosition;
-        Collider = null;
+        Position = new(x,y);
+        Collider = new(this, widthCollider, heightCollider);
         Velocity = Vector2.Zero;
         Acceleration = Vector2.Zero;
         Gravity = new Vector2(0, GRAVITY);
         Friction = new Vector2(FRICTION, FRICTION);
     }
 
-    public static PhysicsObject Create(Vector2 initialPosition, float width, float height)
+    public PhysicsObject(Vector2 initialPosition, float widthCollider, float heightCollider)
     {
-        PhysicsObject physicsObject = new(initialPosition);
-        Collider collider = new(physicsObject, width, height);
-        physicsObject.Collider = collider;
-        return physicsObject;
+        Position = initialPosition;
+        Collider = new(this, widthCollider, heightCollider);
+        Velocity = Vector2.Zero;
+        Acceleration = Vector2.Zero;
+        Gravity = new Vector2(0, GRAVITY);
+        Friction = new Vector2(FRICTION, FRICTION);
+    }
+
+    public PhysicsObject(Vector2 initialPosition, Vector2 sizeCollider)
+    {
+        Position = initialPosition;
+        Collider = new(this, sizeCollider.X, sizeCollider.Y);
+        Velocity = Vector2.Zero;
+        Acceleration = Vector2.Zero;
+        Gravity = new Vector2(0, GRAVITY);
+        Friction = new Vector2(FRICTION, FRICTION);
     }
 
     public void ApplyForce(Vector2 force)

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace flappyrogue_mg.Game.Core.Collider
+namespace flappyrogue_mg.Core.Collider
 {
     public class Rect
     {

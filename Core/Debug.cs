@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 
-namespace flappyrogue_mg.Game.Core
+namespace flappyrogue_mg.Core
 {
     public class Debug
     {

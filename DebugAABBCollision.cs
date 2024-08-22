@@ -1,5 +1,5 @@
-﻿using flappyrogue_mg.Game.Core;
-using flappyrogue_mg.Game.Core.Collider;
+﻿using flappyrogue_mg.Core;
+using flappyrogue_mg.Core.Collider;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -38,9 +38,9 @@ namespace flappyrogue_mg
             _graphics.PreferredBackBufferWidth = 1400;
             _graphics.ApplyChanges();
 
-            _rectangleMoving = PhysicsObject.Create(new Vector2(0, 150), 100, 100);
+            _rectangleMoving = new PhysicsObject(new Vector2(0, 150), 100, 100);
             //_rectangleMoving.Gravity = GravityZero;
-            _rectangleStatic = PhysicsObject.Create(new Vector2(200, 200), 250, 100);
+            _rectangleStatic = new PhysicsObject(new Vector2(200, 200), 250, 100);
             _rectangleStatic.Gravity = GravityZero;
             _collision = null;
         }

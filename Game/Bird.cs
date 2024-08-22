@@ -1,4 +1,7 @@
 ﻿using AsepriteDotNet.Aseprite;
+using flappyrogue_mg;
+using flappyrogue_mg.Core;
+using flappyrogue_mg.Game;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -7,27 +10,35 @@ using MonoGame.Aseprite;
 using MonoGame.Extended.BitmapFonts;
 using MonoGame.Extended.ViewportAdapters;
 
-public class Bird
+public class Bird : GameObject
 {
+    public const int SPRITE_WIDTH = 17;
+    public const int SPRITE_HEIGHT = 12;
+
     private const float SPEED = 400f;
-    private const float GRAVITY = 0;//1300f;
+    private const float GRAVITY = 1300f;
 
     public readonly PhysicsObject physicsObject;
-    private BitmapFont _font;
     private SpriteSheet _spriteSheet;
     private AnimatedSprite _idleCycle;
+    private BitmapFont _font;
     private Vector2 _jumpForce = new Vector2(0, -SPEED);
+    private Vector2 _jumpContinuous = new Vector2(0, -500f);
 
+    private bool _pressedJump = false;
 
-    public Bird(Vector2 initialPosition)
+    public Bird()
     {
-        physicsObject = PhysicsObject.Create(initialPosition,17,12);
+        physicsObject = new(GameMain.WORLD_WIDTH/2 - SPRITE_WIDTH/2, (GameMain.WORLD_HEIGHT-Floor.SPRITE_HEIGHT)/2-SPRITE_HEIGHT/2, SPRITE_WIDTH, SPRITE_HEIGHT);
         physicsObject.Gravity = new Vector2(0, GRAVITY);
     }
 
     public void Load(ContentManager content, GraphicsDevice graphicsDevice)
     {
+        // Load the font
         _font = content.Load<BitmapFont>("fonts/04b19");
+
+        // Load the sprite sheet
         AsepriteFile aseFile = content.Load<AsepriteFile>("sprites/bird");
         _spriteSheet = aseFile.CreateSpriteSheet(graphicsDevice);
         _idleCycle = _spriteSheet.CreateAnimatedSprite("idle"); //tag created in aseprite file selecting the frames to be animated
@@ -42,17 +53,25 @@ public class Bird
         // crossplatform jump input
         if (Keyboard.GetState().IsKeyDown(Keys.Space) || GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed)
         {
-            physicsObject.Velocity = _jumpForce;     
+            if (!_pressedJump)
+            {
+                physicsObject.Velocity = _jumpForce;
+                _pressedJump = true;
+            }
         }
-
-        physicsObject.Update(gameTime);
+        else
+        {
+            _pressedJump = false;
+        }
+        
+        PhysicsEngine.Instance.MoveAndSlide(physicsObject, gameTime);
     }
     private Vector2 _scale;
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch, ContentManager content, ViewportAdapter viewportAdapter, GraphicsDevice graphicsDevice)
     {
         spriteBatch.Draw(_idleCycle, physicsObject.Position);
 
-        DrawDebug(spriteBatch, content, viewportAdapter); //to be fixed with bitmapfonts
+        //DrawDebug(spriteBatch, content, viewportAdapter);
 
     }
 
