@@ -1,5 +1,4 @@
-﻿using flappyrogue_mg.Game;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Aseprite;
@@ -7,7 +6,7 @@ using MonoGame.Extended.Graphics;
 using MonoGame.Extended.ViewportAdapters;
 
 
-namespace flappyrogue_mg
+namespace flappyrogue_mg.Game
 {
     public class GameMain : Microsoft.Xna.Framework.Game
     {
@@ -32,11 +31,11 @@ namespace flappyrogue_mg
             Content.RootDirectory = "Content";
             _graphics = new GraphicsDeviceManager(this);
             //resize the startup window to match the game ratio
-            _graphics.PreferredBackBufferHeight = (int)((float)GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height * 0.75f);
-            _graphics.PreferredBackBufferWidth = _graphics.PreferredBackBufferHeight * 9/16;
+            _graphics.PreferredBackBufferHeight = (int)(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height * 0.75f);
+            _graphics.PreferredBackBufferWidth = _graphics.PreferredBackBufferHeight * 9 / 16;
             _graphics.ApplyChanges();
 
-            
+
             _bird = new Bird();
             _floor = new Floor();
         }
@@ -47,7 +46,7 @@ namespace flappyrogue_mg
             // setting the viewport dimensions to be the same as the background (bg) image
             // as the bg is portrait, the game will be portrait to
             // for a pixel perfect game, the viewport has to be the exact size of the background img
-            _viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, 144, 256); 
+            _viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, 144, 256);
         }
 
         protected override void LoadContent()
@@ -60,7 +59,7 @@ namespace flappyrogue_mg
             // it is considered a uniform grid of sprites (they are all the same size)
             // more info here: https://www.monogameextended.net/docs/features/texture-handling/texture2datlas/
             Texture2D backGroundTexture = Content.Load<Texture2D>("sprites/background");
-            _atlas = Texture2DAtlas.Create("Atlas/Background",backGroundTexture, WORLD_WIDTH, WORLD_HEIGHT);
+            _atlas = Texture2DAtlas.Create("Atlas/Background", backGroundTexture, WORLD_WIDTH, WORLD_HEIGHT);
             _dayBackground = _atlas[0];
             _nightBackground = _atlas[1];
 
@@ -76,7 +75,7 @@ namespace flappyrogue_mg
                 Exit();
             // Update sprite position based on elapsed time
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            
+
             _floor.Update(gameTime, _graphics.GraphicsDevice);
 
             _bird.Update(gameTime, _graphics.GraphicsDevice);
