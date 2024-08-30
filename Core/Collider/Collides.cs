@@ -1,6 +1,5 @@
 ﻿using flappyrogue_mg.Core.Collider;
 using Microsoft.Xna.Framework;
-using System;
 
 public class Collides
 {

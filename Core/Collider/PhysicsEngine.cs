@@ -55,19 +55,24 @@ public class PhysicsEngine
         return null;
     }
 
-    public Collision CheckCollision(Collider collider, GameTime gameTime)
+    public List<Collision> MoveAndPushOthers(PhysicsObject physicsObject, GameTime gameTime)
     {
+        // Update physics object
+        physicsObject.Update(gameTime);
+        List<Collision> collisions = new();
+        // Check collision and solve it if physicsObject overlaps another collider
         foreach (Collider other in colliders)
         {
-            if (collider != other)
+            if (physicsObject.Collider != other)
             {
-                var collision = Collides.CollideAndSolve(collider, other, gameTime);
-                if(collision != null)
+                Collision collision = Collides.CollideAndSolve(other, physicsObject.Collider, gameTime);
+                if (collision != null)
                 {
-                    return collision;
+                    collisions.Add(collision);
                 }
             }
         }
-        return null;
+        return collisions;
     }
+
 }

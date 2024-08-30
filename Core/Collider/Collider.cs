@@ -91,19 +91,35 @@ public class Collider
         {
             case CollisionSide.Left:
                 PhysicsObject.Position.X = other.X + other.Width;
-                PhysicsObject.Velocity.X = 0;
+                if (PhysicsObject.Velocity.X > 0)
+                {
+                    PhysicsObject.Velocity.X = 0;
+                }
+                _colorDebugCollision = Color.Blue;
                 break;
             case CollisionSide.Right:
                 PhysicsObject.Position.X = other.X - Width;
-                PhysicsObject.Velocity.X = 0;
+                if (PhysicsObject.Velocity.X < 0)
+                {
+                    PhysicsObject.Velocity.X = 0;
+                }
+                _colorDebugCollision = Color.Orange;
                 break;
             case CollisionSide.Top:
                 PhysicsObject.Position.Y = other.Y + other.Height;
-                PhysicsObject.Velocity.Y = 0;
+                if(PhysicsObject.Velocity.Y < 0)
+                {
+                    PhysicsObject.Velocity.Y = 0;
+                }
+                _colorDebugCollision = Color.Green;
                 break;
             case CollisionSide.Bottom:
                 PhysicsObject.Position.Y = other.Y - Height;
-                PhysicsObject.Velocity.Y = 0;
+                if (PhysicsObject.Velocity.Y > 0)
+                {
+                    PhysicsObject.Velocity.Y = 0;
+                }
+                _colorDebugCollision = Color.Pink;
                 break;
         }
         return side;
