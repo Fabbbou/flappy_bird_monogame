@@ -11,14 +11,17 @@ namespace flappyrogue_mg.Game
     {
         public const int SPRITE_WIDTH = 168;
         public const int SPRITE_HEIGHT = 56;
+        public const float STARTING_POSITION_X = 0;
+        public const float STARTING_POSITION_Y = GameMain.WORLD_HEIGHT - SPRITE_HEIGHT;
 
         public readonly PhysicsObject physicsObject;
         private Texture2D _spriteSheet;
 
         public Floor()
         {
-            physicsObject = new PhysicsObject(new(0, GameMain.WORLD_HEIGHT - SPRITE_HEIGHT), SPRITE_WIDTH, SPRITE_HEIGHT)
+            physicsObject = new PhysicsObject(STARTING_POSITION_X, STARTING_POSITION_Y, SPRITE_WIDTH, SPRITE_HEIGHT)
             {
+                //make the floor static
                 Gravity = new Vector2(0, 0),
                 Friction = new Vector2(0, 0)
             };
@@ -37,6 +40,8 @@ namespace flappyrogue_mg.Game
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch, ContentManager content, ViewportAdapter viewportAdapter, GraphicsDevice graphicsDevice)
         {
             spriteBatch.Draw(_spriteSheet, physicsObject.Position, Color.White);
+            
+            //physicsObject.Collider.DebugDraw(spriteBatch);
         }
     }
 }

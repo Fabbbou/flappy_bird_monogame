@@ -12,6 +12,7 @@ namespace flappyrogue_mg.Game
     {
         public const int WORLD_WIDTH = 144;
         public const int WORLD_HEIGHT = 256;
+        public const int PLAYABLE_WORLD_HEIGHT = GameMain.WORLD_HEIGHT - Floor.SPRITE_HEIGHT;
 
         private GraphicsDeviceManager _graphics;
         private BoxingViewportAdapter _viewportAdapter;
@@ -23,6 +24,7 @@ namespace flappyrogue_mg.Game
 
         private readonly Bird _bird;
         private readonly Floor _floor;
+        private readonly Pipes _pipes;
 
         public GameMain()
         {
@@ -38,6 +40,7 @@ namespace flappyrogue_mg.Game
 
             _bird = new Bird();
             _floor = new Floor();
+            _pipes = new Pipes(60f, 100f, 60f, 60f); //test pipes
         }
 
         protected override void Initialize()
@@ -52,7 +55,7 @@ namespace flappyrogue_mg.Game
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            GameAtlasTextures.Instance.Load(Content, GraphicsDevice);
             // 144 and 256 are width and height of the background image.
             // As they  are uniform, the altlas automatically find each sprite contained in the texture
             // i.e. the background image is divided in 144x256 sprites
@@ -65,7 +68,7 @@ namespace flappyrogue_mg.Game
 
 
             _floor.Load(Content, _graphics.GraphicsDevice);
-
+            _pipes.Load(Content, _graphics.GraphicsDevice);
             _bird.Load(Content, _graphics.GraphicsDevice);
         }
 
@@ -76,8 +79,8 @@ namespace flappyrogue_mg.Game
             // Update sprite position based on elapsed time
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
+            _pipes.Update(gameTime, _graphics.GraphicsDevice);
             _floor.Update(gameTime, _graphics.GraphicsDevice);
-
             _bird.Update(gameTime, _graphics.GraphicsDevice);
 
             base.Update(gameTime);
@@ -90,6 +93,9 @@ namespace flappyrogue_mg.Game
 
             // Draw the background
             _spriteBatch.Draw(_dayBackground, Vector2.Zero, Color.White);
+
+            // Draw the pipes (has to be behind the floor)
+            _pipes.Draw(gameTime, _spriteBatch, Content, _viewportAdapter, _graphics.GraphicsDevice);
 
             // Draw the floor
             _floor.Draw(gameTime, _spriteBatch, Content, _viewportAdapter, _graphics.GraphicsDevice);

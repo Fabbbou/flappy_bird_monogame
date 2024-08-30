@@ -45,7 +45,11 @@ public class PhysicsEngine
         {
             if (physicsObject.Collider != other)
             {
-                return Collides.CollideAndSolve(physicsObject.Collider, other, gameTime);    
+                Collision collision = Collides.CollideAndSolve(physicsObject.Collider, other, gameTime);
+                if (collision != null)
+                {
+                    return collision;
+                }
             }
         }
         return null;
@@ -55,11 +59,14 @@ public class PhysicsEngine
     {
         foreach (Collider other in colliders)
         {
-            if (collider == other)
+            if (collider != other)
             {
-                continue; // Skip self
+                var collision = Collides.CollideAndSolve(collider, other, gameTime);
+                if(collision != null)
+                {
+                    return collision;
+                }
             }
-            return Collides.CollideAndSolve(collider, other, gameTime);
         }
         return null;
     }

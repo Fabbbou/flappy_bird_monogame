@@ -15,23 +15,27 @@ namespace flappyrogue_mg.Game
     {
         public const int SPRITE_WIDTH = 17;
         public const int SPRITE_HEIGHT = 12;
+        public const float STARTING_POSITION_X = GameMain.WORLD_WIDTH / 2 - SPRITE_WIDTH / 2;
+        public const float STARTING_POSITION_Y = GameMain.PLAYABLE_WORLD_HEIGHT / 2 - SPRITE_HEIGHT / 2;
 
-        private const float SPEED = 400f;
-        private const float GRAVITY = 1300f;
+        private const float SPEED = 200f;
+        private const float GRAVITY = 450f;
 
-        public readonly PhysicsObject physicsObject;
+        public readonly PhysicsObject PhysicsObject;
         private SpriteSheet _spriteSheet;
         private AnimatedSprite _idleCycle;
         private BitmapFont _font;
         private Vector2 _jumpForce = new Vector2(0, -SPEED);
         private Vector2 _jumpContinuous = new Vector2(0, -500f);
 
-        private bool _pressedJump = false;
+        // by default, if the button is maintained, the bird will jump continuously.
+        // this variable is used to avoid this behavior
+        private bool _pressedButtonJump = false;
 
         public Bird()
         {
-            physicsObject = new(GameMain.WORLD_WIDTH / 2 - SPRITE_WIDTH / 2, (GameMain.WORLD_HEIGHT - Floor.SPRITE_HEIGHT) / 2 - SPRITE_HEIGHT / 2, SPRITE_WIDTH, SPRITE_HEIGHT);
-            physicsObject.Gravity = new Vector2(0, GRAVITY);
+            PhysicsObject = new(STARTING_POSITION_X, STARTING_POSITION_Y, SPRITE_WIDTH, SPRITE_HEIGHT);
+            PhysicsObject.Gravity = new Vector2(0, GRAVITY);
         }
 
         public void Load(ContentManager content, GraphicsDevice graphicsDevice)
@@ -54,33 +58,24 @@ namespace flappyrogue_mg.Game
             // crossplatform jump input
             if (Keyboard.GetState().IsKeyDown(Keys.Space) || GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed)
             {
-                if (!_pressedJump)
+                if (!_pressedButtonJump)
                 {
-                    physicsObject.Velocity = _jumpForce;
-                    _pressedJump = true;
+                    PhysicsObject.Velocity = _jumpForce;
+                    _pressedButtonJump = true;
                 }
             }
             else
             {
-                _pressedJump = false;
+                _pressedButtonJump = false;
             }
 
-            PhysicsEngine.Instance.MoveAndSlide(physicsObject, gameTime);
+            PhysicsEngine.Instance.MoveAndSlide(PhysicsObject, gameTime);
         }
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch, ContentManager content, ViewportAdapter viewportAdapter, GraphicsDevice graphicsDevice)
         {
-            spriteBatch.Draw(_idleCycle, physicsObject.Position);
+            spriteBatch.Draw(_idleCycle, PhysicsObject.Position);
 
-            //DrawDebug(spriteBatch, content, viewportAdapter);
-
-        }
-
-        private void DrawDebug(SpriteBatch spriteBatch, ContentManager content, ViewportAdapter viewportAdapter)
-        {
-            float scale = 0.5f;
-            spriteBatch.DrawString(_font, $"Position: {physicsObject.Position}", new Vector2(10, 10), Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
-            spriteBatch.DrawString(_font, $"Velocity: {physicsObject.Velocity}", new Vector2(10, 30), Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
-            spriteBatch.DrawString(_font, $"Acceleration: {physicsObject.Acceleration}", new Vector2(10, 50), Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
+            PhysicsObject.Collider.DebugDraw(spriteBatch);
         }
     }
 }

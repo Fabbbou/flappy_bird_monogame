@@ -18,6 +18,8 @@ public class Collider
 
     public Vector2 Size => Rect.Size;
 
+    public Color _colorDebugCollision = Color.Red;
+
     public Collider(PhysicsObject physicsObject, float width, float height)
     {
         PhysicsObject = physicsObject;
@@ -39,8 +41,11 @@ public class Collider
     public CollisionSide CheckIfCollision(Collider other)
     {
         if (!Rect.Intersects(other.Rect))
+        {
+            _colorDebugCollision = Color.Red;
             return CollisionSide.None;
-
+        }
+        _colorDebugCollision = Color.Yellow;
         float overlapX = Math.Min(
             Position.X + Width - other.Position.X,
             other.Position.X + other.Width - X
@@ -102,6 +107,11 @@ public class Collider
                 break;
         }
         return side;
+    }
+
+    public void DebugDraw(SpriteBatch spriteBatch)
+    {
+        spriteBatch.DrawRectangle(Position, Rect.Size, _colorDebugCollision, 1);
     }
 }
 public enum CollisionSide
