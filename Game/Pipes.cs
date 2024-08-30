@@ -79,13 +79,9 @@ namespace flappyrogue_mg.Game
             PhysicsObjectPipeTop.Velocity = new Vector2(-_speedForce, 0);
             PhysicsObjectPipeBottom.Velocity = new Vector2(-_speedForce, 0);
 
-
-            PhysicsObjectPipeTop.Update(gameTime);
-            PhysicsObjectPipeBottom.Update(gameTime);
-
             //this allows to move pipes and ignore any possible collisions
-            //PhysicsEngine.Instance.MoveAndPushOthers(PhysicsObjectPipeTop, gameTime);
-            //PhysicsEngine.Instance.MoveAndPushOthers(PhysicsObjectPipeBottom, gameTime);
+            PhysicsEngine.Instance.MoveAndPushOthers(PhysicsObjectPipeTop, gameTime);
+            PhysicsEngine.Instance.MoveAndPushOthers(PhysicsObjectPipeBottom, gameTime);
         }
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch, ContentManager content, ViewportAdapter viewportAdapter, GraphicsDevice graphicsDevice)
         {

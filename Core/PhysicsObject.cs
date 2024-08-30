@@ -32,6 +32,16 @@ public class PhysicsObject
         Friction = new Vector2(FRICTION, FRICTION);
     }
 
+    public PhysicsObject(float x, float y, float widthCollider, float heightCollider, ColliderType colliderType)
+    {
+        Position = new(x, y);
+        Collider = new(this, widthCollider, heightCollider, colliderType);
+        Velocity = Vector2.Zero;
+        Acceleration = Vector2.Zero;
+        Gravity = new Vector2(0, GRAVITY);
+        Friction = new Vector2(FRICTION, FRICTION);
+    }
+
     public PhysicsObject(Vector2 initialPosition, float widthCollider, float heightCollider)
     {
         Position = initialPosition;

@@ -8,6 +8,8 @@ using System.Collections.Generic;
 public class Collider
 {
     public PhysicsObject PhysicsObject { get; private set; }
+
+    public ColliderType ColliderType { get; private set; }
     public float X => PhysicsObject.Position.X;
     public float Y => PhysicsObject.Position.Y;
     public Vector2 Position => PhysicsObject.Position;
@@ -26,6 +28,16 @@ public class Collider
         PhysicsEngine.Instance.AddCollider(this);
         Width = width;
         Height = height;
+        ColliderType = ColliderType.Moving;
+    }
+
+    public Collider(PhysicsObject physicsObject, float width, float height, ColliderType colliderType)
+    {
+        PhysicsObject = physicsObject;
+        PhysicsEngine.Instance.AddCollider(this);
+        Width = width;
+        Height = height;
+        ColliderType = colliderType;
     }
 
     public  void DrawDebug(SpriteBatch spriteBatch, Color color)
@@ -137,4 +149,10 @@ public enum CollisionSide
     Bottom,
     Left,
     Right
+}
+
+public enum ColliderType
+{
+    Static,
+    Moving
 }

@@ -36,10 +36,15 @@ public class PhysicsEngine
     /// <param name="physicsObject"></param>
     /// <param name="gameTime"></param>
     /// <returns></returns>
-    public Collision MoveAndSlide(PhysicsObject physicsObject, GameTime gameTime)
+    public List<Collision> MoveAndSlide(PhysicsObject physicsObject, GameTime gameTime)
     {
         // Update physics object
         physicsObject.Update(gameTime);
+        List<Collision> collisions = new();
+        if (physicsObject.Collider.ColliderType == ColliderType.Static)
+        {
+            return collisions;
+        }
         // Check collision and solve it if physicsObject overlaps another collider
         foreach (Collider other in colliders)
         {
@@ -48,11 +53,11 @@ public class PhysicsEngine
                 Collision collision = Collides.CollideAndSolve(physicsObject.Collider, other, gameTime);
                 if (collision != null)
                 {
-                    return collision;
+                    collisions.Add(collision);
                 }
             }
         }
-        return null;
+        return collisions;
     }
 
     public List<Collision> MoveAndPushOthers(PhysicsObject physicsObject, GameTime gameTime)
@@ -63,7 +68,7 @@ public class PhysicsEngine
         // Check collision and solve it if physicsObject overlaps another collider
         foreach (Collider other in colliders)
         {
-            if (physicsObject.Collider != other)
+            if (physicsObject.Collider != other && other.ColliderType == ColliderType.Moving)
             {
                 Collision collision = Collides.CollideAndSolve(other, physicsObject.Collider, gameTime);
                 if (collision != null)
