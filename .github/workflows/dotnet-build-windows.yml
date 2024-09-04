@@ -20,10 +20,9 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - name: Change Directory
-      run: cd ./Windows
     - name: Restore dependencies
       run: dotnet restore
+      working-directory: Windows
     - name: Build
       run: dotnet build --no-restore
-
+      working-directory: Windows
