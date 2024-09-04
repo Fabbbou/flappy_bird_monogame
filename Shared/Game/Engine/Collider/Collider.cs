@@ -8,7 +8,6 @@ using System.Collections.Generic;
 public class Collider
 {
     public PhysicsObject PhysicsObject { get; private set; }
-
     public ColliderType ColliderType { get; private set; }
     public float X => PhysicsObject.Position.X;
     public float Y => PhysicsObject.Position.Y;
@@ -17,15 +16,15 @@ public class Collider
     public float Height { get; }
     public Rect Rect => new(Position, new(Width, Height));
     public  Vector2 Center => Rect.Center;
-
     public Vector2 Size => Rect.Size;
 
-    public Color _colorDebugCollision = Color.Red;
+    public static readonly Color DEFAULT_DEBUG = Color.Yellow;
+    private Color _colorDebugCollision = DEFAULT_DEBUG;
 
     public Collider(PhysicsObject physicsObject, float width, float height)
     {
-        PhysicsObject = physicsObject;
         PhysicsEngine.Instance.AddCollider(this);
+        PhysicsObject = physicsObject;
         Width = width;
         Height = height;
         ColliderType = ColliderType.Moving;
@@ -33,8 +32,8 @@ public class Collider
 
     public Collider(PhysicsObject physicsObject, float width, float height, ColliderType colliderType)
     {
-        PhysicsObject = physicsObject;
         PhysicsEngine.Instance.AddCollider(this);
+        PhysicsObject = physicsObject;
         Width = width;
         Height = height;
         ColliderType = colliderType;
@@ -54,10 +53,8 @@ public class Collider
     {
         if (!Rect.Intersects(other.Rect))
         {
-            _colorDebugCollision = Color.Red;
             return CollisionSide.None;
         }
-        _colorDebugCollision = Color.Yellow;
         float overlapX = Math.Min(
             Position.X + Width - other.Position.X,
             other.Position.X + other.Width - X
@@ -97,7 +94,10 @@ public class Collider
     {
         CollisionSide side = CheckIfCollision(other);
         if (side == CollisionSide.None)
+        {
+            _colorDebugCollision = DEFAULT_DEBUG;
             return side;
+        }
 
         switch (side)
         {

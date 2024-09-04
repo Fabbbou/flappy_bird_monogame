@@ -30,6 +30,7 @@ public class PhysicsObject
         Acceleration = Vector2.Zero;
         Gravity = new Vector2(0, GRAVITY);
         Friction = new Vector2(FRICTION, FRICTION);
+        PhysicsDebug.Instance.AddObject(this);
     }
 
     public PhysicsObject(float x, float y, float widthCollider, float heightCollider, ColliderType colliderType)
@@ -40,26 +41,12 @@ public class PhysicsObject
         Acceleration = Vector2.Zero;
         Gravity = new Vector2(0, GRAVITY);
         Friction = new Vector2(FRICTION, FRICTION);
+        PhysicsDebug.Instance.AddObject(this);
     }
 
-    public PhysicsObject(Vector2 initialPosition, float widthCollider, float heightCollider)
+    ~PhysicsObject()
     {
-        Position = initialPosition;
-        Collider = new(this, widthCollider, heightCollider);
-        Velocity = Vector2.Zero;
-        Acceleration = Vector2.Zero;
-        Gravity = new Vector2(0, GRAVITY);
-        Friction = new Vector2(FRICTION, FRICTION);
-    }
-
-    public PhysicsObject(Vector2 initialPosition, Vector2 sizeCollider)
-    {
-        Position = initialPosition;
-        Collider = new(this, sizeCollider.X, sizeCollider.Y);
-        Velocity = Vector2.Zero;
-        Acceleration = Vector2.Zero;
-        Gravity = new Vector2(0, GRAVITY);
-        Friction = new Vector2(FRICTION, FRICTION);
+        PhysicsDebug.Instance.RemoveObject(this);
     }
 
     public void ApplyForce(Vector2 force)

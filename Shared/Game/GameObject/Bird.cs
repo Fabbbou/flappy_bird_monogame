@@ -75,7 +75,7 @@ namespace flappyrogue_mg.Game
         {
             spriteBatch.Draw(_idleCycle, PhysicsObject.Position);
 
-            PhysicsObject.Collider.DebugDraw(spriteBatch);
+            //PhysicsObject.Collider.DebugDraw(spriteBatch);
         }
     }
 }

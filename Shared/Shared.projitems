@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>6efba8a9-a407-4029-bdd0-651d22a87386</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Engine\Collider\Collider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Engine\Collider\Collides.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Engine\Collider\Collision.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Engine\Collider\PhysicsEngine.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Engine\Collider\Rect.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)game\engine\PhysicsDebug.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Engine\GameObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Engine\Input\Keyboard.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Engine\PhysicsObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\GameObject\Bird.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\GameObject\Floor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\UI\GameAtlasTextures.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\GameMain.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\GameObject\Pipes.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <MonoGameContentReference Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
+    <None Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
+    <None Include="$(MSBuildThisFileDirectory)Content\fonts\04b19.fnt" />
+    <None Include="$(MSBuildThisFileDirectory)Content\fonts\arial.spritefont" />
+    <None Include="$(MSBuildThisFileDirectory)Content\sprites\background.aseprite" />
+    <None Include="$(MSBuildThisFileDirectory)Content\sprites\bird.aseprite" />
+    <None Include="$(MSBuildThisFileDirectory)pipeline-references\Monogame.Aseprite.Content.Pipeline.dll" />
+    <None Include="$(MSBuildThisFileDirectory)pipeline-references\MonoGame.Extended.Content.Pipeline.dll" />
+    <None Include="$(MSBuildThisFileDirectory)pipeline-references\MonoGame.Extended.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Content\fonts\04b19_0.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Content\fonts\04B_19__.TTF" />
+    <Content Include="$(MSBuildThisFileDirectory)Content\fonts\Arial.ttf" />
+    <Content Include="$(MSBuildThisFileDirectory)Content\sounds\sfx_die.wav" />
+    <Content Include="$(MSBuildThisFileDirectory)Content\sounds\sfx_hit.wav" />
+    <Content Include="$(MSBuildThisFileDirectory)Content\sounds\sfx_point.wav" />
+    <Content Include="$(MSBuildThisFileDirectory)Content\sounds\sfx_swooshing.wav" />
+    <Content Include="$(MSBuildThisFileDirectory)Content\sounds\sfx_wing.wav" />
+    <Content Include="$(MSBuildThisFileDirectory)Content\sprites\atlas.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Content\sprites\background.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Content\sprites\floor.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Content\sprites\pipes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Game\GameObject\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Game\UI\" />
+  </ItemGroup>
+</Project>

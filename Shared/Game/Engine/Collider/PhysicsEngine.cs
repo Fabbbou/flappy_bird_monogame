@@ -1,11 +1,14 @@
 using flappyrogue_mg.Core.Collider;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
 public class PhysicsEngine
 {
     private static PhysicsEngine _instance;
-    private readonly List<Collider> colliders = new List<Collider>();
+    private readonly List<Collider> _colliders = new List<Collider>();
+    //a hashmap-like private field called alreadyCollided
+    private Dictionary<Collider, Collider> _alreadyCollided = new();
 
     public static PhysicsEngine Instance
     {
@@ -21,11 +24,11 @@ public class PhysicsEngine
 
     public void AddCollider(Collider collider)
     {
-        colliders.Add(collider);
+        _colliders.Add(collider);
     }
     public void RemoveCollider(Collider collider)
     {
-        colliders.Remove(collider);
+        _colliders.Remove(collider);
     }
 
     /// <summary>
@@ -46,10 +49,14 @@ public class PhysicsEngine
             return collisions;
         }
         // Check collision and solve it if physicsObject overlaps another collider
-        foreach (Collider other in colliders)
+        foreach (Collider other in _colliders)
         {
             if (physicsObject.Collider != other)
             {
+                if (_alreadyCollided.ContainsKey(physicsObject.Collider) && _alreadyCollided[physicsObject.Collider] == other)
+                {
+                    continue; //we dont process the same collision twice
+                }
                 Collision collision = Collides.CollideAndSolve(physicsObject.Collider, other, gameTime);
                 if (collision != null)
                 {
@@ -66,7 +73,7 @@ public class PhysicsEngine
         physicsObject.Update(gameTime);
         List<Collision> collisions = new();
         // Check collision and solve it if physicsObject overlaps another collider
-        foreach (Collider other in colliders)
+        foreach (Collider other in _colliders)
         {
             if (physicsObject.Collider != other && other.ColliderType == ColliderType.Moving)
             {
@@ -80,4 +87,14 @@ public class PhysicsEngine
         return collisions;
     }
 
+    /// <summary>
+    /// 
+    /// An abstraction of a simple update, the alreadyCollided behavior should be hidden inside the PhysicsEngine
+    /// In order to keep the alreadyCollided hashmap clean, we need to call this method at the end of the Update method of your game
+    /// </summary>
+    /// <param name="gameTime"></param>
+    public void Update(GameTime gameTime)
+    {
+        _alreadyCollided.Clear();
+    }
 }

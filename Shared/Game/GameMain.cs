@@ -28,6 +28,8 @@ namespace flappyrogue_mg.Game
 
         public GameMain()
         {
+            PhysicsDebug.Instance.SetDebug(true);
+
             IsMouseVisible = true;
             Window.AllowUserResizing = true;
             Content.RootDirectory = "Content";
@@ -37,7 +39,7 @@ namespace flappyrogue_mg.Game
             _graphics.PreferredBackBufferWidth = _graphics.PreferredBackBufferHeight * 9 / 16;
             _graphics.ApplyChanges();
 
-
+            
             _bird = new Bird();
             _floor = new Floor();
             _pipes = new Pipes(60f, 100f, 60f, 60f); //test pipes
@@ -82,7 +84,8 @@ namespace flappyrogue_mg.Game
             _pipes.Update(gameTime, _graphics.GraphicsDevice);
             _floor.Update(gameTime, _graphics.GraphicsDevice);
             _bird.Update(gameTime, _graphics.GraphicsDevice);
-
+            
+            PhysicsEngine.Instance.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -103,7 +106,7 @@ namespace flappyrogue_mg.Game
             // Draw the bird
             _bird.Draw(gameTime, _spriteBatch, Content, _viewportAdapter, _graphics.GraphicsDevice);
 
-
+            PhysicsDebug.Instance.Draw(_spriteBatch);
             _spriteBatch.End();
             base.Draw(gameTime);
         }
