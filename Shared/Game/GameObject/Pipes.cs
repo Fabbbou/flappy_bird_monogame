@@ -12,33 +12,11 @@ namespace flappyrogue_mg.Game
         public const int SPRITE_WIDTH = 26;
         public const int SPRITE_HEIGHT = 160;
 
-        public const int PIPES_GAP = 60;
-        public const int PIPE_TOP_POSITION_X = GameMain.WORLD_WIDTH - SPRITE_WIDTH - 10;
-        public const int PIPE_TOP_POSITION_Y = 20 - SPRITE_HEIGHT;
-        public const int PIPE_BOT_POSITION_X = PIPE_TOP_POSITION_X;
-        public const int PIPE_BOT_POSITION_Y = PIPE_TOP_POSITION_Y + SPRITE_HEIGHT + PIPES_GAP;
-
         public readonly PhysicsObject PhysicsObjectPipeTop;
         public readonly PhysicsObject PhysicsObjectPipeBottom;
         private Texture2DRegion _pipeTopTexture;
         private Texture2DRegion _pipeBottomTexture;
-
         private float _speedForce;
-
-        public Pipes()
-        {
-            _speedForce = 10;
-            PhysicsObjectPipeTop = new PhysicsObject(PIPE_TOP_POSITION_X, PIPE_TOP_POSITION_Y, SPRITE_WIDTH, SPRITE_HEIGHT)
-            {
-                Gravity = new Vector2(0, 0),
-                Friction = new Vector2(0, 0)
-            };
-            PhysicsObjectPipeBottom = new PhysicsObject(PIPE_BOT_POSITION_X, PIPE_BOT_POSITION_Y, SPRITE_WIDTH, SPRITE_HEIGHT)
-            {
-                Gravity = new Vector2(0, 0),
-                Friction = new Vector2(0, 0)
-            };
-        }
 
         /// <summary>
         /// The Max height the bottom pipe can have is 40 pixels, or it will be flying out of the floor
@@ -50,12 +28,12 @@ namespace flappyrogue_mg.Game
         {
             _speedForce = speed;
             float xPosition = GameMain.WORLD_WIDTH - SPRITE_WIDTH + xOffsetFromRightBorder;
-            PhysicsObjectPipeTop = new PhysicsObject(xPosition, -SPRITE_HEIGHT + yOffsetFromTop, SPRITE_WIDTH, SPRITE_HEIGHT)
+            PhysicsObjectPipeTop = new PhysicsObject("pipe top", xPosition, -SPRITE_HEIGHT + yOffsetFromTop, SPRITE_WIDTH, SPRITE_HEIGHT)
             {
                 Gravity = new Vector2(0, 0),
                 Friction = new Vector2(0, 0)
             };
-            PhysicsObjectPipeBottom = new PhysicsObject(xPosition, yOffsetFromTop + gapHeight, SPRITE_WIDTH, SPRITE_HEIGHT)
+            PhysicsObjectPipeBottom = new PhysicsObject("pipe bottom", xPosition, yOffsetFromTop + gapHeight, SPRITE_WIDTH, SPRITE_HEIGHT)
             {
                 Gravity = new Vector2(0, 0),
                 Friction = new Vector2(0, 0)
@@ -75,10 +53,10 @@ namespace flappyrogue_mg.Game
         {
             PhysicsObjectPipeTop.Velocity = new Vector2(-_speedForce, 0);
             PhysicsObjectPipeBottom.Velocity = new Vector2(-_speedForce, 0);
-
+            
             //this allows to move pipes and ignore any possible collisions
-            PhysicsEngine.Instance.MoveAndPushOthers(PhysicsObjectPipeTop, gameTime);
-            PhysicsEngine.Instance.MoveAndPushOthers(PhysicsObjectPipeBottom, gameTime);
+            PhysicsObjectPipeTop.Update(gameTime);
+            PhysicsObjectPipeBottom.Update(gameTime);
         }
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch, ContentManager content, ViewportAdapter viewportAdapter, GraphicsDevice graphicsDevice)
         {

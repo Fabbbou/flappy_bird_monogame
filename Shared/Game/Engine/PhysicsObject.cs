@@ -19,30 +19,23 @@ public class PhysicsObject
     public Vector2 Velocity;
     public Vector2 Acceleration;
     public Vector2 Friction;
+    public string Label;
 
     public bool IsNotMoving => Velocity == Vector2.Zero && Acceleration == Vector2.Zero;
 
-    public PhysicsObject(float x, float y, float widthCollider, float heightCollider)
-    {
-        Position = new(x,y);
-        Collider = new(this, widthCollider, heightCollider);
-        Velocity = Vector2.Zero;
-        Acceleration = Vector2.Zero;
-        Gravity = new Vector2(0, GRAVITY);
-        Friction = new Vector2(FRICTION, FRICTION);
-        PhysicsDebug.Instance.AddObject(this);
-    }
 
-    public PhysicsObject(float x, float y, float widthCollider, float heightCollider, ColliderType colliderType)
+    public PhysicsObject(string label, float x, float y, float widthCollider, float heightCollider, ColliderType colliderType)
     {
+        PhysicsDebug.Instance.AddObject(this);
+        Label = label;
         Position = new(x, y);
         Collider = new(this, widthCollider, heightCollider, colliderType);
         Velocity = Vector2.Zero;
         Acceleration = Vector2.Zero;
         Gravity = new Vector2(0, GRAVITY);
         Friction = new Vector2(FRICTION, FRICTION);
-        PhysicsDebug.Instance.AddObject(this);
     }
+    public PhysicsObject(string label, float x, float y, float widthCollider, float heightCollider) : this(label, x, y, widthCollider, heightCollider, ColliderType.Moving) { }
 
     ~PhysicsObject()
     {

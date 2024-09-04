@@ -21,15 +21,6 @@ public class Collider
     public static readonly Color DEFAULT_DEBUG = Color.Yellow;
     private Color _colorDebugCollision = DEFAULT_DEBUG;
 
-    public Collider(PhysicsObject physicsObject, float width, float height)
-    {
-        PhysicsEngine.Instance.AddCollider(this);
-        PhysicsObject = physicsObject;
-        Width = width;
-        Height = height;
-        ColliderType = ColliderType.Moving;
-    }
-
     public Collider(PhysicsObject physicsObject, float width, float height, ColliderType colliderType)
     {
         PhysicsEngine.Instance.AddCollider(this);
@@ -38,6 +29,7 @@ public class Collider
         Height = height;
         ColliderType = colliderType;
     }
+    public Collider(PhysicsObject physicsObject, float width, float height) : this(physicsObject, width, height, ColliderType.Moving) { }
 
     public  void DrawDebug(SpriteBatch spriteBatch, Color color)
     {
@@ -115,7 +107,7 @@ public class Collider
                 {
                     PhysicsObject.Velocity.X = 0;
                 }
-                _colorDebugCollision = Color.Orange;
+                _colorDebugCollision = Color.Blue;
                 break;
             case CollisionSide.Top:
                 PhysicsObject.Position.Y = other.Y + other.Height;

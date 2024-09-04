@@ -67,26 +67,6 @@ public class PhysicsEngine
         return collisions;
     }
 
-    public List<Collision> MoveAndPushOthers(PhysicsObject physicsObject, GameTime gameTime)
-    {
-        // Update physics object
-        physicsObject.Update(gameTime);
-        List<Collision> collisions = new();
-        // Check collision and solve it if physicsObject overlaps another collider
-        foreach (Collider other in _colliders)
-        {
-            if (physicsObject.Collider != other && other.ColliderType == ColliderType.Moving)
-            {
-                Collision collision = Collides.CollideAndSolve(other, physicsObject.Collider, gameTime);
-                if (collision != null)
-                {
-                    collisions.Add(collision);
-                }
-            }
-        }
-        return collisions;
-    }
-
     /// <summary>
     /// 
     /// An abstraction of a simple update, the alreadyCollided behavior should be hidden inside the PhysicsEngine
