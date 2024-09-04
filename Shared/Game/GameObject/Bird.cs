@@ -38,7 +38,7 @@ namespace flappyrogue_mg.Game
             PhysicsObject.Gravity = new Vector2(0, GRAVITY);
         }
 
-        public void Load(ContentManager content, GraphicsDevice graphicsDevice)
+        public void LoadSingleInstance(ContentManager content, GraphicsDevice graphicsDevice)
         {
             // Load the font
             _font = content.Load<BitmapFont>("fonts/04b19");
@@ -50,7 +50,7 @@ namespace flappyrogue_mg.Game
             _idleCycle.Play();
         }
 
-        public void Update(GameTime gameTime, GraphicsDevice graphicsDevice)
+        public void Update(GameTime gameTime)
         {
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             _idleCycle.Update(deltaTime);
@@ -71,11 +71,9 @@ namespace flappyrogue_mg.Game
 
             PhysicsEngine.Instance.MoveAndSlide(PhysicsObject, gameTime);
         }
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch, ContentManager content, ViewportAdapter viewportAdapter, GraphicsDevice graphicsDevice)
+        public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(_idleCycle, PhysicsObject.Position);
-
-            //PhysicsObject.Collider.DebugDraw(spriteBatch);
         }
     }
 }

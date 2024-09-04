@@ -27,21 +27,19 @@ namespace flappyrogue_mg.Game
             };
         }
 
-        public void Load(ContentManager content, GraphicsDevice graphicsDevice)
+        public void LoadSingleInstance(ContentManager content, GraphicsDevice graphicsDevice)
         {
             // Load the sprite sheet
             _spriteSheet = content.Load<Texture2D>("sprites/floor");
         }
 
-        public void Update(GameTime gameTime, GraphicsDevice graphicsDevice)
+        public void Update(GameTime gameTime)
         {
             //nothing to do for now... will be animated later to makke the floor slide when moving
         }
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch, ContentManager content, ViewportAdapter viewportAdapter, GraphicsDevice graphicsDevice)
+        public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(_spriteSheet, physicsObject.Position, Color.White);
-            
-            //physicsObject.Collider.DebugDraw(spriteBatch);
         }
     }
 }

@@ -12,10 +12,10 @@ namespace flappyrogue_mg.Core
 {
     public interface GameObject
     {
-        public abstract void Load(ContentManager content, GraphicsDevice graphicsDevice);
+        public abstract void LoadSingleInstance(ContentManager content, GraphicsDevice graphicsDevice);
 
-        public abstract void Update(GameTime gameTime, GraphicsDevice graphicsDevice);
+        public abstract void Update(GameTime gameTime);
 
-        public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch, ContentManager content, ViewportAdapter viewportAdapter, GraphicsDevice graphicsDevice);
+        public abstract void Draw(SpriteBatch spriteBatch);
     }
 }

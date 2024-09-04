@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Graphics;
-using MonoGame.Extended.ViewportAdapters;
 
 namespace flappyrogue_mg.Game
 {
@@ -23,7 +22,7 @@ namespace flappyrogue_mg.Game
         /// </summary>
         /// <param name="xOffsetFromRightBorder">x offset to add to the pipes default spawning x position, which is the right border of the screen</param>
         /// <param name="yOffsetFromTop">y offset to change the position of the pipes. Reduces the height of the pipes by world pixels</param>
-        /// <param name="gapHeight">the gap between the top pipe and the bottom pipe. bottom pipe position is top.y+gap</param>
+        /// <param name="gapHeight">the gap between the top pipe and the bottom pipe. bottom pipe position is top.y+SPRITE_HEIGHT+gap</param>
         public Pipes(float xOffsetFromRightBorder, float yOffsetFromTop, float gapHeight, float speed)
         {
             _speedForce = speed;
@@ -39,9 +38,7 @@ namespace flappyrogue_mg.Game
                 Friction = new Vector2(0, 0)
             };
         }
-
-
-        public void Load(ContentManager content, GraphicsDevice graphicsDevice)
+        public void LoadSingleInstance(ContentManager content, GraphicsDevice graphicsDevice)
         {
             //textures are loaded from the atlas in GameMain.cs
             //we still load the atlas here to get the texture
@@ -49,7 +46,7 @@ namespace flappyrogue_mg.Game
             _pipeBottomTexture = GameAtlasTextures.Instance.PipeBottom;
         }
 
-        public void Update(GameTime gameTime, GraphicsDevice graphicsDevice)
+        public void Update(GameTime gameTime)
         {
             PhysicsObjectPipeTop.Velocity = new Vector2(-_speedForce, 0);
             PhysicsObjectPipeBottom.Velocity = new Vector2(-_speedForce, 0);
@@ -58,13 +55,27 @@ namespace flappyrogue_mg.Game
             PhysicsObjectPipeTop.Update(gameTime);
             PhysicsObjectPipeBottom.Update(gameTime);
         }
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch, ContentManager content, ViewportAdapter viewportAdapter, GraphicsDevice graphicsDevice)
+
+        /// <summary>
+        /// Draw method used when only one pipe is created (means the LoadSingleInstance method was called on a Load method)
+        /// </summary>
+        /// <param name="spriteBatch"></param>
+        public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(_pipeTopTexture, PhysicsObjectPipeTop.Position, Color.White);
             spriteBatch.Draw(_pipeBottomTexture, PhysicsObjectPipeBottom.Position, Color.White);
+        }
 
-            //PhysicsObjectPipeTop.Collider.DebugDraw(spriteBatch);
-            //PhysicsObjectPipeBottom.Collider.DebugDraw(spriteBatch);
+        /// <summary>
+        /// Draw method used when the textures are loaded before this pipe has been created
+        /// </summary>
+        /// <param name="spriteBatch"></param>
+        /// <param name="pipeTopTexture"></param>
+        /// <param name="pipeBottomTexture"></param>
+        public void Draw(SpriteBatch spriteBatch, Texture2DRegion pipeTopTexture, Texture2DRegion pipeBottomTexture)
+        {
+            spriteBatch.Draw(pipeTopTexture, PhysicsObjectPipeTop.Position, Color.White);
+            spriteBatch.Draw(pipeBottomTexture, PhysicsObjectPipeBottom.Position, Color.White);
         }
     }
 }

@@ -25,10 +25,12 @@ namespace flappyrogue_mg.Game
         private readonly Bird _bird;
         private readonly Floor _floor;
         private readonly Pipes _pipes;
+        private readonly PipesSpawner _pipesSpawner;
 
         public GameMain()
         {
-            PhysicsDebug.Instance.SetDebug(true);
+            //uncomment to see the physics debug
+            //PhysicsDebug.Instance.SetDebug(true);
 
             IsMouseVisible = true;
             Window.AllowUserResizing = true;
@@ -42,7 +44,8 @@ namespace flappyrogue_mg.Game
             
             _bird = new Bird();
             _floor = new Floor();
-            _pipes = new Pipes(60f, 100f, 60f, 60f); //test pipes
+            //_pipes = new Pipes(60f, 100f, 60f, 60f); //test pipes
+            _pipesSpawner = new PipesSpawner();
         }
 
         protected override void Initialize()
@@ -69,9 +72,10 @@ namespace flappyrogue_mg.Game
             _nightBackground = _atlas[1];
 
 
-            _floor.Load(Content, _graphics.GraphicsDevice);
-            _pipes.Load(Content, _graphics.GraphicsDevice);
-            _bird.Load(Content, _graphics.GraphicsDevice);
+            _floor.LoadSingleInstance(Content, _graphics.GraphicsDevice);
+            //_pipes.Load(Content, _graphics.GraphicsDevice
+            _pipesSpawner.Load(Content, _graphics.GraphicsDevice);
+            _bird.LoadSingleInstance(Content, _graphics.GraphicsDevice);
         }
 
         protected override void Update(GameTime gameTime)
@@ -81,9 +85,10 @@ namespace flappyrogue_mg.Game
             // Update sprite position based on elapsed time
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            _pipes.Update(gameTime, _graphics.GraphicsDevice);
-            _floor.Update(gameTime, _graphics.GraphicsDevice);
-            _bird.Update(gameTime, _graphics.GraphicsDevice);
+            //_pipes.Update(gameTime, _graphics.GraphicsDevice);
+            _pipesSpawner.Update(gameTime);
+            _floor.Update(gameTime);
+            _bird.Update(gameTime);
             
             PhysicsEngine.Instance.Update(gameTime);
             base.Update(gameTime);
@@ -98,13 +103,15 @@ namespace flappyrogue_mg.Game
             _spriteBatch.Draw(_dayBackground, Vector2.Zero, Color.White);
 
             // Draw the pipes (has to be behind the floor)
-            _pipes.Draw(gameTime, _spriteBatch, Content, _viewportAdapter, _graphics.GraphicsDevice);
+            //_pipes.Draw(_spriteBatch);
+            _pipesSpawner.Draw(_spriteBatch);
+
 
             // Draw the floor
-            _floor.Draw(gameTime, _spriteBatch, Content, _viewportAdapter, _graphics.GraphicsDevice);
+            _floor.Draw(_spriteBatch);
 
             // Draw the bird
-            _bird.Draw(gameTime, _spriteBatch, Content, _viewportAdapter, _graphics.GraphicsDevice);
+            _bird.Draw(_spriteBatch);
 
             PhysicsDebug.Instance.Draw(_spriteBatch);
             _spriteBatch.End();
