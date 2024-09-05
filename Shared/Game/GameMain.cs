@@ -30,7 +30,7 @@ namespace flappyrogue_mg.Game
         public GameMain()
         {
             //uncomment to see the physics debug
-            //PhysicsDebug.Instance.SetDebug(true);
+            PhysicsDebug.Instance.SetDebug(true);
 
             IsMouseVisible = true;
             Window.AllowUserResizing = true;
@@ -86,7 +86,7 @@ namespace flappyrogue_mg.Game
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             //_pipes.Update(gameTime, _graphics.GraphicsDevice);
-            _pipesSpawner.Update(gameTime);
+            _pipesSpawner.UpdateRandomHeight(gameTime);
             _floor.Update(gameTime);
             _bird.Update(gameTime);
             

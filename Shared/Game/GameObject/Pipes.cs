@@ -77,5 +77,11 @@ namespace flappyrogue_mg.Game
             spriteBatch.Draw(pipeTopTexture, PhysicsObjectPipeTop.Position, Color.White);
             spriteBatch.Draw(pipeBottomTexture, PhysicsObjectPipeBottom.Position, Color.White);
         }
+
+        public void Kill()
+        {
+            PhysicsObjectPipeTop.Kill();
+            PhysicsObjectPipeBottom.Kill();
+        }
     }
 }

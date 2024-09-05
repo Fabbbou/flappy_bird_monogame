@@ -26,9 +26,19 @@ public class PhysicsEngine
     {
         _colliders.Add(collider);
     }
+
+    public void AddCollider(PhysicsObject physicsObject)
+    {
+        _colliders.Add(physicsObject.Collider);
+    }
     public void RemoveCollider(Collider collider)
     {
         _colliders.Remove(collider);
+    }
+
+    public void RemoveCollider(PhysicsObject physicsObject)
+    {
+        _colliders.Remove(physicsObject.Collider);
     }
 
     /// <summary>

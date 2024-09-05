@@ -76,6 +76,12 @@ public class PhysicsObject
         // Reset acceleration for the next frame
         Acceleration = Vector2.Zero;
     }
+
+    public void Kill()
+    {
+        PhysicsDebug.Instance.RemoveObject(this);
+        Collider.Kill();
+    }
 }
 public enum ForceType
 {

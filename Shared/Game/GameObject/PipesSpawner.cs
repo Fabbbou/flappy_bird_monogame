@@ -9,22 +9,9 @@ using System;
 
 public class PipesSpawner
 {
-    ////singleton
-    //private static PipesSpawner _instance;
-    //public static PipesSpawner Instance
-    //{
-    //	get
-    //	{
-    //		if (_instance == null)
-    //		{
-    //			_instance = new PipesSpawner();
-    //		}
-    //		return _instance;
-    //	}
-    //}
-
     public const float GAP_HEIGHT = 60f;
     public const float OFFSET_PIPES_VISIBLE = 14;
+    public static readonly float SPEED = 60f;
 
     private List<Pipes> _pipes = new();
     private float _timeToSpawn = 2f;
@@ -32,14 +19,13 @@ public class PipesSpawner
 
     private float _xOffsetFromRightBorder = 60f;
     private float _yOffsetFromTop = 100f;
-    private float _speed = 60f;
 
     private Texture2DRegion _pipeTopTexture;
     private Texture2DRegion _pipeBottomTexture;
     
-    public void Update(GameTime gameTime)
+    public void UpdateRandomHeight(GameTime gameTime)
     {
-        SpawnPipes(gameTime, _xOffsetFromRightBorder, RandomHeight(), GAP_HEIGHT, _speed);
+        SpawnPipes(gameTime, _xOffsetFromRightBorder, RandomHeight(), GAP_HEIGHT, SPEED);
         UpdatePipes(gameTime);
     }
 
@@ -69,6 +55,7 @@ public class PipesSpawner
             //remove pipes that are out of the screen
             if (_pipes[i].PhysicsObjectPipeTop.Position.X < -Pipes.SPRITE_WIDTH)
             {
+                _pipes[i].Kill(); // we need to kill the pipes manually otherwise the collision detections still collides with out of screen objects and bugs a lot. (the bird.x position becomes the pipe width)
                 _pipes.RemoveAt(i);
                 i--;
             }

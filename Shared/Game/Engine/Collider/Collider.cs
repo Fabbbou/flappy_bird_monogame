@@ -31,6 +31,8 @@ public class Collider
     }
     public Collider(PhysicsObject physicsObject, float width, float height) : this(physicsObject, width, height, ColliderType.Moving) { }
 
+    ~Collider() => PhysicsEngine.Instance.RemoveCollider(this);
+
     public  void DrawDebug(SpriteBatch spriteBatch, Color color)
     {
         spriteBatch.DrawRectangle(Rect.Render, color, 2);
@@ -84,6 +86,10 @@ public class Collider
     /// <returns>The collision side you collide </returns>
     public CollisionSide CollidePostPhysics(Collider other)
     {
+        if (other == null)
+        {
+            return CollisionSide.None;
+        }
         CollisionSide side = CheckIfCollision(other);
         if (side == CollisionSide.None)
         {
@@ -132,6 +138,11 @@ public class Collider
     public void DebugDraw(SpriteBatch spriteBatch)
     {
         spriteBatch.DrawRectangle(Position, Rect.Size, _colorDebugCollision, 1);
+    }
+
+    public void Kill()
+    {
+        PhysicsEngine.Instance.RemoveCollider(this);
     }
 }
 public enum CollisionSide
