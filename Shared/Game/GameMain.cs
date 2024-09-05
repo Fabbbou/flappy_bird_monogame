@@ -30,7 +30,7 @@ namespace flappyrogue_mg.Game
         public GameMain()
         {
             //uncomment to see the physics debug
-            PhysicsDebug.Instance.SetDebug(true);
+            //PhysicsDebug.Instance.SetDebug(true);
 
             IsMouseVisible = true;
             Window.AllowUserResizing = true;
