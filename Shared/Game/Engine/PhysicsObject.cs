@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 /// <summary>
 /// Represents a physics object in the game world.
@@ -20,11 +19,9 @@ public class PhysicsObject
     public Vector2 Acceleration;
     public Vector2 Friction;
     public string Label;
-
     public bool IsNotMoving => Velocity == Vector2.Zero && Acceleration == Vector2.Zero;
 
-
-    public PhysicsObject(string label, float x, float y, float widthCollider, float heightCollider, ColliderType colliderType)
+    public PhysicsObject(string label, float x, float y, float widthCollider, float heightCollider, CollisionType colliderType)
     {
         PhysicsDebug.Instance.AddObject(this);
         Label = label;
@@ -35,7 +32,7 @@ public class PhysicsObject
         Gravity = new Vector2(0, GRAVITY);
         Friction = new Vector2(FRICTION, FRICTION);
     }
-    public PhysicsObject(string label, float x, float y, float widthCollider, float heightCollider) : this(label, x, y, widthCollider, heightCollider, ColliderType.Moving) { }
+    public PhysicsObject(string label, float x, float y, float widthCollider, float heightCollider) : this(label, x, y, widthCollider, heightCollider, CollisionType.Moving) { }
 
     ~PhysicsObject()
     {

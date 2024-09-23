@@ -54,7 +54,7 @@ public class PhysicsEngine
         // Update physics object
         physicsObject.Update(gameTime);
         List<Collision> collisions = new();
-        if (physicsObject.Collider.ColliderType == ColliderType.Static)
+        if (physicsObject.Collider.CollisionType == CollisionType.Static)
         {
             return collisions;
         }

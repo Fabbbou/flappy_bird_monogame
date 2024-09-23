@@ -3,40 +3,26 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using System;
-using System.Collections.Generic;
 
 public class Collider
 {
-    public PhysicsObject PhysicsObject { get; private set; }
-    public ColliderType ColliderType { get; private set; }
-    public float X => PhysicsObject.Position.X;
-    public float Y => PhysicsObject.Position.Y;
-    public Vector2 Position => PhysicsObject.Position;
-    public float Width { get; }
-    public float Height { get; }
-    public Rect Rect => new(Position, new(Width, Height));
-    public  Vector2 Center => Rect.Center;
-    public Vector2 Size => Rect.Size;
-
     public static readonly Color DEFAULT_DEBUG = Color.Yellow;
     private Color _colorDebugCollision = DEFAULT_DEBUG;
+    public PhysicsObject PhysicsObject { get; private set; }
+    public CollisionType CollisionType { get; private set; }
+    public ColliderShape ColliderShape { get; private set; }
+    public Vector2 Position => PhysicsObject.Position + ColliderShape.Offset;
 
-    public Collider(PhysicsObject physicsObject, float width, float height, ColliderType colliderType)
+
+    public Collider(PhysicsObject physicsObject, float width, float height, CollisionType colliderType)
     {
         PhysicsEngine.Instance.AddCollider(this);
         PhysicsObject = physicsObject;
-        Width = width;
-        Height = height;
-        ColliderType = colliderType;
+        ColliderShape = new Rect(Vector2.Zero, new(width, height));
+        CollisionType = colliderType;
     }
-    public Collider(PhysicsObject physicsObject, float width, float height) : this(physicsObject, width, height, ColliderType.Moving) { }
 
     ~Collider() => PhysicsEngine.Instance.RemoveCollider(this);
-
-    public  void DrawDebug(SpriteBatch spriteBatch, Color color)
-    {
-        spriteBatch.DrawRectangle(Rect.Render, color, 2);
-    }
 
     /// <summary>
     ///     Check if the collider is colliding with another collider and return the side of the collision.
@@ -45,24 +31,26 @@ public class Collider
     /// <returns></returns>
     public CollisionSide CheckIfCollision(Collider other)
     {
-        if (!Rect.Intersects(other.Rect))
+        if (!ColliderShape.Intersects(Position, other))
         {
             return CollisionSide.None;
         }
+        Rect b = ColliderShape.GetBoundingBox();
+        Rect otherB = other.ColliderShape.GetBoundingBox();
         float overlapX = Math.Min(
-            Position.X + Width - other.Position.X,
-            other.Position.X + other.Width - X
+            Position.X + b.Width - other.Position.X,
+            other.Position.X + otherB.Width - Position.X
         );
 
         float overlapY = Math.Min(
-            Y + Height - other.Y,
-            other.Y + other.Height - Y
+            Position.Y + b.Height - other.Position.Y,
+            other.Position.Y + otherB.Height - Position.Y
         );
 
         // The collision is on the X axis
         if (overlapX < overlapY)
         {
-            if (X < other.X)
+            if (Position.X < other.Position.X)
                 return CollisionSide.Right;
             else
                 return CollisionSide.Left;
@@ -70,7 +58,7 @@ public class Collider
         else
         {
             // Collision on the Y axis
-            if (Y < other.Y)
+            if (Position.Y < other.Position.Y)
                 return CollisionSide.Bottom;
             else
                 return CollisionSide.Top;
@@ -86,6 +74,8 @@ public class Collider
     /// <returns>The collision side you collide </returns>
     public CollisionSide CollidePostPhysics(Collider other)
     {
+        Rect b = ColliderShape.GetBoundingBox();
+        Rect otherB = other.ColliderShape.GetBoundingBox();
         if (other == null)
         {
             return CollisionSide.None;
@@ -100,7 +90,7 @@ public class Collider
         switch (side)
         {
             case CollisionSide.Left:
-                PhysicsObject.Position.X = other.X + other.Width;
+                PhysicsObject.Position.X = other.Position.X + otherB.Width;
                 if (PhysicsObject.Velocity.X > 0)
                 {
                     PhysicsObject.Velocity.X = 0;
@@ -108,7 +98,7 @@ public class Collider
                 _colorDebugCollision = Color.Blue;
                 break;
             case CollisionSide.Right:
-                PhysicsObject.Position.X = other.X - Width;
+                PhysicsObject.Position.X = other.Position.X - b.Width;
                 if (PhysicsObject.Velocity.X < 0)
                 {
                     PhysicsObject.Velocity.X = 0;
@@ -116,7 +106,7 @@ public class Collider
                 _colorDebugCollision = Color.Blue;
                 break;
             case CollisionSide.Top:
-                PhysicsObject.Position.Y = other.Y + other.Height;
+                PhysicsObject.Position.Y = other.Position.Y + otherB.Height;
                 if(PhysicsObject.Velocity.Y < 0)
                 {
                     PhysicsObject.Velocity.Y = 0;
@@ -124,7 +114,7 @@ public class Collider
                 _colorDebugCollision = Color.Green;
                 break;
             case CollisionSide.Bottom:
-                PhysicsObject.Position.Y = other.Y - Height;
+                PhysicsObject.Position.Y = other.Position.Y - b.Height;
                 if (PhysicsObject.Velocity.Y > 0)
                 {
                     PhysicsObject.Velocity.Y = 0;
@@ -137,7 +127,16 @@ public class Collider
 
     public void DebugDraw(SpriteBatch spriteBatch)
     {
-        spriteBatch.DrawRectangle(Position, Rect.Size, _colorDebugCollision, 1);
+        if(ColliderShape is Rect)
+        {
+            //square collider
+            spriteBatch.DrawRectangle(Position, ((Rect)ColliderShape).Size, _colorDebugCollision, 1);
+        }
+        //else if (ColliderShape is Circle)
+        //{
+        //    //circle collider
+        //    spriteBatch.DrawCircle(Position, ((Circle)ColliderShape).Radius, 16, _colorDebugCollision, 1);
+        //}
     }
 
     public void Kill()
@@ -154,7 +153,7 @@ public enum CollisionSide
     Right
 }
 
-public enum ColliderType
+public enum CollisionType
 {
     Static,
     Moving

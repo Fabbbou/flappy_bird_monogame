@@ -1,51 +1,36 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended;
 
-namespace flappyrogue_mg.Core.Collider
+public class Rect : ColliderShape
 {
-    public class Rect
+    public float Width { get; private set; }
+    public float Height { get; private set; }
+    public Vector2 Size => new(Width, Height);
+
+    public Rect(Vector2 offset, Vector2 size)
     {
-        public float X { get; private set; }
-        public float Y { get; private set; }
-        public float Width { get; private set; }
-        public float Height { get; private set; }
+        Offset = offset;
+        Width = size.X;
+        Height = size.Y;
+    }
 
-        public Vector2 Position => new(X, Y);
-        public Vector2 Size => new(Width, Height);
-        public Vector2 Center => new(X + Width / 2, Y + Height / 2);
+    public override Rect GetBoundingBox()
+    {
+        return this;
+    }
 
-        public Rectangle Render => new((int)X, (int)Y, (int)Width, (int)Height);
-
-        public Rect(int x, int y, int width, int height)
+    public override bool Intersects(Vector2 position, Collider other)
+    {
+        //throw exception is other is not a rect
+        if (other.ColliderShape is not Rect)
         {
-            X = x;
-            Y = y;
-            Width = width;
-            Height = height;
+            throw new System.Exception("The other collider is not a Rect.");
         }
-
-        public Rect(Vector2 position, Vector2 size)
-        {
-            X = position.X;
-            Y = position.Y;
-            Width = size.X;
-            Height = size.Y;
-        }
-        public bool Contains(Vector2 point)
-        {
-            return point.X >= X && point.X <= X + Width && point.Y >= Y && point.Y <= Y + Height;
-        }
-
-        public bool Intersects(Rect other)
-        {
-            return X < other.X + other.Width &&
-                   X + Width > other.X &&
-                   Y < other.Y + other.Height &&
-                   Y + Height > other.Y;
-        }
-
-        public override string ToString()
-        {
-            return $"X: {X}, Y: {Y}, Width: {Width}, Height: {Height}";
-        }
+        Rect otherR = (Rect)other.ColliderShape;
+        return position.X < other.Position.X + otherR.Width &&
+                position.X + Width > other.Position.X &&
+                position.Y < other.Position.Y + otherR.Height &&
+                position.Y + Height > other.Position.Y;
     }
 }

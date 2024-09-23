@@ -26,7 +26,7 @@ public class PhysicsDebug
         }
     }
 
-    public void SetDebug(bool isDebugging)
+    public void DrawGizmos(bool isDebugging)
     {
         _isDebugging = isDebugging;
     }

@@ -26,7 +26,7 @@ namespace flappyrogue_mg.GameSpace
         public Main()
         {
             //uncomment to see the physics debug
-            PhysicsDebug.Instance.SetDebug(true);
+            PhysicsDebug.Instance.DrawGizmos(true);
 
             _graphics = new GraphicsDeviceManager(this);
 
@@ -61,7 +61,8 @@ namespace flappyrogue_mg.GameSpace
         protected override void LoadContent()
         {
             ViewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, 800, 480);
-            LoadScreen(ScreenName.ZoomedOutMain);
+            LoadScreen(ScreenName.MainGame);
+            //LoadScreen(ScreenName.ZoomedOutMain);
         }
 
         public void LoadScreen(ScreenName screen)
