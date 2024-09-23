@@ -2,19 +2,17 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Aseprite;
-using MonoGame.Extended;
 using MonoGame.Extended.Graphics;
+using MonoGame.Extended.Screens;
 using MonoGame.Extended.ViewportAdapters;
 
 
-namespace flappyrogue_mg.Game
+namespace flappyrogue_mg.GameSpace
 {
-    public class GameMainDebugBorders : Microsoft.Xna.Framework.Game
+    public class MainGame : GameScreen
     {
+        protected BoxingViewportAdapter ViewportAdapter;
 
-        private GraphicsDeviceManager _graphics;
-        private BoxingViewportAdapter _viewportAdapter;
-        private OrthographicCamera _camera;
         private SpriteBatch _spriteBatch;
 
         private Texture2DAtlas _atlas;
@@ -26,40 +24,17 @@ namespace flappyrogue_mg.Game
         private readonly Pipes _pipes;
         private readonly PipesSpawner _pipesSpawner;
 
-        public GameMainDebugBorders()
+        public MainGame(Game game) : base(game)
         {
-            //uncomment to see the physics debug
-            //PhysicsDebug.Instance.SetDebug(true);
-
-            IsMouseVisible = true;
-            Window.AllowUserResizing = true;
-            Content.RootDirectory = "Content";
-            _graphics = new GraphicsDeviceManager(this);
-            //resize the startup window to match the game ratio
-            _graphics.PreferredBackBufferHeight = (int)(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height * 0.75f);
-            _graphics.PreferredBackBufferWidth = _graphics.PreferredBackBufferHeight * 9 / 16;
-            _graphics.ApplyChanges();
-
-            
-            _bird = new Bird();
+            _bird = new Bird(this);
             _floor = new Floor();
             //_pipes = new Pipes(60f, 100f, 60f, 60f); //test pipes
             _pipesSpawner = new PipesSpawner();
         }
 
-        protected override void Initialize()
+        public override void LoadContent()
         {
-            base.Initialize();
-            // setting the viewport dimensions to be the same as the background (bg) image
-            // as the bg is portrait, the game will be portrait to
-            // for a pixel perfect game, the viewport has to be the exact size of the background img
-            _viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, GameMain.WORLD_WIDTH, GameMain.WORLD_HEIGHT);
-            _camera = new OrthographicCamera(_viewportAdapter);
-            _camera.ZoomOut(0.5f);
-        }
-
-        protected override void LoadContent()
-        {
+            ViewportAdapter = new BoxingViewportAdapter(Game.Window, GraphicsDevice, Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             GameAtlasTextures.Instance.Load(Content, GraphicsDevice);
             // 144 and 256 are width and height of the background image.
@@ -68,22 +43,21 @@ namespace flappyrogue_mg.Game
             // it is considered a uniform grid of sprites (they are all the same size)
             // more info here: https://www.monogameextended.net/docs/features/texture-handling/texture2datlas/
             Texture2D backGroundTexture = Content.Load<Texture2D>("sprites/background");
-            _atlas = Texture2DAtlas.Create("Atlas/Background", backGroundTexture, GameMain.WORLD_WIDTH, GameMain.WORLD_HEIGHT);
+            _atlas = Texture2DAtlas.Create("Atlas/Background", backGroundTexture, Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
             _dayBackground = _atlas[0];
             _nightBackground = _atlas[1];
 
 
-            _floor.LoadSingleInstance(Content, _graphics.GraphicsDevice);
+            _floor.LoadSingleInstance(Content);
             //_pipes.Load(Content, _graphics.GraphicsDevice
-            _pipesSpawner.Load(Content, _graphics.GraphicsDevice);
-            _bird.LoadSingleInstance(Content, _graphics.GraphicsDevice);
+            _pipesSpawner.Load(Content);
+            _bird.LoadSingleInstance(Content);
         }
 
-        protected override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
-
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+                Game.Exit();
             // Update sprite position based on elapsed time
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -93,14 +67,17 @@ namespace flappyrogue_mg.Game
             _bird.Update(gameTime);
             
             PhysicsEngine.Instance.Update(gameTime);
-            base.Update(gameTime);
         }
 
-        protected override void Draw(GameTime gameTime)
+        protected virtual Matrix GetTransformMatrix()
+        {
+            return ViewportAdapter.GetScaleMatrix();
+        }
+
+        public override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-            var transformMatrix = _camera.GetViewMatrix();
-            _spriteBatch.Begin(transformMatrix: transformMatrix, samplerState: SamplerState.PointClamp);
+            _spriteBatch.Begin(transformMatrix: GetTransformMatrix(), samplerState: SamplerState.PointClamp);
 
             // Draw the background
             _spriteBatch.Draw(_dayBackground, Vector2.Zero, Color.White);
@@ -118,7 +95,6 @@ namespace flappyrogue_mg.Game
 
             PhysicsDebug.Instance.Draw(_spriteBatch);
             _spriteBatch.End();
-            base.Draw(gameTime);
         }
     }
 }

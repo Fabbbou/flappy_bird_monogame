@@ -2,7 +2,7 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Views;
-using flappyrogue_mg.Game;
+using flappyrogue_mg.GameSpace;
 using Microsoft.Xna.Framework;
 
 namespace Android
@@ -18,7 +18,7 @@ namespace Android
     )]
     public class Activity1 : AndroidGameActivity
     {
-        private GameMain _game;
+        private GameStarted _game;
         private View _view;
 
         protected override void OnCreate(Bundle bundle)

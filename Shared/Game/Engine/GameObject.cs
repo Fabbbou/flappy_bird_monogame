@@ -12,7 +12,7 @@ namespace flappyrogue_mg.Core
 {
     public interface GameObject
     {
-        public abstract void LoadSingleInstance(ContentManager content, GraphicsDevice graphicsDevice);
+        public abstract void LoadSingleInstance(ContentManager content);
 
         public abstract void Update(GameTime gameTime);
 

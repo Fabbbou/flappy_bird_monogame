@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Graphics;
 
-namespace flappyrogue_mg.Game
+namespace flappyrogue_mg.GameSpace
 {
     public class GameAtlasTextures
     {

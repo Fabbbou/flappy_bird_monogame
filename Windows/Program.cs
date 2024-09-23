@@ -1,5 +1,5 @@
 ﻿
-using flappyrogue_mg.Game;
+using flappyrogue_mg.GameSpace;
 
-using var game = new GameMainDebugBorders();
+using var game = new Main();
 game.Run();

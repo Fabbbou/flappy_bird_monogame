@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using flappyrogue_mg.Game;
+using flappyrogue_mg.GameSpace;
 using Microsoft.Xna.Framework.Content;
 using MonoGame.Extended.Graphics;
 using System;
@@ -33,7 +33,7 @@ public class PipesSpawner
     {
         float minHeight = OFFSET_PIPES_VISIBLE; //to see a little bit of the pipe
         //max height is the height of the screen minus the height of the floor (PLAYABLE_WORLD_HEIGHT) minus the height of the pipe (so it doesnt fly)
-        float maxHeight = GameMain.PLAYABLE_WORLD_HEIGHT - GAP_HEIGHT - OFFSET_PIPES_VISIBLE;
+        float maxHeight = Constants.PLAYABLE_WORLD_HEIGHT - GAP_HEIGHT - OFFSET_PIPES_VISIBLE;
         return (float)new Random().NextDouble() * (maxHeight - minHeight) + minHeight;
     }
 
@@ -62,7 +62,7 @@ public class PipesSpawner
         }
     }
 
-    public void Load(ContentManager content, GraphicsDevice graphicsDevice)
+    public void Load(ContentManager content)
     {
         //textures are loaded from the atlas in GameMain.cs
         //we still load the atlas here to get the texture

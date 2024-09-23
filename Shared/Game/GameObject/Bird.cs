@@ -8,19 +8,21 @@ using MonoGame.Aseprite;
 using MonoGame.Extended.BitmapFonts;
 using Microsoft.Xna.Framework.Input.Touch;
 using Microsoft.Xna.Framework.Audio;
+using MonoGame.Extended.Screens;
 
-namespace flappyrogue_mg.Game
+namespace flappyrogue_mg.GameSpace
 {
     public class Bird : GameObject
     {
         public const int SPRITE_WIDTH = 17;
         public const int SPRITE_HEIGHT = 12;
-        public const float STARTING_POSITION_X = GameMain.WORLD_WIDTH / 2 - SPRITE_WIDTH / 2;
-        public const float STARTING_POSITION_Y = GameMain.PLAYABLE_WORLD_HEIGHT / 2 - SPRITE_HEIGHT / 2;
+        public const float STARTING_POSITION_X = Constants.WORLD_WIDTH / 2 - SPRITE_WIDTH / 2;
+        public const float STARTING_POSITION_Y = Constants.PLAYABLE_WORLD_HEIGHT / 2 - SPRITE_HEIGHT / 2;
 
         private const float SPEED = 200f;
         private const float GRAVITY = 450f;
 
+        private GameScreen _screen;
         public readonly PhysicsObject PhysicsObject;
         private SpriteSheet _spriteSheet;
         private AnimatedSprite _idleCycle;
@@ -33,20 +35,21 @@ namespace flappyrogue_mg.Game
         // this variable is used to avoid this behavior
         private bool _pressedButtonJump = false;
 
-        public Bird()
+        public Bird(GameScreen gameScreen)
         {
+            _screen = gameScreen;
             PhysicsObject = new("bird", STARTING_POSITION_X, STARTING_POSITION_Y, SPRITE_WIDTH, SPRITE_HEIGHT);
             PhysicsObject.Gravity = new Vector2(0, GRAVITY);
         }
 
-        public void LoadSingleInstance(ContentManager content, GraphicsDevice graphicsDevice)
+        public void LoadSingleInstance(ContentManager content)
         {
             // Load the font
             _font = content.Load<BitmapFont>("fonts/04b19");
 
             // Load the sprite sheet
             AsepriteFile aseFile = content.Load<AsepriteFile>("sprites/bird");
-            _spriteSheet = aseFile.CreateSpriteSheet(graphicsDevice);
+            _spriteSheet = aseFile.CreateSpriteSheet(_screen.GraphicsDevice);
             _idleCycle = _spriteSheet.CreateAnimatedSprite("idle"); //tag created in aseprite file selecting the frames to be animated
             _idleCycle.Play();
 

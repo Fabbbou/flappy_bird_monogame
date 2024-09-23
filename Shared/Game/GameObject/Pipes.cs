@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Graphics;
 
-namespace flappyrogue_mg.Game
+namespace flappyrogue_mg.GameSpace
 {
     public class Pipes : GameObject
     {
@@ -26,7 +26,7 @@ namespace flappyrogue_mg.Game
         public Pipes(float xOffsetFromRightBorder, float yOffsetFromTop, float gapHeight, float speed)
         {
             _speedForce = speed;
-            float xPosition = GameMain.WORLD_WIDTH - SPRITE_WIDTH + xOffsetFromRightBorder;
+            float xPosition = Constants.WORLD_WIDTH - SPRITE_WIDTH + xOffsetFromRightBorder;
             PhysicsObjectPipeTop = new PhysicsObject("pipe top", xPosition, -SPRITE_HEIGHT + yOffsetFromTop, SPRITE_WIDTH, SPRITE_HEIGHT)
             {
                 Gravity = new Vector2(0, 0),
@@ -38,7 +38,7 @@ namespace flappyrogue_mg.Game
                 Friction = new Vector2(0, 0)
             };
         }
-        public void LoadSingleInstance(ContentManager content, GraphicsDevice graphicsDevice)
+        public void LoadSingleInstance(ContentManager content)
         {
             //textures are loaded from the atlas in GameMain.cs
             //we still load the atlas here to get the texture

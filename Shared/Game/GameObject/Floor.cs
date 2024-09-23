@@ -5,14 +5,14 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.ViewportAdapters;
 using System;
 
-namespace flappyrogue_mg.Game
+namespace flappyrogue_mg.GameSpace
 {
     public class Floor : GameObject
     {
         public const int SPRITE_WIDTH = 168;
         public const int SPRITE_HEIGHT = 56;
         public const float STARTING_POSITION_X = 0;
-        public const float STARTING_POSITION_Y = GameMain.WORLD_HEIGHT - SPRITE_HEIGHT;
+        public const float STARTING_POSITION_Y = Constants.WORLD_HEIGHT - SPRITE_HEIGHT;
 
         public readonly PhysicsObject physicsObject;
         private Texture2D _spriteSheet;
@@ -31,7 +31,7 @@ namespace flappyrogue_mg.Game
             _texture2Position = new Vector2(physicsObject.Position.X + SPRITE_WIDTH, physicsObject.Position.Y);
         }
 
-        public void LoadSingleInstance(ContentManager content, GraphicsDevice graphicsDevice)
+        public void LoadSingleInstance(ContentManager content)
         {
             // Load the sprite sheet
             _spriteSheet = content.Load<Texture2D>("sprites/floor");

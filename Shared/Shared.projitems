@@ -9,6 +9,7 @@
     <Import_RootNamespace>Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)game\Constants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Engine\Collider\Collider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Engine\Collider\Collides.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Engine\Collider\Collision.cs" />
@@ -18,13 +19,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)Game\Engine\GameObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Engine\Input\Keyboard.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Engine\PhysicsObject.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Game\GameMainDebugBorders.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)game\Main.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\GameObject\Bird.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\GameObject\Floor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)game\gameobject\PipesSpawner.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Screen\ScreenName.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\UI\GameAtlasTextures.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Game\GameMain.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Screen\MainGame.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\GameObject\Pipes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Screen\ZoomedOutGameStarted.cs" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
@@ -54,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Game\GameObject\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Game\Screen\" />
     <Folder Include="$(MSBuildThisFileDirectory)Game\UI\" />
   </ItemGroup>
 </Project>
