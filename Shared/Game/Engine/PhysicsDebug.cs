@@ -1,5 +1,6 @@
 
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 
 /// <summary>
@@ -33,6 +34,17 @@ public class PhysicsDebug
     //add a physics object to the list of objects to debug
     public void AddObject(PhysicsObject physicsObject)
     {
+        foreach (PhysicsObject obj in _objects)
+        {
+            if (obj == physicsObject)
+            {
+                throw new Exception("Physics object already exists in the list of objects to debug.");
+            }
+            if (obj.Label == physicsObject.Label)
+            {
+                throw new Exception("Physics object with the same label already exists in the list of objects to debug.");
+            }
+        }
         _objects.Add(physicsObject);
     }
 

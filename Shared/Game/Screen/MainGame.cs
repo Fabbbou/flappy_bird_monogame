@@ -19,21 +19,23 @@ namespace flappyrogue_mg.GameSpace
         private Texture2DRegion _dayBackground;
         private Texture2DRegion _nightBackground;
 
-        private readonly Bird _bird;
-        private readonly Floor _floor;
-        private readonly Pipes _pipes;
-        private readonly PipesSpawner _pipesSpawner;
+        private Bird _bird;
+        private Floor _floor;
+        private Pipes _pipes;
+        private PipesSpawner _pipesSpawner;
 
         public MainGame(Game game) : base(game)
+        {
+
+        }
+
+        public override void LoadContent()
         {
             _bird = new Bird(this);
             _floor = new Floor();
             //_pipes = new Pipes(60f, 100f, 60f, 60f); //test pipes
             _pipesSpawner = new PipesSpawner();
-        }
 
-        public override void LoadContent()
-        {
             ViewportAdapter = new BoxingViewportAdapter(Game.Window, GraphicsDevice, Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             GameAtlasTextures.Instance.Load(Content, GraphicsDevice);
