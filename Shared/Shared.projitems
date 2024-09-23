@@ -18,6 +18,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Game\Engine\GameObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Engine\Input\Keyboard.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Engine\PhysicsObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\GameMainDebugBorders.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\GameObject\Bird.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\GameObject\Floor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)game\gameobject\PipesSpawner.cs" />

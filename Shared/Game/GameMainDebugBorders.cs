@@ -2,20 +2,19 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Aseprite;
+using MonoGame.Extended;
 using MonoGame.Extended.Graphics;
 using MonoGame.Extended.ViewportAdapters;
 
 
 namespace flappyrogue_mg.Game
 {
-    public class GameMain : Microsoft.Xna.Framework.Game
+    public class GameMainDebugBorders : Microsoft.Xna.Framework.Game
     {
-        public const int WORLD_WIDTH = 144;
-        public const int WORLD_HEIGHT = 256;
-        public const int PLAYABLE_WORLD_HEIGHT = GameMain.WORLD_HEIGHT - Floor.SPRITE_HEIGHT;
 
         private GraphicsDeviceManager _graphics;
         private BoxingViewportAdapter _viewportAdapter;
+        private OrthographicCamera _camera;
         private SpriteBatch _spriteBatch;
 
         private Texture2DAtlas _atlas;
@@ -27,7 +26,7 @@ namespace flappyrogue_mg.Game
         private readonly Pipes _pipes;
         private readonly PipesSpawner _pipesSpawner;
 
-        public GameMain()
+        public GameMainDebugBorders()
         {
             //uncomment to see the physics debug
             //PhysicsDebug.Instance.SetDebug(true);
@@ -54,7 +53,9 @@ namespace flappyrogue_mg.Game
             // setting the viewport dimensions to be the same as the background (bg) image
             // as the bg is portrait, the game will be portrait to
             // for a pixel perfect game, the viewport has to be the exact size of the background img
-            _viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, WORLD_WIDTH, WORLD_HEIGHT);
+            _viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, GameMain.WORLD_WIDTH, GameMain.WORLD_HEIGHT);
+            _camera = new OrthographicCamera(_viewportAdapter);
+            _camera.ZoomOut(0.5f);
         }
 
         protected override void LoadContent()
@@ -67,7 +68,7 @@ namespace flappyrogue_mg.Game
             // it is considered a uniform grid of sprites (they are all the same size)
             // more info here: https://www.monogameextended.net/docs/features/texture-handling/texture2datlas/
             Texture2D backGroundTexture = Content.Load<Texture2D>("sprites/background");
-            _atlas = Texture2DAtlas.Create("Atlas/Background", backGroundTexture, WORLD_WIDTH, WORLD_HEIGHT);
+            _atlas = Texture2DAtlas.Create("Atlas/Background", backGroundTexture, GameMain.WORLD_WIDTH, GameMain.WORLD_HEIGHT);
             _dayBackground = _atlas[0];
             _nightBackground = _atlas[1];
 
@@ -80,6 +81,7 @@ namespace flappyrogue_mg.Game
 
         protected override void Update(GameTime gameTime)
         {
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             // Update sprite position based on elapsed time
@@ -97,7 +99,8 @@ namespace flappyrogue_mg.Game
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-            _spriteBatch.Begin(transformMatrix: _viewportAdapter.GetScaleMatrix(), samplerState: SamplerState.PointClamp);
+            var transformMatrix = _camera.GetViewMatrix();
+            _spriteBatch.Begin(transformMatrix: transformMatrix, samplerState: SamplerState.PointClamp);
 
             // Draw the background
             _spriteBatch.Draw(_dayBackground, Vector2.Zero, Color.White);
