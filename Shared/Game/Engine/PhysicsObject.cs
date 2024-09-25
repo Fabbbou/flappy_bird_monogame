@@ -9,7 +9,7 @@
 public class PhysicsObject
 {
     public const float GRAVITY = 9.8f;
-    public const float FRICTION = 1f;
+    public const float FRICTION = 0f;
     public Collider Collider;
     public Vector2 Gravity;
     public Vector2 Position;
@@ -21,18 +21,17 @@ public class PhysicsObject
     public string Label;
     public bool IsNotMoving => Velocity == Vector2.Zero && Acceleration == Vector2.Zero;
 
-    public PhysicsObject(string label, float x, float y, float widthCollider, float heightCollider, CollisionType colliderType)
+    public PhysicsObject(string label, float x, float y, float widthCollider, float heightCollider, CollisionType colliderType, Vector2 offsetCollider)
     {
         PhysicsDebug.Instance.AddObject(this);
         Label = label;
         Position = new(x, y);
-        Collider = new(this, widthCollider, heightCollider, colliderType);
+        Collider = new(this, widthCollider, heightCollider, colliderType, offsetCollider);
         Velocity = Vector2.Zero;
         Acceleration = Vector2.Zero;
         Gravity = new Vector2(0, GRAVITY);
         Friction = new Vector2(FRICTION, FRICTION);
     }
-    public PhysicsObject(string label, float x, float y, float widthCollider, float heightCollider) : this(label, x, y, widthCollider, heightCollider, CollisionType.Moving) { }
 
     ~PhysicsObject()
     {
@@ -59,6 +58,8 @@ public class PhysicsObject
 
     public void Update(GameTime gameTime)
     {
+        //if(Collider.CollisionType == CollisionType.Static) return;
+        
         float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
         // Apply gravity

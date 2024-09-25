@@ -21,10 +21,9 @@ namespace flappyrogue_mg.GameSpace
 
         public Floor()
         {
-            physicsObject = new PhysicsObject("floor", STARTING_POSITION_X, STARTING_POSITION_Y, SPRITE_WIDTH, SPRITE_HEIGHT, CollisionType.Static)
+            physicsObject = new PhysicsObject("floor", STARTING_POSITION_X, STARTING_POSITION_Y, SPRITE_WIDTH, SPRITE_HEIGHT, CollisionType.Static, Vector2.Zero)
             {
                 //make the floor static
-                Gravity = new Vector2(0, 0),
                 Friction = new Vector2(0, 0)
             };
             _texturePosition = physicsObject.Position;

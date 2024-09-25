@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
+using MonoGame.Extended.ECS;
 
 public class Rect : ColliderShape
 {
@@ -15,22 +16,10 @@ public class Rect : ColliderShape
         Height = size.Y;
     }
 
-    public override Rect GetBoundingBox()
+    public override BoundingBox GetBoundingBox(Vector2 worldPosition)
     {
-        return this;
-    }
-
-    public override bool Intersects(Vector2 position, Collider other)
-    {
-        //throw exception is other is not a rect
-        if (other.ColliderShape is not Rect)
-        {
-            throw new System.Exception("The other collider is not a Rect.");
-        }
-        Rect otherR = (Rect)other.ColliderShape;
-        return position.X < other.Position.X + otherR.Width &&
-                position.X + Width > other.Position.X &&
-                position.Y < other.Position.Y + otherR.Height &&
-                position.Y + Height > other.Position.Y;
+        return new(worldPosition, this);
     }
 }
+
+

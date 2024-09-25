@@ -24,13 +24,11 @@ namespace flappyrogue_mg.GameSpace
         private Pipes _pipes;
         private PipesSpawner _pipesSpawner;
 
-        public MainGame(Game game) : base(game)
-        {
-
-        }
+        public MainGame(Game game) : base(game){}
 
         public override void LoadContent()
         {
+            Game.IsMouseVisible = true;
             _bird = new Bird(this);
             _floor = new Floor();
             //_pipes = new Pipes(60f, 100f, 60f, 60f); //test pipes
