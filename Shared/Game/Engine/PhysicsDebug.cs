@@ -51,6 +51,7 @@ public class PhysicsDebug
     //remove a physics object from the list of objects to debug
     public void RemoveObject(PhysicsObject physicsObject)
     {
+        if (_isDebugging) return;
         _objects.Remove(physicsObject);
     }
 
@@ -64,7 +65,7 @@ public class PhysicsDebug
         foreach (PhysicsObject physicsObject in _objects)
         {
             //draw the collider of the physics object
-            physicsObject.Collider.DebugDraw(spriteBatch);
+            physicsObject.DebugDraw(spriteBatch);
         }
     }
 }

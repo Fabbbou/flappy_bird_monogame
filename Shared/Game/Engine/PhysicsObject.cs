@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended;
 
 /// <summary>
 /// Represents a physics object in the game world.
@@ -20,6 +22,7 @@ public class PhysicsObject
     public Vector2 Friction;
     public string Label;
     public bool IsNotMoving => Velocity == Vector2.Zero && Acceleration == Vector2.Zero;
+    public Color ColorDebugCollision = Constants.DEFAULT_DEBUG_COLOR_GIZMOS;
 
     public PhysicsObject(string label, float x, float y, float widthCollider, float heightCollider, CollisionType colliderType, Vector2 offsetCollider)
     {
@@ -73,6 +76,15 @@ public class PhysicsObject
         Position += Velocity * deltaTime + 0.5f * Acceleration * deltaTime * deltaTime;
         // Reset acceleration for the next frame
         Acceleration = Vector2.Zero;
+    }
+
+    public void DebugDraw(SpriteBatch spriteBatch)
+    {
+        if (Collider.ColliderShape is Rect)
+        {
+            //square collider
+            spriteBatch.DrawRectangle(Position, ((Rect)Collider.ColliderShape).Size, ColorDebugCollision, 1);
+        }
     }
 
     public void Kill()

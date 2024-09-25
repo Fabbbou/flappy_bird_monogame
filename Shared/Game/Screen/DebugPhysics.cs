@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Aseprite;
+using MonoGame.Extended;
 using MonoGame.Extended.Graphics;
 using MonoGame.Extended.Screens;
 using MonoGame.Extended.ViewportAdapters;
@@ -11,8 +12,12 @@ namespace flappyrogue_mg.GameSpace
 {
     public class DebugPhysics : GameScreen
     {
-        protected BoxingViewportAdapter ViewportAdapter;
+        protected ScalingViewportAdapter ViewportAdapter;
         private SpriteBatch _spriteBatch;
+        private OrthographicCamera _camera;
+
+        //to create a pixel texture for filled rectangle
+        private Texture2D pixelTexture;
 
         private PhysicsObject partFloor1;
         private PhysicsObject partFloor2;
@@ -21,18 +26,6 @@ namespace flappyrogue_mg.GameSpace
         private PhysicsObject partFloor5;
         private PhysicsObject partFloor6;
         private PhysicsObject partFloor7;
-        private PhysicsObject partFloor8;
-        private PhysicsObject partFloor9;
-        private PhysicsObject partFloor10;
-        private PhysicsObject partFloor11;
-        private PhysicsObject partFloor12;
-        private PhysicsObject partFloor13;
-        private PhysicsObject partFloor14;
-        private PhysicsObject partFloor15;
-        private PhysicsObject partFloor16;
-        private PhysicsObject partFloor17;
-        private PhysicsObject partFloor18;
-        private PhysicsObject partFloor19;
         
         private PhysicsObject movingBox;
 
@@ -41,31 +34,37 @@ namespace flappyrogue_mg.GameSpace
         public override void LoadContent()
         {
             Game.IsMouseVisible = true;
-            ViewportAdapter = new BoxingViewportAdapter(Game.Window, GraphicsDevice, Constants.DEBUG_WORLD_WIDTH, Constants.DEBUG_WORLD_HEIGHT);
+            ViewportAdapter = new ScalingViewportAdapter(GraphicsDevice, Constants.DEBUG_WORLD_WIDTH, Constants.DEBUG_WORLD_WIDTH);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            _camera = new OrthographicCamera(ViewportAdapter);
+            _camera.ZoomOut(0.1f);
 
-            partFloor1 = new("partFloor1", 0, 800, 100, 100, CollisionType.Static, Vector2.Zero);
-            partFloor2 = new("partFloor2", 100, 800, 10, 100, CollisionType.Static, Vector2.Zero);
-            partFloor3 = new("partFloor3", 110, 800, 10, 100, CollisionType.Static, Vector2.Zero);
-            partFloor4 = new("partFloor4", 120, 800, 10, 100, CollisionType.Static, Vector2.Zero);
-            partFloor5 = new("partFloor5", 130, 800, 10, 100, CollisionType.Static, Vector2.Zero);
-            partFloor18 = new("partFloor18", 140, 800, 10, 100, CollisionType.Static, Vector2.Zero);
-            partFloor6 = new("partFloor6", 150, 800, 10, 100, CollisionType.Static, Vector2.Zero);
-            partFloor7 = new("partFloor7", 160, 800, 10, 100, CollisionType.Static, Vector2.Zero);
-            partFloor8 = new("partFloor8", 170, 800, 10, 100, CollisionType.Static, Vector2.Zero);
-            partFloor9 = new("partFloor9", 180, 800, 10, 100, CollisionType.Static, Vector2.Zero);
-            partFloor10 = new("partFloor10", 190, 800, 10, 100, CollisionType.Static, Vector2.Zero);
-            partFloor11 = new("partFloor11", 200, 800, 10, 100, CollisionType.Static, Vector2.Zero);
-            partFloor12 = new("partFloor12", 210, 800, 10, 100, CollisionType.Static, Vector2.Zero);
-            partFloor13 = new("partFloor13", 220, 800, 10, 100, CollisionType.Static, Vector2.Zero);
-            partFloor14 = new("partFloor14", 230, 800, 10, 100, CollisionType.Static, Vector2.Zero);
-            partFloor15 = new("partFloor15", 240, 800, 10, 100, CollisionType.Static, Vector2.Zero);
-            partFloor16 = new("partFloor16", 250, 800, 10, 100, CollisionType.Static, Vector2.Zero);
-            partFloor17 = new("partFloor17", 260, 800, 100, 100, CollisionType.Static, Vector2.Zero);
-            partFloor19 = new("partFloor17", 270, 800, 1000 - 270, 100, CollisionType.Static, Vector2.Zero);
+            //set the filled color texture
+            // Create a 1x1 pixel texture
+            pixelTexture = new Texture2D(GraphicsDevice, 1, 1);
+            pixelTexture.SetData(new[] { Color.White });
 
-            movingBox = new("movingBox", 0, 0, 100, 100, CollisionType.Moving, new Vector2(100, 100));
-            movingBox.Gravity = new Vector2(0, 450f);
+            var yFloor = 390;
+            var xFloor = 0;
+            var floorHeigth = 100;
+            var smallFloorWidth = 10;
+            partFloor1 = new("partFloor1", xFloor, yFloor, 100, floorHeigth, CollisionType.Static, Vector2.Zero);
+            xFloor += 100;
+            partFloor2 = new("partFloor2", xFloor, yFloor, smallFloorWidth, floorHeigth, CollisionType.Static, Vector2.Zero);
+            xFloor += smallFloorWidth;
+            partFloor3 = new("partFloor3", xFloor, yFloor, smallFloorWidth, floorHeigth, CollisionType.Static, Vector2.Zero);
+            xFloor += smallFloorWidth;
+            partFloor4 = new("partFloor4", xFloor, yFloor, smallFloorWidth, floorHeigth, CollisionType.Static, Vector2.Zero);
+            xFloor += smallFloorWidth;
+            partFloor5 = new("partFloor5", xFloor, yFloor, smallFloorWidth, floorHeigth, CollisionType.Static, Vector2.Zero);
+            xFloor += smallFloorWidth;
+            partFloor6 = new("partFloor6", xFloor, yFloor, smallFloorWidth, floorHeigth, CollisionType.Static, Vector2.Zero);
+            xFloor += smallFloorWidth;   
+            partFloor7 = new("partFloor7", xFloor, yFloor, Constants.DEBUG_WORLD_WIDTH - xFloor, floorHeigth, CollisionType.Static, Vector2.Zero);
+
+            var boxSize = 10;
+            movingBox = new("movingBox", 0, 0, boxSize, boxSize, CollisionType.Moving, Vector2.Zero);
+            movingBox.Gravity = new Vector2(0, 0f);
 
         }
 
@@ -91,6 +90,11 @@ namespace flappyrogue_mg.GameSpace
             {
                 movingBox.ApplyForce(new Vector2(1000, 0), ForceType.Continuous);
             }
+            //spacebar to reset the velocity of the box
+            if (Keyboard.GetState().IsKeyDown(Keys.Space))
+            {
+                movingBox.Velocity = Vector2.Zero;
+            }
             PhysicsEngine.Instance.MoveAndSlide(movingBox, gameTime);
 
             PhysicsEngine.Instance.Update(gameTime);
@@ -98,15 +102,15 @@ namespace flappyrogue_mg.GameSpace
 
         protected virtual Matrix GetTransformMatrix()
         {
-            return ViewportAdapter.GetScaleMatrix();
+            return _camera.GetViewMatrix();
         }
 
         public override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Blue);
+            GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin(transformMatrix: GetTransformMatrix(), samplerState: SamplerState.PointClamp);
-
-            //draw stuff here
+            //draw a rectangle filled with blue color
+            _spriteBatch.Draw(pixelTexture, new Rectangle(0, 0, Constants.DEBUG_WORLD_WIDTH, Constants.DEBUG_WORLD_HEIGHT), Color.Blue);
 
             PhysicsDebug.Instance.Draw(_spriteBatch);
             _spriteBatch.End();

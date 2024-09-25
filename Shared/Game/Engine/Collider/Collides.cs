@@ -41,7 +41,7 @@ public class Collides
         CollisionSide side = CheckIfCollision(physicsObject.Collider, other.Collider);
         if (side == CollisionSide.None)
         {
-            physicsObject.Collider.ColorDebugCollision = Constants.DEFAULT_DEBUG_COLOR_GIZMOS;
+            physicsObject.ColorDebugCollision = Constants.DEFAULT_DEBUG_COLOR_GIZMOS;
             return side;
         }
 
@@ -53,7 +53,7 @@ public class Collides
                 {
                     physicsObject.Velocity.X = 0;
                 }
-                physicsObject.Collider.ColorDebugCollision = Color.Red;
+                physicsObject.ColorDebugCollision = Color.Red;
                 break;
             case CollisionSide.Right:
                 physicsObject.Position.X = other.Collider.Position.X - b.Width;
@@ -61,7 +61,7 @@ public class Collides
                 {
                     physicsObject.Velocity.X = 0;
                 }
-                physicsObject.Collider.ColorDebugCollision = Color.Blue;
+                physicsObject.ColorDebugCollision = Color.Blue;
                 break;
             case CollisionSide.Top:
                 physicsObject.Position.Y = other.Collider.Position.Y + otherB.Height;
@@ -69,7 +69,7 @@ public class Collides
                 {
                     physicsObject.Velocity.Y = 0;
                 }
-                physicsObject.Collider.ColorDebugCollision = Color.Green;
+                physicsObject.ColorDebugCollision = Color.Green;
                 break;
             case CollisionSide.Bottom:
                 physicsObject.Position.Y = other.Collider.Position.Y - b.Height;
@@ -77,7 +77,7 @@ public class Collides
                 {
                     physicsObject.Velocity.Y = 0;
                 }
-                physicsObject.Collider.ColorDebugCollision = Color.Pink;
+                physicsObject.ColorDebugCollision = Color.Pink;
                 break;
         }
         return side;
