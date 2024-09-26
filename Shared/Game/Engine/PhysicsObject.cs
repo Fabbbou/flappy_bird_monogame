@@ -77,8 +77,7 @@ public class PhysicsObject
 
     public void DebugDraw(SpriteBatch spriteBatch)
     {
-        //square collider
-        spriteBatch.DrawRectangle(Position, Collider.Rect.Size, ColorDebugCollision, 1);
+        spriteBatch.DrawRectangle(Position, Collider.Rect.Size, ColorDebugCollision);
     }
 
     public void Kill()

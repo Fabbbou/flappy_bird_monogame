@@ -16,9 +16,10 @@ namespace flappyrogue_mg.GameSpace
     {
         public const int SPRITE_WIDTH = 17;
         public const int SPRITE_HEIGHT = 12;
-        public const int BORDER_CROP_COLLIDER = 2;
-        public const int COLLIDER_WIDTH = SPRITE_WIDTH - BORDER_CROP_COLLIDER * 2;
-        public const int COLLIDER_HEIGHT = SPRITE_HEIGHT - BORDER_CROP_COLLIDER * 2;
+
+        public const int COLLIDER_WIDTH = 9;
+        public const int COLLIDER_HEIGHT = 10;
+        public readonly Vector2 OffsetCollider = new Vector2(4, 1);
 
         public const float STARTING_POSITION_X = Constants.WORLD_WIDTH / 2 - SPRITE_WIDTH / 2;
         public const float STARTING_POSITION_Y = Constants.PLAYABLE_WORLD_HEIGHT / 2 - SPRITE_HEIGHT / 2;
@@ -42,7 +43,7 @@ namespace flappyrogue_mg.GameSpace
         public Bird(GameScreen gameScreen)
         {
             _screen = gameScreen;
-            PhysicsObject = new("bird", STARTING_POSITION_X, STARTING_POSITION_Y, SPRITE_WIDTH, SPRITE_HEIGHT, CollisionType.Moving);
+            PhysicsObject = new("bird", STARTING_POSITION_X + OffsetCollider.X, STARTING_POSITION_Y + OffsetCollider.Y, COLLIDER_WIDTH, COLLIDER_HEIGHT, CollisionType.Moving);
             PhysicsObject.Gravity = new Vector2(0, GRAVITY);
         }
 
@@ -98,7 +99,7 @@ namespace flappyrogue_mg.GameSpace
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_idleCycle, PhysicsObject.Position);
+            spriteBatch.Draw(_idleCycle, PhysicsObject.Position - OffsetCollider);
         }
     }
 }
