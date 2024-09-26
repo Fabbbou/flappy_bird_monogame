@@ -42,7 +42,7 @@ namespace flappyrogue_mg.GameSpace
             //set the filled color texture
             // Create a 1x1 pixel texture
             pixelTexture = new Texture2D(GraphicsDevice, 1, 1);
-            pixelTexture.SetData(new[] { Color.White });
+            pixelTexture.SetData(new[] { Color.White }); //the color here is not important, as we will change it later
 
             var yFloor = 390;
             var xFloor = 0;
@@ -64,7 +64,7 @@ namespace flappyrogue_mg.GameSpace
 
             var boxSize = 10;
             movingBox = new("movingBox", 0, 0, boxSize, boxSize, CollisionType.Moving, Vector2.Zero);
-            movingBox.Gravity = new Vector2(0, 0f);
+            movingBox.Gravity = Vector2.Zero;
 
         }
 

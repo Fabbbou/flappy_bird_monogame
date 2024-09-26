@@ -32,8 +32,6 @@ public class Collides
     /// <returns>The collision side you collide </returns>
     private static CollisionSide CollidePostPhysics(PhysicsObject physicsObject, PhysicsObject other)
     {
-        BoundingBox b = physicsObject.Collider.ColliderShape.GetBoundingBox(physicsObject.Position);
-        BoundingBox otherB = other.Collider.ColliderShape.GetBoundingBox(physicsObject.Position);
         if (other == null)
         {
             return CollisionSide.None;
@@ -44,11 +42,12 @@ public class Collides
             physicsObject.ColorDebugCollision = Constants.DEFAULT_DEBUG_COLOR_GIZMOS;
             return side;
         }
-
+        BoundingBox b = physicsObject.Collider.ColliderShape.GetBoundingBox(physicsObject.Position);
+        BoundingBox otherB = other.Collider.ColliderShape.GetBoundingBox(other.Position);
         switch (side)
         {
             case CollisionSide.Left:
-                physicsObject.Position.X = other.Collider.Position.X + otherB.Width;
+                physicsObject.Position.X = otherB.Position.X + otherB.Width;
                 if (physicsObject.Velocity.X > 0)
                 {
                     physicsObject.Velocity.X = 0;
@@ -56,7 +55,7 @@ public class Collides
                 physicsObject.ColorDebugCollision = Color.Red;
                 break;
             case CollisionSide.Right:
-                physicsObject.Position.X = other.Collider.Position.X - b.Width;
+                physicsObject.Position.X = otherB.Position.X - b.Width;
                 if (physicsObject.Velocity.X < 0)
                 {
                     physicsObject.Velocity.X = 0;
@@ -64,7 +63,7 @@ public class Collides
                 physicsObject.ColorDebugCollision = Color.Blue;
                 break;
             case CollisionSide.Top:
-                physicsObject.Position.Y = other.Collider.Position.Y + otherB.Height;
+                physicsObject.Position.Y = otherB.Position.Y + otherB.Height;
                 if (physicsObject.Velocity.Y < 0)
                 {
                     physicsObject.Velocity.Y = 0;
@@ -72,7 +71,7 @@ public class Collides
                 physicsObject.ColorDebugCollision = Color.Green;
                 break;
             case CollisionSide.Bottom:
-                physicsObject.Position.Y = other.Collider.Position.Y - b.Height;
+                physicsObject.Position.Y = otherB.Position.Y - b.Height;
                 if (physicsObject.Velocity.Y > 0)
                 {
                     physicsObject.Velocity.Y = 0;
@@ -97,19 +96,19 @@ public class Collides
         BoundingBox b = collider.ColliderShape.GetBoundingBox(collider.PhysicsObject.Position);
         BoundingBox otherB = other.ColliderShape.GetBoundingBox(other.PhysicsObject.Position);
         float overlapX = Math.Min(
-            collider.Position.X + b.Width - other.Position.X,
-            other.Position.X + otherB.Width - collider.Position.X
+            b.Right - otherB.Left,
+            otherB.Right - b.Left
         );
 
         float overlapY = Math.Min(
-            collider.Position.Y + b.Height - other.Position.Y,
-            other.Position.Y + otherB.Height - collider.Position.Y
+            b.Bottom - otherB.Top,
+            otherB.Bottom - b.Top
         );
 
         // The collision is on the X axis
         if (overlapX < overlapY)
         {
-            if (collider.Position.X < other.Position.X)
+            if (b.Position.X < otherB.Position.X)
                 return CollisionSide.Right;
             else
                 return CollisionSide.Left;
@@ -117,10 +116,14 @@ public class Collides
         else
         {
             // Collision on the Y axis
-            if (collider.Position.Y < other.Position.Y)
+            if (b.Top < otherB.Top)
+            {
                 return CollisionSide.Bottom;
+            }
             else
+            {
                 return CollisionSide.Top;
+            }
         }
     }
 

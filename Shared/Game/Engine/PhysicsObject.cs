@@ -15,8 +15,6 @@ public class PhysicsObject
     public Collider Collider;
     public Vector2 Gravity;
     public Vector2 Position;
-    public float X => Position.X;
-    public float Y => Position.Y;
     public Vector2 Velocity;
     public Vector2 Acceleration;
     public Vector2 Friction;

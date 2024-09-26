@@ -6,7 +6,6 @@ public class Collider
     public PhysicsObject PhysicsObject { get; private set; }
     public CollisionType CollisionType { get; private set; }
     public ColliderShape ColliderShape { get; private set; }
-    public Vector2 Position => PhysicsObject.Position + ColliderShape.Offset;
 
     public Collider(PhysicsObject physicsObject, float width, float height, CollisionType colliderType, Vector2 offsetRelativePosition)
     {
