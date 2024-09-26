@@ -1,6 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended;
+using MonoGame.Extended.ECS;
 
-namespace flappyrogue_mg.Core.Collider
+public class Rect : ColliderShape
 {
     public class Rect
     {
@@ -14,3 +17,5 @@ namespace flappyrogue_mg.Core.Collider
         }
     }
 }
+
+

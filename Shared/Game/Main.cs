@@ -1,9 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using MonoGame.Aseprite;
 using MonoGame.Extended;
-using MonoGame.Extended.Graphics;
 using MonoGame.Extended.Screens;
 using MonoGame.Extended.ViewportAdapters;
 using System.Collections.Generic;
@@ -34,11 +31,9 @@ namespace flappyrogue_mg.GameSpace
 
         public ViewportAdapter ViewportAdapter { get; private set; }
 
-        private Main()
         {
             //uncomment to see the physics debug
-            PhysicsDebug.Instance.SetDebug(true);
-
+            PhysicsDebug.Instance.DrawGizmos(true);
             Graphics = new GraphicsDeviceManager(this);
 
             Content.RootDirectory = "Content";
@@ -55,7 +50,7 @@ namespace flappyrogue_mg.GameSpace
             // setting the viewport dimensions to be the same as the background (bg) image
             // as the bg is portrait, the game will be portrait to
             // for a pixel perfect game, the viewport has to be the exact size of the background img
-            ViewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
+            //ViewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
 
             //  Initialize screens
             _screens.Add(ScreenName.MainGame, new MainGame(this));

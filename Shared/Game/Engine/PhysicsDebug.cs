@@ -26,7 +26,7 @@ public class PhysicsDebug
         }
     }
 
-    public void SetDebug(bool isDebugging)
+    public void DrawGizmos(bool isDebugging)
     {
         _isDebugging = isDebugging;
     }
@@ -62,7 +62,7 @@ public class PhysicsDebug
         foreach (PhysicsObject physicsObject in _objects)
         {
             //draw the collider of the physics object
-            physicsObject.Collider.DebugDraw(spriteBatch);
+            physicsObject.DebugDraw(spriteBatch);
         }
     }
 }

@@ -1,9 +1,5 @@
 using flappyrogue_mg.Core.Collider;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended;
-using System;
-using System.Collections.Generic;
 
 public class Collider
 {
@@ -23,9 +19,8 @@ public class Collider
     {
         PhysicsEngine.Instance.AddCollider(this);
         PhysicsObject = physicsObject;
-        Width = width;
-        Height = height;
-        ColliderType = colliderType;
+        ColliderShape = new Rect(offsetRelativePosition, new(width, height));
+        CollisionType = colliderType;
     }
     public Collider(PhysicsObject physicsObject, float width, float height) : this(physicsObject, width, height, CollisionType.Moving) { }
 

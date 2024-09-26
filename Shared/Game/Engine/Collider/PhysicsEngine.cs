@@ -67,7 +67,7 @@ public class PhysicsEngine
                 {
                     continue; //we dont process the same collision twice
                 }
-                Collision collision = Collides.CollideAndSolve(physicsObject.Collider, other, gameTime);
+                Collision collision = Collides.CollideAndSolve(physicsObject, other.PhysicsObject, gameTime);
                 if (collision != null)
                 {
                     collisions.Add(collision);

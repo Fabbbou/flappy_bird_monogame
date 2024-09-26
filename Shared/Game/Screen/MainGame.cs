@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Aseprite;
@@ -24,10 +24,7 @@ namespace flappyrogue_mg.GameSpace
         private Pipes _pipes;
         private PipesSpawner _pipesSpawner;
 
-        public MainGame(Game game) : base(game)
-        {
-
-        }
+        public MainGame(Game game) : base(game){}
 
         public override void LoadContent()
         {
@@ -35,12 +32,14 @@ namespace flappyrogue_mg.GameSpace
             Main.Instance.Graphics.PreferredBackBufferHeight = (int)(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height * 0.75f);
             Main.Instance.Graphics.PreferredBackBufferWidth = Main.Instance.Graphics.PreferredBackBufferHeight * 9 / 16;
             Main.Instance.Graphics.ApplyChanges();
-
             _bird = new Bird(this);
             _floor = new Floor();
             //_pipes = new Pipes(60f, 100f, 60f, 60f); //test pipes
             _pipesSpawner = new PipesSpawner();
 
+            // setting the viewport dimensions to be the same as the background (bg) image
+            // as the bg is portrait, the game will be portrait to
+            // for a pixel perfect game, the viewport has to be the exact size of the background img
             ViewportAdapter = new BoxingViewportAdapter(Game.Window, GraphicsDevice, Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             GameAtlasTextures.Instance.Load(Content, GraphicsDevice);

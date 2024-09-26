@@ -16,6 +16,10 @@ namespace flappyrogue_mg.GameSpace
     {
         public const int SPRITE_WIDTH = 17;
         public const int SPRITE_HEIGHT = 12;
+        public const int BORDER_CROP_COLLIDER = 2;
+        public const int COLLIDER_WIDTH = SPRITE_WIDTH - BORDER_CROP_COLLIDER * 2;
+        public const int COLLIDER_HEIGHT = SPRITE_HEIGHT - BORDER_CROP_COLLIDER * 2;
+
         public const float STARTING_POSITION_X = Constants.WORLD_WIDTH / 2 - SPRITE_WIDTH / 2;
         public const float STARTING_POSITION_Y = Constants.PLAYABLE_WORLD_HEIGHT / 2 - SPRITE_HEIGHT / 2;
 
