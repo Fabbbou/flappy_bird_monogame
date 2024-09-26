@@ -23,6 +23,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Game\GameObject\Bird.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\GameObject\Floor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)game\gameobject\PipesSpawner.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)game\screen\DebugPhysics.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Screen\ScreenName.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\UI\GameAtlasTextures.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Screen\MainGame.cs" />

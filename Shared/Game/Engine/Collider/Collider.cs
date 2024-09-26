@@ -8,20 +8,18 @@ using System.Collections.Generic;
 public class Collider
 {
     public PhysicsObject PhysicsObject { get; private set; }
-    public ColliderType ColliderType { get; private set; }
+    public CollisionType ColliderType { get; private set; }
     public float X => PhysicsObject.Position.X;
     public float Y => PhysicsObject.Position.Y;
     public Vector2 Position => PhysicsObject.Position;
     public float Width { get; }
     public float Height { get; }
-    public Rect Rect => new(Position, new(Width, Height));
-    public  Vector2 Center => Rect.Center;
-    public Vector2 Size => Rect.Size;
+    public Rect Rect => new(Width, Height);
 
     public static readonly Color DEFAULT_DEBUG = Color.Yellow;
     private Color _colorDebugCollision = DEFAULT_DEBUG;
 
-    public Collider(PhysicsObject physicsObject, float width, float height, ColliderType colliderType)
+    public Collider(PhysicsObject physicsObject, float width, float height, CollisionType colliderType)
     {
         PhysicsEngine.Instance.AddCollider(this);
         PhysicsObject = physicsObject;
@@ -29,13 +27,16 @@ public class Collider
         Height = height;
         ColliderType = colliderType;
     }
-    public Collider(PhysicsObject physicsObject, float width, float height) : this(physicsObject, width, height, ColliderType.Moving) { }
+    public Collider(PhysicsObject physicsObject, float width, float height) : this(physicsObject, width, height, CollisionType.Moving) { }
 
     ~Collider() => PhysicsEngine.Instance.RemoveCollider(this);
 
-    public  void DrawDebug(SpriteBatch spriteBatch, Color color)
+    public bool Intersects(Collider other)
     {
-        spriteBatch.DrawRectangle(Rect.Render, color, 2);
+        return X < other.X + other.Width &&
+               X + Width > other.X &&
+               Y < other.Y + other.Height &&
+               Y + Height > other.Y;
     }
 
     /// <summary>
@@ -45,7 +46,7 @@ public class Collider
     /// <returns></returns>
     public CollisionSide CheckIfCollision(Collider other)
     {
-        if (!Rect.Intersects(other.Rect))
+        if (!Intersects(other))
         {
             return CollisionSide.None;
         }
@@ -154,7 +155,7 @@ public enum CollisionSide
     Right
 }
 
-public enum ColliderType
+public enum CollisionType
 {
     Static,
     Moving

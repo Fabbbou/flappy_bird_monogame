@@ -1,5 +1,6 @@
 public enum ScreenName
 {
     MainGame,
-    ZoomedOutMain
+    ZoomedOutMain,
+    DebugPhysics
 }

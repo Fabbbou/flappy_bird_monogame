@@ -38,7 +38,7 @@ namespace flappyrogue_mg.GameSpace
         public Bird(GameScreen gameScreen)
         {
             _screen = gameScreen;
-            PhysicsObject = new("bird", STARTING_POSITION_X, STARTING_POSITION_Y, SPRITE_WIDTH, SPRITE_HEIGHT);
+            PhysicsObject = new("bird", STARTING_POSITION_X, STARTING_POSITION_Y, SPRITE_WIDTH, SPRITE_HEIGHT, CollisionType.Moving);
             PhysicsObject.Gravity = new Vector2(0, GRAVITY);
         }
 

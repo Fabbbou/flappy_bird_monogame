@@ -13,8 +13,19 @@ namespace flappyrogue_mg.GameSpace
 {
     public class Main : Game
     {
-
-        private readonly GraphicsDeviceManager _graphics;
+        private static Main _instance;
+        public static Main Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new Main();
+                }
+                return _instance;
+            }
+        }
+        public GraphicsDeviceManager Graphics { get; private set; }
         private readonly FramesPerSecondCounter _fpsCounter = new FramesPerSecondCounter();
         private readonly Dictionary<ScreenName, GameScreen> _screens = new Dictionary<ScreenName, GameScreen>();
 
@@ -23,17 +34,12 @@ namespace flappyrogue_mg.GameSpace
 
         public ViewportAdapter ViewportAdapter { get; private set; }
 
-        public Main()
+        private Main()
         {
             //uncomment to see the physics debug
             PhysicsDebug.Instance.SetDebug(true);
 
-            _graphics = new GraphicsDeviceManager(this);
-
-            //resize the startup window to match the game ratio
-            _graphics.PreferredBackBufferHeight = (int)(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height * 0.75f);
-            _graphics.PreferredBackBufferWidth = _graphics.PreferredBackBufferHeight * 9 / 16;
-            _graphics.ApplyChanges();
+            Graphics = new GraphicsDeviceManager(this);
 
             Content.RootDirectory = "Content";
             Window.AllowUserResizing = true;
@@ -54,6 +60,7 @@ namespace flappyrogue_mg.GameSpace
             //  Initialize screens
             _screens.Add(ScreenName.MainGame, new MainGame(this));
             _screens.Add(ScreenName.ZoomedOutMain, new ZoomedOutMain(this));
+            _screens.Add(ScreenName.DebugPhysics, new DebugPhysics(this));
 
             base.Initialize();
         }
@@ -61,7 +68,9 @@ namespace flappyrogue_mg.GameSpace
         protected override void LoadContent()
         {
             ViewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, 800, 480);
-            LoadScreen(ScreenName.ZoomedOutMain);
+            LoadScreen(ScreenName.MainGame);
+            //LoadScreen(ScreenName.ZoomedOutMain);
+            //LoadScreen(ScreenName.DebugPhysics);
         }
 
         public void LoadScreen(ScreenName screen)

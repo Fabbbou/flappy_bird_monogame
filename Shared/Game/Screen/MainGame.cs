@@ -31,6 +31,11 @@ namespace flappyrogue_mg.GameSpace
 
         public override void LoadContent()
         {
+            //resize the startup window to match the game ratio
+            Main.Instance.Graphics.PreferredBackBufferHeight = (int)(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height * 0.75f);
+            Main.Instance.Graphics.PreferredBackBufferWidth = Main.Instance.Graphics.PreferredBackBufferHeight * 9 / 16;
+            Main.Instance.Graphics.ApplyChanges();
+
             _bird = new Bird(this);
             _floor = new Floor();
             //_pipes = new Pipes(60f, 100f, 60f, 60f); //test pipes
@@ -51,7 +56,6 @@ namespace flappyrogue_mg.GameSpace
 
 
             _floor.LoadSingleInstance(Content);
-            //_pipes.Load(Content, _graphics.GraphicsDevice
             _pipesSpawner.Load(Content);
             _bird.LoadSingleInstance(Content);
         }
@@ -60,8 +64,6 @@ namespace flappyrogue_mg.GameSpace
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Game.Exit();
-            // Update sprite position based on elapsed time
-            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             //_pipes.Update(gameTime, _graphics.GraphicsDevice);
             _pipesSpawner.UpdateRandomHeight(gameTime);
@@ -85,7 +87,6 @@ namespace flappyrogue_mg.GameSpace
             _spriteBatch.Draw(_dayBackground, Vector2.Zero, Color.White);
 
             // Draw the pipes (has to be behind the floor)
-            //_pipes.Draw(_spriteBatch);
             _pipesSpawner.Draw(_spriteBatch);
 
 

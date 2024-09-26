@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 public class PhysicsObject
 {
     public const float GRAVITY = 9.8f;
-    public const float FRICTION = 1f;
+    public const float FRICTION = 0f;
     public Collider Collider;
     public Vector2 Gravity;
     public Vector2 Position;
@@ -24,7 +24,7 @@ public class PhysicsObject
     public bool IsNotMoving => Velocity == Vector2.Zero && Acceleration == Vector2.Zero;
 
 
-    public PhysicsObject(string label, float x, float y, float widthCollider, float heightCollider, ColliderType colliderType)
+    public PhysicsObject(string label, float x, float y, float widthCollider, float heightCollider, CollisionType colliderType)
     {
         PhysicsDebug.Instance.AddObject(this);
         Label = label;
@@ -35,7 +35,6 @@ public class PhysicsObject
         Gravity = new Vector2(0, GRAVITY);
         Friction = new Vector2(FRICTION, FRICTION);
     }
-    public PhysicsObject(string label, float x, float y, float widthCollider, float heightCollider) : this(label, x, y, widthCollider, heightCollider, ColliderType.Moving) { }
 
     ~PhysicsObject()
     {
@@ -62,6 +61,7 @@ public class PhysicsObject
 
     public void Update(GameTime gameTime)
     {
+        if (CollisionType.Static == Collider.ColliderType) return;
         float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
         // Apply gravity

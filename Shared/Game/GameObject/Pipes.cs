@@ -27,15 +27,13 @@ namespace flappyrogue_mg.GameSpace
         {
             _speedForce = speed;
             float xPosition = Constants.WORLD_WIDTH - SPRITE_WIDTH + xOffsetFromRightBorder;
-            PhysicsObjectPipeTop = new PhysicsObject("pipe top", xPosition, -SPRITE_HEIGHT + yOffsetFromTop, SPRITE_WIDTH, SPRITE_HEIGHT)
+            PhysicsObjectPipeTop = new PhysicsObject("pipe top", xPosition, -SPRITE_HEIGHT + yOffsetFromTop, SPRITE_WIDTH, SPRITE_HEIGHT, CollisionType.Moving)
             {
-                Gravity = new Vector2(0, 0),
-                Friction = new Vector2(0, 0)
+                Gravity = Vector2.Zero
             };
-            PhysicsObjectPipeBottom = new PhysicsObject("pipe bottom", xPosition, yOffsetFromTop + gapHeight, SPRITE_WIDTH, SPRITE_HEIGHT)
+            PhysicsObjectPipeBottom = new PhysicsObject("pipe bottom", xPosition, yOffsetFromTop + gapHeight, SPRITE_WIDTH, SPRITE_HEIGHT, CollisionType.Moving)
             {
-                Gravity = new Vector2(0, 0),
-                Friction = new Vector2(0, 0)
+                Gravity = Vector2.Zero
             };
         }
         public void LoadSingleInstance(ContentManager content)
