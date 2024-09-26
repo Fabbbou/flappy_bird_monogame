@@ -24,8 +24,8 @@ namespace flappyrogue_mg.GameSpace
         public const float STARTING_POSITION_X = Constants.WORLD_WIDTH / 2 - SPRITE_WIDTH / 2;
         public const float STARTING_POSITION_Y = Constants.PLAYABLE_WORLD_HEIGHT / 2 - SPRITE_HEIGHT / 2;
 
-        private const float SPEED = 200f;
-        private const float GRAVITY = 450f;
+        private const float BIRD_SPEED = 200f;
+        private const float BIRD_GRAVITY = 450f;
 
         private GameScreen _screen;
         public readonly PhysicsObject PhysicsObject;
@@ -33,7 +33,7 @@ namespace flappyrogue_mg.GameSpace
         private AnimatedSprite _idleCycle;
         private BitmapFont _font;
         private SoundEffect _flapSound;
-        private Vector2 _jumpForce = new Vector2(0, -SPEED);
+        private Vector2 _jumpForce = new Vector2(0, -BIRD_SPEED);
         private Vector2 _jumpContinuous = new Vector2(0, -500f);
 
         // by default, if the button is maintained, the bird will jump continuously.
@@ -43,8 +43,8 @@ namespace flappyrogue_mg.GameSpace
         public Bird(GameScreen gameScreen)
         {
             _screen = gameScreen;
-            PhysicsObject = new("bird", STARTING_POSITION_X + OffsetCollider.X, STARTING_POSITION_Y + OffsetCollider.Y, COLLIDER_WIDTH, COLLIDER_HEIGHT, CollisionType.Moving);
-            PhysicsObject.Gravity = new Vector2(0, GRAVITY);
+            PhysicsObject = new("bird", STARTING_POSITION_X + OffsetCollider.X, STARTING_POSITION_Y + OffsetCollider.Y, new Rect(COLLIDER_WIDTH, COLLIDER_HEIGHT), CollisionType.Moving);
+            PhysicsObject.Gravity = new Vector2(0, BIRD_GRAVITY);
         }
 
         public void LoadSingleInstance(ContentManager content)
@@ -88,7 +88,7 @@ namespace flappyrogue_mg.GameSpace
                 {
                     PhysicsObject.Velocity = _jumpForce;
                     _pressedButtonJump = true;
-                    _flapSound.Play();
+                    //_flapSound.Play();
                 }
             }
             else

@@ -22,12 +22,12 @@ public class PhysicsObject
     public bool IsNotMoving => Velocity == Vector2.Zero && Acceleration == Vector2.Zero;
     public Color ColorDebugCollision = Constants.DEFAULT_DEBUG_COLOR_GIZMOS;
 
-    public PhysicsObject(string label, float x, float y, float widthCollider, float heightCollider, CollisionType colliderType)
+    public PhysicsObject(string label, float x, float y, Shape shape, CollisionType colliderType)
     {
         PhysicsDebug.Instance.AddObject(this);
         Label = label;
         Position = new(x, y);
-        Collider = new(this, widthCollider, heightCollider, colliderType);
+        Collider = new(this, shape, colliderType);
         Velocity = Vector2.Zero;
         Acceleration = Vector2.Zero;
         Gravity = new Vector2(0, GRAVITY);
@@ -77,7 +77,10 @@ public class PhysicsObject
 
     public void DebugDraw(SpriteBatch spriteBatch)
     {
-        spriteBatch.DrawRectangle(Position, Collider.Rect.Size, ColorDebugCollision);
+        if(Collider.Shape is Rect)
+        {
+            spriteBatch.DrawRectangle(Position, ((Rect) Collider.Shape).Size, ColorDebugCollision);
+        }
     }
 
     public void Kill()

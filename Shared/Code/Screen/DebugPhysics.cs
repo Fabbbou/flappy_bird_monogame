@@ -50,22 +50,22 @@ public class DebugPhysics : GameScreen
         var xFloor = 0;
         var floorHeigth = 100;
         var smallFloorWidth = 10;
-        partFloor1 = new("partFloor1", xFloor, yFloor, 100, floorHeigth, CollisionType.Static);
+        partFloor1 = new("partFloor1", xFloor, yFloor, new Rect(100, floorHeigth), CollisionType.Static);
         xFloor += 100;
-        partFloor2 = new("partFloor2", xFloor, yFloor, smallFloorWidth, floorHeigth, CollisionType.Static);
+        partFloor2 = new("partFloor2", xFloor, yFloor, new Rect(smallFloorWidth, floorHeigth), CollisionType.Static);
         xFloor += smallFloorWidth;
-        partFloor3 = new("partFloor3", xFloor, yFloor, smallFloorWidth, floorHeigth, CollisionType.Static);
+        partFloor3 = new("partFloor3", xFloor, yFloor, new Rect(smallFloorWidth, floorHeigth), CollisionType.Static);
         xFloor += smallFloorWidth;
-        partFloor4 = new("partFloor4", xFloor, yFloor, smallFloorWidth, floorHeigth, CollisionType.Static);
+        partFloor4 = new("partFloor4", xFloor, yFloor, new Rect(smallFloorWidth, floorHeigth), CollisionType.Static);
         xFloor += smallFloorWidth;
-        partFloor5 = new("partFloor5", xFloor, yFloor, smallFloorWidth, floorHeigth, CollisionType.Static);
+        partFloor5 = new("partFloor5", xFloor, yFloor, new Rect(smallFloorWidth, floorHeigth), CollisionType.Static);
         xFloor += smallFloorWidth;
-        partFloor6 = new("partFloor6", xFloor, yFloor, smallFloorWidth, floorHeigth, CollisionType.Static);
+        partFloor6 = new("partFloor6", xFloor, yFloor, new Rect(smallFloorWidth, floorHeigth), CollisionType.Static);
         xFloor += smallFloorWidth;
-        partFloor7 = new("partFloor7", xFloor, yFloor, Constants.DEBUG_WORLD_WIDTH - xFloor, floorHeigth, CollisionType.Static);
+        partFloor7 = new("partFloor7", xFloor, yFloor, new Rect(Constants.DEBUG_WORLD_WIDTH - xFloor, floorHeigth), CollisionType.Static);
 
         var boxSize = 10;
-        movingBox = new("movingBox", 0, 0, boxSize, boxSize, CollisionType.Moving);
+        movingBox = new("movingBox", 0, 0, new Rect(boxSize, boxSize), CollisionType.Moving);
         movingBox.Gravity = Vector2.Zero;
 
     }

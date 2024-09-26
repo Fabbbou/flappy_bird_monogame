@@ -9,26 +9,30 @@
     <Import_RootNamespace>Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)game\Constants.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Game\Engine\Collider\Collider.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Game\Engine\Collider\Collides.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Game\Engine\Collider\Collision.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Game\Engine\Collider\PhysicsEngine.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Game\Engine\Collider\Rect.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)game\engine\PhysicsDebug.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Game\Engine\GameObject.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Game\Engine\Input\Keyboard.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Game\Engine\PhysicsObject.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)game\Main.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Game\GameObject\Bird.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Game\GameObject\Floor.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)game\gameobject\PipesSpawner.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)game\screen\DebugPhysics.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Game\Screen\ScreenName.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Game\UI\GameAtlasTextures.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Game\Screen\MainGame.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Game\GameObject\Pipes.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Game\Screen\ZoomedOutGameStarted.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)code\engine\collider\Circl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)code\engine\collider\CirclCollides.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Collider\Collider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Collider\Collides.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Collider\Collision.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Collider\PhysicsEngine.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Collider\Rect.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)code\engine\collider\RectCollides.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)code\engine\collider\Shape.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\engine\PhysicsDebug.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\GameObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Input\Keyboard.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\PhysicsObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Main.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\GameObject\Bird.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\GameObject\Floor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\gameobject\PipesSpawner.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\screen\DebugPhysics.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Screen\ScreenName.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\UI\GameAtlasTextures.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Screen\MainGame.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\GameObject\Pipes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Screen\ZoomedOutGameStarted.cs" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
@@ -57,8 +61,8 @@
     <Content Include="$(MSBuildThisFileDirectory)Content\sprites\pipes.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Game\GameObject\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Game\Screen\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Game\UI\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Code\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Code\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Code\" />
   </ItemGroup>
 </Project>

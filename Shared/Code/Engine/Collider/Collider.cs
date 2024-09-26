@@ -2,12 +2,12 @@ public class Collider
 {
     public PhysicsObject PhysicsObject { get; private set; }
     public CollisionType CollisionType { get; private set; }
-    public Rect Rect { get; private set; }
+    public Shape Shape { get; private set; }
 
-    public Collider(PhysicsObject physicsObject, float width, float height, CollisionType collisionType)
+    public Collider(PhysicsObject physicsObject, Shape shape, CollisionType collisionType)
     {
         PhysicsEngine.Instance.AddCollider(this);
-        Rect = new Rect(width, height);
+        Shape = shape;
         PhysicsObject = physicsObject;
         CollisionType = collisionType;
     }
@@ -24,7 +24,8 @@ public enum CollisionSide
     Top,
     Bottom,
     Left,
-    Right
+    Right,
+    Circle
 }
 
 public enum CollisionType
