@@ -32,10 +32,9 @@ namespace flappyrogue_mg.GameSpace
             Main.Instance.Graphics.PreferredBackBufferHeight = (int)(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height * 0.75f);
             Main.Instance.Graphics.PreferredBackBufferWidth = Main.Instance.Graphics.PreferredBackBufferHeight * 9 / 16;
             Main.Instance.Graphics.ApplyChanges();
-            _bird = new Bird(this);
             _floor = new Floor();
-            //_pipes = new Pipes(60f, 100f, 60f, 60f); //test pipes
             _pipesSpawner = new PipesSpawner();
+            _bird = new Bird(this);
 
             // setting the viewport dimensions to be the same as the background (bg) image
             // as the bg is portrait, the game will be portrait to
@@ -87,7 +86,6 @@ namespace flappyrogue_mg.GameSpace
 
             // Draw the pipes (has to be behind the floor)
             _pipesSpawner.Draw(_spriteBatch);
-
 
             // Draw the floor
             _floor.Draw(_spriteBatch);

@@ -1,10 +1,12 @@
 using flappyrogue_mg.Core.Collider;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 
 public class Collider
 {
     public PhysicsObject PhysicsObject { get; private set; }
-    public CollisionType ColliderType { get; private set; }
+    public CollisionType CollisionType { get; private set; }
     public float X => PhysicsObject.Position.X;
     public float Y => PhysicsObject.Position.Y;
     public Vector2 Position => PhysicsObject.Position;
@@ -15,15 +17,12 @@ public class Collider
     public static readonly Color DEFAULT_DEBUG = Color.Yellow;
     private Color _colorDebugCollision = DEFAULT_DEBUG;
 
-    public Collider(PhysicsObject physicsObject, float width, float height, CollisionType colliderType)
+    public Collider(PhysicsObject physicsObject, float width, float height, CollisionType collisionType)
     {
         PhysicsEngine.Instance.AddCollider(this);
         PhysicsObject = physicsObject;
-        ColliderShape = new Rect(offsetRelativePosition, new(width, height));
-        CollisionType = colliderType;
+        CollisionType = collisionType;
     }
-    public Collider(PhysicsObject physicsObject, float width, float height) : this(physicsObject, width, height, CollisionType.Moving) { }
-
     ~Collider() => PhysicsEngine.Instance.RemoveCollider(this);
 
     public bool Intersects(Collider other)
@@ -129,11 +128,6 @@ public class Collider
                 break;
         }
         return side;
-    }
-
-    public void DebugDraw(SpriteBatch spriteBatch)
-    {
-        spriteBatch.DrawRectangle(Position, Rect.Size, _colorDebugCollision, 1);
     }
 
     public void Kill()

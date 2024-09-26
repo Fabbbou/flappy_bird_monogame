@@ -1,6 +1,5 @@
 using flappyrogue_mg.Core.Collider;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
 public class PhysicsEngine
@@ -54,7 +53,7 @@ public class PhysicsEngine
         // Update physics object
         physicsObject.Update(gameTime);
         List<Collision> collisions = new();
-        if (physicsObject.Collider.ColliderType == CollisionType.Static)
+        if (physicsObject.Collider.CollisionType == CollisionType.Static)
         {
             return collisions;
         }

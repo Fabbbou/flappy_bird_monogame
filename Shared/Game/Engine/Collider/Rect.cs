@@ -3,19 +3,17 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.ECS;
 
-public class Rect : ColliderShape
+public class Rect
 {
-    public class Rect
+    public float Width { get; private set; }
+    public float Height { get; private set; }
+    public Vector2 Size => new(Width, Height);
+    public Rect(float width, float height)
     {
-        public float Width { get; private set; }
-        public float Height { get; private set; }
-        public Vector2 Size => new(Width, Height);
-        public Rect(float width, float height)
-        {
-            Width = width;
-            Height = height;
-        }
+        Width = width;
+        Height = height;
     }
 }
+
 
 

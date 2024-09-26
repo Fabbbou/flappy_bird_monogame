@@ -10,10 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)game\Constants.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)game\engine\collider\BoundingBox.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)game\engine\collider\Circl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Engine\Collider\Collider.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)game\engine\collider\ColliderShape.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Engine\Collider\Collides.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Engine\Collider\Collision.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Engine\Collider\PhysicsEngine.cs" />

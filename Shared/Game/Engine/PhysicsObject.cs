@@ -27,7 +27,7 @@ public class PhysicsObject
         PhysicsDebug.Instance.AddObject(this);
         Label = label;
         Position = new(x, y);
-        Collider = new(this, widthCollider, heightCollider, colliderType, offsetCollider);
+        Collider = new(this, widthCollider, heightCollider, colliderType);
         Velocity = Vector2.Zero;
         Acceleration = Vector2.Zero;
         Gravity = new Vector2(0, GRAVITY);
@@ -59,7 +59,7 @@ public class PhysicsObject
 
     public void Update(GameTime gameTime)
     {
-        if (CollisionType.Static == Collider.ColliderType) return;
+        if (CollisionType.Static == Collider.CollisionType) return;
         float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
         // Apply gravity
@@ -77,11 +77,8 @@ public class PhysicsObject
 
     public void DebugDraw(SpriteBatch spriteBatch)
     {
-        if (Collider.ColliderShape is Rect)
-        {
-            //square collider
-            spriteBatch.DrawRectangle(Position, ((Rect)Collider.ColliderShape).Size, ColorDebugCollision, 1);
-        }
+        //square collider
+        spriteBatch.DrawRectangle(Position, Collider.Rect.Size, ColorDebugCollision, 1);
     }
 
     public void Kill()

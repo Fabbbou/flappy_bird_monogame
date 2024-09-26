@@ -31,6 +31,7 @@ namespace flappyrogue_mg.GameSpace
 
         public ViewportAdapter ViewportAdapter { get; private set; }
 
+        private Main()
         {
             //uncomment to see the physics debug
             PhysicsDebug.Instance.DrawGizmos(true);
