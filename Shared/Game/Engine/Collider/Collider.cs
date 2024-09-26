@@ -20,6 +20,8 @@ public class Collider
     public Collider(PhysicsObject physicsObject, float width, float height, CollisionType collisionType)
     {
         PhysicsEngine.Instance.AddCollider(this);
+        Width = width;
+        Height = height;
         PhysicsObject = physicsObject;
         CollisionType = collisionType;
     }
