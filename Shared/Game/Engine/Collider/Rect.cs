@@ -5,20 +5,16 @@ using MonoGame.Extended.ECS;
 
 public class Rect : ColliderShape
 {
-    public float Width { get; private set; }
-    public float Height { get; private set; }
-    public Vector2 Size => new(Width, Height);
-
-    public Rect(Vector2 offset, Vector2 size)
+    public class Rect
     {
-        Offset = offset;
-        Width = size.X;
-        Height = size.Y;
-    }
-
-    public override BoundingBox GetBoundingBox(Vector2 worldPosition)
-    {
-        return new(worldPosition, this);
+        public float Width { get; private set; }
+        public float Height { get; private set; }
+        public Vector2 Size => new(Width, Height);
+        public Rect(float width, float height)
+        {
+            Width = width;
+            Height = height;
+        }
     }
 }
 

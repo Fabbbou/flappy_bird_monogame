@@ -59,7 +59,6 @@ public class PhysicsDebug
     public void Draw(SpriteBatch spriteBatch)
     {
         if (!_isDebugging) return;
-
         foreach (PhysicsObject physicsObject in _objects)
         {
             //draw the collider of the physics object

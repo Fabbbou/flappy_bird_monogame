@@ -10,27 +10,31 @@ namespace flappyrogue_mg.GameSpace
 {
     public class Main : Game
     {
-
-        private readonly GraphicsDeviceManager _graphics;
+        private static Main _instance;
+        public static Main Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new Main();
+                }
+                return _instance;
+            }
+        }
+        public GraphicsDeviceManager Graphics { get; private set; }
         private readonly FramesPerSecondCounter _fpsCounter = new FramesPerSecondCounter();
         private readonly Dictionary<ScreenName, GameScreen> _screens = new Dictionary<ScreenName, GameScreen>();
 
         private readonly ScreenManager _screenManager;
         private ScreenName _currentScreen;
-        public Main()
+
+        public ViewportAdapter ViewportAdapter { get; private set; }
+
         {
             //uncomment to see the physics debug
             PhysicsDebug.Instance.DrawGizmos(true);
-
-            _graphics = new GraphicsDeviceManager(this);
-
-            //resize the startup window to match the game ratio
-            //_graphics.PreferredBackBufferHeight = (int)(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height * 0.75f);
-            //_graphics.PreferredBackBufferWidth = _graphics.PreferredBackBufferHeight * 9 / 16;
-            _graphics.PreferredBackBufferHeight = Constants.DEBUG_SCREEN_WIDTH;
-            _graphics.PreferredBackBufferWidth = Constants.DEBUG_SCREEN_HEIGHT;
-
-            _graphics.ApplyChanges();
+            Graphics = new GraphicsDeviceManager(this);
 
             Content.RootDirectory = "Content";
             Window.AllowUserResizing = true;
@@ -58,9 +62,10 @@ namespace flappyrogue_mg.GameSpace
 
         protected override void LoadContent()
         {
-            //LoadScreen(ScreenName.MainGame);
+            ViewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, 800, 480);
+            LoadScreen(ScreenName.MainGame);
             //LoadScreen(ScreenName.ZoomedOutMain);
-            LoadScreen(ScreenName.DebugPhysics);
+            //LoadScreen(ScreenName.DebugPhysics);
         }
 
         public void LoadScreen(ScreenName screen)

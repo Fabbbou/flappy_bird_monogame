@@ -1,5 +1,5 @@
 ﻿
 using flappyrogue_mg.GameSpace;
 
-using var game = new Main();
+using var game = Main.Instance;
 game.Run();
