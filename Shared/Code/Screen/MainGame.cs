@@ -63,7 +63,6 @@ namespace flappyrogue_mg.GameSpace
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Game.Exit();
 
-            //_pipes.Update(gameTime, _graphics.GraphicsDevice);
             _pipesSpawner.UpdateRandomHeight(gameTime);
             _floor.Update(gameTime);
             _bird.Update(gameTime);

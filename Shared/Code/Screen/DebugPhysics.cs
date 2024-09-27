@@ -8,6 +8,7 @@ using MonoGame.Extended.BitmapFonts;
 using MonoGame.Extended.Graphics;
 using MonoGame.Extended.Screens;
 using MonoGame.Extended.ViewportAdapters;
+using System;
 using static System.Net.Mime.MediaTypeNames;
 
 public class DebugPhysics : GameScreen
@@ -29,6 +30,7 @@ public class DebugPhysics : GameScreen
     private PhysicsObject partFloor7;
 
     private PhysicsObject movingBox;
+    private PhysicsObject movingCircle;
 
     public DebugPhysics(Game game) : base(game) { }
 
@@ -69,8 +71,12 @@ public class DebugPhysics : GameScreen
         partFloor7 = PhysicsObjectFactory.Rect("partFloor7", xFloor, yFloor, CollisionType.Static, Constants.DEBUG_WORLD_WIDTH - xFloor, floorHeigth);
 
         var boxSize = 10;
-        movingBox = PhysicsObjectFactory.Rect("movingBox", 0, 0, CollisionType.Moving, boxSize, boxSize);
+        var circleRadius = 10;
+        movingBox = PhysicsObjectFactory.Rect("movingBox", 40, 80, CollisionType.Moving, boxSize, boxSize);
         movingBox.Gravity = Vector2.Zero;
+
+        movingCircle = PhysicsObjectFactory.Circl("movingCircle", 80, 80, CollisionType.Moving, circleRadius);
+        movingCircle.Gravity = Vector2.Zero;
 
     }
     public override void UnloadContent()
@@ -82,29 +88,52 @@ public class DebugPhysics : GameScreen
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Game.Exit();
 
+        KeyboardState keyboardState = Keyboard.GetState();
         //arrow to move the box using addForce
-        if (Keyboard.GetState().IsKeyDown(Keys.Up))
+        if (keyboardState.IsKeyDown(Keys.Up))
         {
             movingBox.ApplyForce(new Vector2(0, -1000), ForceType.Continuous);
         }
-        if (Keyboard.GetState().IsKeyDown(Keys.Down))
+        if (keyboardState.IsKeyDown(Keys.Down))
         {
             movingBox.ApplyForce(new Vector2(0, 1000), ForceType.Continuous);
         }
-        if (Keyboard.GetState().IsKeyDown(Keys.Left))
+        if (keyboardState.IsKeyDown(Keys.Left))
         {
             movingBox.ApplyForce(new Vector2(-1000, 0), ForceType.Continuous);
         }
-        if (Keyboard.GetState().IsKeyDown(Keys.Right))
+        if (keyboardState.IsKeyDown(Keys.Right))
         {
             movingBox.ApplyForce(new Vector2(1000, 0), ForceType.Continuous);
         }
         //spacebar to reset the velocity of the box
-        if (Keyboard.GetState().IsKeyDown(Keys.Space))
+        if (keyboardState.IsKeyDown(Keys.Space))
         {
-            movingBox.Velocity = Vector2.Zero;
+            //movingBox.Velocity = Vector2.Zero;
+            movingCircle.Velocity = Vector2.Zero;
         }
+        //arrow to move the box using addForce
+        if (keyboardState.IsKeyDown(Keys.W))
+        {
+            //print when button pressed
+            movingCircle.ApplyForce(new Vector2(0, -1000), ForceType.Continuous);
+        }
+        if (keyboardState.IsKeyDown(Keys.S))
+        {
+            movingCircle.ApplyForce(new Vector2(0, 1000), ForceType.Continuous);
+        }
+        if (keyboardState.IsKeyDown(Keys.A))
+        {
+            movingCircle.ApplyForce(new Vector2(-1000, 0), ForceType.Continuous);
+        }
+        if (keyboardState.IsKeyDown(Keys.D))
+        {
+            movingCircle.ApplyForce(new Vector2(1000, 0), ForceType.Continuous);
+        }
+
+
         PhysicsEngine.Instance.MoveAndSlide(movingBox, gameTime);
+        PhysicsEngine.Instance.MoveAndSlide(movingCircle, gameTime);
 
         PhysicsEngine.Instance.Update(gameTime);
     }
@@ -121,7 +150,8 @@ public class DebugPhysics : GameScreen
         //draw a rectangle filled with blue color
         _spriteBatch.Draw(pixelTexture, new Rectangle(0, 0, Constants.DEBUG_WORLD_WIDTH, Constants.DEBUG_WORLD_HEIGHT), Color.Blue);
         //draw moving box tostring to see the velocity
-        _spriteBatch.DrawString(_font, movingBox.Velocity.ToString(), new Vector2(0, 0), Color.White);
+        _spriteBatch.DrawString(_font, "box vel: "+movingBox.Velocity.ToString(), new Vector2(0, 0), Color.White);
+        _spriteBatch.DrawString(_font, "circle vel: " + movingCircle.Velocity.ToString(), new Vector2(0, 20), Color.White);
         PhysicsDebug.Instance.Draw(_spriteBatch);
         _spriteBatch.End();
     }

@@ -33,7 +33,6 @@ public class Collides
         // Resolve the collision by moving rect1 out of rect2
         // The collision is on the X axis
         if (overlapX < overlapY)
-        {
             if (rect1.Left < rect2.Left)
             {
                 //right
@@ -52,9 +51,7 @@ public class Collides
                     rect1.PhysicsObject.Velocity.X = 0;
                 }
             }
-        }
         else
-        {
             if (rect1.Top < rect2.Top)
             {
                 //bottom
@@ -72,73 +69,8 @@ public class Collides
                 {
                     rect1.PhysicsObject.Velocity.Y = 0;
                 }
-        }
-        }
+            }
         return true;
-
-        //Rect rect = (Rect)physicsObject.Collider.Shape;
-        //Rect otherR = (Rect)other.Collider.Shape;
-        //float overlapX = Math.Min(
-        //    physicsObject.Position.X + rect.Width - other.Position.X,
-        //    other.Position.X + otherR.Width - physicsObject.Position.X
-        //);
-        //float overlapY = Math.Min(
-        //    physicsObject.Position.Y + rect.Height - other.Position.Y,
-        //    other.Position.Y + otherR.Height - physicsObject.Position.Y
-        //);
-
-        //// The collision is on the X axis
-        //if (overlapX < overlapY)
-        //{
-        //    if (physicsObject.Position.X < other.Position.X)
-        //        return CollisionSide.Right;
-        //    else
-        //        return CollisionSide.Left;
-        //}
-        //else
-        //{
-        //    // Collision on the Y axis
-        //    if (physicsObject.Position.Y < other.Position.Y)
-        //        return CollisionSide.Bottom;
-        //    else
-        //        return CollisionSide.Top;
-        //}
-
-        //switch (side)
-        //{
-        //    case CollisionSide.Left:
-        //        physicsObject.Position.X = other.Position.X + otherR.Width;
-        //        if (physicsObject.Velocity.X > 0)
-        //        {
-        //            physicsObject.Velocity.X = 0;
-        //        }
-        //        physicsObject.ColorDebugCollision = Color.Blue;
-        //        break;
-        //    case CollisionSide.Right:
-        //        physicsObject.Position.X = other.Position.X - rect.Width;
-        //        if (physicsObject.Velocity.X < 0)
-        //        {
-        //            physicsObject.Velocity.X = 0;
-        //        }
-        //        physicsObject.ColorDebugCollision = Color.Blue;
-        //        break;
-        //    case CollisionSide.Top:
-        //        physicsObject.Position.Y = other.Position.Y + otherR.Height;
-        //        if (physicsObject.Velocity.Y < 0)
-        //        {
-        //            physicsObject.Velocity.Y = 0;
-        //        }
-        //        physicsObject.ColorDebugCollision = Color.Green;
-        //        break;
-        //    case CollisionSide.Bottom:
-        //        physicsObject.Position.Y = other.Position.Y - rect.Height;
-        //        if (physicsObject.Velocity.Y > 0)
-        //        {
-        //            physicsObject.Velocity.Y = 0;
-        //        }
-        //        physicsObject.ColorDebugCollision = Color.Pink;
-        //        break;
-        //}
     }
 
     private static bool ResolveCollision(CirclCollider circl, RectCollider rect)
@@ -153,6 +85,17 @@ public class Collides
         direction.Normalize();
 
         circl.Position = closestPoint + direction * circl.Radius;
+
+        //reset velocity when colliding something on the Y axis
+        if (direction.Y != 0)
+        {
+            circl.PhysicsObject.Velocity.Y = 0;
+        }
+        //reset velocity when colliding something on the X axis
+        if (direction.X != 0)
+        {
+            circl.PhysicsObject.Velocity.X = 0;
+        }
         return true;
     }
 
@@ -165,71 +108,4 @@ public class Collides
         float distance = Vector2.Distance(circl.Position, closestPoint);
         return distance < circl.Radius;
     }
-
-    ///// <summary> 
-    ///// AABB collision detection and resolution
-    ///// 
-    ///// </summary>
-    ///// <param name="rDynamic"></param>
-    ///// <param name="rStatic"></param>
-    ///// <param name="gameTime"></param>
-    ///// <returns></returns>
-    //public static Collision CollideAndSolve(PhysicsObject rDynamic, PhysicsObject rStatic, GameTime gameTime)
-    //{
-    //    CollisionSide side = CollisionSide.None;
-    //    if (rDynamic.Collider.Shape is RectCollider && rStatic.Collider.Shape is RectCollider)
-    //    {
-    //        side = RectCollides.CollidePostPhysicsRectVsRect(rDynamic, rStatic);
-    //    }else if(rDynamic.Collider.Shape is CirclCollider && rStatic.Collider.Shape is CirclCollider)
-    //    {
-    //        side = CirclCollides.CollidePostPhysicsCirclVsCircl(rDynamic, rStatic);
-    //    }else if (rDynamic.Collider.Shape is CirclCollider && rStatic.Collider.Shape is RectCollider)
-    //    {
-    //        side = CollidePostPhysicsCirclVsRect(rStatic, rDynamic);
-    //    }else if (rDynamic.Collider.Shape is RectCollider && rStatic.Collider.Shape is CirclCollider)
-    //    {
-    //        side = CollidePostPhysicsCirclVsRect(rStatic, rDynamic);
-    //    }
-    //    return new Collision(side);
-    //}
-
-    //public static CollisionSide CollidePostPhysicsCirclVsRect(PhysicsObject physicsObject, PhysicsObject other)
-    //{
-    //    CollisionSide side = CheckIfCollisionCirclVsRect(physicsObject, other);
-    //    if (side == CollisionSide.None)
-    //    {
-    //        physicsObject.ColorDebugCollision = Constants.DEFAULT_DEBUG_COLOR_GIZMOS;
-    //        return side;
-    //    }
-    //    CirclCollider circle = (CirclCollider)physicsObject.Collider.Shape;
-    //    RectCollider rect = (RectCollider)other.Collider.Shape;
-    //    // Calculate the position of the circle relative to the rectangle to make it next to it when it collides
-    //    Vector2 circleDistance = new Vector2(Math.Abs(physicsObject.Position.X - other.Position.X), Math.Abs(physicsObject.Position.Y - other.Position.Y));
-    //}
-
-    //private static CollisionSide CheckIfCollisionCirclVsRect(PhysicsObject physicsObject, PhysicsObject other)
-    //{
-    //    if(CircleVsRect(physicsObject, other))
-    //    {
-    //        return CollisionSide.Circle;
-    //    }
-    //    return CollisionSide.None;
-    //}
-
-    //private static bool CircleVsRect(PhysicsObject physicsObject, PhysicsObject other)
-    //{
-    //    CirclCollider circle = (CirclCollider)physicsObject.Collider.Shape;
-    //    RectCollider rect = (RectCollider)other.Collider.Shape;
-    //    Vector2 circleDistance = new Vector2(Math.Abs(physicsObject.Position.X - other.Position.X), Math.Abs(physicsObject.Position.Y - other.Position.Y));
-    //    if (circleDistance.X > (rect.Width * 0.5f + circle.Radius)) { return false; }
-    //    if (circleDistance.Y > (rect.Height * 0.5f + circle.Radius)) { return false; }
-
-    //    if (circleDistance.X <= (rect.Width * 0.5f)) { return true; }
-    //    if (circleDistance.Y <= (rect.Height * 0.5f)) { return true; }
-
-    //    float cornerDistance_sq = (circleDistance.X - rect.Width * 0.5f) * (circleDistance.X - rect.Width * 0.5f) +
-    //                              (circleDistance.Y - rect.Height * 0.5f) * (circleDistance.Y - rect.Height * 0.5f);
-
-    //    return (cornerDistance_sq <= (circle.Radius * circle.Radius));
-    //}
 }
