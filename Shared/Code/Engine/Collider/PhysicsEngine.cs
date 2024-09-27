@@ -1,13 +1,12 @@
-using flappyrogue_mg.Core.Collider;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
 public class PhysicsEngine
 {
     private static PhysicsEngine _instance;
-    private readonly List<Collider> _colliders = new List<Collider>();
+    private readonly List<PhysicsObject> _physicsObjects = new List<PhysicsObject>();
     //a hashmap-like private field called alreadyCollided
-    private Dictionary<Collider, Collider> _alreadyCollided = new();
+    private Dictionary<PhysicsObject, PhysicsObject> _alreadyCollided = new();
 
     public static PhysicsEngine Instance
     {
@@ -21,23 +20,14 @@ public class PhysicsEngine
         }
     }
 
-    public void AddCollider(Collider collider)
-    {
-        _colliders.Add(collider);
-    }
-
     public void AddCollider(PhysicsObject physicsObject)
     {
-        _colliders.Add(physicsObject.Collider);
-    }
-    public void RemoveCollider(Collider collider)
-    {
-        _colliders.Remove(collider);
+        _physicsObjects.Add(physicsObject);
     }
 
     public void RemoveCollider(PhysicsObject physicsObject)
     {
-        _colliders.Remove(physicsObject.Collider);
+        _physicsObjects.Remove(physicsObject);
     }
 
     /// <summary>
@@ -47,29 +37,28 @@ public class PhysicsEngine
     /// </summary>
     /// <param name="physicsObject"></param>
     /// <param name="gameTime"></param>
-    /// <returns></returns>
-    public List<Collision> MoveAndSlide(PhysicsObject physicsObject, GameTime gameTime)
+    /// <returns>All the PhysicsObject we collided with</returns>
+    public List<PhysicsObject> MoveAndSlide(PhysicsObject physicsObject, GameTime gameTime)
     {
         // Update physics object
         physicsObject.Update(gameTime);
-        List<Collision> collisions = new();
+        List<PhysicsObject> collisions = new();
         if (physicsObject.Collider.CollisionType == CollisionType.Static)
         {
             return collisions;
         }
         // Check collision and solve it if physicsObject overlaps another collider
-        foreach (Collider other in _colliders)
+        foreach (PhysicsObject otherPhysicsObject in _physicsObjects)
         {
-            if (physicsObject.Collider != other)
+            if (physicsObject != otherPhysicsObject)
             {
-                if (_alreadyCollided.ContainsKey(physicsObject.Collider) && _alreadyCollided[physicsObject.Collider] == other)
+                if (_alreadyCollided.ContainsKey(physicsObject) && _alreadyCollided[physicsObject] == otherPhysicsObject)
                 {
                     continue; //we dont process the same collision twice
                 }
-                Collision collision = Collides.CollideAndSolve(physicsObject, other.PhysicsObject, gameTime);
-                if (collision != null)
+                if (Collides.CollideAndSolve(physicsObject.Collider, otherPhysicsObject.Collider, gameTime))
                 {
-                    collisions.Add(collision);
+                    collisions.Add(otherPhysicsObject);
                 }
             }
         }

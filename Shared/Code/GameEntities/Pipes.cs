@@ -6,7 +6,7 @@ using MonoGame.Extended.Graphics;
 
 namespace flappyrogue_mg.GameSpace
 {
-    public class Pipes : GameObject
+    public class Pipes : GameEntity
     {
         public const int SPRITE_WIDTH = 26;
         public const int SPRITE_HEIGHT = 160;
@@ -23,18 +23,14 @@ namespace flappyrogue_mg.GameSpace
         /// <param name="xOffsetFromRightBorder">x offset to add to the pipes default spawning x position, which is the right border of the screen</param>
         /// <param name="yOffsetFromTop">y offset to change the position of the pipes. Reduces the height of the pipes by world pixels</param>
         /// <param name="gapHeight">the gap between the top pipe and the bottom pipe. bottom pipe position is top.y+SPRITE_HEIGHT+gap</param>
-        public Pipes(float xOffsetFromRightBorder, float yOffsetFromTop, float gapHeight, float speed)
+        public Pipes(string label, float xOffsetFromRightBorder, float yOffsetFromTop, float gapHeight, float speed)
         {
             _speedForce = speed;
             float xPosition = Constants.WORLD_WIDTH - SPRITE_WIDTH + xOffsetFromRightBorder;
-            PhysicsObjectPipeTop = new PhysicsObject("pipe top", xPosition, -SPRITE_HEIGHT + yOffsetFromTop, new Rect(SPRITE_WIDTH, SPRITE_HEIGHT), CollisionType.Moving)
-            {
-                Gravity = Vector2.Zero
-            };
-            PhysicsObjectPipeBottom = new PhysicsObject("pipe bottom", xPosition, yOffsetFromTop + gapHeight, new Rect(SPRITE_WIDTH, SPRITE_HEIGHT), CollisionType.Moving)
-            {
-                Gravity = Vector2.Zero
-            };
+            PhysicsObjectPipeTop = PhysicsObjectFactory.Rect("pipe top" + label, xPosition, -SPRITE_HEIGHT + yOffsetFromTop, CollisionType.Moving, SPRITE_WIDTH, SPRITE_HEIGHT);
+            PhysicsObjectPipeTop.Gravity = Vector2.Zero;
+            PhysicsObjectPipeBottom = PhysicsObjectFactory.Rect("pipe bottom" + label, xPosition, yOffsetFromTop + gapHeight, CollisionType.Moving, SPRITE_WIDTH, SPRITE_HEIGHT);
+            PhysicsObjectPipeBottom.Gravity = Vector2.Zero;
         }
         public void LoadSingleInstance(ContentManager content)
         {

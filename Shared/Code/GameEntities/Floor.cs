@@ -7,10 +7,10 @@ using System;
 
 namespace flappyrogue_mg.GameSpace
 {
-    public class Floor : GameObject
+    public class Floor : GameEntity
     {
-        public const int SPRITE_WIDTH = 168;
-        public const int SPRITE_HEIGHT = 56;
+        public const float SPRITE_WIDTH = 168;
+        public const float SPRITE_HEIGHT = 56;
         public const float STARTING_POSITION_X = 0;
         public const float STARTING_POSITION_Y = Constants.WORLD_HEIGHT - SPRITE_HEIGHT;
 
@@ -21,11 +21,8 @@ namespace flappyrogue_mg.GameSpace
 
         public Floor()
         {
-            physicsObject = new PhysicsObject("floor", STARTING_POSITION_X, STARTING_POSITION_Y, new Rect(SPRITE_WIDTH, SPRITE_HEIGHT), CollisionType.Static)
-            {
-                //make the floor static
-                Friction = new Vector2(0, 0)
-            };
+            //Rect(string label, float x, float y, CollisionType collisionType, float width, float height)
+            physicsObject = PhysicsObjectFactory.Rect("floor", STARTING_POSITION_X, STARTING_POSITION_Y, CollisionType.Static, SPRITE_WIDTH, SPRITE_HEIGHT);
             _texturePosition = physicsObject.Position;
             _texture2Position = new Vector2(physicsObject.Position.X + SPRITE_WIDTH, physicsObject.Position.Y);
         }

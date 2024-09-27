@@ -14,6 +14,6 @@ public class Constants
     public const int DEBUG_SCREEN_WIDTH = 1000;
     public const int DEBUG_SCREEN_HEIGHT = 1000;
 
-    public const int PLAYABLE_WORLD_HEIGHT = WORLD_HEIGHT - Floor.SPRITE_HEIGHT;
+    public const float PLAYABLE_WORLD_HEIGHT = WORLD_HEIGHT - Floor.SPRITE_HEIGHT;
     public static readonly Color DEFAULT_DEBUG_COLOR_GIZMOS = Color.Yellow;
 }

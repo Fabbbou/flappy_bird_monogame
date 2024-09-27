@@ -14,6 +14,7 @@ public class PipesSpawner
     public static readonly float SPEED = 60f;
 
     private List<Pipes> _pipes = new();
+    private int pipesCounter = 0;
     private float _timeToSpawn = 2f;
     private float _timeToSpawnCounter = 0f;
 
@@ -43,7 +44,8 @@ public class PipesSpawner
         if (_timeToSpawnCounter >= _timeToSpawn)
         {
             _timeToSpawnCounter = 0f;
-            _pipes.Add(new Pipes(xOffsetFromRightBorder, yOffsetFromTop, gapHeight, speed));
+            pipesCounter++;
+            _pipes.Add(new Pipes(" "+ pipesCounter, xOffsetFromRightBorder, yOffsetFromTop, gapHeight, speed));
         }
     }
 

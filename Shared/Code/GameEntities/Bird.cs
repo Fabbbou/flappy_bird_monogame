@@ -12,7 +12,7 @@ using MonoGame.Extended.Screens;
 
 namespace flappyrogue_mg.GameSpace
 {
-    public class Bird : GameObject
+    public class Bird : GameEntity
     {
         public const int SPRITE_WIDTH = 17;
         public const int SPRITE_HEIGHT = 12;
@@ -43,7 +43,7 @@ namespace flappyrogue_mg.GameSpace
         public Bird(GameScreen gameScreen)
         {
             _screen = gameScreen;
-            PhysicsObject = new("bird", STARTING_POSITION_X + OffsetCollider.X, STARTING_POSITION_Y + OffsetCollider.Y, new Rect(COLLIDER_WIDTH, COLLIDER_HEIGHT), CollisionType.Moving);
+            PhysicsObject = PhysicsObjectFactory.Rect("bird", STARTING_POSITION_X + OffsetCollider.X, STARTING_POSITION_Y + OffsetCollider.Y, CollisionType.Moving, COLLIDER_WIDTH, COLLIDER_HEIGHT);
             PhysicsObject.Gravity = new Vector2(0, BIRD_GRAVITY);
         }
 

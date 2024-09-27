@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
+using System;
 
 /// <summary>
 /// Represents a physics object in the game world.
@@ -12,7 +13,22 @@ public class PhysicsObject
 {
     public const float GRAVITY = 9.8f;
     public const float FRICTION = 0f;
-    public Collider Collider;
+    private Collider _collider;
+    public Collider Collider
+    {
+        get => _collider;
+        //protecting collider from being set multiple times
+        set
+        {
+            if (_collider != null)
+            {
+                throw new Exception("Collider already attached to this PhysicsObject");
+            }
+            _collider = value;
+            PhysicsDebug.Instance.AddObject(this);
+            PhysicsEngine.Instance.AddCollider(this);
+        }
+    }
     public Vector2 Gravity;
     public Vector2 Position;
     public Vector2 Velocity;
@@ -20,14 +36,11 @@ public class PhysicsObject
     public Vector2 Friction;
     public string Label;
     public bool IsNotMoving => Velocity == Vector2.Zero && Acceleration == Vector2.Zero;
-    public Color ColorDebugCollision = Constants.DEFAULT_DEBUG_COLOR_GIZMOS;
 
-    public PhysicsObject(string label, float x, float y, Shape shape, CollisionType colliderType)
+    public PhysicsObject(string label, float x, float y, CollisionType colliderType)
     {
-        PhysicsDebug.Instance.AddObject(this);
         Label = label;
         Position = new(x, y);
-        Collider = new(this, shape, colliderType);
         Velocity = Vector2.Zero;
         Acceleration = Vector2.Zero;
         Gravity = new Vector2(0, GRAVITY);
@@ -36,7 +49,7 @@ public class PhysicsObject
 
     ~PhysicsObject()
     {
-        PhysicsDebug.Instance.RemoveObject(this);
+        Kill();
     }
 
     public void ApplyForce(Vector2 force)
@@ -77,16 +90,19 @@ public class PhysicsObject
 
     public void DebugDraw(SpriteBatch spriteBatch)
     {
-        if(Collider.Shape is Rect)
+        if(Collider is RectCollider rect)
         {
-            spriteBatch.DrawRectangle(Position, ((Rect) Collider.Shape).Size, ColorDebugCollision);
+            spriteBatch.DrawRectangle(Position, rect.Size, Constants.DEFAULT_DEBUG_COLOR_GIZMOS);
+        }else if (Collider is CirclCollider circl)
+        {
+            spriteBatch.DrawCircle(Position, circl.Radius, 16, Constants.DEFAULT_DEBUG_COLOR_GIZMOS);
         }
     }
 
     public void Kill()
     {
         PhysicsDebug.Instance.RemoveObject(this);
-        Collider.Kill();
+        PhysicsEngine.Instance.RemoveCollider(this);
     }
 }
 public enum ForceType

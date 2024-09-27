@@ -1,21 +1,27 @@
-public class Collider
+using Microsoft.Xna.Framework;
+
+public abstract class Collider
 {
     public PhysicsObject PhysicsObject { get; private set; }
     public CollisionType CollisionType { get; private set; }
-    public Shape Shape { get; private set; }
 
-    public Collider(PhysicsObject physicsObject, Shape shape, CollisionType collisionType)
+    public Vector2 Position
     {
-        PhysicsEngine.Instance.AddCollider(this);
-        Shape = shape;
+        get => PhysicsObject.Position;
+        set => PhysicsObject.Position = value;
+    }
+
+    protected Collider(PhysicsObject physicsObject, CollisionType collisionType)
+    {
         PhysicsObject = physicsObject;
         CollisionType = collisionType;
     }
-    ~Collider() => PhysicsEngine.Instance.RemoveCollider(this);
 
-    public void Kill()
+    public abstract bool CollidesWith(Collider other);
+
+    public void StopHorizontal()
     {
-        PhysicsEngine.Instance.RemoveCollider(this);
+        PhysicsObject.Velocity = new Vector2(0, PhysicsObject.Velocity.Y);
     }
 }
 public enum CollisionSide

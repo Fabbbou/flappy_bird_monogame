@@ -50,26 +50,29 @@ public class DebugPhysics : GameScreen
         var xFloor = 0;
         var floorHeigth = 100;
         var smallFloorWidth = 10;
-        partFloor1 = new("partFloor1", xFloor, yFloor, new Rect(100, floorHeigth), CollisionType.Static);
+        partFloor1 = PhysicsObjectFactory.Rect("partFloor1", xFloor, yFloor, CollisionType.Static, 100, floorHeigth);
         xFloor += 100;
-        partFloor2 = new("partFloor2", xFloor, yFloor, new Rect(smallFloorWidth, floorHeigth), CollisionType.Static);
+        partFloor2 = PhysicsObjectFactory.Rect("partFloor2", xFloor, yFloor, CollisionType.Static, smallFloorWidth, floorHeigth);
         xFloor += smallFloorWidth;
-        partFloor3 = new("partFloor3", xFloor, yFloor, new Rect(smallFloorWidth, floorHeigth), CollisionType.Static);
+        partFloor3 = PhysicsObjectFactory.Rect("partFloor3", xFloor, yFloor, CollisionType.Static, smallFloorWidth, floorHeigth);
         xFloor += smallFloorWidth;
-        partFloor4 = new("partFloor4", xFloor, yFloor, new Rect(smallFloorWidth, floorHeigth), CollisionType.Static);
+        partFloor4 = PhysicsObjectFactory.Rect("partFloor4", xFloor, yFloor, CollisionType.Static, smallFloorWidth, floorHeigth);
         xFloor += smallFloorWidth;
-        partFloor5 = new("partFloor5", xFloor, yFloor, new Rect(smallFloorWidth, floorHeigth), CollisionType.Static);
+        partFloor5 = PhysicsObjectFactory.Rect("partFloor5", xFloor, yFloor,  CollisionType.Static, smallFloorWidth, floorHeigth);
         xFloor += smallFloorWidth;
-        partFloor6 = new("partFloor6", xFloor, yFloor, new Rect(smallFloorWidth, floorHeigth), CollisionType.Static);
+        partFloor6 = PhysicsObjectFactory.Rect("partFloor6", xFloor, yFloor, CollisionType.Static, smallFloorWidth, floorHeigth);
         xFloor += smallFloorWidth;
-        partFloor7 = new("partFloor7", xFloor, yFloor, new Rect(Constants.DEBUG_WORLD_WIDTH - xFloor, floorHeigth), CollisionType.Static);
+        partFloor7 = PhysicsObjectFactory.Rect("partFloor7", xFloor, yFloor, CollisionType.Static, Constants.DEBUG_WORLD_WIDTH - xFloor, floorHeigth);
 
         var boxSize = 10;
-        movingBox = new("movingBox", 0, 0, new Rect(boxSize, boxSize), CollisionType.Moving);
+        movingBox = PhysicsObjectFactory.Rect("movingBox", 0, 0, CollisionType.Moving, boxSize, boxSize);
         movingBox.Gravity = Vector2.Zero;
 
     }
-
+    public override void UnloadContent()
+    {
+        pixelTexture.Dispose();
+    }
     public override void Update(GameTime gameTime)
     {
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
