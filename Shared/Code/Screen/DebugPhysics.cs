@@ -28,6 +28,7 @@ public class DebugPhysics : GameScreen
     private PhysicsObject partFloor5;
     private PhysicsObject partFloor6;
     private PhysicsObject partFloor7;
+    private PhysicsObject partFloor8;
 
     private PhysicsObject movingBox;
     private PhysicsObject movingCircle;
@@ -69,6 +70,7 @@ public class DebugPhysics : GameScreen
         partFloor6 = PhysicsObjectFactory.Rect("partFloor6", xFloor, yFloor, CollisionType.Static, smallFloorWidth, floorHeigth);
         xFloor += smallFloorWidth;
         partFloor7 = PhysicsObjectFactory.Rect("partFloor7", xFloor, yFloor, CollisionType.Static, Constants.DEBUG_WORLD_WIDTH - xFloor, floorHeigth);
+        partFloor8 = PhysicsObjectFactory.Rect("partFloor8", Constants.DEBUG_WORLD_WIDTH*0.5f, yFloor-100, CollisionType.Static, 50, 100);
 
         var boxSize = 10;
         var circleRadius = 10;
@@ -109,7 +111,7 @@ public class DebugPhysics : GameScreen
         //spacebar to reset the velocity of the box
         if (keyboardState.IsKeyDown(Keys.Space))
         {
-            //movingBox.Velocity = Vector2.Zero;
+            movingBox.Velocity = Vector2.Zero;
             movingCircle.Velocity = Vector2.Zero;
         }
         //arrow to move the box using addForce
@@ -150,8 +152,10 @@ public class DebugPhysics : GameScreen
         //draw a rectangle filled with blue color
         _spriteBatch.Draw(pixelTexture, new Rectangle(0, 0, Constants.DEBUG_WORLD_WIDTH, Constants.DEBUG_WORLD_HEIGHT), Color.Blue);
         //draw moving box tostring to see the velocity
-        _spriteBatch.DrawString(_font, "box vel: "+movingBox.Velocity.ToString(), new Vector2(0, 0), Color.White);
-        _spriteBatch.DrawString(_font, "circle vel: " + movingCircle.Velocity.ToString(), new Vector2(0, 20), Color.White);
+        _spriteBatch.DrawString(_font, "box pos: "+movingBox.Position.ToString(), new Vector2(0, 0), Color.White);
+        _spriteBatch.DrawString(_font, "box vel: "+movingBox.Velocity.ToString(), new Vector2(0, 30), Color.White);
+        _spriteBatch.DrawString(_font, "circle pos: "+movingCircle.Position.ToString(), new Vector2(0, 15), Color.White);
+        _spriteBatch.DrawString(_font, "circle vel: " + movingCircle.Velocity.ToString(), new Vector2(0, 45), Color.White);
         PhysicsDebug.Instance.Draw(_spriteBatch);
         _spriteBatch.End();
     }

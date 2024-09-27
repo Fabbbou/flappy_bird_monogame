@@ -63,9 +63,9 @@ namespace flappyrogue_mg.GameSpace
         protected override void LoadContent()
         {
             ViewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, 800, 480);
-            LoadScreen(ScreenName.MainGame);
+            //LoadScreen(ScreenName.MainGame);
             //LoadScreen(ScreenName.ZoomedOutMain);
-            //LoadScreen(ScreenName.DebugPhysics);
+            LoadScreen(ScreenName.DebugPhysics);
         }
 
         public void LoadScreen(ScreenName screen)

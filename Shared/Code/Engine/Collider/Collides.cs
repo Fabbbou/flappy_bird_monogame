@@ -83,20 +83,49 @@ public class Collides
 
         Vector2 direction = circl.Position - closestPoint;
         direction.Normalize();
-
         circl.Position = closestPoint + direction * circl.Radius;
 
-        //reset velocity when colliding something on the Y axis
-        if (direction.Y != 0)
+        // Adjust velocity to slide along the edge or corner
+        if (IsCollidingWithCorner(circl, rect))
         {
-            circl.PhysicsObject.Velocity.Y = 0;
+            // Handle corner collision
+            if (Math.Abs(direction.X) > Math.Abs(direction.Y))
+            {
+                circl.PhysicsObject.Velocity.Y = 0;
+            }
+            else
+            {
+                circl.PhysicsObject.Velocity.X = 0;
+            }
         }
-        //reset velocity when colliding something on the X axis
-        if (direction.X != 0)
+        else
         {
-            circl.PhysicsObject.Velocity.X = 0;
+            //reset velocity when colliding something on the Y axis
+            if (direction.Y != 0)
+            {
+                circl.PhysicsObject.Velocity.Y = 0;
+            }
+            //reset velocity when colliding something on the X axis
+            if (direction.X != 0)
+            {
+                circl.PhysicsObject.Velocity.X = 0;
+            }
         }
+        
         return true;
+    }
+
+    private static bool IsCollidingWithCorner(CirclCollider circl, RectCollider rect)
+    {
+        foreach (Vector2 corner in rect.Corners)
+        {
+            if (Vector2.Distance(circl.Position, corner) < circl.Radius)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private static bool CirclVsRect(CirclCollider circl, RectCollider rect)

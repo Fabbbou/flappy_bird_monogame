@@ -17,6 +17,11 @@ public class RectCollider : Collider
     public float Right => Position.X + Width;
     public float Top => Position.Y;
     public float Bottom => Position.Y + Height;
+    public Vector2 TopLeft => new(Position.X, Position.Y);
+    public Vector2 TopRight => new(Position.X + Width, Position.Y);
+    public Vector2 BottomLeft => new(Position.X, Position.Y + Height);
+    public Vector2 BottomRight => new(Position.X + Width, Position.Y + Height);
+    public Vector2[] Corners => new[] { TopLeft, TopRight, BottomRight, BottomLeft };
     public override bool CollidesWith(Collider other)
     {
         if (other is RectCollider otherRect)
