@@ -37,20 +37,17 @@ public class Collides
             if (rect1.Left < rect2.Left)
             {
                 //right
-                //        physicsObject.Position.X = other.Position.X - rect.Width;
                 rect1.Position = new Vector2(rect2.Left - rect1.Width, rect1.Position.Y);
-                if (rect1.PhysicsObject.Velocity.X < 0)
+                if (rect1.PhysicsObject.Velocity.X > 0)
                 {
-                    rect1.PhysicsObject.Velocity.X = 0;
+                     rect1.PhysicsObject.Velocity.X = 0;
                 }
             }
             else
             {
                 //left
-                //physicsObject.Position.X = other.Position.X + otherR.Width;
-
                 rect1.Position = new Vector2(rect2.Right, rect1.Position.Y);
-                if (rect1.PhysicsObject.Velocity.X > 0)
+                if (rect1.PhysicsObject.Velocity.X < 0)
                 {
                     rect1.PhysicsObject.Velocity.X = 0;
                 }

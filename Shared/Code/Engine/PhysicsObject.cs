@@ -104,6 +104,13 @@ public class PhysicsObject
         PhysicsDebug.Instance.RemoveObject(this);
         PhysicsEngine.Instance.RemoveCollider(this);
     }
+
+    public override string ToString()
+    {
+        // all fields are public, so we can access them directly
+        return $"PhysicsObject {Label} at {Position} with velocity {Velocity}";
+    }
+
 }
 public enum ForceType
 {

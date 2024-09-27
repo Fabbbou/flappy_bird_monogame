@@ -17,8 +17,6 @@ public class RectCollider : Collider
     public float Right => Position.X + Width;
     public float Top => Position.Y;
     public float Bottom => Position.Y + Height;
-    public Vector2 Center => new(Position.X + Width * 0.5f, Position.Y + Height * 0.5f);
-
     public override bool CollidesWith(Collider other)
     {
         if (other is RectCollider otherRect)
@@ -34,10 +32,10 @@ public class RectCollider : Collider
 
     private bool RectVsRect(RectCollider otherRect)
     {
-        return Position.X < otherRect.Position.X + otherRect.Width &&
-               Position.X + Width > otherRect.Position.X &&
-               Position.Y < otherRect.Position.Y + Height &&
-               Position.Y + Height > otherRect.Position.Y;
+        return Left < otherRect.Right &&
+               Right > otherRect.Left &&
+               Top < otherRect.Bottom &&
+               Bottom > otherRect.Top;
     }
 }
 
