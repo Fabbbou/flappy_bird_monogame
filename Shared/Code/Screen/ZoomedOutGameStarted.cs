@@ -2,11 +2,11 @@ using flappyrogue_mg.GameSpace;
 using Microsoft.Xna.Framework;
 using MonoGame.Extended;
 
-public class ZoomedOutMain : MainGame
+public class ZoomedOutMainScreen : MainGameScreen
 {
     private OrthographicCamera _camera;
 
-    public ZoomedOutMain(Game game) : base(game){}
+    public ZoomedOutMainScreen(Game game) : base(game){}
 
     public override void LoadContent()
     {

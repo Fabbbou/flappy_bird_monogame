@@ -20,7 +20,6 @@ public class PipesSpawner : GameEntity
     private float _timeToSpawnCounter = 0f;
 
     private float _xOffsetFromRightBorder = 60f;
-    private float _yOffsetFromTop = 100f;
 
     private Texture2DRegion _pipeTopTexture;
     private Texture2DRegion _pipeBottomTexture;

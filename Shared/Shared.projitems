@@ -10,25 +10,28 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Code\Constants.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)code\engine\collider\PhysicsObjectFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)code\gameentities\ScoreManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)code\ui\PreloadedAssets.cs" />
-    <Compile Include="..\Shared\code\engine\collider\CirclCollider.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Collider\Collider.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Collider\Collides.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Collider\PhysicsEngine.cs" />
-    <Compile Include="..\Shared\Code\Engine\Collider\RectCollider.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Code\engine\PhysicsDebug.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\PhysicsObjectFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\State\StateMachine.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\State\State.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\GameEntities\ScoreManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)code\states\MenuState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\UI\PreloadedAssets.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\Collider\CirclCollider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\Collider\Collider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\Collider\Collides.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\PhysicsEngine.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\Collider\RectCollider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\PhysicsGizmosRegistry.cs" />
     <Compile Include="..\Shared\Code\Engine\GameEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Input\Keyboard.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\PhysicsObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\PhysicsObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Main.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\GameEntities\Bird.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\GameEntities\Floor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\GameEntities\PipesSpawner.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Code\screen\DebugPhysics.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Code\Screen\ScreenName.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Code\Screen\MainGame.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\screen\DebugPhysicsScreen.cs" />
+    <Compile Include="..\Shared\Code\Screen\ScreenNames.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Screen\MainGameScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\GameEntities\Pipes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Screen\ZoomedOutGameStarted.cs" />
   </ItemGroup>
@@ -59,8 +62,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Content\sprites\pipes.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Code\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Code\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Code\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Code\States\" />
   </ItemGroup>
 </Project>

@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Input.Touch;
 using Microsoft.Xna.Framework.Audio;
 using MonoGame.Extended.Screens;
 using System;
+using System.Diagnostics;
 
 namespace flappyrogue_mg.GameSpace
 {
@@ -18,17 +19,14 @@ namespace flappyrogue_mg.GameSpace
         public const int SPRITE_WIDTH = 17;
         public const int SPRITE_HEIGHT = 12;
 
-        public const int COLLIDER_WIDTH = 9;
-        public const int COLLIDER_HEIGHT = 10;
         public const float COLLIDER_RADIUS = 5.5f;
-        public readonly Vector2 OffsetCollider = new Vector2(8.5f, 5.8f);
 
-        public const float STARTING_POSITION_X = Constants.WORLD_MIDDLE_SCREEN_WIDTH - SPRITE_WIDTH * .5f;
-        public const float STARTING_POSITION_Y = Constants.WORLD_MIDDLE_SCREEN_HEIGHT - SPRITE_HEIGHT * .5f;
+        public const float STARTING_POSITION_X = Constants.WORLD_MIDDLE_SCREEN_WIDTH;
+        public const float STARTING_POSITION_Y = Constants.WORLD_MIDDLE_SCREEN_HEIGHT;
 
         private const float BIRD_SPEED = 200f;
         private const float BIRD_GRAVITY = 450f;
-        private const float BIRD_ROTATION = 0.1f;
+        private const float BIRD_ROTATION = 0.17f;
 
         private GameScreen _screen;
         public readonly PhysicsObject PhysicsObject;
@@ -45,7 +43,7 @@ namespace flappyrogue_mg.GameSpace
         public Bird(GameScreen gameScreen)
         {
             _screen = gameScreen;
-            PhysicsObject = PhysicsObjectFactory.Circl("bird", STARTING_POSITION_X + OffsetCollider.X, STARTING_POSITION_Y + OffsetCollider.Y, CollisionType.Moving, COLLIDER_RADIUS);
+            PhysicsObject = PhysicsObjectFactory.Circl("bird", STARTING_POSITION_X, STARTING_POSITION_Y, CollisionType.Moving, COLLIDER_RADIUS);
             PhysicsObject.Gravity = new Vector2(0, BIRD_GRAVITY);
         }
 
@@ -57,7 +55,10 @@ namespace flappyrogue_mg.GameSpace
             // Load the sprite sheet
             AsepriteFile aseFile = content.Load<AsepriteFile>("sprites/bird");
             _spriteSheet = aseFile.CreateSpriteSheet(_screen.GraphicsDevice);
-            _idleCycle = _spriteSheet.CreateAnimatedSprite("idle"); //tag created in aseprite file selecting the frames to be animated
+            //tag created in aseprite file selecting the frames to be animated
+            _idleCycle = _spriteSheet.CreateAnimatedSprite("idle");
+            //the origin of the sprite is the center of the sprite, so the rotation is centered
+            _idleCycle.Origin = new Vector2(SPRITE_WIDTH / 2f, SPRITE_HEIGHT / 2f);
             _idleCycle.Play();
 
             //load sfx_wing sound
@@ -70,7 +71,9 @@ namespace flappyrogue_mg.GameSpace
             _idleCycle.Update(deltaTime);
             Jump();
 
-            _idleCycle.Rotation = MathHelper.ToRadians(MathHelper.Clamp(PhysicsObject.Velocity.Y * BIRD_ROTATION, -90f, 30f));
+            _idleCycle.Rotation = MathHelper.ToRadians(MathHelper.Clamp(PhysicsObject.Velocity.Y * BIRD_ROTATION, -30f, 90f));
+            Debug.WriteLine(MathHelper.Clamp(PhysicsObject.Velocity.Y * BIRD_ROTATION, -90f, 30f));
+
 
             PhysicsEngine.Instance.MoveAndSlide(PhysicsObject, gameTime);
         }
@@ -103,7 +106,7 @@ namespace flappyrogue_mg.GameSpace
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_idleCycle, PhysicsObject.Position - OffsetCollider);
+            spriteBatch.Draw(_idleCycle, PhysicsObject.Position);
         }
     }
 }

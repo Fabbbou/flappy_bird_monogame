@@ -25,7 +25,7 @@ public class PhysicsObject
                 throw new Exception("Collider already attached to this PhysicsObject");
             }
             _collider = value;
-            PhysicsDebug.Instance.AddObject(this);
+            PhysicsGizmosRegistry.Instance.AddObject(this);
             PhysicsEngine.Instance.AddCollider(this);
         }
     }
@@ -101,7 +101,7 @@ public class PhysicsObject
 
     public void Kill()
     {
-        PhysicsDebug.Instance.RemoveObject(this);
+        PhysicsGizmosRegistry.Instance.RemoveObject(this);
         PhysicsEngine.Instance.RemoveCollider(this);
     }
 

@@ -23,17 +23,17 @@ namespace flappyrogue_mg.GameSpace
         }
         public GraphicsDeviceManager Graphics { get; private set; }
         private readonly FramesPerSecondCounter _fpsCounter = new FramesPerSecondCounter();
-        private readonly Dictionary<ScreenName, GameScreen> _screens = new Dictionary<ScreenName, GameScreen>();
+        private readonly Dictionary<ScreenNames, GameScreen> _screens = new Dictionary<ScreenNames, GameScreen>();
 
         private readonly ScreenManager _screenManager;
-        private ScreenName _currentScreen;
+        private ScreenNames _currentScreen;
 
         public ViewportAdapter ViewportAdapter { get; private set; }
 
         private Main()
         {
             //uncomment to see the physics debug
-            PhysicsDebug.Instance.DrawGizmos(true);
+            PhysicsGizmosRegistry.Instance.DrawGizmos(true);
             Graphics = new GraphicsDeviceManager(this);
 
             Content.RootDirectory = "Content";
@@ -53,9 +53,9 @@ namespace flappyrogue_mg.GameSpace
             //ViewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
 
             //  Initialize screens
-            _screens.Add(ScreenName.MainGame, new MainGame(this));
-            _screens.Add(ScreenName.ZoomedOutMain, new ZoomedOutMain(this));
-            _screens.Add(ScreenName.DebugPhysics, new DebugPhysics(this));
+            _screens.Add(ScreenNames.MainGameScreen, new MainGameScreen(this));
+            _screens.Add(ScreenNames.ZoomedOutMainScreen, new ZoomedOutMainScreen(this));
+            _screens.Add(ScreenNames.DebugPhysicsScreen, new DebugPhysics(this));
 
             base.Initialize();
         }
@@ -63,12 +63,12 @@ namespace flappyrogue_mg.GameSpace
         protected override void LoadContent()
         {
             ViewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, 800, 480);
-            //LoadScreen(ScreenName.MainGame);
-            LoadScreen(ScreenName.ZoomedOutMain);
+            LoadScreen(ScreenNames.MainGameScreen);
+            //LoadScreen(ScreenName.ZoomedOutMain);
             //LoadScreen(ScreenName.DebugPhysics);
         }
 
-        public void LoadScreen(ScreenName screen)
+        public void LoadScreen(ScreenNames screen)
         {
             _screenManager.LoadScreen(_screens[screen]);
             _currentScreen = screen;

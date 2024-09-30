@@ -9,7 +9,7 @@ using MonoGame.Extended.ViewportAdapters;
 
 namespace flappyrogue_mg.GameSpace
 {
-    public class MainGame : GameScreen
+    public class MainGameScreen : GameScreen
     {
         protected BoxingViewportAdapter ViewportAdapter;
 
@@ -21,9 +21,8 @@ namespace flappyrogue_mg.GameSpace
 
         private Bird _bird;
         private Floor _floor;
-        private Pipes _pipes;
         private PipesSpawner _pipesSpawner;
-        public MainGame(Game game) : base(game){}
+        public MainGameScreen(Game game) : base(game){}
 
         public override void LoadContent()
         {
@@ -80,21 +79,13 @@ namespace flappyrogue_mg.GameSpace
             GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin(transformMatrix: GetTransformMatrix(), samplerState: SamplerState.PointClamp);
 
-            // Draw the background
             _spriteBatch.Draw(_dayBackground, Vector2.Zero, Color.White);
-
-            // Draw the pipes (has to be behind the floor)
             _pipesSpawner.Draw(_spriteBatch);
-
-            // Draw the floor
             _floor.Draw(_spriteBatch);
-
             ScoreManager.Instance.Draw(_spriteBatch);
-
-            // Draw the bird
             _bird.Draw(_spriteBatch);
 
-            PhysicsDebug.Instance.Draw(_spriteBatch);
+            PhysicsGizmosRegistry.Instance.Draw(_spriteBatch);
             _spriteBatch.End();
         }
     }

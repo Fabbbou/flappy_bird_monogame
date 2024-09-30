@@ -1,4 +1,5 @@
 using System;
+using System.Numerics;
 
 public class PhysicsObjectFactory
 
@@ -21,10 +22,15 @@ public class PhysicsObjectFactory
 
     public static PhysicsObject AreaRectTriggerOnce(string label, float x, float y, CollisionType collisionType, float width, float height, Action onTrigger)
     {
-        var physicsObject = new PhysicsObject(label, x, y, collisionType);
-        var rect = new RectCollider(physicsObject, collisionType, width, height);
+        var physicsObject = new PhysicsObject(label, x, y, collisionType)
+        {
+            Gravity = Vector2.Zero,
+        };
+        var rect = new RectCollider(physicsObject, collisionType, width, height)
+        {
+            OnCollisionAction = onTrigger
+        };
         physicsObject.Collider = rect;
-        physicsObject.Collider.OnCollisionAction = onTrigger;
         return physicsObject;
     }
 }   

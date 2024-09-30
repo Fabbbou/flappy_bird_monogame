@@ -7,20 +7,20 @@ using System.Collections.Generic;
 /// PhysicsDebug is a singleton class that allows you to debug the physics of your game.
 /// Just call it during your Draw method, and set the debug mode to true to see the colliders of your physics objects.
 /// </summary>
-public class PhysicsDebug
+public class PhysicsGizmosRegistry
 {
     private bool _isDebugging = false;
     private List<PhysicsObject> _objects = [];
-    private PhysicsDebug(){}
+    private PhysicsGizmosRegistry(){}
 
-    private static PhysicsDebug _instance;
-    public static PhysicsDebug Instance
+    private static PhysicsGizmosRegistry _instance;
+    public static PhysicsGizmosRegistry Instance
     {
         get
         {
             if (_instance == null)
             {
-                _instance = new PhysicsDebug();
+                _instance = new PhysicsGizmosRegistry();
             }
             return _instance;
         }
