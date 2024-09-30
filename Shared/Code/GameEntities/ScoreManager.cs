@@ -42,7 +42,7 @@ public class ScoreManager : GameEntity
 
     public void Update(GameTime gameTime)
     {
-        
+        //nothing to do for now
     }
 
     public void Draw(SpriteBatch spriteBatch)

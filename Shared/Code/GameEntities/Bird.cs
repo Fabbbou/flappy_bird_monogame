@@ -9,6 +9,7 @@ using MonoGame.Extended.BitmapFonts;
 using Microsoft.Xna.Framework.Input.Touch;
 using Microsoft.Xna.Framework.Audio;
 using MonoGame.Extended.Screens;
+using System;
 
 namespace flappyrogue_mg.GameSpace
 {
@@ -27,6 +28,7 @@ namespace flappyrogue_mg.GameSpace
 
         private const float BIRD_SPEED = 200f;
         private const float BIRD_GRAVITY = 450f;
+        private const float BIRD_ROTATION = 0.1f;
 
         private GameScreen _screen;
         public readonly PhysicsObject PhysicsObject;
@@ -67,6 +69,8 @@ namespace flappyrogue_mg.GameSpace
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             _idleCycle.Update(deltaTime);
             Jump();
+
+            _idleCycle.Rotation = MathHelper.ToRadians(MathHelper.Clamp(PhysicsObject.Velocity.Y * BIRD_ROTATION, -90f, 30f));
 
             PhysicsEngine.Instance.MoveAndSlide(PhysicsObject, gameTime);
         }
