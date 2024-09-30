@@ -22,8 +22,8 @@ namespace flappyrogue_mg.GameSpace
         public const float COLLIDER_RADIUS = 5.5f;
         public readonly Vector2 OffsetCollider = new Vector2(8.5f, 5.8f);
 
-        public const float STARTING_POSITION_X = Constants.WORLD_WIDTH / 2 - SPRITE_WIDTH / 2;
-        public const float STARTING_POSITION_Y = Constants.PLAYABLE_WORLD_HEIGHT / 2 - SPRITE_HEIGHT / 2;
+        public const float STARTING_POSITION_X = Constants.WORLD_MIDDLE_SCREEN_WIDTH - SPRITE_WIDTH * .5f;
+        public const float STARTING_POSITION_Y = Constants.WORLD_MIDDLE_SCREEN_HEIGHT - SPRITE_HEIGHT * .5f;
 
         private const float BIRD_SPEED = 200f;
         private const float BIRD_GRAVITY = 450f;
@@ -47,7 +47,7 @@ namespace flappyrogue_mg.GameSpace
             PhysicsObject.Gravity = new Vector2(0, BIRD_GRAVITY);
         }
 
-        public void LoadSingleInstance(ContentManager content)
+        public void LoadContent(ContentManager content)
         {
             // Load the font
             _font = content.Load<BitmapFont>("fonts/04b19");
@@ -88,7 +88,7 @@ namespace flappyrogue_mg.GameSpace
                 {
                     PhysicsObject.Velocity = _jumpForce;
                     _pressedButtonJump = true;
-                    //_flapSound.Play();
+                    _flapSound.Play();
                 }
             }
             else

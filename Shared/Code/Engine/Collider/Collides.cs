@@ -3,24 +3,33 @@ using System;
 
 public class Collides
 {
-    public static bool CollideAndSolve(Collider cDynamic, Collider cStatic, GameTime gameTime)
+    public static bool CollideAndSolve(Collider collider, Collider other, GameTime gameTime)
     {
-        if (cDynamic is RectCollider rect1 && cStatic is RectCollider rect2)
+        if (!collider.CollidesWith(other)) return false;
+
+        if (isTriggerCollision(other)) return true;
+
+        if (collider is RectCollider rect1 && other is RectCollider rect2)
         {
             return ResolveCollision(rect1, rect2);
         }
-        else if (cDynamic is CirclCollider circl && cStatic is RectCollider rect)
+        else if (collider is CirclCollider circl && other is RectCollider rect)
         {
             return ResolveCollision(circl, rect);
         }
         return false;
     }
 
+    private static bool isTriggerCollision(Collider other)
+    {
+        if(other.CollisionType != CollisionType.AreaCastTrigger) return false;
+        other.TriggerCollision();
+        return true;
+
+    }
 
     private static bool ResolveCollision(RectCollider rect1, RectCollider rect2)
     {
-
-        if (!rect1.CollidesWith(rect2)) return false;
         // Calculate the intersection depth (overlap) between the two rectangles
         float overlapX = Math.Min(
             rect1.Right - rect2.Left,
@@ -75,9 +84,6 @@ public class Collides
 
     private static bool ResolveCollision(CirclCollider rect1, RectCollider rect2)
     {
-
-        if (!rect1.CollidesWith(rect2)) return false;
-        // Calculate the intersection depth (overlap) between the two rectangles
         float overlapX = Math.Min(
             rect1.Right - rect2.Left,
             rect2.Right - rect1.Left

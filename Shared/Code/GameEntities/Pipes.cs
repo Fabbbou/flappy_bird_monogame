@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Graphics;
+using System.Diagnostics;
 
 namespace flappyrogue_mg.GameSpace
 {
@@ -10,9 +11,11 @@ namespace flappyrogue_mg.GameSpace
     {
         public const int SPRITE_WIDTH = 26;
         public const int SPRITE_HEIGHT = 160;
+        public const int CROP_SCORING_ZONE_WIDTH = 3;
 
         public readonly PhysicsObject PhysicsObjectPipeTop;
         public readonly PhysicsObject PhysicsObjectPipeBottom;
+        public readonly PhysicsObject ScoringZone;
         private Texture2DRegion _pipeTopTexture;
         private Texture2DRegion _pipeBottomTexture;
         private float _speedForce;
@@ -31,23 +34,33 @@ namespace flappyrogue_mg.GameSpace
             PhysicsObjectPipeTop.Gravity = Vector2.Zero;
             PhysicsObjectPipeBottom = PhysicsObjectFactory.Rect("pipe bottom" + label, xPosition, yOffsetFromTop + gapHeight, CollisionType.Moving, SPRITE_WIDTH, SPRITE_HEIGHT);
             PhysicsObjectPipeBottom.Gravity = Vector2.Zero;
+            ScoringZone = PhysicsObjectFactory.AreaRectTriggerOnce("scoring zone" + label, xPosition + CROP_SCORING_ZONE_WIDTH, yOffsetFromTop, CollisionType.AreaCastTrigger, SPRITE_WIDTH - CROP_SCORING_ZONE_WIDTH*2, gapHeight, onScoringZoneTriggered);
         }
-        public void LoadSingleInstance(ContentManager content)
+
+        public void onScoringZoneTriggered()
+        {
+            ScoreManager.Instance.IncreaseScore();
+            Debug.WriteLine("Scored! Current score: " + ScoreManager.Instance.CurrentScore);
+        }
+
+        public void LoadContent(ContentManager content)
         {
             //textures are loaded from the atlas in GameMain.cs
             //we still load the atlas here to get the texture
-            _pipeTopTexture = GameAtlasTextures.Instance.PipeTop;
-            _pipeBottomTexture = GameAtlasTextures.Instance.PipeBottom;
+            _pipeTopTexture = PreloadedAssets.Instance.PipeTop;
+            _pipeBottomTexture = PreloadedAssets.Instance.PipeBottom;
         }
 
         public void Update(GameTime gameTime)
         {
             PhysicsObjectPipeTop.Velocity = new Vector2(-_speedForce, 0);
             PhysicsObjectPipeBottom.Velocity = new Vector2(-_speedForce, 0);
-            
+            ScoringZone.Velocity = new Vector2(-_speedForce, 0);
+
             //this allows to move pipes and ignore any possible collisions
             PhysicsObjectPipeTop.Update(gameTime);
             PhysicsObjectPipeBottom.Update(gameTime);
+            ScoringZone.Update(gameTime);
         }
 
         /// <summary>

@@ -6,7 +6,7 @@ namespace flappyrogue_mg.Core
 {
     public interface GameEntity
     {
-        public abstract void LoadSingleInstance(ContentManager content);
+        public abstract void LoadContent(ContentManager content);
 
         public abstract void Update(GameTime gameTime);
 

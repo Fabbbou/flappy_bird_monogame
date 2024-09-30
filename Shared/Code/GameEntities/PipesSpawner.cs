@@ -6,8 +6,9 @@ using flappyrogue_mg.GameSpace;
 using Microsoft.Xna.Framework.Content;
 using MonoGame.Extended.Graphics;
 using System;
+using flappyrogue_mg.Core;
 
-public class PipesSpawner
+public class PipesSpawner : GameEntity
 {
     public const float GAP_HEIGHT = 60f;
     public const float OFFSET_PIPES_VISIBLE = 14;
@@ -24,7 +25,7 @@ public class PipesSpawner
     private Texture2DRegion _pipeTopTexture;
     private Texture2DRegion _pipeBottomTexture;
     
-    public void UpdateRandomHeight(GameTime gameTime)
+    public void Update(GameTime gameTime)
     {
         SpawnPipes(gameTime, _xOffsetFromRightBorder, RandomHeight(), GAP_HEIGHT, SPEED);
         UpdatePipes(gameTime);
@@ -64,12 +65,13 @@ public class PipesSpawner
         }
     }
 
-    public void Load(ContentManager content)
+    public void LoadContent(ContentManager content)
     {
-        //textures are loaded from the atlas in GameMain.cs
         //we still load the atlas here to get the texture
-        _pipeTopTexture = GameAtlasTextures.Instance.PipeTop;
-        _pipeBottomTexture = GameAtlasTextures.Instance.PipeBottom;
+        // this has been already called in the MainGame Screen PreloadedAssets.Instance.Load(content);
+
+        _pipeTopTexture = PreloadedAssets.Instance.PipeTop;
+        _pipeBottomTexture = PreloadedAssets.Instance.PipeBottom;
     }
     public void Draw(SpriteBatch spriteBatch)
     {

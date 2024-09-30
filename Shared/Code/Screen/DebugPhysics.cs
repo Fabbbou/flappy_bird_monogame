@@ -2,14 +2,10 @@ using flappyrogue_mg.GameSpace;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoGame.Aseprite;
 using MonoGame.Extended;
 using MonoGame.Extended.BitmapFonts;
-using MonoGame.Extended.Graphics;
 using MonoGame.Extended.Screens;
 using MonoGame.Extended.ViewportAdapters;
-using System;
-using static System.Net.Mime.MediaTypeNames;
 
 public class DebugPhysics : GameScreen
 {
@@ -19,7 +15,6 @@ public class DebugPhysics : GameScreen
 
     //to create a pixel texture for filled rectangle
     private Texture2D pixelTexture;
-    private BitmapFont _font;
 
     private PhysicsObject partFloor1;
     private PhysicsObject partFloor2;
@@ -51,7 +46,7 @@ public class DebugPhysics : GameScreen
         // Create a 1x1 pixel texture
         pixelTexture = new Texture2D(GraphicsDevice, 1, 1);
         pixelTexture.SetData(new[] { Color.White }); //the color here is not important, as we will change it later
-        _font = Content.Load<BitmapFont>("fonts/04b19");
+        PreloadedAssets.Instance.LoadContent(Content);
 
         var yFloor = 390;
         var xFloor = 0;
@@ -147,15 +142,16 @@ public class DebugPhysics : GameScreen
 
     public override void Draw(GameTime gameTime)
     {
+        var font = PreloadedAssets.Instance.mainFont;
         GraphicsDevice.Clear(Color.Black);
         _spriteBatch.Begin(transformMatrix: GetTransformMatrix(), samplerState: SamplerState.PointClamp);
         //draw a rectangle filled with blue color
         _spriteBatch.Draw(pixelTexture, new Rectangle(0, 0, Constants.DEBUG_WORLD_WIDTH, Constants.DEBUG_WORLD_HEIGHT), Color.Blue);
         //draw moving box tostring to see the velocity
-        _spriteBatch.DrawString(_font, "box pos: "+movingBox.Position.ToString(), new Vector2(0, 0), Color.White);
-        _spriteBatch.DrawString(_font, "box vel: "+movingBox.Velocity.ToString(), new Vector2(0, 30), Color.White);
-        _spriteBatch.DrawString(_font, "circle pos: "+movingCircle.Position.ToString(), new Vector2(0, 15), Color.White);
-        _spriteBatch.DrawString(_font, "circle vel: " + movingCircle.Velocity.ToString(), new Vector2(0, 45), Color.White);
+        _spriteBatch.DrawString(font, "box pos: "+movingBox.Position.ToString(), new Vector2(0, 0), Color.White);
+        _spriteBatch.DrawString(font, "box vel: "+movingBox.Velocity.ToString(), new Vector2(0, 30), Color.White);
+        _spriteBatch.DrawString(font, "circle pos: "+movingCircle.Position.ToString(), new Vector2(0, 15), Color.White);
+        _spriteBatch.DrawString(font, "circle vel: " + movingCircle.Velocity.ToString(), new Vector2(0, 45), Color.White);
         PhysicsDebug.Instance.Draw(_spriteBatch);
         _spriteBatch.End();
     }

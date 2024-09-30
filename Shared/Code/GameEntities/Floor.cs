@@ -27,7 +27,7 @@ namespace flappyrogue_mg.GameSpace
             _texture2Position = new Vector2(physicsObject.Position.X + SPRITE_WIDTH, physicsObject.Position.Y);
         }
 
-        public void LoadSingleInstance(ContentManager content)
+        public void LoadContent(ContentManager content)
         {
             // Load the sprite sheet
             _spriteSheet = content.Load<Texture2D>("sprites/floor");

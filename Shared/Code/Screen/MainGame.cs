@@ -23,7 +23,6 @@ namespace flappyrogue_mg.GameSpace
         private Floor _floor;
         private Pipes _pipes;
         private PipesSpawner _pipesSpawner;
-
         public MainGame(Game game) : base(game){}
 
         public override void LoadContent()
@@ -41,7 +40,7 @@ namespace flappyrogue_mg.GameSpace
             // for a pixel perfect game, the viewport has to be the exact size of the background img
             ViewportAdapter = new BoxingViewportAdapter(Game.Window, GraphicsDevice, Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            GameAtlasTextures.Instance.Load(Content, GraphicsDevice);
+            PreloadedAssets.Instance.LoadContent(Content);
             // 144 and 256 are width and height of the background image.
             // As they  are uniform, the altlas automatically find each sprite contained in the texture
             // i.e. the background image is divided in 144x256 sprites
@@ -53,9 +52,10 @@ namespace flappyrogue_mg.GameSpace
             _nightBackground = _atlas[1];
 
 
-            _floor.LoadSingleInstance(Content);
-            _pipesSpawner.Load(Content);
-            _bird.LoadSingleInstance(Content);
+            ScoreManager.Instance.LoadContent(Content);
+            _floor.LoadContent(Content);
+            _pipesSpawner.LoadContent(Content);
+            _bird.LoadContent(Content);
         }
 
         public override void Update(GameTime gameTime)
@@ -63,7 +63,7 @@ namespace flappyrogue_mg.GameSpace
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Game.Exit();
 
-            _pipesSpawner.UpdateRandomHeight(gameTime);
+            _pipesSpawner.Update(gameTime);
             _floor.Update(gameTime);
             _bird.Update(gameTime);
             
@@ -88,6 +88,8 @@ namespace flappyrogue_mg.GameSpace
 
             // Draw the floor
             _floor.Draw(_spriteBatch);
+
+            ScoreManager.Instance.Draw(_spriteBatch);
 
             // Draw the bird
             _bird.Draw(_spriteBatch);

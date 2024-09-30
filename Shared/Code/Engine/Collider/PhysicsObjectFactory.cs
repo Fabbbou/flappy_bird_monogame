@@ -1,3 +1,5 @@
+using System;
+
 public class PhysicsObjectFactory
 
 {
@@ -14,6 +16,15 @@ public class PhysicsObjectFactory
         var physicsObject = new PhysicsObject(label, x, y, collisionType);
         var rect = new CirclCollider(physicsObject, collisionType, radius);
         physicsObject.Collider = rect;
+        return physicsObject;
+    }
+
+    public static PhysicsObject AreaRectTriggerOnce(string label, float x, float y, CollisionType collisionType, float width, float height, Action onTrigger)
+    {
+        var physicsObject = new PhysicsObject(label, x, y, collisionType);
+        var rect = new RectCollider(physicsObject, collisionType, width, height);
+        physicsObject.Collider = rect;
+        physicsObject.Collider.OnCollisionAction = onTrigger;
         return physicsObject;
     }
 }   

@@ -1,9 +1,38 @@
 using Microsoft.Xna.Framework;
+using System;
 
 public abstract class Collider
 {
     public PhysicsObject PhysicsObject { get; private set; }
     public CollisionType CollisionType { get; private set; }
+
+    public Action _onCollisionAction;
+    private bool _isTriggered = false;
+    // Define an Action field to store the function
+    public Action OnCollisionAction
+    {
+        get => _onCollisionAction;
+        set
+        {
+            if (CollisionType != CollisionType.AreaCastTrigger)
+            {
+                throw new Exception("You can't set an OnCollisionAction on another collider than AreaCastTrigger collider");
+            }
+            _onCollisionAction = value;
+        }
+    }
+
+    // Method to trigger the action
+    public void TriggerCollision()
+    {
+        if (_isTriggered) return;
+        if (CollisionType != CollisionType.AreaCastTrigger)
+        {
+            throw new Exception("You can't trigger a collision on another collider than AreaCastTrigger collider");
+        }
+        OnCollisionAction?.Invoke();
+        _isTriggered = true;
+    }
 
     public Vector2 Position
     {
@@ -29,18 +58,10 @@ public abstract class Collider
         PhysicsObject.Velocity = new Vector2(0, PhysicsObject.Velocity.Y);
     }
 }
-public enum CollisionSide
-{
-    None,
-    Top,
-    Bottom,
-    Left,
-    Right,
-    Circle
-}
 
 public enum CollisionType
 {
     Static,
-    Moving
+    Moving,
+    AreaCastTrigger
 }

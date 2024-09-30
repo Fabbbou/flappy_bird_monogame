@@ -43,7 +43,7 @@ public class PhysicsEngine
         // Update physics object
         physicsObject.Update(gameTime);
         List<PhysicsObject> collisions = new();
-        if (physicsObject.Collider.CollisionType == CollisionType.Static)
+        if (physicsObject.Collider.CollisionType == CollisionType.Static) // Static objects dont collides with anything
         {
             return collisions;
         }
