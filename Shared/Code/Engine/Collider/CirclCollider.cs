@@ -4,6 +4,14 @@ public class CirclCollider : Collider
 {
     public float Radius { get; private set; }
 
+    public override float Left => Position.X - Radius;
+
+    public override float Right => Position.X + Radius ;
+
+    public override float Top => Position.Y - Radius;
+
+    public override float Bottom => Position.Y + Radius;
+
     public CirclCollider(PhysicsObject physicsObject, CollisionType collisionType, float radius) : base(physicsObject, collisionType)
     {
         Radius = radius;

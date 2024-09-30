@@ -77,7 +77,7 @@ public class DebugPhysics : GameScreen
         movingBox = PhysicsObjectFactory.Rect("movingBox", 40, 80, CollisionType.Moving, boxSize, boxSize);
         movingBox.Gravity = Vector2.Zero;
 
-        movingCircle = PhysicsObjectFactory.Circl("movingCircle", 80, 80, CollisionType.Moving, circleRadius);
+        movingCircle = PhysicsObjectFactory.Circl("movingCircle", 0, 0, CollisionType.Moving, circleRadius);
         movingCircle.Gravity = Vector2.Zero;
 
     }

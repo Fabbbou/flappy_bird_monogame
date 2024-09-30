@@ -20,7 +20,7 @@ public class Collides
     private static bool ResolveCollision(RectCollider rect1, RectCollider rect2)
     {
 
-        if(!rect1.CollidesWith(rect2)) return false;
+        if (!rect1.CollidesWith(rect2)) return false;
         // Calculate the intersection depth (overlap) between the two rectangles
         float overlapX = Math.Min(
             rect1.Right - rect2.Left,
@@ -39,7 +39,7 @@ public class Collides
                 rect1.Position = new Vector2(rect2.Left - rect1.Width, rect1.Position.Y);
                 if (rect1.PhysicsObject.Velocity.X > 0)
                 {
-                     rect1.PhysicsObject.Velocity.X = 0;
+                    rect1.PhysicsObject.Velocity.X = 0;
                 }
             }
             else
@@ -53,79 +53,80 @@ public class Collides
             }
         else
             if (rect1.Top < rect2.Top)
-            {
-                //bottom
-                rect1.Position = new Vector2(rect1.Position.X, rect2.Top - rect1.Height);
-                if (rect1.PhysicsObject.Velocity.Y > 0)
-                {
-                    rect1.PhysicsObject.Velocity.Y = 0;
-                }
-            }
-            else
-            {
-                //top
-                rect1.Position = new Vector2(rect1.Position.X, rect2.Top + rect2.Height);
-                if (rect1.PhysicsObject.Velocity.Y < 0)
-                {
-                    rect1.PhysicsObject.Velocity.Y = 0;
-                }
-            }
-        return true;
-    }
-
-    private static bool ResolveCollision(CirclCollider circl, RectCollider rect)
-    {
-        if (!CirclVsRect(circl, rect)) return false;
-        Vector2 closestPoint = new Vector2(
-            MathHelper.Clamp(circl.Position.X, rect.Left, rect.Right),
-            MathHelper.Clamp(circl.Position.Y, rect.Top, rect.Bottom)
-        );
-
-        Vector2 direction = circl.Position - closestPoint;
-        direction.Normalize();
-        circl.Position = closestPoint + direction * circl.Radius;
-
-        // Adjust velocity to slide along the edge or corner
-        if (IsCollidingWithCorner(circl, rect))
         {
-            // Handle corner collision
-            if (Math.Abs(direction.X) > Math.Abs(direction.Y))
+            //bottom
+            rect1.Position = new Vector2(rect1.Position.X, rect2.Top - rect1.Height);
+            if (rect1.PhysicsObject.Velocity.Y > 0)
             {
-                circl.PhysicsObject.Velocity.Y = 0;
-            }
-            else
-            {
-                circl.PhysicsObject.Velocity.X = 0;
+                rect1.PhysicsObject.Velocity.Y = 0;
             }
         }
         else
         {
-            //reset velocity when colliding something on the Y axis
-            if (direction.Y != 0)
+            //top
+            rect1.Position = new Vector2(rect1.Position.X, rect2.Top + rect2.Height);
+            if (rect1.PhysicsObject.Velocity.Y < 0)
             {
-                circl.PhysicsObject.Velocity.Y = 0;
-            }
-            //reset velocity when colliding something on the X axis
-            if (direction.X != 0)
-            {
-                circl.PhysicsObject.Velocity.X = 0;
+                rect1.PhysicsObject.Velocity.Y = 0;
             }
         }
-        
         return true;
     }
 
-    private static bool IsCollidingWithCorner(CirclCollider circl, RectCollider rect)
+    private static bool ResolveCollision(CirclCollider rect1, RectCollider rect2)
     {
-        foreach (Vector2 corner in rect.Corners)
-        {
-            if (Vector2.Distance(circl.Position, corner) < circl.Radius)
+
+        if (!rect1.CollidesWith(rect2)) return false;
+        // Calculate the intersection depth (overlap) between the two rectangles
+        float overlapX = Math.Min(
+            rect1.Right - rect2.Left,
+            rect2.Right - rect1.Left
+        );
+        float overlapY = Math.Min(
+            rect1.Bottom - rect2.Top,
+            rect2.Bottom - rect1.Top
+        );
+        // Resolve the collision by moving rect1 out of rect2
+        // The collision is on the X axis
+        if (overlapX < overlapY)
+            if (rect1.Left < rect2.Left)
             {
-                return true;
+                //right
+                rect1.Position = new Vector2(rect2.Left - rect1.Radius, rect1.Position.Y);
+                if (rect1.PhysicsObject.Velocity.X > 0)
+                {
+                    rect1.PhysicsObject.Velocity.X = 0;
+                }
+            }
+            else
+            {
+                //left
+                rect1.Position = new Vector2(rect2.Right + rect1.Radius, rect1.Position.Y);
+                if (rect1.PhysicsObject.Velocity.X < 0)
+                {
+                    rect1.PhysicsObject.Velocity.X = 0;
+                }
+            }
+        else
+            if (rect1.Top < rect2.Top)
+        {
+            //bottom
+            rect1.Position = new Vector2(rect1.Position.X, rect2.Top - rect1.Radius);
+            if (rect1.PhysicsObject.Velocity.Y > 0)
+            {
+                rect1.PhysicsObject.Velocity.Y = 0;
             }
         }
-
-        return false;
+        else
+        {
+            //top
+            rect1.Position = new Vector2(rect1.Position.X, rect2.Top + rect2.Height + rect1.Radius);
+            if (rect1.PhysicsObject.Velocity.Y < 0)
+            {
+                rect1.PhysicsObject.Velocity.Y = 0;
+            }
+        }
+        return true;
     }
 
     private static bool CirclVsRect(CirclCollider circl, RectCollider rect)

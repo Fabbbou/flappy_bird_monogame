@@ -17,6 +17,11 @@ public abstract class Collider
         CollisionType = collisionType;
     }
 
+    public abstract float Left { get; }
+    public abstract float Right { get; }
+    public abstract float Top { get; }
+    public abstract float Bottom { get; }
+
     public abstract bool CollidesWith(Collider other);
 
     public void StopHorizontal()

@@ -92,10 +92,10 @@ public class PhysicsObject
     {
         if(Collider is RectCollider rect)
         {
-            spriteBatch.DrawRectangle(Position, rect.Size, Constants.DEFAULT_DEBUG_COLOR_GIZMOS);
+            spriteBatch.DrawRectangle(rect.Position, rect.Size, Constants.DEFAULT_DEBUG_COLOR_GIZMOS);
         }else if (Collider is CirclCollider circl)
         {
-            spriteBatch.DrawCircle(Position, circl.Radius, 16, Constants.DEFAULT_DEBUG_COLOR_GIZMOS);
+            spriteBatch.DrawCircle(circl.Position, circl.Radius, 16, Constants.DEFAULT_DEBUG_COLOR_GIZMOS);
         }
     }
 
