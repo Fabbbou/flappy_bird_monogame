@@ -29,8 +29,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Code\GameEntities\Bird.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\GameEntities\Floor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\GameEntities\PipesSpawner.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Code\screen\DebugPhysicsScreen.cs" />
-    <Compile Include="..\Shared\Code\Screen\ScreenNames.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Screen\DebugPhysicsScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Screen\ScreenNames.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Screen\MainGameScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\GameEntities\Pipes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Screen\ZoomedOutGameStarted.cs" />

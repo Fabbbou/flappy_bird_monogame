@@ -13,19 +13,19 @@ namespace Android
         Icon = "@drawable/icon",
         AlwaysRetainTaskState = true,
         LaunchMode = LaunchMode.SingleInstance,
-        ScreenOrientation = ScreenOrientation.FullUser,
+        ScreenOrientation = ScreenOrientation.Portrait,
         ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden | ConfigChanges.ScreenSize
     )]
     public class Activity1 : AndroidGameActivity
     {
-        private GameStarted _game;
+        private Main _game;
         private View _view;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
-            _game = new GameMain();
+            _game = Main.Instance;
             _view = _game.Services.GetService(typeof(View)) as View;
 
             SetContentView(_view);

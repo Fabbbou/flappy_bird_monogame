@@ -33,9 +33,9 @@ public class DebugPhysics : GameScreen
     public override void LoadContent()
     {
         Game.IsMouseVisible = true;
-        Main.Instance.Graphics.PreferredBackBufferWidth = Constants.DEBUG_SCREEN_WIDTH;
-        Main.Instance.Graphics.PreferredBackBufferHeight = Constants.DEBUG_SCREEN_HEIGHT;
-        Main.Instance.Graphics.ApplyChanges();
+        //Main.Instance._graphics.PreferredBackBufferWidth = Constants.DEBUG_SCREEN_WIDTH;
+        //Main.Instance._graphics.PreferredBackBufferHeight = Constants.DEBUG_SCREEN_HEIGHT;
+        //Main.Instance._graphics.ApplyChanges();
 
         ViewportAdapter = new ScalingViewportAdapter(GraphicsDevice, Constants.DEBUG_WORLD_WIDTH, Constants.DEBUG_WORLD_WIDTH);
         _spriteBatch = new SpriteBatch(GraphicsDevice);

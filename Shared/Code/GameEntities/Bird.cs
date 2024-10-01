@@ -72,7 +72,7 @@ namespace flappyrogue_mg.GameSpace
             Jump();
 
             _idleCycle.Rotation = MathHelper.ToRadians(MathHelper.Clamp(PhysicsObject.Velocity.Y * BIRD_ROTATION, -30f, 90f));
-            Debug.WriteLine(MathHelper.Clamp(PhysicsObject.Velocity.Y * BIRD_ROTATION, -90f, 30f));
+            //Debug.WriteLine(MathHelper.Clamp(PhysicsObject.Velocity.Y * BIRD_ROTATION, -90f, 30f));
 
 
             PhysicsEngine.Instance.MoveAndSlide(PhysicsObject, gameTime);

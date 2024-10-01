@@ -5,6 +5,7 @@ using MonoGame.Aseprite;
 using MonoGame.Extended.Graphics;
 using MonoGame.Extended.Screens;
 using MonoGame.Extended.ViewportAdapters;
+using System;
 
 
 namespace flappyrogue_mg.GameSpace
@@ -26,10 +27,7 @@ namespace flappyrogue_mg.GameSpace
 
         public override void LoadContent()
         {
-            //resize the startup window to match the game ratio
-            Main.Instance.Graphics.PreferredBackBufferHeight = (int)(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height * 0.75f);
-            Main.Instance.Graphics.PreferredBackBufferWidth = Main.Instance.Graphics.PreferredBackBufferHeight * 9 / 16;
-            Main.Instance.Graphics.ApplyChanges();
+            Game.IsMouseVisible = true;
             _floor = new Floor();
             _pipesSpawner = new PipesSpawner();
             _bird = new Bird(this);
