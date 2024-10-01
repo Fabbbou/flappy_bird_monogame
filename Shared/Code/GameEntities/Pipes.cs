@@ -45,7 +45,6 @@ namespace flappyrogue_mg.GameSpace
 
         public override void LoadContent(ContentManager content)
         {
-            base.LoadContent(content);
             //textures are loaded from the atlas in GameMain.cs
             //we still load the atlas here to get the texture
             _pipeTopTexture = PreloadedAssets.Instance.PipeTop;
@@ -60,7 +59,6 @@ namespace flappyrogue_mg.GameSpace
 
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
             PhysicsObjectPipeTop.Velocity = new Vector2(-_speedForce, 0);
             PhysicsObjectPipeBottom.Velocity = new Vector2(-_speedForce, 0);
             ScoringZone.Velocity = new Vector2(-_speedForce, 0);
@@ -77,7 +75,6 @@ namespace flappyrogue_mg.GameSpace
         /// <param name="spriteBatch"></param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            base.Draw(spriteBatch);
             spriteBatch.Draw(_pipeTopTexture, PhysicsObjectPipeTop.Position, Color.White);
             spriteBatch.Draw(_pipeBottomTexture, PhysicsObjectPipeBottom.Position, Color.White);
         }

@@ -37,7 +37,6 @@ public class PipesSpawner : GameEntity
 
     public override void Update(GameTime gameTime)
     {
-        base.Update(gameTime);
         SpawnPipes(gameTime);
         UpdatePipes(gameTime);
     }
@@ -78,11 +77,9 @@ public class PipesSpawner : GameEntity
 
     public override void LoadContent(ContentManager content)
     {
-        base.LoadContent(content);
     }
     public override void Draw(SpriteBatch spriteBatch)
     {
-        base.Draw(spriteBatch);
         foreach (Pipes pipe in _pipes)
         {
             pipe.Draw(spriteBatch);

@@ -33,7 +33,6 @@ namespace flappyrogue_mg.GameSpace
         private SpriteSheet _spriteSheet;
         private AnimatedSprite _idleCycle;
         private BitmapFont _font;
-        private SoundEffect _flapSound;
         private Vector2 _jumpForce = new Vector2(0, -BIRD_SPEED);
 
         // by default, if the button is maintained, the bird will jump continuously.
@@ -49,7 +48,6 @@ namespace flappyrogue_mg.GameSpace
 
         public override void LoadContent(ContentManager content)
         {
-            base.LoadContent(content);
             // Load the font
             _font = content.Load<BitmapFont>("fonts/04b19");
 
@@ -61,14 +59,10 @@ namespace flappyrogue_mg.GameSpace
             //the origin of the sprite is the center of the sprite, so the rotation is centered
             _idleCycle.Origin = new Vector2(SPRITE_WIDTH / 2f, SPRITE_HEIGHT / 2f);
             _idleCycle.Play();
-
-            //load sfx_wing sound
-            _flapSound = content.Load<SoundEffect>("sounds/sfx_wing");
         }
 
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             _idleCycle.Update(deltaTime);
             Jump();
@@ -97,7 +91,7 @@ namespace flappyrogue_mg.GameSpace
                 {
                     PhysicsObject.Velocity = _jumpForce;
                     _pressedButtonJump = true;
-                    _flapSound.Play();
+                    SoundManager.Instance.JumpSound.Play();
                 }
             }
             else
@@ -108,7 +102,6 @@ namespace flappyrogue_mg.GameSpace
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            base.Draw(spriteBatch);
             spriteBatch.Draw(_idleCycle, PhysicsObject.Position);
         }
     }

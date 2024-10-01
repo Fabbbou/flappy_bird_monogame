@@ -2,13 +2,13 @@ using Microsoft.Xna.Framework;
 
 public class StateMachine
 {
-    private GameState _currentState;
+    public GameState CurrentState { get; private set; }
     private GameState _nextState;
     private bool _isTransitioning;
 
     public StateMachine(GameState initialState)
     {
-        _currentState = initialState;
+        CurrentState = initialState;
         _isTransitioning = false;
     }
 
@@ -16,13 +16,13 @@ public class StateMachine
     {
         if (_isTransitioning)
         {
-            _currentState.Exit();
-            _currentState = _nextState;
-            _currentState.Enter();
+            CurrentState.Exit();
+            CurrentState = _nextState;
+            CurrentState.Enter();
             _isTransitioning = false;
         }
 
-        _currentState.Update(gameTime);
+        CurrentState.Update(gameTime);
     }
 
     public void ChangeState(GameState newState)

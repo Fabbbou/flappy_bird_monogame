@@ -29,14 +29,12 @@ namespace flappyrogue_mg.GameSpace
 
         public override void LoadContent(ContentManager content)
         {
-            base.LoadContent(content);
             // Load the sprite sheet
             _spriteSheet = content.Load<Texture2D>("sprites/floor");
         }
 
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             _texturePosition.X -= PipesSpawner.SPEED * deltaTime;
             _texture2Position.X -= PipesSpawner.SPEED * deltaTime;
@@ -52,7 +50,6 @@ namespace flappyrogue_mg.GameSpace
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            base.Draw(spriteBatch);
             spriteBatch.Draw(_spriteSheet, _texturePosition, Color.White);
             spriteBatch.Draw(_spriteSheet, _texture2Position, Color.White);
         }

@@ -7,6 +7,7 @@ using MonoGame.Extended.Graphics;
 using MonoGame.Extended.Screens;
 using MonoGame.Extended.ViewportAdapters;
 using System;
+using System.Security.Cryptography.X509Certificates;
 
 
 namespace flappyrogue_mg.GameSpace
@@ -26,24 +27,35 @@ namespace flappyrogue_mg.GameSpace
         public Floor Floor { get; private set; }
         public PipesSpawner PipesSpawner { get; private set; }
         public PauseButton PauseButton { get; private set; }
+        public World World { get; private set; }
         public MainGameScreen(Game game) : base(game){}
 
         public override void LoadContent()
         {
             base.LoadContent();
+            
             // setting the viewport dimensions to be the same as the background (bg) image
             // as the bg is portrait, the game will be portrait to
             // for a pixel perfect game, the viewport has to be the exact size of the background img
+            Game.IsMouseVisible = true;
             ViewportAdapter = new BoxingViewportAdapter(Game.Window, GraphicsDevice, Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
             Camera = new OrthographicCamera(ViewportAdapter);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            Game.IsMouseVisible = true;
 
             StateMachine = new StateMachine(new PlayState(this));
+            SoundManager.Instance.LoadContent(Content);
+
             Floor = new Floor();
             PipesSpawner = new PipesSpawner();
             Bird = new Bird(this);
             PauseButton = new PauseButton(this);
+            
+            World = new World();
+            World.AddGameEntity(Floor);
+            World.AddGameEntity(PipesSpawner);
+            World.AddGameEntity(Bird);
+            World.AddGameEntity(ScoreManager.Instance);
+            World.AddGameEntity(PauseButton);
 
             PreloadedAssets.Instance.LoadContent(Content);
             // 144 and 256 are width and height of the background image.
@@ -56,12 +68,7 @@ namespace flappyrogue_mg.GameSpace
             _dayBackground = _atlas[0];
             _nightBackground = _atlas[1];
 
-
-            Floor.LoadContent(Content);
-            PipesSpawner.LoadContent(Content);
-            Bird.LoadContent(Content);
-            ScoreManager.Instance.LoadContent(Content);
-            PauseButton.LoadContent(Content);
+            World.LoadContent(Content);
         }
 
         public override void Update(GameTime gameTime)
@@ -70,10 +77,7 @@ namespace flappyrogue_mg.GameSpace
                 Game.Exit();
             StateMachine.Update(gameTime);
 
-            PipesSpawner.Update(gameTime);
-            Floor.Update(gameTime);
-            Bird.Update(gameTime);
-            PauseButton.Update(gameTime); //does nothing for now
+            World.Update(gameTime);
 
             PhysicsEngine.Instance.Update(gameTime);
         }
@@ -85,15 +89,9 @@ namespace flappyrogue_mg.GameSpace
             
             //background
             _spriteBatch.Draw(_dayBackground, Vector2.Zero, Color.White);
-            
-            //Game entities
-            PipesSpawner.Draw(_spriteBatch);
-            Floor.Draw(_spriteBatch);
-            Bird.Draw(_spriteBatch);
 
-            //UI
-            ScoreManager.Instance.Draw(_spriteBatch);
-            PauseButton.Draw(_spriteBatch);
+            World.Draw(_spriteBatch);
+
             PhysicsGizmosRegistry.Instance.Draw(_spriteBatch);
             _spriteBatch.End();
         }

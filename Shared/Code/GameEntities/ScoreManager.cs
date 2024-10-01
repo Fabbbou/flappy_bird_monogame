@@ -23,33 +23,28 @@ public class ScoreManager : GameEntity
     public int CurrentScore { get; private set; }
 
     private BitmapFont _font;
-    private SoundEffect _earnPointSound;
 
     private ScoreManager() {}
 
     public void IncreaseScore()
     {
         CurrentScore++;
-        _earnPointSound.Play();
+        SoundManager.Instance.ScoreSound.Play();
     }
 
     public override void LoadContent(ContentManager content)
     {
-        base.LoadContent(content);
         CurrentScore = 0;
         _font = PreloadedAssets.Instance.mainFont;
-        _earnPointSound = content.Load<SoundEffect>("sounds/sfx_point");
     }
 
     public override void Update(GameTime gameTime)
     {
-        base.Update(gameTime);
         //nothing to do for now
     }
 
     public override void Draw(SpriteBatch spriteBatch)
     {
-        base.Draw(spriteBatch);
         var text = CurrentScore.ToString();
         var rect = _font.GetStringRectangle(text, Vector2.Zero);
         spriteBatch.DrawString(_font, text, new Vector2(Constants.WORLD_MIDDLE_SCREEN_WIDTH - rect.Width * .5f, 10), Color.White);

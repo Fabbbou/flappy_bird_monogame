@@ -22,7 +22,6 @@ public class PauseButton : GameEntity
 
     public override void Draw(SpriteBatch spriteBatch)
     {
-        base.Draw(spriteBatch);
         spriteBatch.Draw(_pauseButtonTexture, POSITION, Color.White);
     }
 
@@ -33,13 +32,15 @@ public class PauseButton : GameEntity
 
     public override void Update(GameTime gameTime)
     {
-        base.Update(gameTime);
         _clickableRegionHandler.Update(gameTime);
     }
 
     public void OnClick()
     {
-        _mainGameScreen.StateMachine.ChangeState(new PauseState(_mainGameScreen));
+        if(_mainGameScreen.StateMachine.CurrentState is PlayState)
+            _mainGameScreen.StateMachine.ChangeState(new PauseState(_mainGameScreen));
+        else
+            _mainGameScreen.StateMachine.ChangeState(new PlayState(_mainGameScreen));
         Debug.WriteLine("Pause button clicked");
     }
 }

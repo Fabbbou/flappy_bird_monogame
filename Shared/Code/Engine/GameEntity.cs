@@ -19,17 +19,10 @@ namespace flappyrogue_mg.Core
             set => _isPaused = value;
         }
 
-        public virtual void LoadContent(ContentManager content) { }
+        public abstract void LoadContent(ContentManager content);
 
-        public virtual void Update(GameTime gameTime)
-        {
-            if (!IsActive) return;
-            if(IsPaused) return;
-        }
+        public abstract void Update(GameTime gameTime);
 
-        public virtual void Draw(SpriteBatch spriteBatch)
-        {
-            if(!IsActive) return;
-        }
+        public abstract void Draw(SpriteBatch spriteBatch);
     }
 }
