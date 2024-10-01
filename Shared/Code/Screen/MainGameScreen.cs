@@ -28,6 +28,7 @@ namespace flappyrogue_mg.GameSpace
         public PipesSpawner PipesSpawner { get; private set; }
         public PauseButton PauseButton { get; private set; }
         public World World { get; private set; }
+        public SoundUI SoundUI { get; private set; }
         public MainGameScreen(Game game) : base(game){}
 
         public override void LoadContent()
@@ -45,6 +46,7 @@ namespace flappyrogue_mg.GameSpace
             StateMachine = new StateMachine(new PlayState(this));
             SoundManager.Instance.LoadContent(Content);
 
+            SoundUI = new SoundUI(this);
             Floor = new Floor();
             PipesSpawner = new PipesSpawner();
             Bird = new Bird(this);
@@ -56,6 +58,7 @@ namespace flappyrogue_mg.GameSpace
             World.AddGameEntity(Bird);
             World.AddGameEntity(ScoreManager.Instance);
             World.AddGameEntity(PauseButton);
+            World.AddGameEntity(SoundUI);
 
             PreloadedAssets.Instance.LoadContent(Content);
             // 144 and 256 are width and height of the background image.

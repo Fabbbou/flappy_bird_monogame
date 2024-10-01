@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using System;
 using System.Diagnostics;
-using RenderingLibrary;
 using MonoGame.Extended;
 
 public class ClickableRegionHandler

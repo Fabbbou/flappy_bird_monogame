@@ -10,14 +10,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Code\Constants.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)code\engine\input\ClickableRegionHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)code\engine\FilledRectangle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Input\ClickableRegionHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\PhysicsObjectFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\State\StateMachine.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\State\State.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\World.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\gameentities\PauseButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\GameEntities\ScoreManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)code\SoundManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Sound\SoundManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)code\sound\SoundUI.cs" />
     <Compile Include="..\Shared\code\states\MainGameState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\states\PauseState.cs" />
     <Compile Include="..\Shared\code\states\PlayState.cs" />
@@ -69,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Code\Sound\" />
     <Folder Include="$(MSBuildThisFileDirectory)Code\States\" />
   </ItemGroup>
 </Project>

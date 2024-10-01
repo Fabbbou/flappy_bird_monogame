@@ -20,9 +20,42 @@ public class Constants
     public static readonly Color DEFAULT_DEBUG_COLOR_GIZMOS = Color.Yellow;
 
     //Sprite dimensions, position
-    public const int SPRITE_PAUSE_BUTTON_WIDTH = 13;
-    public const int SPRITE_PAUSE_BUTTON_HEIGHT = 14;
-    public const float START_POSITION_X_PAUSE_BUTTON = WORLD_WIDTH - SPRITE_PAUSE_BUTTON_WIDTH - 5;
-    public const float START_POSITION_Y_PAUSE_BUTTON = 5;
+    // - Pause screen UI
+    public static readonly Vector2 SIZE_PAUSE_BUTTON = new(13, 14);
+    public static readonly Vector2 POSITION_PAUSE_BUTTON = new(WORLD_WIDTH - SIZE_PAUSE_BUTTON.Y - 5, 5);
+
+    public const int SPRITE_OK_ATLAS_X = 462;
+    public const int SPRITE_OK_ATLAS_Y = 42;
+    public static readonly Vector2 SIZE_OK_BUTTON = new(40, 14);
+    public static readonly Vector2 POSITION_OK_BUTTON = new(WORLD_WIDTH*0.5f - SIZE_OK_BUTTON.X * 0.5f, WORLD_HEIGHT - 100);
+
+    public const int SPRITE_MINUS_BUTTON_WIDTH = 5;
+    public const int SPRITE_MINUS_BUTTON_HEIGHT = 3;
+    public const int SPRITE_MINUS_ATLAS_X = 502;
+    public const int SPRITE_MINUS_ATLAS_Y = 85;
+
+    public const int SPRITE_PLUS_BUTTON_WIDTH = 5;
+    public const int SPRITE_PLUS_BUTTON_HEIGHT = 5;
+    public const int SPRITE_PLUS_ATLAS_X = 496;
+    public const int SPRITE_PLUS_ATLAS_Y = 84;
+
+    public const int SPRITE_BAR_SOUND_ATLAS_X = 488;
+    public const int SPRITE_BAR_SOUND_ATLAS_Y = 107;
+    public static readonly Vector2 SIZE_BAR_SOUND = new(3, 6);
+
+    public const int SPRITE_BAR_EMPTY_SOUND_ATLAS_X = 493;
+    public const int SPRITE_BAR_EMPTY_SOUND_ATLAS_Y = 107;
+    public static readonly Vector2 SIZE_BAR_EMPTY_SOUND = new(3, 6);
+
+    public const int SPRITE_LOGO_FX_ATLAS_X = 165;
+    public const int SPRITE_LOGO_FX_ATLAS_Y = 320;
+    public static readonly Vector2 SIZE_LOGO_FX = new(9, 10);
+
+    public const int SPRITE_LOGO_MUSIC_ATLAS_X = 165;
+    public const int SPRITE_LOGO_MUSIC_ATLAS_Y = 308;
+    public static readonly Vector2 SIZE_LOGO_MUSIC = new(9, 10);
+
+
+
 
 }

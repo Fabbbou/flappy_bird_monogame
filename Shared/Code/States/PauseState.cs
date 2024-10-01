@@ -7,6 +7,9 @@ public class PauseState : MainGameState
     public PauseState(MainGameScreen mainGameScreen) : base(mainGameScreen) {}
     public override void Enter()
     {
+        MainGameScreen.SoundUI.IsActive = true;
+        MainGameScreen.PauseButton.IsActive = false;
+
         MainGameScreen.Bird.IsPaused = true;
         MainGameScreen.PipesSpawner.IsPaused = true;
         MainGameScreen.Floor.IsPaused = true;
@@ -20,6 +23,10 @@ public class PauseState : MainGameState
 
     public override void Exit()
     {
+        MainGameScreen.SoundUI.IsActive = false;
+        MainGameScreen.PauseButton.IsActive = true;
+        //maybe save the sound in store?
+
         MainGameScreen.Bird.IsPaused = false;
         MainGameScreen.PipesSpawner.IsPaused = false;
         MainGameScreen.Floor.IsPaused = false;

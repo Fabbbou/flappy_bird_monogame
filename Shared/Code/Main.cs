@@ -4,8 +4,6 @@ using MonoGame.Extended;
 using MonoGame.Extended.ECS;
 using MonoGame.Extended.Screens;
 using MonoGame.Extended.ViewportAdapters;
-using MonoGameGum.GueDeriving;
-using RenderingLibrary;
 using System;
 using System.Collections.Generic;
 
@@ -61,9 +59,6 @@ namespace flappyrogue_mg.GameSpace
 
         protected override void Initialize()
         {
-            //GUM config
-            SystemManagers.Default = new SystemManagers();
-            SystemManagers.Default.Initialize(_graphics.GraphicsDevice, fullInstantiation: true);
 
             // setting the viewport dimensions to be the same as the background (bg) image
             // as the bg is portrait, the game will be portrait to
@@ -93,8 +88,6 @@ namespace flappyrogue_mg.GameSpace
 
         protected override void Update(GameTime gameTime)
         {
-            //GUM config
-            SystemManagers.Default.Activity(gameTime.TotalGameTime.TotalSeconds);
             
             _fpsCounter.Update(gameTime);
             base.Update(gameTime);
@@ -106,9 +99,6 @@ namespace flappyrogue_mg.GameSpace
             _fpsCounter.Draw(gameTime);
             Window.Title = $"{_currentScreen} {_fpsCounter.FramesPerSecond}";
             base.Draw(gameTime);
-            
-            //GUM config
-            SystemManagers.Default.Draw();
         }
     }
 }
