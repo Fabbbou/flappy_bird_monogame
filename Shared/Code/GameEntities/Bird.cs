@@ -47,8 +47,9 @@ namespace flappyrogue_mg.GameSpace
             PhysicsObject.Gravity = new Vector2(0, BIRD_GRAVITY);
         }
 
-        public void LoadContent(ContentManager content)
+        public override void LoadContent(ContentManager content)
         {
+            base.LoadContent(content);
             // Load the font
             _font = content.Load<BitmapFont>("fonts/04b19");
 
@@ -65,8 +66,9 @@ namespace flappyrogue_mg.GameSpace
             _flapSound = content.Load<SoundEffect>("sounds/sfx_wing");
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             _idleCycle.Update(deltaTime);
             Jump();
@@ -104,8 +106,9 @@ namespace flappyrogue_mg.GameSpace
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
+            base.Draw(spriteBatch);
             spriteBatch.Draw(_idleCycle, PhysicsObject.Position);
         }
     }

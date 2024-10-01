@@ -10,11 +10,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Code\Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)code\engine\input\ClickableRegionHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\PhysicsObjectFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\State\StateMachine.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\State\State.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)code\gameentities\PauseButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\GameEntities\ScoreManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)code\states\MenuState.cs" />
+    <Compile Include="..\Shared\code\states\MainGameState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)code\states\PauseState.cs" />
+    <Compile Include="..\Shared\code\states\PlayState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\UI\PreloadedAssets.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\Collider\CirclCollider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\Collider\Collider.cs" />

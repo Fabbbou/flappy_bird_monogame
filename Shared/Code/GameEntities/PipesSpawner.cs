@@ -21,16 +21,28 @@ public class PipesSpawner : GameEntity
 
     private float _xOffsetFromRightBorder = 60f;
 
-    private Texture2DRegion _pipeTopTexture;
-    private Texture2DRegion _pipeBottomTexture;
-    
-    public void Update(GameTime gameTime)
+    public override bool IsPaused
     {
-        SpawnPipes(gameTime, _xOffsetFromRightBorder, RandomHeight(), GAP_HEIGHT, SPEED);
+        set
+        {
+            _isPaused = value;
+            foreach (Pipes pipe in _pipes)
+            {
+                pipe.IsPaused = value;
+            }
+
+        }
+    }
+
+
+    public override void Update(GameTime gameTime)
+    {
+        base.Update(gameTime);
+        SpawnPipes(gameTime);
         UpdatePipes(gameTime);
     }
 
-    private float RandomHeight()
+    private static float RandomHeight()
     {
         float minHeight = OFFSET_PIPES_VISIBLE; //to see a little bit of the pipe
         //max height is the height of the screen minus the height of the floor (PLAYABLE_WORLD_HEIGHT) minus the height of the pipe (so it doesnt fly)
@@ -38,14 +50,14 @@ public class PipesSpawner : GameEntity
         return (float)new Random().NextDouble() * (maxHeight - minHeight) + minHeight;
     }
 
-    private void SpawnPipes(GameTime gameTime, float xOffsetFromRightBorder, float yOffsetFromTop, float gapHeight, float speed)
+    private void SpawnPipes(GameTime gameTime)
     {
         _timeToSpawnCounter += (float)gameTime.ElapsedGameTime.TotalSeconds;
         if (_timeToSpawnCounter >= _timeToSpawn)
         {
             _timeToSpawnCounter = 0f;
             pipesCounter++;
-            _pipes.Add(new Pipes(" "+ pipesCounter, xOffsetFromRightBorder, yOffsetFromTop, gapHeight, speed));
+            _pipes.Add(CreatePipes());
         }
     }
 
@@ -64,19 +76,23 @@ public class PipesSpawner : GameEntity
         }
     }
 
-    public void LoadContent(ContentManager content)
+    public override void LoadContent(ContentManager content)
     {
-        //we still load the atlas here to get the texture
-        // this has been already called in the MainGame Screen PreloadedAssets.Instance.Load(content);
-
-        _pipeTopTexture = PreloadedAssets.Instance.PipeTop;
-        _pipeBottomTexture = PreloadedAssets.Instance.PipeBottom;
+        base.LoadContent(content);
     }
-    public void Draw(SpriteBatch spriteBatch)
+    public override void Draw(SpriteBatch spriteBatch)
     {
+        base.Draw(spriteBatch);
         foreach (Pipes pipe in _pipes)
         {
-            pipe.Draw(spriteBatch, _pipeTopTexture, _pipeBottomTexture);
+            pipe.Draw(spriteBatch);
         }
+    }
+
+    public Pipes CreatePipes()
+    {
+        Pipes pipes = new(" " + pipesCounter, _xOffsetFromRightBorder, RandomHeight(), GAP_HEIGHT, SPEED);
+        pipes.BypassLoadContent();
+        return pipes;
     }
 }

@@ -75,13 +75,6 @@ namespace flappyrogue_mg.GameSpace
             _screens.Add(ScreenNames.ZoomedOutMainScreen, new ZoomedOutMainScreen(this));
             _screens.Add(ScreenNames.DebugPhysicsScreen, new DebugPhysics(this));
 
-            //GUM Test
-            var rectangle = new ColoredRectangleRuntime();
-            rectangle.Width = 100;
-            rectangle.Height = 100;
-            rectangle.Color = Color.White;
-            rectangle.AddToManagers(SystemManagers.Default, null);
-
             base.Initialize();
         }
 

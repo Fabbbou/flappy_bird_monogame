@@ -43,16 +43,24 @@ namespace flappyrogue_mg.GameSpace
             Debug.WriteLine("Scored! Current score: " + ScoreManager.Instance.CurrentScore);
         }
 
-        public void LoadContent(ContentManager content)
+        public override void LoadContent(ContentManager content)
         {
+            base.LoadContent(content);
             //textures are loaded from the atlas in GameMain.cs
             //we still load the atlas here to get the texture
             _pipeTopTexture = PreloadedAssets.Instance.PipeTop;
             _pipeBottomTexture = PreloadedAssets.Instance.PipeBottom;
         }
 
-        public void Update(GameTime gameTime)
+        public void BypassLoadContent()
         {
+            _pipeTopTexture = PreloadedAssets.Instance.PipeTop;
+            _pipeBottomTexture = PreloadedAssets.Instance.PipeBottom;
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
             PhysicsObjectPipeTop.Velocity = new Vector2(-_speedForce, 0);
             PhysicsObjectPipeBottom.Velocity = new Vector2(-_speedForce, 0);
             ScoringZone.Velocity = new Vector2(-_speedForce, 0);
@@ -67,22 +75,11 @@ namespace flappyrogue_mg.GameSpace
         /// Draw method used when only one pipe is created (means the LoadSingleInstance method was called on a Load method)
         /// </summary>
         /// <param name="spriteBatch"></param>
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
+            base.Draw(spriteBatch);
             spriteBatch.Draw(_pipeTopTexture, PhysicsObjectPipeTop.Position, Color.White);
             spriteBatch.Draw(_pipeBottomTexture, PhysicsObjectPipeBottom.Position, Color.White);
-        }
-
-        /// <summary>
-        /// Draw method used when the textures are loaded before this pipe has been created
-        /// </summary>
-        /// <param name="spriteBatch"></param>
-        /// <param name="pipeTopTexture"></param>
-        /// <param name="pipeBottomTexture"></param>
-        public void Draw(SpriteBatch spriteBatch, Texture2DRegion pipeTopTexture, Texture2DRegion pipeBottomTexture)
-        {
-            spriteBatch.Draw(pipeTopTexture, PhysicsObjectPipeTop.Position, Color.White);
-            spriteBatch.Draw(pipeBottomTexture, PhysicsObjectPipeBottom.Position, Color.White);
         }
 
         public void Kill()

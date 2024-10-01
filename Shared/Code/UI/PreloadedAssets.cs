@@ -23,8 +23,8 @@ public class PreloadedAssets
     private Texture2DAtlas _mainGameAtlas;
     public Texture2DRegion PipeTop { get; private set; }
     public Texture2DRegion PipeBottom { get; private set; }
+    public Texture2DRegion PauseButton { get; private set; }
     public BitmapFont mainFont { get; private set; }
-
     private PreloadedAssets() { }
 
     public void LoadContent(ContentManager content)
@@ -39,5 +39,6 @@ public class PreloadedAssets
         _mainGameAtlas = new Texture2DAtlas("Atlas", atlasTexture);
         PipeTop = _mainGameAtlas.CreateRegion(56, 323, Pipes.SPRITE_WIDTH, Pipes.SPRITE_HEIGHT, "PipeTop");
         PipeBottom = _mainGameAtlas.CreateRegion(84, 323, Pipes.SPRITE_WIDTH, Pipes.SPRITE_HEIGHT, "PipeBottom");
+        PauseButton = _mainGameAtlas.CreateRegion(121, 306, Constants.SPRITE_PAUSE_BUTTON_WIDTH, Constants.SPRITE_PAUSE_BUTTON_HEIGHT, "PauseButton");
     }
 }

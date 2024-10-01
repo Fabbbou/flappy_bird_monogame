@@ -18,4 +18,11 @@ public class Constants
 
     public const float PLAYABLE_WORLD_HEIGHT = WORLD_HEIGHT - Floor.SPRITE_HEIGHT;
     public static readonly Color DEFAULT_DEBUG_COLOR_GIZMOS = Color.Yellow;
+
+    //Sprite dimensions, position
+    public const int SPRITE_PAUSE_BUTTON_WIDTH = 13;
+    public const int SPRITE_PAUSE_BUTTON_HEIGHT = 14;
+    public const float START_POSITION_X_PAUSE_BUTTON = WORLD_WIDTH - SPRITE_PAUSE_BUTTON_WIDTH - 5;
+    public const float START_POSITION_Y_PAUSE_BUTTON = 5;
+
 }

@@ -27,14 +27,16 @@ namespace flappyrogue_mg.GameSpace
             _texture2Position = new Vector2(physicsObject.Position.X + SPRITE_WIDTH, physicsObject.Position.Y);
         }
 
-        public void LoadContent(ContentManager content)
+        public override void LoadContent(ContentManager content)
         {
+            base.LoadContent(content);
             // Load the sprite sheet
             _spriteSheet = content.Load<Texture2D>("sprites/floor");
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             _texturePosition.X -= PipesSpawner.SPEED * deltaTime;
             _texture2Position.X -= PipesSpawner.SPEED * deltaTime;
@@ -48,8 +50,9 @@ namespace flappyrogue_mg.GameSpace
                 _texture2Position.X = _texturePosition.X + SPRITE_WIDTH;
             }
         }
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
+            base.Draw(spriteBatch);
             spriteBatch.Draw(_spriteSheet, _texturePosition, Color.White);
             spriteBatch.Draw(_spriteSheet, _texture2Position, Color.White);
         }

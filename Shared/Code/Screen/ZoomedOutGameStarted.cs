@@ -11,12 +11,6 @@ public class ZoomedOutMainScreen : MainGameScreen
     public override void LoadContent()
     {
         base.LoadContent();
-        _camera = new OrthographicCamera(ViewportAdapter);
         _camera.ZoomOut(0.5f);
-    }
-
-    protected override Matrix GetTransformMatrix()
-    {
-        return _camera.GetViewMatrix();
     }
 }
