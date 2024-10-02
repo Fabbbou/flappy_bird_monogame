@@ -8,6 +8,7 @@ public enum SoundType
 }
 public class SoundManager
 {
+    public bool IsLoaded { get; private set; }
     private static SoundManager _instance;
     public static SoundManager Instance
     {
@@ -37,12 +38,13 @@ public class SoundManager
         _sounds.Add(HitSound, SoundType.FX);
         _sounds.Add(DieSound, SoundType.FX);
 
-        //load volume fx from storage
+        IsLoaded = true;
     }
 
     //volume control
     public void SetVolumeFX(float volume)
     {
+        if (!IsLoaded) return;
         foreach (var sound in _sounds)
         {
             if (sound.Value == SoundType.FX)
@@ -52,6 +54,7 @@ public class SoundManager
 
     public void SetVolumeMusic(float volume)
     {
+        if (!IsLoaded) return;
         foreach (var sound in _sounds)
         {
             if (sound.Value == SoundType.Music)

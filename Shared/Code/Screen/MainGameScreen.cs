@@ -43,9 +43,10 @@ namespace flappyrogue_mg.GameSpace
             Camera = new OrthographicCamera(ViewportAdapter);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            StateMachine = new StateMachine(new PlayState(this));
             SoundManager.Instance.LoadContent(Content);
+            PreloadedAssets.Instance.LoadContent(Content);
 
+            StateMachine = new StateMachine(new PlayState(this));
             SoundUI = new SoundUI(this);
             Floor = new Floor();
             PipesSpawner = new PipesSpawner();
@@ -60,7 +61,6 @@ namespace flappyrogue_mg.GameSpace
             World.AddGameEntity(PauseButton);
             World.AddGameEntity(SoundUI);
 
-            PreloadedAssets.Instance.LoadContent(Content);
             // 144 and 256 are width and height of the background image.
             // As they  are uniform, the altlas automatically find each sprite contained in the texture
             // i.e. the background image is divided in 144x256 sprites

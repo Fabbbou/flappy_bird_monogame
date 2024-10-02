@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Code\Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)code\engine\DrawableEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\FilledRectangle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Input\ClickableRegionHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\PhysicsObjectFactory.cs" />
