@@ -16,6 +16,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\PhysicsObjectFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\State\StateMachine.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\State\State.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)code\engine\storage\SettingsManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)code\engine\storage\UserSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\World.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\gameentities\PauseButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\GameEntities\ScoreManager.cs" />
@@ -71,6 +73,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Content\sprites\pipes.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Code\Engine\Storage\" />
     <Folder Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\" />
     <Folder Include="$(MSBuildThisFileDirectory)Code\Sound\" />
     <Folder Include="$(MSBuildThisFileDirectory)Code\States\" />

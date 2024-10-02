@@ -29,7 +29,7 @@ public class ScoreManager : GameEntity
     public void IncreaseScore()
     {
         CurrentScore++;
-        SoundManager.Instance.ScoreSound.Play();
+        SoundManager.Instance.PlayScoreSound();
     }
 
     public override void LoadContent(ContentManager content)

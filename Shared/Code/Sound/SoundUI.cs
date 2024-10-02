@@ -25,8 +25,8 @@ public class SoundUI : GameEntity
     private ClickableRegionHandler _musicPlusClickableRegionHandler;
     private ClickableRegionHandler _musicMuteClickableRegionHandler;
 
-    private int _fxVolume;
-    private int _musicVolume;
+    public int FxVolume { get; private set; }
+    public int MusicVolume { get; private set; }
 
     private FilledRectangle _background;
     public SoundUI(MainGameScreen mainGameScreen)
@@ -34,8 +34,8 @@ public class SoundUI : GameEntity
         IsActive = false;
         _mainGameScreen = mainGameScreen;
         _background = new FilledRectangle(mainGameScreen.GraphicsDevice, new Rectangle(0, 0, WORLD_WIDTH, WORLD_HEIGHT), new Color(.6f, .6f, .6f, .9f));
-        _fxVolume = 10;
-        _musicVolume = 10;
+        FxVolume = (int)(SoundManager.Instance.VolumeFX * 10);
+        MusicVolume = (int)(SoundManager.Instance.VolumeMusic * 10);
 
         _okClickableRegionHandler = new ClickableRegionHandler(mainGameScreen.Camera, OnClickOk, new(POSITION_OK_BUTTON.ToPoint(), SIZE_OK_BUTTON.ToPoint()));
         _menuClickableRegionHandler = new ClickableRegionHandler(mainGameScreen.Camera, OnClickMenu, new(POSITION_MENU_BUTTON.ToPoint(), SIZE_MENU_BUTTON.ToPoint()));
@@ -83,7 +83,7 @@ public class SoundUI : GameEntity
     // draw functions for the bars for the FX sound
     private void DrawFxBars(SpriteBatch spriteBatch)
     {
-        for (int i = 0; i < _fxVolume; i++)
+        for (int i = 0; i < FxVolume; i++)
         {
             spriteBatch.Draw(_barSound, new Vector2(POSITION_FX_BARS.X + (SIZE_BAR_SOUND.X + SETTINGS_UI_SPACE_BETWEEN_BARS) * i, POSITION_FX_BARS.Y), Color.White);
         }
@@ -91,7 +91,7 @@ public class SoundUI : GameEntity
 
     private void DrawMusicBars(SpriteBatch spriteBatch)
     {
-        for (int i = 0; i < _musicVolume; i++)
+        for (int i = 0; i < MusicVolume; i++)
         {
             spriteBatch.Draw(_barSound, new Vector2(POSITION_MUSIC_BARS.X + (SIZE_BAR_SOUND.X + SETTINGS_UI_SPACE_BETWEEN_BARS) * i, POSITION_MUSIC_BARS.Y), Color.White);
         }
@@ -108,37 +108,37 @@ public class SoundUI : GameEntity
     public void OnClickFxMinus()
     {
         //decrease fx volume
-        _fxVolume = MathHelper.Clamp(_fxVolume - 1, 0, 10);
-        SoundManager.Instance.SetVolumeFX(_fxVolume / 10f);
+        FxVolume = MathHelper.Clamp(FxVolume - 1, 0, 10);
+        SoundManager.Instance.SetVolumeFX(FxVolume / 10f);
     }
     public void OnClickFxPlus()
     {
         //increase fx volume
-        _fxVolume = MathHelper.Clamp(_fxVolume + 1, 0, 10);
-        SoundManager.Instance.SetVolumeFX(_fxVolume / 10f);
+        FxVolume = MathHelper.Clamp(FxVolume + 1, 0, 10);
+        SoundManager.Instance.SetVolumeFX(FxVolume / 10f);
     }
     public void OnClickFxMute()
     {
         //mute fx
-        _fxVolume = 0;
+        FxVolume = 0;
         SoundManager.Instance.SetVolumeFX(0);
     }
     public void OnClickMusicMinus()
     {
         //decrease music volume
-        _musicVolume = MathHelper.Clamp(_musicVolume - 1, 0, 10);
-        SoundManager.Instance.SetVolumeMusic(_musicVolume / 10f);
+        MusicVolume = MathHelper.Clamp(MusicVolume - 1, 0, 10);
+        SoundManager.Instance.SetVolumeMusic(MusicVolume / 10f);
     }
     public void OnClickMusicPlus()
     {
         //increase music volume
-        _musicVolume = MathHelper.Clamp(_musicVolume + 1, 0, 10);
-        SoundManager.Instance.SetVolumeMusic(_musicVolume / 10f);
+        MusicVolume = MathHelper.Clamp(MusicVolume + 1, 0, 10);
+        SoundManager.Instance.SetVolumeMusic(MusicVolume / 10f);
     }
     public void OnClickMusicMute()
     {
         //mute music
-        _musicVolume = 0;
+        MusicVolume = 0;
         SoundManager.Instance.SetVolumeMusic(0);
     }
 }

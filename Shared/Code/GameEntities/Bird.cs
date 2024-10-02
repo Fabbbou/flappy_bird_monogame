@@ -91,7 +91,7 @@ namespace flappyrogue_mg.GameSpace
                 {
                     PhysicsObject.Velocity = _jumpForce;
                     _pressedButtonJump = true;
-                    SoundManager.Instance.JumpSound.Play();
+                    SoundManager.Instance.PlayJumpSound();
                 }
             }
             else

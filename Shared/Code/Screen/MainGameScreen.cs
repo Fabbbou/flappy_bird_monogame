@@ -43,6 +43,7 @@ namespace flappyrogue_mg.GameSpace
             Camera = new OrthographicCamera(ViewportAdapter);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            SettingsManager.Instance.LoadSettings();
             SoundManager.Instance.LoadContent(Content);
             PreloadedAssets.Instance.LoadContent(Content);
 

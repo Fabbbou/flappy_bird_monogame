@@ -19,26 +19,38 @@ public class SoundManager
             return _instance;
         }
     }
-    public SoundEffectInstance DieSound { get; private set; }
-    public SoundEffectInstance JumpSound { get; private set; }
-    public SoundEffectInstance HitSound { get; private set; }
-    public SoundEffectInstance ScoreSound { get; private set; }
+    private SoundEffectInstance _dieSound;
+    public void PlayDieSound() => PlayAndCut(_dieSound);
+    private SoundEffectInstance JumpSound;
+    public void PlayJumpSound() => PlayAndCut(JumpSound);
+    private SoundEffectInstance HitSound;
+    public void PlayHitSound() => PlayAndCut(HitSound);
+    private SoundEffectInstance ScoreSound;
+    public void PlayScoreSound() => PlayAndCut(ScoreSound);
+    public float VolumeFX => SettingsManager.Instance.UserSettings.VolumeFX;
+    public float VolumeMusic => SettingsManager.Instance.UserSettings.VolumeMusic;
 
     private Dictionary<SoundEffectInstance, SoundType> _sounds = new Dictionary<SoundEffectInstance, SoundType>();
 
     public void LoadContent(ContentManager content)
     {
+        IsLoaded = true;
         JumpSound = content.Load<SoundEffect>("sounds/sfx_wing").CreateInstance();
         ScoreSound = content.Load<SoundEffect>("sounds/sfx_point").CreateInstance();
         HitSound = content.Load<SoundEffect>("sounds/sfx_hit").CreateInstance();
-        DieSound = content.Load<SoundEffect>("sounds/sfx_die").CreateInstance();
+        _dieSound = content.Load<SoundEffect>("sounds/sfx_die").CreateInstance();
 
         _sounds.Add(JumpSound, SoundType.FX);
         _sounds.Add(ScoreSound, SoundType.FX);
         _sounds.Add(HitSound, SoundType.FX);
-        _sounds.Add(DieSound, SoundType.FX);
+        _sounds.Add(_dieSound, SoundType.FX);
+        LoadVolumes();
+    }
 
-        IsLoaded = true;
+    private void LoadVolumes()
+    {
+        SetVolumeFX(VolumeFX);
+        SetVolumeFX(VolumeMusic);
     }
 
     //volume control
@@ -60,5 +72,12 @@ public class SoundManager
             if (sound.Value == SoundType.Music)
                 sound.Key.Volume = volume;
         }
+    }
+
+    private static void PlayAndCut(SoundEffectInstance sound)
+    {
+        if (sound.State == SoundState.Playing)
+            sound.Stop();
+        sound.Play();
     }
 }

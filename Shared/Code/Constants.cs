@@ -65,10 +65,4 @@ public class Constants
     public static readonly Vector2 POSITION_MUSIC_BARS = new(54, 122);
 
 
-
-
-
-
-
-
 }
