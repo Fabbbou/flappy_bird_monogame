@@ -12,7 +12,7 @@ public class CirclCollider : Collider
 
     public override float Bottom => Position.Y + Radius;
 
-    public CirclCollider(PhysicsObject physicsObject, CollisionType collisionType, float radius) : base(physicsObject, collisionType)
+    public CirclCollider(PhysicsObject physicsObject, ColliderType collisionType, float radius) : base(physicsObject, collisionType)
     {
         Radius = radius;
     }

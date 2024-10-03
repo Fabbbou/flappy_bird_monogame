@@ -52,27 +52,27 @@ public class DebugPhysics : GameScreen
         var xFloor = 0;
         var floorHeigth = 100;
         var smallFloorWidth = 10;
-        partFloor1 = PhysicsObjectFactory.Rect("partFloor1", xFloor, yFloor, CollisionType.Static, 100, floorHeigth);
+        partFloor1 = PhysicsObjectFactory.Rect("partFloor1", xFloor, yFloor, ColliderType.Static, 100, floorHeigth);
         xFloor += 100;
-        partFloor2 = PhysicsObjectFactory.Rect("partFloor2", xFloor, yFloor, CollisionType.Static, smallFloorWidth, floorHeigth);
+        partFloor2 = PhysicsObjectFactory.Rect("partFloor2", xFloor, yFloor, ColliderType.Static, smallFloorWidth, floorHeigth);
         xFloor += smallFloorWidth;
-        partFloor3 = PhysicsObjectFactory.Rect("partFloor3", xFloor, yFloor, CollisionType.Static, smallFloorWidth, floorHeigth);
+        partFloor3 = PhysicsObjectFactory.Rect("partFloor3", xFloor, yFloor, ColliderType.Static, smallFloorWidth, floorHeigth);
         xFloor += smallFloorWidth;
-        partFloor4 = PhysicsObjectFactory.Rect("partFloor4", xFloor, yFloor, CollisionType.Static, smallFloorWidth, floorHeigth);
+        partFloor4 = PhysicsObjectFactory.Rect("partFloor4", xFloor, yFloor, ColliderType.Static, smallFloorWidth, floorHeigth);
         xFloor += smallFloorWidth;
-        partFloor5 = PhysicsObjectFactory.Rect("partFloor5", xFloor, yFloor,  CollisionType.Static, smallFloorWidth, floorHeigth);
+        partFloor5 = PhysicsObjectFactory.Rect("partFloor5", xFloor, yFloor,  ColliderType.Static, smallFloorWidth, floorHeigth);
         xFloor += smallFloorWidth;
-        partFloor6 = PhysicsObjectFactory.Rect("partFloor6", xFloor, yFloor, CollisionType.Static, smallFloorWidth, floorHeigth);
+        partFloor6 = PhysicsObjectFactory.Rect("partFloor6", xFloor, yFloor, ColliderType.Static, smallFloorWidth, floorHeigth);
         xFloor += smallFloorWidth;
-        partFloor7 = PhysicsObjectFactory.Rect("partFloor7", xFloor, yFloor, CollisionType.Static, Constants.DEBUG_WORLD_WIDTH - xFloor, floorHeigth);
-        partFloor8 = PhysicsObjectFactory.Rect("partFloor8", Constants.DEBUG_WORLD_WIDTH*0.5f, yFloor-100, CollisionType.Static, 50, 100);
+        partFloor7 = PhysicsObjectFactory.Rect("partFloor7", xFloor, yFloor, ColliderType.Static, Constants.DEBUG_WORLD_WIDTH - xFloor, floorHeigth);
+        partFloor8 = PhysicsObjectFactory.Rect("partFloor8", Constants.DEBUG_WORLD_WIDTH*0.5f, yFloor-100, ColliderType.Static, 50, 100);
 
         var boxSize = 10;
         var circleRadius = 10;
-        movingBox = PhysicsObjectFactory.Rect("movingBox", 40, 80, CollisionType.Moving, boxSize, boxSize);
+        movingBox = PhysicsObjectFactory.Rect("movingBox", 40, 80, ColliderType.Moving, boxSize, boxSize);
         movingBox.Gravity = Vector2.Zero;
 
-        movingCircle = PhysicsObjectFactory.Circl("movingCircle", 0, 0, CollisionType.Moving, circleRadius);
+        movingCircle = PhysicsObjectFactory.Circl("movingCircle", 0, 0, ColliderType.Moving, circleRadius);
         movingCircle.Gravity = Vector2.Zero;
 
     }

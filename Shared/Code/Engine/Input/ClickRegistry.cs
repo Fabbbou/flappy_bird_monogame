@@ -104,4 +104,9 @@ public class ClickRegistry
         return Vector2.Zero;
 #endif
     }
+
+    public void Clear()
+    {
+        _clickableRegionHandlers.Clear();
+    }
 }

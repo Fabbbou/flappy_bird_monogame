@@ -45,4 +45,12 @@ public class World
             gameEntity.LoadContent(content);
         }
     }
+
+    public void UnloadContent()
+    {
+        ClickRegistry.Instance.Clear();
+        PhysicsEngine.Instance.Clear();
+        PhysicsEngine.Instance.Clear();
+        GizmosRegistry.Instance.Clear();
+    }
 }

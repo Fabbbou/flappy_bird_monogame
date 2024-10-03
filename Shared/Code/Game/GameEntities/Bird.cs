@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Aseprite;
 using MonoGame.Extended.BitmapFonts;
+using System.Collections.Generic;
 
 namespace flappyrogue_mg.GameSpace
 {
@@ -32,7 +33,7 @@ namespace flappyrogue_mg.GameSpace
         public Bird(MainGameScreen mainGameScreen)
         {
             _screen = mainGameScreen;
-            PhysicsObject = PhysicsObjectFactory.Circl("bird", STARTING_POSITION_X, STARTING_POSITION_Y, CollisionType.Moving, COLLIDER_RADIUS);
+            PhysicsObject = PhysicsObjectFactory.Circl("bird", STARTING_POSITION_X, STARTING_POSITION_Y, ColliderType.Moving, COLLIDER_RADIUS);
             PhysicsObject.Gravity = new Vector2(0, BIRD_GRAVITY);
             _jumpBirdClickableRegionHandler = new ClickableRegionHandler(Entity, _screen.Camera, Jump, new Rectangle(Constants.POSITION_JUMP_REGION.ToPoint(), Constants.SIZE_JUMP_REGION.ToPoint()));
         }
@@ -59,13 +60,21 @@ namespace flappyrogue_mg.GameSpace
 
             _idleCycle.Rotation = MathHelper.ToRadians(MathHelper.Clamp(PhysicsObject.Velocity.Y * BIRD_ROTATION, -30f, 90f));
 
-            PhysicsEngine.Instance.MoveAndSlide(PhysicsObject, gameTime);
+            List<Collision> collided = PhysicsEngine.Instance.MoveAndSlide(PhysicsObject, gameTime);
+            CheckDeath(collided);
         }
 
         private void Jump()
         {
             PhysicsObject.Velocity = _jumpForce;
             SoundManager.Instance.PlayJumpSound();
+        }
+        private void CheckDeath(List<Collision> collided)
+        {
+            if (collided.Count > 0)
+            {
+                _screen.StateMachine.ChangeState(new DeathState(_screen));
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)

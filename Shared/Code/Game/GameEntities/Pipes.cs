@@ -30,11 +30,11 @@ namespace flappyrogue_mg.GameSpace
         {
             _speedForce = speed;
             float xPosition = Constants.WORLD_WIDTH - SPRITE_WIDTH + xOffsetFromRightBorder;
-            PhysicsObjectPipeTop = PhysicsObjectFactory.Rect("pipe top" + label, xPosition, -SPRITE_HEIGHT + yOffsetFromTop, CollisionType.Moving, SPRITE_WIDTH, SPRITE_HEIGHT);
+            PhysicsObjectPipeTop = PhysicsObjectFactory.Rect("pipe top" + label, xPosition, -SPRITE_HEIGHT + yOffsetFromTop, ColliderType.Moving, SPRITE_WIDTH, SPRITE_HEIGHT);
             PhysicsObjectPipeTop.Gravity = Vector2.Zero;
-            PhysicsObjectPipeBottom = PhysicsObjectFactory.Rect("pipe bottom" + label, xPosition, yOffsetFromTop + gapHeight, CollisionType.Moving, SPRITE_WIDTH, SPRITE_HEIGHT);
+            PhysicsObjectPipeBottom = PhysicsObjectFactory.Rect("pipe bottom" + label, xPosition, yOffsetFromTop + gapHeight, ColliderType.Moving, SPRITE_WIDTH, SPRITE_HEIGHT);
             PhysicsObjectPipeBottom.Gravity = Vector2.Zero;
-            ScoringZone = PhysicsObjectFactory.AreaRectTriggerOnce("scoring zone" + label, xPosition + CROP_SCORING_ZONE_WIDTH, yOffsetFromTop, CollisionType.AreaCastTrigger, SPRITE_WIDTH - CROP_SCORING_ZONE_WIDTH*2, gapHeight, onScoringZoneTriggered);
+            ScoringZone = PhysicsObjectFactory.AreaRectTriggerOnce("scoring zone" + label, xPosition + CROP_SCORING_ZONE_WIDTH, yOffsetFromTop, ColliderType.AreaCastTrigger, SPRITE_WIDTH - CROP_SCORING_ZONE_WIDTH*2, gapHeight, onScoringZoneTriggered);
         }
 
         public void onScoringZoneTriggered()

@@ -38,12 +38,12 @@ public class PhysicsEngine
     /// <param name="physicsObject"></param>
     /// <param name="gameTime"></param>
     /// <returns>All the PhysicsObject we collided with</returns>
-    public List<PhysicsObject> MoveAndSlide(PhysicsObject physicsObject, GameTime gameTime)
+    public List<Collision> MoveAndSlide(PhysicsObject physicsObject, GameTime gameTime)
     {
         // Update physics object
         physicsObject.Update(gameTime);
-        List<PhysicsObject> collisions = new();
-        if (physicsObject.Collider.CollisionType == CollisionType.Static) // Static objects dont collides with anything
+        List<Collision> collisions = new();
+        if (physicsObject.Collider.CollisionType == ColliderType.Static) // Static objects dont collides with anything
         {
             return collisions;
         }
@@ -56,9 +56,10 @@ public class PhysicsEngine
                 {
                     continue; //we dont process the same collision twice
                 }
-                if (Collides.CollideAndSolve(physicsObject.Collider, otherPhysicsObject.Collider, gameTime))
+                CollisionType collisionType = Collides.CollideAndSolve(physicsObject.Collider, otherPhysicsObject.Collider, gameTime);
+                if (CollisionType.Physics == collisionType)
                 {
-                    collisions.Add(otherPhysicsObject);
+                    collisions.Add(new(otherPhysicsObject, collisionType));
                 }
             }
         }
@@ -73,6 +74,12 @@ public class PhysicsEngine
     /// <param name="gameTime"></param>
     public void Update(GameTime gameTime)
     {
+        _alreadyCollided.Clear();
+    }
+
+    public void Clear()
+    {
+        _physicsObjects.Clear();
         _alreadyCollided.Clear();
     }
 }

@@ -4,7 +4,7 @@ using System.Numerics;
 public class PhysicsObjectFactory
 
 {
-    public static PhysicsObject Rect(string label, float x, float y, CollisionType collisionType, float width, float height)
+    public static PhysicsObject Rect(string label, float x, float y, ColliderType collisionType, float width, float height)
     {
         var physicsObject = new PhysicsObject(label, x, y, collisionType);
         var rect = new RectCollider(physicsObject, collisionType, width, height);
@@ -12,7 +12,7 @@ public class PhysicsObjectFactory
         return physicsObject;
     }
 
-    public static PhysicsObject Circl(string label, float x, float y, CollisionType collisionType, float radius)
+    public static PhysicsObject Circl(string label, float x, float y, ColliderType collisionType, float radius)
     {
         var physicsObject = new PhysicsObject(label, x, y, collisionType);
         var rect = new CirclCollider(physicsObject, collisionType, radius);
@@ -20,7 +20,7 @@ public class PhysicsObjectFactory
         return physicsObject;
     }
 
-    public static PhysicsObject AreaRectTriggerOnce(string label, float x, float y, CollisionType collisionType, float width, float height, Action onTrigger)
+    public static PhysicsObject AreaRectTriggerOnce(string label, float x, float y, ColliderType collisionType, float width, float height, Action onTrigger)
     {
         var physicsObject = new PhysicsObject(label, x, y, collisionType)
         {

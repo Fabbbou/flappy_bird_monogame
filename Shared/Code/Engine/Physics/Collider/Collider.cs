@@ -4,7 +4,7 @@ using System;
 public abstract class Collider
 {
     public PhysicsObject PhysicsObject { get; private set; }
-    public CollisionType CollisionType { get; private set; }
+    public ColliderType CollisionType { get; private set; }
 
     public Action _onCollisionAction;
     private bool _isTriggered = false;
@@ -14,7 +14,7 @@ public abstract class Collider
         get => _onCollisionAction;
         set
         {
-            if (CollisionType != CollisionType.AreaCastTrigger)
+            if (CollisionType != ColliderType.AreaCastTrigger)
             {
                 throw new Exception("You can't set an OnCollisionAction on another collider than AreaCastTrigger collider");
             }
@@ -26,7 +26,7 @@ public abstract class Collider
     public void TriggerCollision()
     {
         if (_isTriggered) return;
-        if (CollisionType != CollisionType.AreaCastTrigger)
+        if (CollisionType != ColliderType.AreaCastTrigger)
         {
             throw new Exception("You can't trigger a collision on another collider than AreaCastTrigger collider");
         }
@@ -40,7 +40,7 @@ public abstract class Collider
         set => PhysicsObject.Position = value;
     }
 
-    protected Collider(PhysicsObject physicsObject, CollisionType collisionType)
+    protected Collider(PhysicsObject physicsObject, ColliderType collisionType)
     {
         PhysicsObject = physicsObject;
         CollisionType = collisionType;
@@ -59,7 +59,7 @@ public abstract class Collider
     }
 }
 
-public enum CollisionType
+public enum ColliderType
 {
     Static,
     Moving,

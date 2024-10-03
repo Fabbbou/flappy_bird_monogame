@@ -1,28 +1,34 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 
+public enum CollisionType
+{
+    AreaCastTrigger,
+    Physics,
+    None
+}
 public class Collides
 {
-    public static bool CollideAndSolve(Collider collider, Collider other, GameTime gameTime)
+    public static CollisionType CollideAndSolve(Collider collider, Collider other, GameTime gameTime)
     {
-        if (!collider.CollidesWith(other)) return false;
+        if (!collider.CollidesWith(other)) return CollisionType.None;
 
-        if (isTriggerCollision(other)) return true;
+        if (isTriggerCollision(other)) return CollisionType.AreaCastTrigger;
 
         if (collider is RectCollider rect1 && other is RectCollider rect2)
         {
-            return ResolveCollision(rect1, rect2);
+            return ResolveCollision(rect1, rect2) ? CollisionType.Physics : CollisionType.None;
         }
         else if (collider is CirclCollider circl && other is RectCollider rect)
         {
-            return ResolveCollision(circl, rect);
+            return ResolveCollision(circl, rect) ? CollisionType.Physics : CollisionType.None;
         }
-        return false;
+        return CollisionType.None;
     }
 
     private static bool isTriggerCollision(Collider other)
     {
-        if(other.CollisionType != CollisionType.AreaCastTrigger) return false;
+        if(other.CollisionType != ColliderType.AreaCastTrigger) return false;
         other.TriggerCollision();
         return true;
 

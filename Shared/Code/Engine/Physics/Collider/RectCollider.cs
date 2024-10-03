@@ -6,7 +6,7 @@ public class RectCollider : Collider
 {
     public float Width { get; private set; }
     public float Height { get; private set; }
-    public RectCollider(PhysicsObject physicsObject, CollisionType collisionType, float width, float height) : base(physicsObject, collisionType)
+    public RectCollider(PhysicsObject physicsObject, ColliderType collisionType, float width, float height) : base(physicsObject, collisionType)
     {
         Width = width;
         Height = height;

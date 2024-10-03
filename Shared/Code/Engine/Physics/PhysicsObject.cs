@@ -39,7 +39,7 @@ public class PhysicsObject : Gizmo
     private string _label;
     public string Label => _label;
 
-    public PhysicsObject(string label, float x, float y, CollisionType colliderType)
+    public PhysicsObject(string label, float x, float y, ColliderType colliderType)
     {
         _label = label;
         Position = new(x, y);
@@ -74,7 +74,7 @@ public class PhysicsObject : Gizmo
 
     public void Update(GameTime gameTime)
     {
-        if (CollisionType.Static == Collider.CollisionType) return;
+        if (ColliderType.Static == Collider.CollisionType) return;
         float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
         // Apply gravity

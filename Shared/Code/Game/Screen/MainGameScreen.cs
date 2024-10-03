@@ -67,6 +67,11 @@ namespace flappyrogue_mg.GameSpace
             World.LoadContent(Content);
         }
 
+        public override void UnloadContent()
+        {
+            World.UnloadContent();
+        }
+
         public override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
