@@ -6,19 +6,22 @@ namespace flappyrogue_mg.Core
 {
     public abstract class GameEntity
     {
-        protected bool _isActive = true;
-        public virtual bool IsActive
+        private Entity _entity = new();
+        public Entity Entity
         {
-            get => _isActive;
-            set => _isActive = value;
+            get => _entity;
+            private set => _entity = value;
         }
-        protected bool _isPaused = false;
-        public virtual bool IsPaused
+        public bool IsActive
         {
-            get => _isPaused;
-            set => _isPaused = value;
+            get => _entity.IsActive;
+            set => _entity.IsActive = value;
         }
-
+        public bool IsPaused
+        {
+            get => _entity.IsPaused;
+            set => _entity.IsPaused = value;
+        }
         public abstract void LoadContent(ContentManager content);
 
         public abstract void Update(GameTime gameTime);

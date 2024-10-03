@@ -9,7 +9,7 @@ using System;
 /// Gravity is defaulted to 9.8f and friction is defaulted to 1f.
 /// It can apply forces to itself and update its position based on the forces applied.
 /// </summary>
-public class PhysicsObject
+public class PhysicsObject : Gizmo
 {
     public const float GRAVITY = 9.8f;
     public const float FRICTION = 0f;
@@ -25,7 +25,7 @@ public class PhysicsObject
                 throw new Exception("Collider already attached to this PhysicsObject");
             }
             _collider = value;
-            PhysicsGizmosRegistry.Instance.AddObject(this);
+            GizmosRegistry.Instance.Add(this);
             PhysicsEngine.Instance.AddCollider(this);
         }
     }
@@ -34,12 +34,14 @@ public class PhysicsObject
     public Vector2 Velocity;
     public Vector2 Acceleration;
     public Vector2 Friction;
-    public string Label;
     public bool IsNotMoving => Velocity == Vector2.Zero && Acceleration == Vector2.Zero;
+
+    private string _label;
+    public string Label => _label;
 
     public PhysicsObject(string label, float x, float y, CollisionType colliderType)
     {
-        Label = label;
+        _label = label;
         Position = new(x, y);
         Velocity = Vector2.Zero;
         Acceleration = Vector2.Zero;
@@ -88,7 +90,7 @@ public class PhysicsObject
         Acceleration = Vector2.Zero;
     }
 
-    public void DebugDraw(SpriteBatch spriteBatch)
+    public void DrawGizmo(SpriteBatch spriteBatch)
     {
         if(Collider is RectCollider rect)
         {
@@ -101,7 +103,7 @@ public class PhysicsObject
 
     public void Kill()
     {
-        PhysicsGizmosRegistry.Instance.RemoveObject(this);
+        GizmosRegistry.Instance.RemoveObject(this);
         PhysicsEngine.Instance.RemoveCollider(this);
     }
 
@@ -110,7 +112,6 @@ public class PhysicsObject
         // all fields are public, so we can access them directly
         return $"PhysicsObject {Label} at {Position} with velocity {Velocity}";
     }
-
 }
 public enum ForceType
 {

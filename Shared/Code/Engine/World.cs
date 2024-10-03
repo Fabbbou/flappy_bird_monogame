@@ -15,6 +15,7 @@ public class World
 
     public void Update(GameTime gametime)
     {
+        ClickRegistry.Instance.Update(gametime);
         foreach (var gameEntity in _gameEntities)
         {
             if (!gameEntity.IsActive) continue;

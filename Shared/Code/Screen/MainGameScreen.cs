@@ -91,12 +91,11 @@ namespace flappyrogue_mg.GameSpace
             GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin(transformMatrix: Camera.GetViewMatrix(), samplerState: SamplerState.PointClamp);
             
-            //background
             _spriteBatch.Draw(_dayBackground, Vector2.Zero, Color.White);
 
             World.Draw(_spriteBatch);
 
-            PhysicsGizmosRegistry.Instance.Draw(_spriteBatch);
+            GizmosRegistry.Instance.Draw(_spriteBatch);
             _spriteBatch.End();
         }
     }

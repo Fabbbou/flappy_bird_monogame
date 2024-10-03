@@ -10,9 +10,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Code\Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)code\engine\core\Entity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)code\engine\debug\Gizmo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\DrawableEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\FilledRectangle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Input\ClickableRegionHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)code\engine\input\ClickRegistry.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\PhysicsObjectFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\State\StateMachine.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\State\State.cs" />
@@ -32,7 +35,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\Collider\Collides.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\PhysicsEngine.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\Collider\RectCollider.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\PhysicsGizmosRegistry.cs" />
+    <Compile Include="..\Shared\Code\Engine\Debug\GizmosRegistry.cs" />
     <Compile Include="..\Shared\Code\Engine\GameEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Input\Keyboard.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\PhysicsObject.cs" />
@@ -73,6 +76,8 @@
     <Content Include="$(MSBuildThisFileDirectory)Content\sprites\pipes.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Code\Engine\Debug\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Code\Engine\Core\" />
     <Folder Include="$(MSBuildThisFileDirectory)Code\Engine\Storage\" />
     <Folder Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\" />
     <Folder Include="$(MSBuildThisFileDirectory)Code\Sound\" />

@@ -152,7 +152,7 @@ public class DebugPhysics : GameScreen
         _spriteBatch.DrawString(font, "box vel: "+movingBox.Velocity.ToString(), new Vector2(0, 30), Color.White);
         _spriteBatch.DrawString(font, "circle pos: "+movingCircle.Position.ToString(), new Vector2(0, 15), Color.White);
         _spriteBatch.DrawString(font, "circle vel: " + movingCircle.Velocity.ToString(), new Vector2(0, 45), Color.White);
-        PhysicsGizmosRegistry.Instance.Draw(_spriteBatch);
+        GizmosRegistry.Instance.Draw(_spriteBatch);
         _spriteBatch.End();
     }
 }

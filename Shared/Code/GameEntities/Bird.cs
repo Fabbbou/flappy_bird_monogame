@@ -3,14 +3,8 @@ using flappyrogue_mg.Core;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using MonoGame.Aseprite;
 using MonoGame.Extended.BitmapFonts;
-using Microsoft.Xna.Framework.Input.Touch;
-using Microsoft.Xna.Framework.Audio;
-using MonoGame.Extended.Screens;
-using System;
-using System.Diagnostics;
 
 namespace flappyrogue_mg.GameSpace
 {
@@ -28,22 +22,19 @@ namespace flappyrogue_mg.GameSpace
         private const float BIRD_GRAVITY = 450f;
         private const float BIRD_ROTATION = 0.17f;
 
-        private GameScreen _screen;
+        private MainGameScreen _screen;
         public readonly PhysicsObject PhysicsObject;
         private SpriteSheet _spriteSheet;
         private AnimatedSprite _idleCycle;
         private BitmapFont _font;
         private Vector2 _jumpForce = new Vector2(0, -BIRD_SPEED);
-
-        // by default, if the button is maintained, the bird will jump continuously.
-        // this variable is used to avoid this behavior
-        private bool _pressedButtonJump = false;
-
-        public Bird(GameScreen gameScreen)
+        private ClickableRegionHandler _jumpBirdClickableRegionHandler;
+        public Bird(MainGameScreen mainGameScreen)
         {
-            _screen = gameScreen;
+            _screen = mainGameScreen;
             PhysicsObject = PhysicsObjectFactory.Circl("bird", STARTING_POSITION_X, STARTING_POSITION_Y, CollisionType.Moving, COLLIDER_RADIUS);
             PhysicsObject.Gravity = new Vector2(0, BIRD_GRAVITY);
+            _jumpBirdClickableRegionHandler = new ClickableRegionHandler(Entity, _screen.Camera, Jump, new Rectangle(Constants.POSITION_JUMP_REGION.ToPoint(), Constants.SIZE_JUMP_REGION.ToPoint()));
         }
 
         public override void LoadContent(ContentManager content)
@@ -65,39 +56,16 @@ namespace flappyrogue_mg.GameSpace
         {
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             _idleCycle.Update(deltaTime);
-            Jump();
 
             _idleCycle.Rotation = MathHelper.ToRadians(MathHelper.Clamp(PhysicsObject.Velocity.Y * BIRD_ROTATION, -30f, 90f));
-            //Debug.WriteLine(MathHelper.Clamp(PhysicsObject.Velocity.Y * BIRD_ROTATION, -90f, 30f));
-
 
             PhysicsEngine.Instance.MoveAndSlide(PhysicsObject, gameTime);
         }
 
-        // crossplatform jump input
         private void Jump()
         {
-            //if android, jump on touch
-            bool hasCrossplatformJump = false;
-            #if ANDROID
-                hasCrossplatformJump = TouchPanel.GetState().Count > 0;
-            #else
-                hasCrossplatformJump = Keyboard.GetState().IsKeyDown(Keys.Space) || GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed;
-            #endif
-
-            if (hasCrossplatformJump)
-            {
-                if (!_pressedButtonJump)
-                {
-                    PhysicsObject.Velocity = _jumpForce;
-                    _pressedButtonJump = true;
-                    SoundManager.Instance.PlayJumpSound();
-                }
-            }
-            else
-            {
-                _pressedButtonJump = false;
-            }
+            PhysicsObject.Velocity = _jumpForce;
+            SoundManager.Instance.PlayJumpSound();
         }
 
         public override void Draw(SpriteBatch spriteBatch)

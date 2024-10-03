@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
 
@@ -46,6 +47,7 @@ public class SettingsManager
         {
             string json = File.ReadAllText(SettingsFilePath);
             _userSettings = JsonSerializer.Deserialize<UserSettings>(json);
+            Debug.WriteLine("Settings loaded: "+UserSettings);
         }
         else
         {

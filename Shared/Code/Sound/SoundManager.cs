@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 public enum SoundType
 {
@@ -50,13 +51,16 @@ public class SoundManager
     private void LoadVolumes()
     {
         SetVolumeFX(VolumeFX);
-        SetVolumeFX(VolumeMusic);
+        SetVolumeMusic(VolumeMusic);
     }
 
-    //volume control
+    public void Save(float fxVolume, float musicVolume)
+    {
+        SettingsManager.Instance.UserSettings = new UserSettings(fxVolume, musicVolume);
+    }
+
     public void SetVolumeFX(float volume)
     {
-        if (!IsLoaded) return;
         foreach (var sound in _sounds)
         {
             if (sound.Value == SoundType.FX)
@@ -66,7 +70,6 @@ public class SoundManager
 
     public void SetVolumeMusic(float volume)
     {
-        if (!IsLoaded) return;
         foreach (var sound in _sounds)
         {
             if (sound.Value == SoundType.Music)

@@ -9,4 +9,9 @@ public class UserSettings
     }
     public float VolumeFX { get; private set; } = 1.0f; 
     public float VolumeMusic { get; private set; } = 1.0f;
+
+    public override string ToString()
+    {
+        return $"VolumeFX: {VolumeFX}, VolumeMusic: {VolumeMusic}";
+    }
 }

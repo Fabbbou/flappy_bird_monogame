@@ -59,11 +59,7 @@ namespace flappyrogue_mg.GameSpace
 
         protected override void Initialize()
         {
-
-            // setting the viewport dimensions to be the same as the background (bg) image
-            // as the bg is portrait, the game will be portrait to
-            // for a pixel perfect game, the viewport has to be the exact size of the background img
-            //ViewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
+            //GizmosRegistry.Instance.DrawGizmos(true);
 
             //  Initialize screens
             _screens.Add(ScreenNames.MainGameScreen, new MainGameScreen(this));

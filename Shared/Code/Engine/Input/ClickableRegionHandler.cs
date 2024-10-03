@@ -4,55 +4,63 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Diagnostics;
 using MonoGame.Extended;
+using Microsoft.Xna.Framework.Graphics;
 
-public class ClickableRegionHandler
+public class ClickableRegionHandler : Gizmo
 {
+    private Entity _entity;
+    public bool IsActive
+    {
+        get => _entity.IsActive;
+    }
+    public bool IsPaused
+    {
+        get => _entity.IsPaused;
+    }
     private Rectangle _clickableRegion;
     private Action _onRegionClicked;
-    private OrthographicCamera _camera;
+    public OrthographicCamera Camera { get; private set; }
     private bool _hasClicked;
-    public ClickableRegionHandler(OrthographicCamera camera, Action onRegionClicked, Rectangle clickableRegion)
+    public string Label => ToString();
+    public ClickableRegionHandler(Entity entity, OrthographicCamera camera, Action onRegionClicked, Rectangle clickableRegion)
     {
+        GizmosRegistry.Instance.Add(this);
+        ClickRegistry.Instance.Add(this);
+        _entity = entity;
         _clickableRegion = clickableRegion;
         _onRegionClicked = onRegionClicked;
-        _camera = camera;
+        Camera = camera;
+
     }
 
-    public void Update(GameTime gameTime)
+    ~ClickableRegionHandler() => Kill();
+
+    public void Click(GameTime gameTime)
     {
-#if WINDOWS || PC || LINUX
-        // Check for mouse input
-        var mouseState = Mouse.GetState();
-        var worldPosition = _camera.ScreenToWorld(new Vector2(mouseState.X, mouseState.Y));
-        if (mouseState.LeftButton == ButtonState.Pressed)
-        {
-            if (!_hasClicked && _clickableRegion.Contains(worldPosition))
-            {
-                _hasClicked = true;
-                _onRegionClicked();
-            }
-        }
-        else
-        {
-            _hasClicked = false;    
-        }
-#elif ANDROID || IOS
-        // Check for touch input
-        var touchCollection = TouchPanel.GetState();
-        foreach (var touch in touchCollection)
-        {
-            if (touch.State == TouchLocationState.Pressed)
-            {
-                Point touchPosition = new Point((int)touch.Position.X, (int)touch.Position.Y);
-                if (!_hasClicked && _clickableRegion.Contains(touchPosition))
-                {
-                    _hasClicked = true;
-                    _onRegionClicked();
-                }
-            }else{
-                _hasClicked = false;
-            }
-        }
-#endif
+        _onRegionClicked();
+    }
+
+    //tostring
+    public override string ToString()
+    {
+        return "ClickableRegionHandler(" + _clickableRegion.Location + ";"+_clickableRegion.Size+")";
+    }
+
+    public bool Contains(Vector2 worldPosition)
+    {
+        return _clickableRegion.Contains(worldPosition);
+    }
+
+
+    public void DrawGizmo(SpriteBatch spriteBatch)
+    {
+        if (!IsActive) return;
+        if (IsPaused) return;
+        spriteBatch.DrawRectangle(_clickableRegion, Color.Red, 2);
+    }
+
+    public void Kill()
+    {
+        GizmosRegistry.Instance.RemoveObject(this);
     }
 }

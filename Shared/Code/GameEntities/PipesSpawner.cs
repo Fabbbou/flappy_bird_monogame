@@ -21,11 +21,11 @@ public class PipesSpawner : GameEntity
 
     private float _xOffsetFromRightBorder = 60f;
 
-    public override bool IsPaused
+    public new bool IsPaused
     {
         set
         {
-            _isPaused = value;
+            Entity.IsPaused = value;
             foreach (Pipes pipe in _pipes)
             {
                 pipe.IsPaused = value;
@@ -33,7 +33,6 @@ public class PipesSpawner : GameEntity
 
         }
     }
-
 
     public override void Update(GameTime gameTime)
     {
