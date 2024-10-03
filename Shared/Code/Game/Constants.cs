@@ -3,6 +3,12 @@ using Microsoft.Xna.Framework;
 
 public class Constants
 {
+    // 144 and 256 are width and height of the background image.
+    // As they  are uniform, the altlas automatically find each sprite contained in the texture
+    // i.e. the background image is divided in 144x256 sprites
+    // it is considered a uniform grid of sprites (they are all the same size)
+    // more info here: https://www.monogameextended.net/docs/features/texture-handling/texture2datlas/
+
     // Ingame world dimensions
     public const int WORLD_WIDTH = 144;
     public const int WORLD_HEIGHT = 256;

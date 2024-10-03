@@ -34,8 +34,6 @@ public class SoundUI : GameEntity
         IsActive = false;
         _mainGameScreen = mainGameScreen;
         _background = new FilledRectangle(mainGameScreen.GraphicsDevice, new Rectangle(0, 0, WORLD_WIDTH, WORLD_HEIGHT), new Color(.6f, .6f, .6f, .9f));
-        FxVolume = (int)(SoundManager.Instance.VolumeFX * 10);
-        MusicVolume = (int)(SoundManager.Instance.VolumeMusic * 10);
 
         _okClickableRegionHandler = new ClickableRegionHandler(Entity, mainGameScreen.Camera, OnClickOk, new(CLICK_REGION_POSITION_OK_BUTTON.ToPoint(), CLICK_REGION_SIZE_OK_BUTTON.ToPoint()));
         _menuClickableRegionHandler = new ClickableRegionHandler(Entity, mainGameScreen.Camera, OnClickMenu, new(CLICK_REGION_POSITION_MENU_BUTTON.ToPoint(), CLICK_REGION_SIZE_MENU_BUTTON.ToPoint()));
@@ -56,6 +54,9 @@ public class SoundUI : GameEntity
         _okButton = PreloadedAssets.Instance.OkButton;
         _menuButton = PreloadedAssets.Instance.MenuButton;
         _uiSettings = PreloadedAssets.Instance.UiSSettings;
+
+        FxVolume = (int)(SoundManager.Instance.VolumeFX * 10);
+        MusicVolume = (int)(SoundManager.Instance.VolumeMusic * 10);
     }
 
     public override void Update(GameTime gameTime) {}

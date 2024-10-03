@@ -31,21 +31,15 @@ namespace flappyrogue_mg.GameSpace
         public SoundUI SoundUI { get; private set; }
         public MainGameScreen(Game game) : base(game){}
 
-        public override void LoadContent()
+        public override void Initialize()
         {
-            base.LoadContent();
-            
             // setting the viewport dimensions to be the same as the background (bg) image
             // as the bg is portrait, the game will be portrait to
             // for a pixel perfect game, the viewport has to be the exact size of the background img
-            Game.IsMouseVisible = true;
             ViewportAdapter = new BoxingViewportAdapter(Game.Window, GraphicsDevice, Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
+            Game.IsMouseVisible = true;
             Camera = new OrthographicCamera(ViewportAdapter);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            SettingsManager.Instance.LoadSettings();
-            SoundManager.Instance.LoadContent(Content);
-            PreloadedAssets.Instance.LoadContent(Content);
 
             StateMachine = new StateMachine(new PlayState(this));
             SoundUI = new SoundUI(this);
@@ -53,7 +47,7 @@ namespace flappyrogue_mg.GameSpace
             PipesSpawner = new PipesSpawner();
             Bird = new Bird(this);
             PauseButton = new PauseButton(this);
-            
+
             World = new World();
             World.AddGameEntity(Floor);
             World.AddGameEntity(PipesSpawner);
@@ -61,12 +55,10 @@ namespace flappyrogue_mg.GameSpace
             World.AddGameEntity(ScoreManager.Instance);
             World.AddGameEntity(PauseButton);
             World.AddGameEntity(SoundUI);
+        }
 
-            // 144 and 256 are width and height of the background image.
-            // As they  are uniform, the altlas automatically find each sprite contained in the texture
-            // i.e. the background image is divided in 144x256 sprites
-            // it is considered a uniform grid of sprites (they are all the same size)
-            // more info here: https://www.monogameextended.net/docs/features/texture-handling/texture2datlas/
+        public override void LoadContent()
+        {            
             Texture2D backGroundTexture = Content.Load<Texture2D>("sprites/background");
             _atlas = Texture2DAtlas.Create("Atlas/Background", backGroundTexture, Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
             _dayBackground = _atlas[0];
@@ -80,10 +72,7 @@ namespace flappyrogue_mg.GameSpace
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Game.Exit();
             StateMachine.Update(gameTime);
-
             World.Update(gameTime);
-
-            PhysicsEngine.Instance.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime)

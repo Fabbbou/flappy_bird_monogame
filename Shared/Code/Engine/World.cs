@@ -22,6 +22,7 @@ public class World
             if (gameEntity.IsPaused) continue;
             gameEntity.Update(gametime);
         }
+        PhysicsEngine.Instance.Update(gametime);
     }
 
     public void Draw(SpriteBatch spriteBatch)
@@ -33,11 +34,15 @@ public class World
         }
     }
 
-    public void LoadContent(ContentManager contentManager)
+    public void LoadContent(ContentManager content)
     {
+        PreloadedAssets.Instance.LoadContent(content);
+        SettingsManager.Instance.LoadSettings();
+        SoundManager.Instance.LoadContent(content);
+
         foreach (var gameEntity in _gameEntities)
         {
-            gameEntity.LoadContent(contentManager);
+            gameEntity.LoadContent(content);
         }
     }
 }
