@@ -18,17 +18,17 @@ namespace flappyrogue_mg.GameSpace
         public OrthographicCamera Camera {  get; private set; }
         private SpriteBatch _spriteBatch;
 
-        private Texture2DAtlas _atlas;
-        private Texture2DRegion _dayBackground;
-        private Texture2DRegion _nightBackground;
-
+        private Texture2DRegion _background;
         public StateMachine StateMachine { get; private set; }
+        public Entity EntityJumpClickRegion { get; private set; }
+        public GetReadyUI GetReadyUI { get; private set; }
         public Bird Bird { get; private set; }
         public Floor Floor { get; private set; }
         public PipesSpawner PipesSpawner { get; private set; }
         public PauseButton PauseButton { get; private set; }
         public World World { get; private set; }
         public SoundUI SoundUI { get; private set; }
+        public ClickableRegionHandler JumpBirdClickableRegionHandler { get; set; }
         public MainGameScreen(Game game) : base(game){}
 
         public override void Initialize()
@@ -41,7 +41,9 @@ namespace flappyrogue_mg.GameSpace
             Camera = new OrthographicCamera(ViewportAdapter);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            StateMachine = new StateMachine(new PlayState(this));
+            StateMachine = new StateMachine(new GetReadyState(this));
+            GetReadyUI = new GetReadyUI();
+            EntityJumpClickRegion = new Entity();
             SoundUI = new SoundUI(this);
             Floor = new Floor();
             PipesSpawner = new PipesSpawner();
@@ -49,22 +51,19 @@ namespace flappyrogue_mg.GameSpace
             PauseButton = new PauseButton(this);
 
             World = new World();
-            World.AddGameEntity(Floor);
-            World.AddGameEntity(PipesSpawner);
-            World.AddGameEntity(Bird);
-            World.AddGameEntity(ScoreManager.Instance);
-            World.AddGameEntity(PauseButton);
-            World.AddGameEntity(SoundUI);
+            World.AddEntity(Floor);
+            World.AddEntity(PipesSpawner);
+            World.AddEntity(Bird);
+            World.AddEntity(ScoreManager.Instance);
+            World.AddEntity(PauseButton);
+            World.AddEntity(SoundUI);
+            World.AddEntity(GetReadyUI);
         }
 
         public override void LoadContent()
         {            
-            Texture2D backGroundTexture = Content.Load<Texture2D>("sprites/background");
-            _atlas = Texture2DAtlas.Create("Atlas/Background", backGroundTexture, Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
-            _dayBackground = _atlas[0];
-            _nightBackground = _atlas[1];
-
             World.LoadContent(Content);
+            _background = PreloadedAssets.Instance.Background;
         }
 
         public override void UnloadContent()
@@ -85,7 +84,7 @@ namespace flappyrogue_mg.GameSpace
             GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin(transformMatrix: Camera.GetViewMatrix(), samplerState: SamplerState.PointClamp);
             
-            _spriteBatch.Draw(_dayBackground, Vector2.Zero, Color.White);
+            _spriteBatch.Draw(_background, Vector2.Zero, Color.White);
 
             World.Draw(_spriteBatch);
 

@@ -25,7 +25,7 @@ public class PipesSpawner : GameEntity
     {
         set
         {
-            Entity.IsPaused = value;
+            base.IsPaused = value;
             foreach (Pipes pipe in _pipes)
             {
                 pipe.IsPaused = value;

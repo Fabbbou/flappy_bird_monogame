@@ -9,6 +9,7 @@ public class PauseState : MainGameState
     {
         MainGameScreen.SoundUI.IsActive = true;
         MainGameScreen.PauseButton.IsActive = false;
+        MainGameScreen.EntityJumpClickRegion.IsActive = false;
 
         MainGameScreen.Bird.IsPaused = true;
         MainGameScreen.PipesSpawner.IsPaused = true;
@@ -25,10 +26,12 @@ public class PauseState : MainGameState
     {
         MainGameScreen.SoundUI.IsActive = false;
         MainGameScreen.PauseButton.IsActive = true;
-        SoundManager.Instance.Save(MainGameScreen.SoundUI.FxVolume*0.1f, MainGameScreen.SoundUI.MusicVolume*0.1f);
+        MainGameScreen.EntityJumpClickRegion.IsActive = true;
 
         MainGameScreen.Bird.IsPaused = false;
         MainGameScreen.PipesSpawner.IsPaused = false;
         MainGameScreen.Floor.IsPaused = false;
+
+        SoundManager.Instance.Save(MainGameScreen.SoundUI.FxVolume*0.1f, MainGameScreen.SoundUI.MusicVolume*0.1f);
     }
 }

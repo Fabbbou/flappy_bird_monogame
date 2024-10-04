@@ -63,6 +63,7 @@ namespace flappyrogue_mg.GameSpace
             //GizmosRegistry.Instance.DrawGizmos(true);
 
             //  Initialize screens
+            _screens.Add(ScreenName.MenuScreen, new MenuScreen(this));
             _screens.Add(ScreenName.MainGameScreen, new MainGameScreen(this));
             _screens.Add(ScreenName.GameOverScreen, new GameOverScreen(this));
 
@@ -75,7 +76,7 @@ namespace flappyrogue_mg.GameSpace
 
         protected override void LoadContent()
         {
-            LoadScreen(ScreenName.MainGameScreen);
+            LoadScreen(ScreenName.MenuScreen);
             //LoadScreen(ScreenName.ZoomedOutMain);
             //LoadScreen(ScreenName.DebugPhysics);
         }

@@ -23,6 +23,8 @@ public class PreloadedAssets
 
     private Texture2DAtlas _mainGameAtlas;
     public Texture2DRegion Background { get; private set; }
+    public Texture2DRegion GetReadyTitle{ get; private set; }
+    public Texture2DRegion TapScreenTitle { get; private set; }
     public Texture2DRegion GameOver { get; private set; }
     public Texture2DRegion PipeTop { get; private set; }
     public Texture2DRegion PipeBottom { get; private set; }
@@ -47,6 +49,7 @@ public class PreloadedAssets
 
     private void LoadAtlas(ContentManager content)
     {
+        if (IsLoaded) return;
         Texture2D atlasTexture = content.Load<Texture2D>("sprites/atlas");
         _mainGameAtlas = new Texture2DAtlas("Atlas", atlasTexture);
         Background = _mainGameAtlas.CreateRegion(0, 0, WORLD_WIDTH, WORLD_HEIGHT, "Background");
@@ -61,5 +64,8 @@ public class PreloadedAssets
         FlappyBirdLogo = _mainGameAtlas.CreateRegion((int)ATLAS_POSITION_LOGO_FLAPPYBIRD.X, (int)ATLAS_POSITION_LOGO_FLAPPYBIRD.Y, (int)ATLAS_SIZE_LOGO_FLAPPYBIRD.X, (int)ATLAS_SIZE_LOGO_FLAPPYBIRD.Y, "FlappyBirdLogo");
         PlayButton = _mainGameAtlas.CreateRegion((int)ATLAS_POSITION_PLAY_BUTTON.X, (int)ATLAS_POSITION_PLAY_BUTTON.Y, (int)ATLAS_SIZE_PLAY_BUTTON.X, (int)ATLAS_SIZE_PLAY_BUTTON.Y, "PlayButton");
         ScoreButton = _mainGameAtlas.CreateRegion((int)ATLAS_POSITION_SCORE_BUTTON.X, (int)ATLAS_POSITION_SCORE_BUTTON.Y, (int)ATLAS_SIZE_SCORE_BUTTON.X, (int)ATLAS_SIZE_SCORE_BUTTON.Y, "ScoreButton");
+        GetReadyTitle = _mainGameAtlas.CreateRegion((int)ATLAS_POSITION_GETREADY_TITLE.X, (int)ATLAS_POSITION_GETREADY_TITLE.Y, (int)ATLAS_SIZE_GETREADY_TITLE.X, (int)ATLAS_SIZE_GETREADY_TITLE.Y, "GetReadyTitle");
+        TapScreenTitle = _mainGameAtlas.CreateRegion((int)ATLAS_POSITION_TAPSCREEN_TITLE.X, (int)ATLAS_POSITION_TAPSCREEN_TITLE.Y, (int)ATLAS_SIZE_TAPSCREEN_TITLE.X, (int)ATLAS_SIZE_TAPSCREEN_TITLE.Y, "TapScreenTitle");
+        IsLoaded = true;
     }
 }

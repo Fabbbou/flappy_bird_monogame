@@ -14,7 +14,7 @@ public class PauseButton : GameEntity
     public PauseButton(MainGameScreen mainGameScreen)
     {
         _mainGameScreen = mainGameScreen;
-        _clickableRegionHandler = new ClickableRegionHandler(Entity, _mainGameScreen.Camera, OnClick, new(Constants.CLICK_REGION_POSITION_PAUSE_BUTTON.ToPoint(), Constants.CLICK_REGION_SIZE_PAUSE_BUTTON.ToPoint()));
+        _clickableRegionHandler = new ClickableRegionHandler(this, _mainGameScreen.Camera, OnClick, new(Constants.CLICK_REGION_POSITION_PAUSE_BUTTON.ToPoint(), Constants.CLICK_REGION_SIZE_PAUSE_BUTTON.ToPoint()));
     }
 
     public override void Draw(SpriteBatch spriteBatch)

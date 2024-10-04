@@ -2,13 +2,14 @@ using flappyrogue_mg.Core;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended.ECS;
 using System.Collections.Generic;
 
 public class World
 {
-    private List<GameEntity> _gameEntities = new();
+    private List<Entity> _gameEntities = new();
 
-    public void AddGameEntity(GameEntity gameEntity)
+    public void AddEntity(Entity gameEntity)
     {
         _gameEntities.Add(gameEntity);
     }
@@ -16,21 +17,27 @@ public class World
     public void Update(GameTime gametime)
     {
         ClickRegistry.Instance.Update(gametime);
-        foreach (var gameEntity in _gameEntities)
+        foreach (Entity entity in _gameEntities)
         {
-            if (!gameEntity.IsActive) continue;
-            if (gameEntity.IsPaused) continue;
-            gameEntity.Update(gametime);
+            if (!entity.IsActive) continue;
+            if (entity.IsPaused) continue;
+            if(entity is GameEntity gameEntity)
+            {
+                gameEntity.Update(gametime);
+            }
         }
         PhysicsEngine.Instance.Update(gametime);
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        foreach (var gameEntity in _gameEntities)
+        foreach (var entity in _gameEntities)
         {
-            if (!gameEntity.IsActive) continue;
-            gameEntity.Draw(spriteBatch);
+            if (!entity.IsActive) continue;
+            if (entity is GameEntity gameEntity)
+            {
+                gameEntity.Draw(spriteBatch);
+            }
         }
     }
 
@@ -40,9 +47,12 @@ public class World
         SettingsManager.Instance.LoadSettings();
         SoundManager.Instance.LoadContent(content);
 
-        foreach (var gameEntity in _gameEntities)
+        foreach (Entity entity in _gameEntities)
         {
-            gameEntity.LoadContent(content);
+            if (entity is GameEntity gameEntity)
+            {
+                gameEntity.LoadContent(content);
+            }
         }
     }
 

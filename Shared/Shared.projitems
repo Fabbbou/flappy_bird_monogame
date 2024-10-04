@@ -27,9 +27,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\GameEntities\PauseButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\GameEntities\ScoreManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\game\screen\GameOverScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)code\game\screen\MenuScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Sound\SoundManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Sound\SoundUI.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\game\states\DeathState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)code\game\states\GetReadyState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\States\MainGameState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\States\PauseState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\States\PlayState.cs" />
@@ -39,6 +41,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\Collider\Collides.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\PhysicsEngine.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\Collider\RectCollider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)code\game\ui\GetReadyUI.cs" />
     <Compile Include="..\Shared\Code\Engine\Debug\GizmosRegistry.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Input\Keyboard.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\PhysicsObject.cs" />

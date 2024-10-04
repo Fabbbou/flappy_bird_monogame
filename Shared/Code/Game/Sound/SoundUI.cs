@@ -36,16 +36,16 @@ public class SoundUI : GameEntity
         _mainGameScreen = mainGameScreen;
         _background = new FilledRectangle(mainGameScreen.GraphicsDevice, new Rectangle(0, 0, WORLD_WIDTH, WORLD_HEIGHT), new Color(.6f, .6f, .6f, .9f));
 
-        _okClickableRegionHandler = new ClickableRegionHandler(Entity, mainGameScreen.Camera, OnClickOk, new(CLICK_REGION_POSITION_OK_BUTTON.ToPoint(), CLICK_REGION_SIZE_OK_BUTTON.ToPoint()));
-        _menuClickableRegionHandler = new ClickableRegionHandler(Entity, mainGameScreen.Camera, OnClickMenu, new(CLICK_REGION_POSITION_GAMEOVER_MENU_BUTTON.ToPoint(), CLICK_REGION_SIZE_GAMEOVER_MENU_BUTTON.ToPoint()));
+        _okClickableRegionHandler = new ClickableRegionHandler(this, mainGameScreen.Camera, OnClickOk, new(CLICK_REGION_POSITION_OK_BUTTON.ToPoint(), CLICK_REGION_SIZE_OK_BUTTON.ToPoint()));
+        _menuClickableRegionHandler = new ClickableRegionHandler(this, mainGameScreen.Camera, OnClickMenu, new(CLICK_REGION_SOUND_UI_POSITION_MENU_BUTTON.ToPoint(), CLICK_REGION_SOUND_UI_SIZE_MENU_BUTTON.ToPoint()));
         
-        _fxMinusClickableRegionHandler = new ClickableRegionHandler(Entity, mainGameScreen.Camera, OnClickFxMinus, new(CLICK_REGION_POSITION_MINUS_BUTTON_FX.ToPoint(), CLICK_REGION_SIZE_MINUS_BUTTON.ToPoint()));
-        _fxPlusClickableRegionHandler = new ClickableRegionHandler(Entity, mainGameScreen.Camera, OnClickFxPlus, new(CLICK_REGION_POSITION_PLUS_BUTTON_FX.ToPoint(), CLICK_REGION_SIZE_PLUS_BUTTON.ToPoint()));
-        _fxMuteClickableRegionHandler = new ClickableRegionHandler(Entity, mainGameScreen.Camera, OnClickFxMute, new(CLICK_REGION_POSITION_LOGO_FX.ToPoint(), CLICK_REGION_SIZE_LOGO_FX.ToPoint()));
+        _fxMinusClickableRegionHandler = new ClickableRegionHandler(this, mainGameScreen.Camera, OnClickFxMinus, new(CLICK_REGION_POSITION_MINUS_BUTTON_FX.ToPoint(), CLICK_REGION_SIZE_MINUS_BUTTON.ToPoint()));
+        _fxPlusClickableRegionHandler = new ClickableRegionHandler(this, mainGameScreen.Camera, OnClickFxPlus, new(CLICK_REGION_POSITION_PLUS_BUTTON_FX.ToPoint(), CLICK_REGION_SIZE_PLUS_BUTTON.ToPoint()));
+        _fxMuteClickableRegionHandler = new ClickableRegionHandler(this, mainGameScreen.Camera, OnClickFxMute, new(CLICK_REGION_POSITION_LOGO_FX.ToPoint(), CLICK_REGION_SIZE_LOGO_FX.ToPoint()));
         
-        _musicMinusClickableRegionHandler = new ClickableRegionHandler(Entity, mainGameScreen.Camera, OnClickMusicMinus, new(CLICK_REGION_POSITION_MINUS_BUTTON_MUSIC.ToPoint(), CLICK_REGION_SIZE_MINUS_BUTTON.ToPoint()));
-        _musicPlusClickableRegionHandler = new ClickableRegionHandler(Entity, mainGameScreen.Camera, OnClickMusicPlus, new(CLICK_REGION_POSITION_PLUS_BUTTON_MUSIC.ToPoint(), CLICK_REGION_SIZE_PLUS_BUTTON.ToPoint()));
-        _musicMuteClickableRegionHandler = new ClickableRegionHandler(Entity, mainGameScreen.Camera, OnClickMusicMute, new(CLICK_REGION_POSITION_LOGO_MUSIC.ToPoint(), CLICK_REGION_SIZE_LOGO_MUSIC.ToPoint()));
+        _musicMinusClickableRegionHandler = new ClickableRegionHandler(this, mainGameScreen.Camera, OnClickMusicMinus, new(CLICK_REGION_POSITION_MINUS_BUTTON_MUSIC.ToPoint(), CLICK_REGION_SIZE_MINUS_BUTTON.ToPoint()));
+        _musicPlusClickableRegionHandler = new ClickableRegionHandler(this, mainGameScreen.Camera, OnClickMusicPlus, new(CLICK_REGION_POSITION_PLUS_BUTTON_MUSIC.ToPoint(), CLICK_REGION_SIZE_PLUS_BUTTON.ToPoint()));
+        _musicMuteClickableRegionHandler = new ClickableRegionHandler(this, mainGameScreen.Camera, OnClickMusicMute, new(CLICK_REGION_POSITION_LOGO_MUSIC.ToPoint(), CLICK_REGION_SIZE_LOGO_MUSIC.ToPoint()));
     }
 
     public override void LoadContent(ContentManager content)
@@ -96,6 +96,7 @@ public class SoundUI : GameEntity
     }
     public void OnClickMenu()
     {
+        Main.Instance.LoadScreen(ScreenName.MenuScreen);
     }
     public void OnClickFxMinus()
     {

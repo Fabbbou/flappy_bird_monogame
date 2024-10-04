@@ -5,15 +5,22 @@ public class StateMachine
     public GameState CurrentState { get; private set; }
     private GameState _nextState;
     private bool _isTransitioning;
+    private bool _firstLaunch;
 
     public StateMachine(GameState initialState)
     {
         CurrentState = initialState;
         _isTransitioning = false;
+        _firstLaunch = true;
     }
 
     public void Update(GameTime gameTime)
     {
+        if(_firstLaunch)
+        {
+            CurrentState.Enter();
+            _firstLaunch = false;
+        }
         if (_isTransitioning)
         {
             CurrentState.Exit();
