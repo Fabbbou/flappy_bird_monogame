@@ -18,9 +18,8 @@ public class ClickableRegionHandler : Gizmo
         get => _entity.IsPaused;
     }
     private Rectangle _clickableRegion;
-    private Action _onRegionClicked;
+    private readonly Action _onRegionClicked;
     public OrthographicCamera Camera { get; private set; }
-    private bool _hasClicked;
     public string Label => ToString();
     public ClickableRegionHandler(Entity entity, OrthographicCamera camera, Action onRegionClicked, Rectangle clickableRegion)
     {

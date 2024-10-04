@@ -25,8 +25,14 @@ public class Constants
     public const float PLAYABLE_WORLD_HEIGHT = WORLD_HEIGHT - Floor.SPRITE_HEIGHT;
     public static readonly Color DEFAULT_DEBUG_COLOR_GIZMOS = Color.Yellow;
 
-    public static readonly Vector2 ATLAS_LOGO_FB = new(351, 91);
-    public static readonly Vector2 SIZE_LOGO_FB = new(89, 24);
+    public static readonly Vector2 ATLAS_POSITION_LOGO_FLAPPYBIRD = new(351, 91);
+    public static readonly Vector2 ATLAS_SIZE_LOGO_FLAPPYBIRD = new(89, 24);
+    public static readonly Vector2 SPRITE_POSITION_SOUNDUI_LOGO_FLAPPYBIRD = new(28, 30);
+    public static readonly Vector2 SPRITE_POSITION_MAIN_SCREEN_LOGO_FLAPPYBIRD = new(28, 30);
+
+    public static readonly Vector2 ATLAS_POSITION_GAMEOVER = new(395, 59);
+    public static readonly Vector2 ATLAS_SIZE_GAMEOVER = new(96, 21);
+    public static readonly Vector2 SPRITE_POSITION_GAMEOVER = new(24, 45);
 
     public static readonly Vector2 POSITION_JUMP_REGION = new(0, 25);
     public static readonly Vector2 SIZE_JUMP_REGION = new(WORLD_WIDTH, WORLD_HEIGHT-25);
@@ -39,17 +45,22 @@ public class Constants
     public static readonly Vector2 CLICK_REGION_POSITION_PAUSE_BUTTON = new(111, 0);
     public static readonly Vector2 CLICK_REGION_SIZE_PAUSE_BUTTON = new(33, 33);
 
+    //OK button
     public static readonly Vector2 ATLAS_OK_BUTTON = new(462, 42);
     public static readonly Vector2 ATLAS_SIZE_OK_BUTTON = new(40, 14);
     public static readonly Vector2 SPRITE_POSITION_OK_BUTTON = new(16,179);
     public static readonly Vector2 CLICK_REGION_POSITION_OK_BUTTON = new(6,163);
     public static readonly Vector2 CLICK_REGION_SIZE_OK_BUTTON = new(59, 43);
     
+    //Menu button
     public static readonly Vector2 ATLAS_MENU_BUTTON = new(462, 26);
     public static readonly Vector2 ATLAS_SIZE_MENU_BUTTON = new(40, 14);
-    public static readonly Vector2 SPRITE_POSITION_MENU_BUTTON = new(89, 179);
-    public static readonly Vector2 CLICK_REGION_POSITION_MENU_BUTTON = new(78, 163);
-    public static readonly Vector2 CLICK_REGION_SIZE_MENU_BUTTON = new(59, 43);
+    public static readonly Vector2 SPRITE_POSITION_MENU_BUTTON_SOUND_UI = new(89, 179);
+    public static readonly Vector2 SPRITE_POSITION_MENU_BUTTON_GAMEOVER = new(52, 172);
+    public static readonly Vector2 CLICK_REGION_SOUND_UI_POSITION_MENU_BUTTON = new(78, 163);
+    public static readonly Vector2 CLICK_REGION_SOUND_UI_SIZE_MENU_BUTTON = new(59, 43);
+    public static readonly Vector2 CLICK_REGION_POSITION_GAMEOVER_MENU_BUTTON = new(42, 162);
+    public static readonly Vector2 CLICK_REGION_SIZE_GAMEOVER_MENU_BUTTON = new(60, 34);
 
     //the bar to say the sound is ON
     public static readonly Vector2 ATLAS_BAR_SOUND = new(214, 324);
@@ -58,7 +69,7 @@ public class Constants
     //position is computed in the SoundUI
 
     public static readonly Vector2 ATLAS_UI_SETTINGS = new(203, 264);
-    public static readonly Vector2 SIZE_UI_SETTINGS = new(113, 57);
+    public static readonly Vector2 ATLAS_SIZE_UI_SETTINGS = new(113, 57);
     public static readonly Vector2 SPRITE_POSITION_UI_SETTINGS = new(16, 100);
 
     // - Settings UI Buttons size
@@ -78,6 +89,14 @@ public class Constants
     public static readonly Vector2 CLICK_REGION_SIZE_LOGO_FX = new(21, 23);
     public static readonly Vector2 CLICK_REGION_POSITION_LOGO_FX = new(17, 135);
     public static readonly Vector2 POSITION_BARS_FX = new(59, 142);
+
+    public static readonly Vector2 ATLAS_POSITION_PLAY_BUTTON = new(354, 118);
+    public static readonly Vector2 ATLAS_SIZE_PLAY_BUTTON = new(52, 29); //same size for click region
+    public static readonly Vector2 SPRITE_POSITION_PLAY_BUTTON = new(16, 126); //same position for click region
+
+    public static readonly Vector2 ATLAS_POSITION_SCORE_BUTTON = new(414, 118);
+    public static readonly Vector2 ATLAS_SIZE_SCORE_BUTTON = new(52, 29); //same size for click region
+    public static readonly Vector2 SPRITE_POSITION_SCORE_BUTTON = new(76, 126); //same position for click region
 
 
 }

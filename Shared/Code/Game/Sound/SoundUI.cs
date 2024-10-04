@@ -17,6 +17,7 @@ public class SoundUI : GameEntity
     private Texture2DRegion _menuButton;
     private ClickableRegionHandler _menuClickableRegionHandler;
     private Texture2DRegion _uiSettings;
+    private Texture2DRegion _flappyBirdLogo;
 
     private ClickableRegionHandler _fxMinusClickableRegionHandler;
     private ClickableRegionHandler _fxPlusClickableRegionHandler;
@@ -36,7 +37,7 @@ public class SoundUI : GameEntity
         _background = new FilledRectangle(mainGameScreen.GraphicsDevice, new Rectangle(0, 0, WORLD_WIDTH, WORLD_HEIGHT), new Color(.6f, .6f, .6f, .9f));
 
         _okClickableRegionHandler = new ClickableRegionHandler(Entity, mainGameScreen.Camera, OnClickOk, new(CLICK_REGION_POSITION_OK_BUTTON.ToPoint(), CLICK_REGION_SIZE_OK_BUTTON.ToPoint()));
-        _menuClickableRegionHandler = new ClickableRegionHandler(Entity, mainGameScreen.Camera, OnClickMenu, new(CLICK_REGION_POSITION_MENU_BUTTON.ToPoint(), CLICK_REGION_SIZE_MENU_BUTTON.ToPoint()));
+        _menuClickableRegionHandler = new ClickableRegionHandler(Entity, mainGameScreen.Camera, OnClickMenu, new(CLICK_REGION_POSITION_GAMEOVER_MENU_BUTTON.ToPoint(), CLICK_REGION_SIZE_GAMEOVER_MENU_BUTTON.ToPoint()));
         
         _fxMinusClickableRegionHandler = new ClickableRegionHandler(Entity, mainGameScreen.Camera, OnClickFxMinus, new(CLICK_REGION_POSITION_MINUS_BUTTON_FX.ToPoint(), CLICK_REGION_SIZE_MINUS_BUTTON.ToPoint()));
         _fxPlusClickableRegionHandler = new ClickableRegionHandler(Entity, mainGameScreen.Camera, OnClickFxPlus, new(CLICK_REGION_POSITION_PLUS_BUTTON_FX.ToPoint(), CLICK_REGION_SIZE_PLUS_BUTTON.ToPoint()));
@@ -50,6 +51,7 @@ public class SoundUI : GameEntity
     public override void LoadContent(ContentManager content)
     {
         _background.LoadContent(content);
+        _flappyBirdLogo = PreloadedAssets.Instance.FlappyBirdLogo;
         _barSound = PreloadedAssets.Instance.BarSound;
         _okButton = PreloadedAssets.Instance.OkButton;
         _menuButton = PreloadedAssets.Instance.MenuButton;
@@ -64,8 +66,9 @@ public class SoundUI : GameEntity
     public override void Draw(SpriteBatch spriteBatch)
     {
         _background.Draw(spriteBatch);
+        spriteBatch.Draw(_flappyBirdLogo, SPRITE_POSITION_SOUNDUI_LOGO_FLAPPYBIRD, Color.White);
         spriteBatch.Draw(_okButton, SPRITE_POSITION_OK_BUTTON, Color.White);
-        spriteBatch.Draw(_menuButton, SPRITE_POSITION_MENU_BUTTON, Color.White);
+        spriteBatch.Draw(_menuButton, SPRITE_POSITION_MENU_BUTTON_SOUND_UI, Color.White);
         spriteBatch.Draw(_uiSettings, SPRITE_POSITION_UI_SETTINGS, Color.White);
         DrawFxBars(spriteBatch);
         DrawMusicBars(spriteBatch);

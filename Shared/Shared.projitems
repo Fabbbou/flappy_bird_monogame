@@ -26,13 +26,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Core\World.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\GameEntities\PauseButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\GameEntities\ScoreManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)code\game\screen\GameOverScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Sound\SoundManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Sound\SoundUI.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\game\states\DeathState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\States\MainGameState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\States\PauseState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\States\PlayState.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Code\Game\UI\PreloadedAssets.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Game\UI\AtlasAssets.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\Collider\CirclCollider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\Collider\Collider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\Collider\Collides.cs" />
@@ -46,7 +47,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\GameEntities\Floor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\GameEntities\PipesSpawner.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Screen\DebugPhysicsScreen.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Screen\ScreenNames.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Screen\ScreenName.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Screen\MainGameScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\GameEntities\Pipes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Screen\ZoomedOutGameStarted.cs" />

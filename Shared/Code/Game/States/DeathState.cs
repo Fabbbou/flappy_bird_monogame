@@ -1,5 +1,7 @@
 using flappyrogue_mg.GameSpace;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended.Screens.Transitions;
 
 public class DeathState : GameState
 {
@@ -29,7 +31,7 @@ public class DeathState : GameState
         _deathTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
         if (_deathTimer >= DEATH_TIME)
         {
-            Main.Instance.LoadScreen(ScreenNames.MainGameScreen);
+            Main.Instance.LoadScreen(ScreenName.GameOverScreen, new FadeTransition(_mainGameScreen.Game.GraphicsDevice, Color.Black));
         }
     }
 }

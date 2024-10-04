@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework.Input.Touch;
 using Microsoft.Xna.Framework.Input;
 using System.Diagnostics;
+using System.Linq;
 
 public class ClickRegistry
 {
@@ -35,7 +36,8 @@ public class ClickRegistry
 
     public void Update(GameTime gametime)
     {
-        foreach (var clickableRegionHandler in _clickableRegionHandlers)
+        var copyList = _clickableRegionHandlers.ToList(); // make a copy so we dont have issues with removing elements during iteration 
+        foreach (var clickableRegionHandler in copyList)
         {
             if (!clickableRegionHandler.IsActive) continue;
             if (clickableRegionHandler.IsPaused) continue;

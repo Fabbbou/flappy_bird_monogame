@@ -1,4 +1,4 @@
-public enum ScreenNames
+public enum ScreenName
 {
     MainGameScreen,
     GameOverScreen,
