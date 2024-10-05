@@ -4,13 +4,12 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Graphics;
 using System.Diagnostics;
+using static Constants;
 
 namespace flappyrogue_mg.GameSpace
 {
     public class Pipes : GameEntity
     {
-        public const int SPRITE_WIDTH = 26;
-        public const int SPRITE_HEIGHT = 160;
         public const int CROP_SCORING_ZONE_WIDTH = 3;
 
         public readonly PhysicsObject PhysicsObjectPipeTop;
@@ -29,12 +28,12 @@ namespace flappyrogue_mg.GameSpace
         public Pipes(string label, float xOffsetFromRightBorder, float yOffsetFromTop, float gapHeight, float speed)
         {
             _speedForce = speed;
-            float xPosition = Constants.WORLD_WIDTH - SPRITE_WIDTH + xOffsetFromRightBorder;
-            PhysicsObjectPipeTop = PhysicsObjectFactory.Rect("pipe top" + label, xPosition, -SPRITE_HEIGHT + yOffsetFromTop, ColliderType.Moving, SPRITE_WIDTH, SPRITE_HEIGHT);
+            float xPosition = WORLD_WIDTH - ATLAS_SIZE_PIPE.X + xOffsetFromRightBorder;
+            PhysicsObjectPipeTop = PhysicsObjectFactory.Rect("pipe top" + label, xPosition, -ATLAS_SIZE_PIPE.Y + yOffsetFromTop, ColliderType.Moving, ATLAS_SIZE_PIPE.X, ATLAS_SIZE_PIPE.Y);
             PhysicsObjectPipeTop.Gravity = Vector2.Zero;
-            PhysicsObjectPipeBottom = PhysicsObjectFactory.Rect("pipe bottom" + label, xPosition, yOffsetFromTop + gapHeight, ColliderType.Moving, SPRITE_WIDTH, SPRITE_HEIGHT);
+            PhysicsObjectPipeBottom = PhysicsObjectFactory.Rect("pipe bottom" + label, xPosition, yOffsetFromTop + gapHeight, ColliderType.Moving, ATLAS_SIZE_PIPE.X, ATLAS_SIZE_PIPE.Y);
             PhysicsObjectPipeBottom.Gravity = Vector2.Zero;
-            ScoringZone = PhysicsObjectFactory.AreaRectTriggerOnce("scoring zone" + label, xPosition + CROP_SCORING_ZONE_WIDTH, yOffsetFromTop, ColliderType.AreaCastTrigger, SPRITE_WIDTH - CROP_SCORING_ZONE_WIDTH*2, gapHeight, onScoringZoneTriggered);
+            ScoringZone = PhysicsObjectFactory.AreaRectTriggerOnce("scoring zone" + label, xPosition + CROP_SCORING_ZONE_WIDTH, yOffsetFromTop, ColliderType.AreaCastTrigger, ATLAS_SIZE_PIPE.X - CROP_SCORING_ZONE_WIDTH*2, gapHeight, onScoringZoneTriggered);
         }
 
         public void onScoringZoneTriggered()
@@ -47,14 +46,14 @@ namespace flappyrogue_mg.GameSpace
         {
             //textures are loaded from the atlas in GameMain.cs
             //we still load the atlas here to get the texture
-            _pipeTopTexture = PreloadedAssets.Instance.PipeTop;
-            _pipeBottomTexture = PreloadedAssets.Instance.PipeBottom;
+            _pipeTopTexture = AssetsLoader.Instance.PipeTop;
+            _pipeBottomTexture = AssetsLoader.Instance.PipeBottom;
         }
 
         public void BypassLoadContent()
         {
-            _pipeTopTexture = PreloadedAssets.Instance.PipeTop;
-            _pipeBottomTexture = PreloadedAssets.Instance.PipeBottom;
+            _pipeTopTexture = AssetsLoader.Instance.PipeTop;
+            _pipeBottomTexture = AssetsLoader.Instance.PipeBottom;
         }
 
         public override void Update(GameTime gameTime)

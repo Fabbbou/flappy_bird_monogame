@@ -42,12 +42,12 @@ public class GameOverScreen : GameScreen
 
     public override void LoadContent()
     {
-        PreloadedAssets.Instance.LoadContent(Game.Content);
-        _background = PreloadedAssets.Instance.Background;
-        _gameOverTexture = PreloadedAssets.Instance.GameOver;
-        _playButtonTexture = PreloadedAssets.Instance.PlayButton;
-        _scoreButtonTexture = PreloadedAssets.Instance.ScoreButton;
-        _menuButtonTexture = PreloadedAssets.Instance.MenuButton;
+        AssetsLoader.Instance.LoadContent(Game.Content);
+        _background = AssetsLoader.Instance.Background;
+        _gameOverTexture = AssetsLoader.Instance.GameOver;
+        _playButtonTexture = AssetsLoader.Instance.PlayButton;
+        _scoreButtonTexture = AssetsLoader.Instance.ScoreButton;
+        _menuButtonTexture = AssetsLoader.Instance.MenuButton;
     }
 
     public override void UnloadContent()

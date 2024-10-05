@@ -51,11 +51,11 @@ public class SoundUI : GameEntity
     public override void LoadContent(ContentManager content)
     {
         _background.LoadContent(content);
-        _flappyBirdLogo = PreloadedAssets.Instance.FlappyBirdLogo;
-        _barSound = PreloadedAssets.Instance.BarSound;
-        _okButton = PreloadedAssets.Instance.OkButton;
-        _menuButton = PreloadedAssets.Instance.MenuButton;
-        _uiSettings = PreloadedAssets.Instance.UiSSettings;
+        _flappyBirdLogo = AssetsLoader.Instance.FlappyBirdLogo;
+        _barSound = AssetsLoader.Instance.BarSound;
+        _okButton = AssetsLoader.Instance.OkButton;
+        _menuButton = AssetsLoader.Instance.MenuButton;
+        _uiSettings = AssetsLoader.Instance.UiSSettings;
 
         FxVolume = (int)(SoundManager.Instance.VolumeFX * 10);
         MusicVolume = (int)(SoundManager.Instance.VolumeMusic * 10);

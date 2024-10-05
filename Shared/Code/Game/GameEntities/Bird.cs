@@ -42,13 +42,8 @@ namespace flappyrogue_mg.GameSpace
         public override void LoadContent(ContentManager content)
         {
             // Load the font
-            _font = content.Load<BitmapFont>("fonts/04b19");
-
-            // Load the sprite sheet
-            AsepriteFile aseFile = content.Load<AsepriteFile>("sprites/bird");
-            _spriteSheet = aseFile.CreateSpriteSheet(_screen.GraphicsDevice);
-            //tag created in aseprite file selecting the frames to be animated
-            _idleCycle = _spriteSheet.CreateAnimatedSprite("idle");
+            _font = AssetsLoader.Instance.Font;
+            _idleCycle = AssetsLoader.Instance.CreateBirdSprite(_screen.GraphicsDevice);
             //the origin of the sprite is the center of the sprite, so the rotation is centered
             _idleCycle.Origin = CenterSprite;
             _idleCycle.Play();

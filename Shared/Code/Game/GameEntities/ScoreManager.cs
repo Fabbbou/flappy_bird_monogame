@@ -35,7 +35,7 @@ public class ScoreManager : GameEntity
     public override void LoadContent(ContentManager content)
     {
         CurrentScore = 0;
-        _font = PreloadedAssets.Instance.mainFont;
+        _font = AssetsLoader.Instance.Font;
     }
 
     public override void Update(GameTime gameTime)

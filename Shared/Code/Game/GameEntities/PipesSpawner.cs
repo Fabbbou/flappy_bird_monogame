@@ -65,7 +65,7 @@ public class PipesSpawner : GameEntity
         {
             _pipes[i].Update(gameTime);
             //remove pipes that are out of the screen
-            if (_pipes[i].PhysicsObjectPipeTop.Position.X < -Pipes.SPRITE_WIDTH)
+            if (_pipes[i].PhysicsObjectPipeTop.Position.X < -Constants.ATLAS_POSITION_PIPE_TOP.X)
             {
                 _pipes[i].Kill(); // we need to kill the pipes manually otherwise the collision detections still collides with out of screen objects and bugs a lot. (the bird.x position becomes the pipe width)
                 _pipes.RemoveAt(i);
@@ -74,9 +74,7 @@ public class PipesSpawner : GameEntity
         }
     }
 
-    public override void LoadContent(ContentManager content)
-    {
-    }
+    public override void LoadContent(ContentManager content) {}
     public override void Draw(SpriteBatch spriteBatch)
     {
         foreach (Pipes pipe in _pipes)

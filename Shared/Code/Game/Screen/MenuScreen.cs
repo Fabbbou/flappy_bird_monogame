@@ -40,12 +40,11 @@ public class MenuScreen : GameScreen
 
     public override void LoadContent()
     {
-        PreloadedAssets.Instance.LoadContent(Game.Content);
-        _background = PreloadedAssets.Instance.Background;
-        _flappybirdTitle = PreloadedAssets.Instance.FlappyBirdLogo;
-        _playButtonTexture = PreloadedAssets.Instance.PlayButton;
-        _scoreButtonTexture = PreloadedAssets.Instance.ScoreButton;
-        _flappybirdTitle = PreloadedAssets.Instance.FlappyBirdLogo;
+        _background = AssetsLoader.Instance.Background;
+        _flappybirdTitle = AssetsLoader.Instance.FlappyBirdLogo;
+        _playButtonTexture = AssetsLoader.Instance.PlayButton;
+        _scoreButtonTexture = AssetsLoader.Instance.ScoreButton;
+        _flappybirdTitle = AssetsLoader.Instance.FlappyBirdLogo;
         _floor = new Floor();
         _floor.LoadContent(Game.Content);
     }

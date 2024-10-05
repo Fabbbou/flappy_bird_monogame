@@ -20,13 +20,13 @@ public class SoundManager
             return _instance;
         }
     }
-    private SoundEffectInstance _dieSound;
-    public void PlayDieSound() => PlayAndCut(_dieSound);
+    private SoundEffectInstance DieSound;
     private SoundEffectInstance JumpSound;
-    public void PlayJumpSound() => PlayAndCut(JumpSound);
     private SoundEffectInstance HitSound;
-    public void PlayHitSound() => PlayAndCut(HitSound);
     private SoundEffectInstance ScoreSound;
+    public void PlayDieSound() => PlayAndCut(DieSound);
+    public void PlayJumpSound() => PlayAndCut(JumpSound);
+    public void PlayHitSound() => PlayAndCut(HitSound);
     public void PlayScoreSound() => PlayAndCut(ScoreSound);
     public float VolumeFX => SettingsManager.Instance.UserSettings.VolumeFX;
     public float VolumeMusic => SettingsManager.Instance.UserSettings.VolumeMusic;
@@ -36,15 +36,15 @@ public class SoundManager
     public void LoadContent(ContentManager content)
     {
         IsLoaded = true;
-        JumpSound = content.Load<SoundEffect>("sounds/sfx_wing").CreateInstance();
-        ScoreSound = content.Load<SoundEffect>("sounds/sfx_point").CreateInstance();
-        HitSound = content.Load<SoundEffect>("sounds/sfx_hit").CreateInstance();
-        _dieSound = content.Load<SoundEffect>("sounds/sfx_die").CreateInstance();
+        JumpSound = AssetsLoader.Instance.JumpSound;
+        ScoreSound = AssetsLoader.Instance.ScoreSound;
+        HitSound = AssetsLoader.Instance.HitSound;
+        DieSound = AssetsLoader.Instance.DieSound;
 
         _sounds.Add(JumpSound, SoundType.FX);
         _sounds.Add(ScoreSound, SoundType.FX);
         _sounds.Add(HitSound, SoundType.FX);
-        _sounds.Add(_dieSound, SoundType.FX);
+        _sounds.Add(DieSound, SoundType.FX);
         LoadVolumes();
     }
 

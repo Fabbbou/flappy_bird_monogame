@@ -24,7 +24,7 @@ public class PauseButton : GameEntity
 
     public override void LoadContent(ContentManager content)
     {
-        _pauseButtonTexture = PreloadedAssets.Instance.PauseButton;
+        _pauseButtonTexture = AssetsLoader.Instance.PauseButton;
     }
 
     public override void Update(GameTime gameTime)

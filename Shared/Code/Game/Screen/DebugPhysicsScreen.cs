@@ -46,7 +46,8 @@ public class DebugPhysics : GameScreen
         // Create a 1x1 pixel texture
         pixelTexture = new Texture2D(GraphicsDevice, 1, 1);
         pixelTexture.SetData(new[] { Color.White }); //the color here is not important, as we will change it later
-        PreloadedAssets.Instance.LoadContent(Content);
+
+        AssetsLoader.Instance.LoadContent(Game.Content);
 
         var yFloor = 390;
         var xFloor = 0;
@@ -142,7 +143,7 @@ public class DebugPhysics : GameScreen
 
     public override void Draw(GameTime gameTime)
     {
-        var font = PreloadedAssets.Instance.mainFont;
+        var font = AssetsLoader.Instance.Font;
         GraphicsDevice.Clear(Color.Black);
         _spriteBatch.Begin(transformMatrix: GetTransformMatrix(), samplerState: SamplerState.PointClamp);
         //draw a rectangle filled with blue color

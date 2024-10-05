@@ -63,7 +63,7 @@ namespace flappyrogue_mg.GameSpace
         public override void LoadContent()
         {            
             World.LoadContent(Content);
-            _background = PreloadedAssets.Instance.Background;
+            _background = AssetsLoader.Instance.Background;
         }
 
         public override void UnloadContent()

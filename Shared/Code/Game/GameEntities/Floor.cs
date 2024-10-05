@@ -30,7 +30,7 @@ namespace flappyrogue_mg.GameSpace
         public override void LoadContent(ContentManager content)
         {
             // Load the sprite sheet
-            _spriteSheet = content.Load<Texture2D>("sprites/floor");
+            _spriteSheet = AssetsLoader.Instance.FloorTexture;
         }
 
         public override void Update(GameTime gameTime)

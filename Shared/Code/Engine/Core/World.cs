@@ -43,7 +43,6 @@ public class World
 
     public void LoadContent(ContentManager content)
     {
-        PreloadedAssets.Instance.LoadContent(content);
         SettingsManager.Instance.LoadSettings();
         SoundManager.Instance.LoadContent(content);
 

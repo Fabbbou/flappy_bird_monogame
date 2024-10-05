@@ -20,8 +20,8 @@ public class GetReadyUI : GameEntity
 
     public override void LoadContent(ContentManager content)
     {
-        _getReadyTitle = PreloadedAssets.Instance.GetReadyTitle;
-        _tapScreenTitle = PreloadedAssets.Instance.TapScreenTitle;
+        _getReadyTitle = AssetsLoader.Instance.GetReadyTitle;
+        _tapScreenTitle = AssetsLoader.Instance.TapScreenTitle;
     }
 
     public override void Update(GameTime gameTime)

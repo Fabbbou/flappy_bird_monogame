@@ -23,6 +23,11 @@ public class Constants
     public static readonly Vector2 SPRITE_POSITION_SOUNDUI_LOGO_FLAPPYBIRD = new(28, 30);
     public static readonly Vector2 SPRITE_POSITION_MAIN_SCREEN_LOGO_FLAPPYBIRD = new(28, 51);
 
+    //Pipes sprite
+    public static readonly Vector2 ATLAS_POSITION_PIPE_TOP = new(56, 323);
+    public static readonly Vector2 ATLAS_POSITION_PIPE_BOTTOM = new(84, 323);
+    public static readonly Vector2 ATLAS_SIZE_PIPE = new(26, 160);
+
     // GetReady title sprite
     public static readonly Vector2 ATLAS_POSITION_GETREADY_TITLE = new(295, 59);
     public static readonly Vector2 ATLAS_SIZE_GETREADY_TITLE = new(92, 25);

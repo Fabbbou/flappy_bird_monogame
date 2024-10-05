@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Core\GameEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\physics\collider\Collision.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)code\game\assets\AssetsLoader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Constants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\core\Entity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\debug\Gizmo.cs" />
@@ -35,7 +36,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\States\MainGameState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\States\PauseState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\States\PlayState.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Code\Game\UI\AtlasAssets.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\Collider\CirclCollider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\Collider\Collider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\Collider\Collides.cs" />
@@ -85,7 +85,7 @@
     <Folder Include="$(MSBuildThisFileDirectory)Code\Engine\Debug\" />
     <Folder Include="$(MSBuildThisFileDirectory)Code\Engine\Storage\" />
     <Folder Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Code\Game\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Code\Game\Assets\" />
     <Folder Include="$(MSBuildThisFileDirectory)Code\Game\Sound\" />
     <Folder Include="$(MSBuildThisFileDirectory)Code\Game\States\" />
   </ItemGroup>
