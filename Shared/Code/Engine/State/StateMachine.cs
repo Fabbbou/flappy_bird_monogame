@@ -11,7 +11,7 @@ public class StateMachine
     {
         CurrentState = initialState;
         _isTransitioning = false;
-        _firstLaunch = true;
+        _firstLaunch = true;//tbr
     }
 
     public void Update(GameTime gameTime)
@@ -20,7 +20,7 @@ public class StateMachine
         {
             CurrentState.Enter();
             _firstLaunch = false;
-        }
+        } //tbr
         if (_isTransitioning)
         {
             CurrentState.Exit();

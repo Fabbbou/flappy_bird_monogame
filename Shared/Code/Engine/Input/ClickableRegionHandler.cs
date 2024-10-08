@@ -61,5 +61,6 @@ public class ClickableRegionHandler : Gizmo
     public void Kill()
     {
         GizmosRegistry.Instance.RemoveObject(this);
+        ClickRegistry.Instance.RemoveClickableRegionHandler(this);
     }
 }

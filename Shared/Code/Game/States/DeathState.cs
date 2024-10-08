@@ -6,7 +6,7 @@ using MonoGame.Extended.Screens.Transitions;
 public class DeathState : GameState
 {
     private MainGameScreen _mainGameScreen;
-    private float _deathTimer = 0.0f;
+    private float _deathTimer;
     private const float DEATH_TIME = 1.5f;
     public DeathState(MainGameScreen mainGameScreen)
     {
@@ -18,6 +18,7 @@ public class DeathState : GameState
         _mainGameScreen.Bird.IsPaused = true;
         _mainGameScreen.PipesSpawner.IsPaused = true;
         _mainGameScreen.Floor.IsPaused = true;
+        _mainGameScreen.EntityJumpClickRegion.IsActive = false;
         SoundManager.Instance.PlayHitSound();
     }
 

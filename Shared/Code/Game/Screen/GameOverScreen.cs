@@ -66,7 +66,9 @@ public class GameOverScreen : GameScreen
         _spriteBatch.Draw(_playButtonTexture, SPRITE_POSITION_PLAY_BUTTON_GAMEOVER, Color.White);
         _spriteBatch.Draw(_scoreButtonTexture, SPRITE_POSITION_SCORE_BUTTON_GAMEOVER, Color.White);
         _spriteBatch.Draw(_menuButtonTexture, SPRITE_POSITION_MENU_BUTTON_GAMEOVER, Color.White);
-        
+
+        GizmosRegistry.Instance.Draw(_spriteBatch);
+
         _spriteBatch.End();
     }
 

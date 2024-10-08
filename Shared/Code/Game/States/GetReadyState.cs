@@ -14,6 +14,7 @@ public class GetReadyState : MainGameState
         MainGameScreen.PipesSpawner.IsPaused = true;
         MainGameScreen.PauseButton.IsActive = false;
 
+        MainGameScreen.EntityJumpClickRegion = new Entity();
         MainGameScreen.JumpBirdClickableRegionHandler = new ClickableRegionHandler(
             MainGameScreen.EntityJumpClickRegion,
             MainGameScreen.Camera,
@@ -29,6 +30,8 @@ public class GetReadyState : MainGameState
         MainGameScreen.GetReadyUI.IsActive = false;
 
         //the jump zone is now used to make the bird jump
+        MainGameScreen.EntityJumpClickRegion.IsActive = false;
+        MainGameScreen.EntityJumpClickRegion = new Entity();
         MainGameScreen.JumpBirdClickableRegionHandler = new ClickableRegionHandler(
             MainGameScreen.EntityJumpClickRegion,
             MainGameScreen.Camera,

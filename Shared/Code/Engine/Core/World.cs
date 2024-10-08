@@ -39,6 +39,7 @@ public class World
                 gameEntity.Draw(spriteBatch);
             }
         }
+        GizmosRegistry.Instance.Draw(spriteBatch);
     }
 
     public void LoadContent(ContentManager content)
@@ -58,7 +59,6 @@ public class World
     public void UnloadContent()
     {
         ClickRegistry.Instance.Clear();
-        PhysicsEngine.Instance.Clear();
         PhysicsEngine.Instance.Clear();
         GizmosRegistry.Instance.Clear();
     }

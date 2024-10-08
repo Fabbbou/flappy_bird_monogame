@@ -20,7 +20,6 @@ namespace flappyrogue_mg.GameSpace
 
         private Texture2DRegion _background;
         public StateMachine StateMachine { get; private set; }
-        public Entity EntityJumpClickRegion { get; private set; }
         public GetReadyUI GetReadyUI { get; private set; }
         public Bird Bird { get; private set; }
         public Floor Floor { get; private set; }
@@ -28,6 +27,7 @@ namespace flappyrogue_mg.GameSpace
         public PauseButton PauseButton { get; private set; }
         public World World { get; private set; }
         public SoundUI SoundUI { get; private set; }
+        public Entity EntityJumpClickRegion { get; set; }
         public ClickableRegionHandler JumpBirdClickableRegionHandler { get; set; }
         public MainGameScreen(Game game) : base(game){}
 
@@ -43,7 +43,6 @@ namespace flappyrogue_mg.GameSpace
 
             StateMachine = new StateMachine(new GetReadyState(this));
             GetReadyUI = new GetReadyUI();
-            EntityJumpClickRegion = new Entity();
             SoundUI = new SoundUI(this);
             Floor = new Floor();
             PipesSpawner = new PipesSpawner();
@@ -88,7 +87,6 @@ namespace flappyrogue_mg.GameSpace
 
             World.Draw(_spriteBatch);
 
-            GizmosRegistry.Instance.Draw(_spriteBatch);
             _spriteBatch.End();
         }
     }

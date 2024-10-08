@@ -66,6 +66,8 @@ public class MenuScreen : GameScreen
         _spriteBatch.Draw(_playButtonTexture, SPRITE_POSITION_PLAY_BUTTON_MENU, Color.White);
         _spriteBatch.Draw(_scoreButtonTexture, SPRITE_POSITION_SCORE_BUTTON_MENU, Color.White);
 
+        GizmosRegistry.Instance.Draw(_spriteBatch);
+
         _spriteBatch.End();
     }
 
