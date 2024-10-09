@@ -52,8 +52,8 @@ namespace flappyrogue_mg.GameSpace
             CurrentScoreUI = new();
 
             World = new World();
-            World.AddEntity(Floor);
             World.AddEntity(PipesSpawner);
+            World.AddEntity(Floor);
             World.AddEntity(Bird);
             World.AddEntity(PauseButton);
             World.AddEntity(CurrentScoreUI);
