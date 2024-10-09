@@ -28,12 +28,11 @@ public class AssetsLoader
     public BitmapFont Font { get; private set; }
     // Bird aseprite animated
     public AsepriteFile BirdAsepriteFile { get; private set; }
-    //Floor png
-    public Texture2D FloorTexture { get; private set; }
     
     //atlas png
     private Texture2DAtlas _mainGameAtlas;
     public Texture2DRegion Background { get; private set; }
+    public Texture2DRegion Floor { get; private set; }
     public Texture2DRegion GetReadyTitle { get; private set; }
     public Texture2DRegion TapScreenTitle { get; private set; }
     public Texture2DRegion GameOver { get; private set; }
@@ -68,12 +67,11 @@ public class AssetsLoader
         
         //load fonts
         Font = content.Load<BitmapFont>("fonts/04b19");
-        
-        FloorTexture = content.Load<Texture2D>("sprites/floor");
-        
+                
         Texture2D atlasTexture = content.Load<Texture2D>("sprites/atlas");
         _mainGameAtlas = new Texture2DAtlas("Atlas", atlasTexture);
         Background = _mainGameAtlas.CreateRegion(0, 0, WORLD_WIDTH, WORLD_HEIGHT, "Background");
+        Floor = _mainGameAtlas.CreateRegion((int)ATLAS_POSITION_FLOOR.X, (int)ATLAS_POSITION_FLOOR.Y, (int)ATLAS_SIZE_FLOOR.X, (int)ATLAS_SIZE_FLOOR.Y, "Floor");
         GameOver = _mainGameAtlas.CreateRegion((int)ATLAS_POSITION_GAMEOVER.X, (int)ATLAS_POSITION_GAMEOVER.Y, (int)ATLAS_SIZE_GAMEOVER.X, (int)ATLAS_SIZE_GAMEOVER.Y, "GameOver");
         PipeTop = _mainGameAtlas.CreateRegion((int)ATLAS_POSITION_PIPE_TOP.X, (int)ATLAS_POSITION_PIPE_TOP.Y, (int)ATLAS_SIZE_PIPE.X, (int)ATLAS_SIZE_PIPE.Y, "PipeTop");
         PipeBottom = _mainGameAtlas.CreateRegion((int)ATLAS_POSITION_PIPE_BOTTOM.X, (int)ATLAS_POSITION_PIPE_BOTTOM.Y, (int)ATLAS_SIZE_PIPE.X, (int)ATLAS_SIZE_PIPE.Y, "PipeBottom");

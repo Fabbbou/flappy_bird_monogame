@@ -76,8 +76,8 @@ namespace flappyrogue_mg.GameSpace
         protected override void LoadContent()
         {
             AssetsLoader.Instance.LoadContent(Content);
-            //LoadScreen(ScreenName.MenuScreen);
-            LoadScreen(ScreenName.ZoomedOutMainScreen);
+            LoadScreen(ScreenName.MenuScreen);
+            //LoadScreen(ScreenName.ZoomedOutMainScreen);
         }
 
         public void LoadScreen(ScreenName screen)

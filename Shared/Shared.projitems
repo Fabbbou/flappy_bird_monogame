@@ -78,9 +78,6 @@
     <Content Include="$(MSBuildThisFileDirectory)Content\sounds\sfx_swooshing.wav" />
     <Content Include="$(MSBuildThisFileDirectory)Content\sounds\sfx_wing.wav" />
     <Content Include="$(MSBuildThisFileDirectory)Content\sprites\atlas.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\sprites\background.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\sprites\floor.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\sprites\pipes.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Code\Engine\Storage\" />

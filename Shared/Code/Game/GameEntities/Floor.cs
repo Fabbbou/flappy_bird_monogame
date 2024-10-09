@@ -2,35 +2,30 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended.ViewportAdapters;
-using System;
+using MonoGame.Extended.Graphics;
+using static Constants;
 
 namespace flappyrogue_mg.GameSpace
 {
     public class Floor : GameEntity
     {
-        public const float SPRITE_WIDTH = 168;
-        public const float SPRITE_HEIGHT = 56;
-        public const float STARTING_POSITION_X = 0;
-        public const float STARTING_POSITION_Y = Constants.WORLD_HEIGHT - SPRITE_HEIGHT;
-
         public readonly PhysicsObject physicsObject;
-        private Texture2D _spriteSheet;
+        private Texture2DRegion _floorTexture;
         private Vector2 _texturePosition;
         private Vector2 _texture2Position;
 
         public Floor()
         {
             //Rect(string label, float x, float y, CollisionType collisionType, float width, float height)
-            physicsObject = PhysicsObjectFactory.Rect("floor", STARTING_POSITION_X, STARTING_POSITION_Y, ColliderType.Static, SPRITE_WIDTH, SPRITE_HEIGHT);
+            physicsObject = PhysicsObjectFactory.Rect("floor", SPRITE_POSITION_FLOOR.X, SPRITE_POSITION_FLOOR.Y, ColliderType.Static, ATLAS_SIZE_FLOOR.X, ATLAS_SIZE_FLOOR.Y);
             _texturePosition = physicsObject.Position;
-            _texture2Position = new Vector2(physicsObject.Position.X + SPRITE_WIDTH, physicsObject.Position.Y);
+            _texture2Position = new Vector2(physicsObject.Position.X + ATLAS_SIZE_FLOOR.X, physicsObject.Position.Y);
         }
 
         public override void LoadContent(ContentManager content)
         {
             // Load the sprite sheet
-            _spriteSheet = AssetsLoader.Instance.FloorTexture;
+            _floorTexture = AssetsLoader.Instance.Floor;
         }
 
         public override void Update(GameTime gameTime)
@@ -39,19 +34,19 @@ namespace flappyrogue_mg.GameSpace
             _texturePosition.X -= PipesSpawner.SPEED * deltaTime;
             _texture2Position.X -= PipesSpawner.SPEED * deltaTime;
 
-            if (_texturePosition.X <= -SPRITE_WIDTH)
+            if (_texturePosition.X <= -ATLAS_SIZE_FLOOR.X)
             {
-                _texturePosition.X = _texture2Position.X + SPRITE_WIDTH;
+                _texturePosition.X = _texture2Position.X + ATLAS_SIZE_FLOOR.X;
             }
-            if (_texture2Position.X <= -SPRITE_WIDTH)
+            if (_texture2Position.X <= -ATLAS_SIZE_FLOOR.X)
             {
-                _texture2Position.X = _texturePosition.X + SPRITE_WIDTH;
+                _texture2Position.X = _texturePosition.X + ATLAS_SIZE_FLOOR.X;
             }
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_spriteSheet, _texturePosition, Color.White);
-            spriteBatch.Draw(_spriteSheet, _texture2Position, Color.White);
+            spriteBatch.Draw(_floorTexture, _texturePosition, Color.White);
+            spriteBatch.Draw(_floorTexture, _texture2Position, Color.White);
         }
     }
 }

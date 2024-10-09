@@ -14,7 +14,6 @@ public class Constants
     public const int WORLD_HEIGHT = 256;
     public const float WORLD_MIDDLE_SCREEN_WIDTH = WORLD_WIDTH * .5f;
     public const float WORLD_MIDDLE_SCREEN_HEIGHT = WORLD_HEIGHT * .5f;
-    public const float PLAYABLE_WORLD_HEIGHT = WORLD_HEIGHT - Floor.SPRITE_HEIGHT;
     public static readonly Color DEFAULT_DEBUG_COLOR_GIZMOS = Color.Yellow;
 
     // Flappy bird title sprite
@@ -22,6 +21,12 @@ public class Constants
     public static readonly Vector2 ATLAS_SIZE_LOGO_FLAPPYBIRD = new(89, 24);
     public static readonly Vector2 SPRITE_POSITION_SOUNDUI_LOGO_FLAPPYBIRD = new(28, 30);
     public static readonly Vector2 SPRITE_POSITION_MAIN_SCREEN_LOGO_FLAPPYBIRD = new(28, 51);
+
+    //floor sprite
+    public static readonly Vector2 ATLAS_POSITION_FLOOR = new(292, 0);
+    public static readonly Vector2 ATLAS_SIZE_FLOOR = new(168, 56);
+    public static readonly float PLAYABLE_WORLD_HEIGHT = WORLD_HEIGHT - ATLAS_SIZE_FLOOR.Y;
+    public static readonly Vector2 SPRITE_POSITION_FLOOR = new(0, 200);
 
     //Pipes sprite
     public static readonly Vector2 ATLAS_POSITION_PIPE_TOP = new(56, 323);
