@@ -10,13 +10,12 @@ public class SettingsManager
     {
         get
         {
-            if (_instance == null)
-                _instance = new SettingsManager();
+            _instance ??= new SettingsManager();
             return _instance;
         }
     }
     private static readonly string SettingsFilePath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData), "userSettings.json");
-
+    private static readonly JsonSerializerOptions _jsonSerializerOptions = new() { WriteIndented = true };
     public bool IsLoaded { get; private set; }
     private UserSettings _userSettings;
     public UserSettings UserSettings
@@ -34,10 +33,6 @@ public class SettingsManager
         set
         {
             _userSettings = value;
-            if (_userSettings != null)
-            {
-                SaveSettings();
-            }
         }
     }
     public void LoadSettings()
@@ -51,14 +46,14 @@ public class SettingsManager
         }
         else
         {
-            _userSettings =  new UserSettings(1f,1f);
+            _userSettings = new();
             SaveSettings();
         }
     }
 
-    private void SaveSettings()
+    public void SaveSettings()
     {
-        string json = JsonSerializer.Serialize(UserSettings, new JsonSerializerOptions { WriteIndented = true });
+        string json = JsonSerializer.Serialize(UserSettings, _jsonSerializerOptions);
         File.WriteAllText(SettingsFilePath, json);
     }
 }

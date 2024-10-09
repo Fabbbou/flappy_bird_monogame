@@ -47,6 +47,26 @@ public class Constants
     public static readonly Vector2 CLICK_REGION_POSITION_JUMP_REGION = new(0, 25);
     public static readonly Vector2 CLICK_REGION_SIZE_JUMP_REGION = new(WORLD_WIDTH, WORLD_HEIGHT-25);
 
+    //ScoreUI
+    public static readonly Vector2 ATLAS_POSITION_SCORE_UI = new(3, 259);
+    public static readonly Vector2 ATLAS_SIZE_SCORE_UI = new(113, 57);
+    public static readonly Vector2 SPRITE_POSITION_SCORE_UI = new(16, 99);
+
+    public static readonly Vector2 TEXT_POSITION_SCORE_CURRENT = new(91, 114);
+    public static readonly Vector2 TEXT_POSITION_SCORE_BEST = new(91, 135);
+
+    //Score badge
+    public static readonly Vector2 ATLAS_POSITION_SCORE_BADGE_FIRST = new(121, 282);
+    public static readonly Vector2 ATLAS_POSITION_SCORE_BADGE_SECOND = new(112, 453);
+    public static readonly Vector2 ATLAS_POSITION_SCORE_BADGE_THIRD = new(112, 477);
+    public static readonly Vector2 ATLAS_SIZE_SCORE_BADGE = new(22, 22);
+    public static readonly Vector2 SPRITE_POSITION_SCORE_BADGE = new(29, 120);
+
+    //NEW badge
+    public static readonly Vector2 ATLAS_POSITION_NEW_BADGE = new(112, 501);
+    public static readonly Vector2 ATLAS_POSITION_NEW_BADGE_SIZE = new(16, 7);
+    public static readonly Vector2 SPRITE_POSITION_NEW_BADGE = new(53, 119);
+
     //Sprite dimensions, position
     // - Settings UI
     public static readonly Vector2 ATLAS_PAUSE_BUTTON = new(121, 306);
@@ -66,17 +86,17 @@ public class Constants
     public static readonly Vector2 ATLAS_MENU_BUTTON = new(462, 26);
     public static readonly Vector2 ATLAS_SIZE_MENU_BUTTON = new(40, 14);
     public static readonly Vector2 SPRITE_POSITION_MENU_BUTTON_SOUND_UI = new(89, 179);
-    public static readonly Vector2 SPRITE_POSITION_MENU_BUTTON_GAMEOVER = new(52, 172);
+    public static readonly Vector2 SPRITE_POSITION_MENU_BUTTON_GAMEOVER = new(52, 149);
     public static readonly Vector2 CLICK_REGION_SOUND_UI_POSITION_MENU_BUTTON = new(78, 163);
     public static readonly Vector2 CLICK_REGION_SOUND_UI_SIZE_MENU_BUTTON = new(59, 43);
-    public static readonly Vector2 CLICK_REGION_POSITION_GAMEOVER_MENU_BUTTON = new(42, 162);
-    public static readonly Vector2 CLICK_REGION_SIZE_GAMEOVER_MENU_BUTTON = new(60, 34);
+    public static readonly Vector2 CLICK_REGION_POSITION_GAMEOVER_MENU_BUTTON = new(44, 139);
+    public static readonly Vector2 CLICK_REGION_SIZE_GAMEOVER_MENU_BUTTON = new(55, 33);
 
     // Play button sprite
     public static readonly Vector2 ATLAS_POSITION_PLAY_BUTTON = new(354, 118);
     public static readonly Vector2 ATLAS_SIZE_PLAY_BUTTON = new(52, 29); //same size for click region
-    public static readonly Vector2 SPRITE_POSITION_PLAY_BUTTON_GAMEOVER = new(16, 126); //same position for click region
-    public static readonly Vector2 SPRITE_POSITION_PLAY_BUTTON_MENU = new(16, 123); //same position for click region
+    public static readonly Vector2 SPRITE_POSITION_PLAY_BUTTON_GAMEOVER = new(46, 177); //same position for click region
+    public static readonly Vector2 SPRITE_POSITION_PLAY_BUTTON_MENU = new(42, 123); //same position for click region
 
     // Score button sprite
     public static readonly Vector2 ATLAS_POSITION_SCORE_BUTTON = new(414, 118);

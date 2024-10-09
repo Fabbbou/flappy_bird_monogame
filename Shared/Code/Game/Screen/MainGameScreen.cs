@@ -25,6 +25,7 @@ namespace flappyrogue_mg.GameSpace
         public Floor Floor { get; private set; }
         public PipesSpawner PipesSpawner { get; private set; }
         public PauseButton PauseButton { get; private set; }
+        public CurrentScoreUI CurrentScoreUI { get; private set; }
         public World World { get; private set; }
         public SoundUI SoundUI { get; private set; }
         public Entity EntityJumpClickRegion { get; set; }
@@ -48,13 +49,14 @@ namespace flappyrogue_mg.GameSpace
             PipesSpawner = new PipesSpawner();
             Bird = new Bird(this);
             PauseButton = new PauseButton(this);
+            CurrentScoreUI = new();
 
             World = new World();
             World.AddEntity(Floor);
             World.AddEntity(PipesSpawner);
             World.AddEntity(Bird);
-            World.AddEntity(ScoreManager.Instance);
             World.AddEntity(PauseButton);
+            World.AddEntity(CurrentScoreUI);
             World.AddEntity(SoundUI);
             World.AddEntity(GetReadyUI);
         }

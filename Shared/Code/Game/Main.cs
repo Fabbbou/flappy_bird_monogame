@@ -60,7 +60,7 @@ namespace flappyrogue_mg.GameSpace
 
         protected override void Initialize()
         {
-            GizmosRegistry.Instance.DrawGizmos(true);
+            //GizmosRegistry.Instance.DrawGizmos(true);
 
             //  Initialize screens
             _screens.Add(ScreenName.MenuScreen, new MenuScreen(this));

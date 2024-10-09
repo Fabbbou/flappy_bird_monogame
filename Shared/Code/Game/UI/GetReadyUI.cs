@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Graphics;
 using static Constants;
 
-public class GetReadyUI : GameEntity
+public class GetReadyUI : DrawableEntity
 {
     private Texture2DRegion _getReadyTitle;
     private Texture2DRegion _tapScreenTitle;
@@ -22,9 +22,5 @@ public class GetReadyUI : GameEntity
     {
         _getReadyTitle = AssetsLoader.Instance.GetReadyTitle;
         _tapScreenTitle = AssetsLoader.Instance.TapScreenTitle;
-    }
-
-    public override void Update(GameTime gameTime)
-    {
     }
 }

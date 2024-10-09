@@ -9,27 +9,27 @@
     <Import_RootNamespace>Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Core\GameEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Entity\GameEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\physics\collider\Collision.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\game\assets\AssetsLoader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Constants.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)code\engine\core\Entity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Entity\Entity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\debug\Gizmo.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Core\DrawableEntity.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Core\FilledRectangle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Entity\DrawableEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Entity\FilledRectangle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Input\ClickableRegionHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\input\ClickRegistry.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\PhysicsObjectFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\State\StateMachine.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\State\State.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\storage\SettingsManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)code\engine\storage\UserSettings.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Core\World.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Storage\UserSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Entity\World.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\GameEntities\PauseButton.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Code\Game\GameEntities\ScoreManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Manager\ScoreManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\game\screen\GameOverScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\game\screen\MenuScreen.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Sound\SoundManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Manager\SoundManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Sound\SoundUI.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\game\states\DeathState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\game\states\GetReadyState.cs" />
@@ -42,6 +42,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\PhysicsEngine.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\Collider\RectCollider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\game\ui\GetReadyUI.cs" />
+    <Compile Include="..\Shared\code\game\ui\CurrentScoreUI.cs" />
     <Compile Include="..\Shared\Code\Engine\Debug\GizmosRegistry.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Input\Keyboard.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\PhysicsObject.cs" />
@@ -86,6 +87,7 @@
     <Folder Include="$(MSBuildThisFileDirectory)Code\Engine\Storage\" />
     <Folder Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\" />
     <Folder Include="$(MSBuildThisFileDirectory)Code\Game\Assets\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Code\Game\Manager\" />
     <Folder Include="$(MSBuildThisFileDirectory)Code\Game\Sound\" />
     <Folder Include="$(MSBuildThisFileDirectory)Code\Game\States\" />
   </ItemGroup>

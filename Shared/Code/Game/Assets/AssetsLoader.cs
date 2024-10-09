@@ -47,6 +47,12 @@ public class AssetsLoader
     public Texture2DRegion FlappyBirdLogo { get; private set; }
     public Texture2DRegion PlayButton { get; private set; }
     public Texture2DRegion ScoreButton { get; private set; }
+    public Texture2DRegion UIScore { get; private set; }
+    public Texture2DRegion ScoreBadgeFirst { get; private set; }
+    public Texture2DRegion ScoreBadgeSecond { get; private set; }
+    public Texture2DRegion ScoreBadgeThird { get; private set; }
+    public Texture2DRegion BadgeNew { get; private set; }
+
 
     //Sounds
     public SoundEffectInstance DieSound { get; private set; }
@@ -81,6 +87,11 @@ public class AssetsLoader
         ScoreButton = _mainGameAtlas.CreateRegion((int)ATLAS_POSITION_SCORE_BUTTON.X, (int)ATLAS_POSITION_SCORE_BUTTON.Y, (int)ATLAS_SIZE_SCORE_BUTTON.X, (int)ATLAS_SIZE_SCORE_BUTTON.Y, "ScoreButton");
         GetReadyTitle = _mainGameAtlas.CreateRegion((int)ATLAS_POSITION_GETREADY_TITLE.X, (int)ATLAS_POSITION_GETREADY_TITLE.Y, (int)ATLAS_SIZE_GETREADY_TITLE.X, (int)ATLAS_SIZE_GETREADY_TITLE.Y, "GetReadyTitle");
         TapScreenTitle = _mainGameAtlas.CreateRegion((int)ATLAS_POSITION_TAPSCREEN_TITLE.X, (int)ATLAS_POSITION_TAPSCREEN_TITLE.Y, (int)ATLAS_SIZE_TAPSCREEN_TITLE.X, (int)ATLAS_SIZE_TAPSCREEN_TITLE.Y, "TapScreenTitle");
+        UIScore = _mainGameAtlas.CreateRegion((int)ATLAS_POSITION_SCORE_UI.X, (int)ATLAS_POSITION_SCORE_UI.Y, (int)ATLAS_SIZE_SCORE_UI.X, (int)ATLAS_SIZE_SCORE_UI.Y, "UIScore");
+        ScoreBadgeFirst = _mainGameAtlas.CreateRegion((int)ATLAS_POSITION_SCORE_BADGE_FIRST.X, (int)ATLAS_POSITION_SCORE_BADGE_FIRST.Y, (int)ATLAS_SIZE_SCORE_BADGE.X, (int)ATLAS_SIZE_SCORE_BADGE.Y, "ScoreBadgeFirst");
+        ScoreBadgeSecond = _mainGameAtlas.CreateRegion((int)ATLAS_POSITION_SCORE_BADGE_SECOND.X, (int)ATLAS_POSITION_SCORE_BADGE_SECOND.Y, (int)ATLAS_SIZE_SCORE_BADGE.X, (int)ATLAS_SIZE_SCORE_BADGE.Y, "ScoreBadgeSecond");
+        ScoreBadgeThird = _mainGameAtlas.CreateRegion((int)ATLAS_POSITION_SCORE_BADGE_THIRD.X, (int)ATLAS_POSITION_SCORE_BADGE_THIRD.Y, (int)ATLAS_SIZE_SCORE_BADGE.X, (int)ATLAS_SIZE_SCORE_BADGE.Y, "ScoreBadgeThird");
+        BadgeNew = _mainGameAtlas.CreateRegion((int)ATLAS_POSITION_NEW_BADGE.X, (int)ATLAS_POSITION_NEW_BADGE.Y, (int)ATLAS_POSITION_NEW_BADGE_SIZE.X, (int)ATLAS_POSITION_NEW_BADGE_SIZE.Y, "BadgeNew");
 
         //load sounds
         JumpSound = content.Load<SoundEffect>("sounds/sfx_wing").CreateInstance();

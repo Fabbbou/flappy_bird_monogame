@@ -56,7 +56,9 @@ public class SoundManager
 
     public void Save(float fxVolume, float musicVolume)
     {
-        SettingsManager.Instance.UserSettings = new UserSettings(fxVolume, musicVolume);
+        SettingsManager.Instance.UserSettings.VolumeFX = fxVolume;
+        SettingsManager.Instance.UserSettings.VolumeMusic = musicVolume;
+        SettingsManager.Instance.SaveSettings();
     }
 
     public void SetVolumeFX(float volume)

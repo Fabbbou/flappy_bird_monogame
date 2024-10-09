@@ -16,10 +16,8 @@ public class MenuScreen : GameScreen
     private Texture2DRegion _background;
     private Texture2DRegion _flappybirdTitle;
     private Texture2DRegion _playButtonTexture;
-    private Texture2DRegion _scoreButtonTexture;
 
     private ClickableRegionHandler _playButtonClickHandler;
-    private ClickableRegionHandler _scoreButtonClickHandler;
 
     private Entity _entity;
     private Floor _floor;
@@ -34,8 +32,7 @@ public class MenuScreen : GameScreen
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
         _entity = new Entity();
-        _playButtonClickHandler = new ClickableRegionHandler(_entity, _camera, OnClickPlay, new(SPRITE_POSITION_PLAY_BUTTON_GAMEOVER.ToPoint(), ATLAS_SIZE_PLAY_BUTTON.ToPoint()));
-        _scoreButtonClickHandler = new ClickableRegionHandler(_entity, _camera, OnClickScore, new(SPRITE_POSITION_SCORE_BUTTON_GAMEOVER.ToPoint(), ATLAS_SIZE_SCORE_BUTTON.ToPoint()));
+        _playButtonClickHandler = new ClickableRegionHandler(_entity, _camera, OnClickPlay, new(SPRITE_POSITION_PLAY_BUTTON_MENU.ToPoint(), ATLAS_SIZE_PLAY_BUTTON.ToPoint()));
     }
 
     public override void LoadContent()
@@ -43,7 +40,6 @@ public class MenuScreen : GameScreen
         _background = AssetsLoader.Instance.Background;
         _flappybirdTitle = AssetsLoader.Instance.FlappyBirdLogo;
         _playButtonTexture = AssetsLoader.Instance.PlayButton;
-        _scoreButtonTexture = AssetsLoader.Instance.ScoreButton;
         _flappybirdTitle = AssetsLoader.Instance.FlappyBirdLogo;
         _floor = new Floor();
         _floor.LoadContent(Game.Content);
@@ -64,7 +60,6 @@ public class MenuScreen : GameScreen
         _floor.Draw(_spriteBatch);
         _spriteBatch.Draw(_flappybirdTitle, SPRITE_POSITION_MAIN_SCREEN_LOGO_FLAPPYBIRD, Color.White);
         _spriteBatch.Draw(_playButtonTexture, SPRITE_POSITION_PLAY_BUTTON_MENU, Color.White);
-        _spriteBatch.Draw(_scoreButtonTexture, SPRITE_POSITION_SCORE_BUTTON_MENU, Color.White);
 
         GizmosRegistry.Instance.Draw(_spriteBatch);
 
@@ -80,8 +75,5 @@ public class MenuScreen : GameScreen
     private void OnClickPlay()
     {
         Main.Instance.LoadScreen(ScreenName.MainGameScreen);
-    }
-    private void OnClickScore()
-    {
     }
 }
