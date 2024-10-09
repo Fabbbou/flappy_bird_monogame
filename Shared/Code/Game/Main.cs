@@ -69,7 +69,6 @@ namespace flappyrogue_mg.GameSpace
 
             //debug purpose only
             _screens.Add(ScreenName.ZoomedOutMainScreen, new ZoomedOutMainScreen(this));
-            _screens.Add(ScreenName.DebugPhysicsScreen, new DebugPhysics(this));
 
             base.Initialize();
         }
@@ -77,9 +76,8 @@ namespace flappyrogue_mg.GameSpace
         protected override void LoadContent()
         {
             AssetsLoader.Instance.LoadContent(Content);
-            LoadScreen(ScreenName.MenuScreen);
-            //LoadScreen(ScreenName.ZoomedOutMain);
-            //LoadScreen(ScreenName.DebugPhysics);
+            //LoadScreen(ScreenName.MenuScreen);
+            LoadScreen(ScreenName.ZoomedOutMainScreen);
         }
 
         public void LoadScreen(ScreenName screen)

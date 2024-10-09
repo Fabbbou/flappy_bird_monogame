@@ -9,6 +9,7 @@
     <Import_RootNamespace>Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Debug\DebugPhysicsScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Entity\GameEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\physics\collider\Collision.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\game\assets\AssetsLoader.cs" />
@@ -50,7 +51,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\GameEntities\Bird.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\GameEntities\Floor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\GameEntities\PipesSpawner.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Screen\DebugPhysicsScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Screen\ScreenName.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Screen\MainGameScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\GameEntities\Pipes.cs" />
@@ -83,7 +83,6 @@
     <Content Include="$(MSBuildThisFileDirectory)Content\sprites\pipes.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Code\Engine\Debug\" />
     <Folder Include="$(MSBuildThisFileDirectory)Code\Engine\Storage\" />
     <Folder Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\" />
     <Folder Include="$(MSBuildThisFileDirectory)Code\Game\Assets\" />

@@ -14,11 +14,12 @@ namespace flappyrogue_mg.GameSpace
 
         public readonly PhysicsObject PhysicsObjectPipeTop;
         public readonly PhysicsObject PhysicsObjectPipeBottom;
-        public readonly PhysicsObject ScoringZone;
+        public readonly PhysicsObject ScoringZoneCollider;
         private Texture2DRegion _pipeTopTexture;
         private Texture2DRegion _pipeBottomTexture;
         private float _speedForce;
 
+        public int Right => (int)PhysicsObjectPipeTop.Position.X + (int)ATLAS_SIZE_PIPE.X;
         /// <summary>
         /// The Max height the bottom pipe can have is 40 pixels, or it will be flying out of the floor
         /// </summary>
@@ -33,7 +34,7 @@ namespace flappyrogue_mg.GameSpace
             PhysicsObjectPipeTop.Gravity = Vector2.Zero;
             PhysicsObjectPipeBottom = PhysicsObjectFactory.Rect("pipe bottom" + label, xPosition, yOffsetFromTop + gapHeight, ColliderType.Moving, ATLAS_SIZE_PIPE.X, ATLAS_SIZE_PIPE.Y);
             PhysicsObjectPipeBottom.Gravity = Vector2.Zero;
-            ScoringZone = PhysicsObjectFactory.AreaRectTriggerOnce("scoring zone" + label, xPosition + CROP_SCORING_ZONE_WIDTH, yOffsetFromTop, ColliderType.AreaCastTrigger, ATLAS_SIZE_PIPE.X - CROP_SCORING_ZONE_WIDTH*2, gapHeight, onScoringZoneTriggered);
+            ScoringZoneCollider = PhysicsObjectFactory.AreaRectTriggerOnce("scoring zone" + label, xPosition + CROP_SCORING_ZONE_WIDTH, yOffsetFromTop, ColliderType.AreaCastTrigger, ATLAS_SIZE_PIPE.X - CROP_SCORING_ZONE_WIDTH*2, gapHeight, onScoringZoneTriggered);
         }
 
         public void onScoringZoneTriggered()
@@ -60,12 +61,12 @@ namespace flappyrogue_mg.GameSpace
         {
             PhysicsObjectPipeTop.Velocity = new Vector2(-_speedForce, 0);
             PhysicsObjectPipeBottom.Velocity = new Vector2(-_speedForce, 0);
-            ScoringZone.Velocity = new Vector2(-_speedForce, 0);
+            ScoringZoneCollider.Velocity = new Vector2(-_speedForce, 0);
 
             //this allows to move pipes and ignore any possible collisions
             PhysicsObjectPipeTop.Update(gameTime);
             PhysicsObjectPipeBottom.Update(gameTime);
-            ScoringZone.Update(gameTime);
+            ScoringZoneCollider.Update(gameTime);
         }
 
         /// <summary>
@@ -82,6 +83,7 @@ namespace flappyrogue_mg.GameSpace
         {
             PhysicsObjectPipeTop.Kill();
             PhysicsObjectPipeBottom.Kill();
+            ScoringZoneCollider.Kill();
         }
     }
 }

@@ -65,7 +65,7 @@ public class PipesSpawner : GameEntity
         {
             _pipes[i].Update(gameTime);
             //remove pipes that are out of the screen
-            if (_pipes[i].PhysicsObjectPipeTop.Position.X < -Constants.ATLAS_POSITION_PIPE_TOP.X)
+            if (_pipes[i].Right < 0)
             {
                 _pipes[i].Kill(); // we need to kill the pipes manually otherwise the collision detections still collides with out of screen objects and bugs a lot. (the bird.x position becomes the pipe width)
                 _pipes.RemoveAt(i);
