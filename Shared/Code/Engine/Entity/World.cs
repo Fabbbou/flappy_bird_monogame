@@ -8,6 +8,12 @@ using System.Collections.Generic;
 public class World
 {
     private List<Entity> _gameEntities = new();
+    private GraphicsDevice GraphicsDevice;
+
+    public World(GraphicsDevice graphicsDevice)
+    {
+        GraphicsDevice = graphicsDevice;
+    }
 
     public void AddEntity(Entity gameEntity)
     {
@@ -29,8 +35,9 @@ public class World
         PhysicsEngine.Instance.Update(gametime);
     }
 
-    public void Draw(SpriteBatch spriteBatch)
+    public void Draw(SpriteBatch spriteBatch, Matrix transformationMatrix)
     {
+        spriteBatch.Begin(transformMatrix: transformationMatrix, samplerState: SamplerState.PointClamp);
         foreach (var entity in _gameEntities)
         {
             if (!entity.IsActive) continue;
@@ -39,7 +46,8 @@ public class World
                 gameEntity.Draw(spriteBatch);
             }
         }
-        GizmosRegistry.Instance.Draw(spriteBatch);
+        spriteBatch.End();
+        GizmosRegistry.Instance.Draw();
     }
 
     public void LoadContent(ContentManager content)

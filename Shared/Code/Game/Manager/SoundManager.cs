@@ -35,6 +35,7 @@ public class SoundManager
 
     public void LoadContent(ContentManager content)
     {
+        if (IsLoaded) return;
         IsLoaded = true;
         JumpSound = AssetsLoader.Instance.JumpSound;
         ScoreSound = AssetsLoader.Instance.ScoreSound;

@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework.Input.Touch;
 using Microsoft.Xna.Framework.Input;
 using System.Diagnostics;
+using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended.ViewportAdapters;
+using flappyrogue_mg.GameSpace;
 public class ClickRegistry
 {
     private static ClickRegistry _instance;
@@ -19,8 +22,12 @@ public class ClickRegistry
         }
     }
     private List<ClickableRegionHandler> _clickableRegionHandlers = new();
-    private ClickRegistry() { }
+    private ClickRegistry() 
+    {
+        _screenHandler = Main.Instance.ScreenHandler;
+    }
     private bool _hasClicked = false;
+    private ScreenHandler _screenHandler;
 
     public void Add(ClickableRegionHandler clickableRegionHandler)
     {
@@ -44,7 +51,7 @@ public class ClickRegistry
             var mouseState = Mouse.GetState();
             if (mouseState.LeftButton == ButtonState.Pressed)
             {
-                Vector2 worldPosition = clickableRegionHandler.Camera.ScreenToWorld(new Vector2(mouseState.X, mouseState.Y));
+                Vector2 worldPosition = _screenHandler.ScreenToWorld(new Vector2(mouseState.X, mouseState.Y));
                 if (!_hasClicked && clickableRegionHandler.Contains(worldPosition))
                 {
                     clickableRegionHandler.Click(gametime);
@@ -59,10 +66,10 @@ public class ClickRegistry
             TouchCollection touchCollection = TouchPanel.GetState();
             foreach (TouchLocation touch in touchCollection)
             {
-                var worldPosition = clickableRegionHandler.Camera.ScreenToWorld(touch.Position);
+                var worldPosition = _screenHandler.ScreenToWorld(touch.Position);
                 if (touch.State == TouchLocationState.Pressed || touch.State == TouchLocationState.Moved)
                 {
-                    if(!_hasClicked &&clickableRegionHandler.Contains(worldPosition))
+                    if(!_hasClicked && clickableRegionHandler.Contains(worldPosition))
                     {
                         clickableRegionHandler.Click(gametime);
                         _hasClicked = true;
@@ -77,33 +84,6 @@ public class ClickRegistry
         }
     }
 
-    private Vector2 GetWorldPositionClick(GameTime gametime, ClickableRegionHandler clickableRegionHandler)
-    {
-#if WINDOWS || PC || LINUX
-            // Check for mouse input
-            var mouseState = Mouse.GetState();
-            if (mouseState.LeftButton == ButtonState.Pressed)
-            {
-                return clickableRegionHandler.Camera.ScreenToWorld(new Vector2(mouseState.X, mouseState.Y));
-            }
-            else
-            {
-                return Vector2.Zero;
-            }
-#elif ANDROID || IOS
-        // Check for touch input
-        var touchCollection = TouchPanel.GetState();
-        foreach (TouchLocation touch in touchCollection)
-        {
-            if (touch.State == TouchLocationState.Pressed)
-            {
-                var worldPosition = clickableRegionHandler.Camera.ScreenToWorld(touch.Position);
-                return worldPosition;
-            }
-        }
-        return Vector2.Zero;
-#endif
-    }
 
     public void Clear()
     {

@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Aseprite;
 using MonoGame.Extended.BitmapFonts;
 using System.Collections.Generic;
+using static Constants;
 
 namespace flappyrogue_mg.GameSpace
 {
@@ -47,6 +48,7 @@ namespace flappyrogue_mg.GameSpace
             //the origin of the sprite is the center of the sprite, so the rotation is centered
             _idleCycle.Origin = CenterSprite;
             _idleCycle.Play();
+            _idleCycle.LayerDepth = LAYER_DEPTH_INGAME;
         }
 
         public override void Update(GameTime gameTime)

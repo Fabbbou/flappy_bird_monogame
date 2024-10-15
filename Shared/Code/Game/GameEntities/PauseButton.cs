@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Graphics;
 using System.Diagnostics;
+using static Constants;
 
 public class PauseButton : GameEntity
 {
@@ -14,12 +15,12 @@ public class PauseButton : GameEntity
     public PauseButton(MainGameScreen mainGameScreen)
     {
         _mainGameScreen = mainGameScreen;
-        _clickableRegionHandler = new ClickableRegionHandler(this, _mainGameScreen.Camera, OnClick, new(Constants.CLICK_REGION_POSITION_PAUSE_BUTTON.ToPoint(), Constants.CLICK_REGION_SIZE_PAUSE_BUTTON.ToPoint()));
+        _clickableRegionHandler = new ClickableRegionHandler(this, OnClick, new(CLICK_REGION_POSITION_PAUSE_BUTTON.ToPoint(), CLICK_REGION_SIZE_PAUSE_BUTTON.ToPoint()));
     }
 
     public override void Draw(SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(_pauseButtonTexture, Constants.SPRITE_POSITION_PAUSE_BUTTON, Color.White);
+        Extensions.SpriteBatchExtensions.Draw(spriteBatch, _pauseButtonTexture, SPRITE_POSITION_PAUSE_BUTTON, LAYER_DEPTH_UI);
     }
 
     public override void LoadContent(ContentManager content)

@@ -6,19 +6,16 @@ using MonoGame.Extended;
 using MonoGame.Extended.Graphics;
 using MonoGame.Extended.Screens;
 using MonoGame.Extended.ViewportAdapters;
-using System;
-using System.Security.Cryptography.X509Certificates;
 
 
 namespace flappyrogue_mg.GameSpace
 {
     public class MainGameScreen : GameScreen
     {
-        protected BoxingViewportAdapter ViewportAdapter;
-        public OrthographicCamera Camera {  get; private set; }
         private SpriteBatch _spriteBatch;
-
         private Texture2DRegion _background;
+        private ScreenHandler _screenHandler;
+        private ScalingViewportAdapter _viewportAdapter;
         public StateMachine StateMachine { get; private set; }
         public GetReadyUI GetReadyUI { get; private set; }
         public Bird Bird { get; private set; }
@@ -30,16 +27,17 @@ namespace flappyrogue_mg.GameSpace
         public SoundUI SoundUI { get; private set; }
         public Entity EntityJumpClickRegion { get; set; }
         public ClickableRegionHandler JumpBirdClickableRegionHandler { get; set; }
-        public MainGameScreen(Game game) : base(game){}
+        public MainGameScreen(Game game, ScreenHandler screenHandler) : base(game)
+        {
+            _screenHandler = screenHandler;
+        }
 
         public override void Initialize()
         {
             // setting the viewport dimensions to be the same as the background (bg) image
             // as the bg is portrait, the game will be portrait to
             // for a pixel perfect game, the viewport has to be the exact size of the background img
-            ViewportAdapter = new BoxingViewportAdapter(Game.Window, GraphicsDevice, Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
             Game.IsMouseVisible = true;
-            Camera = new OrthographicCamera(ViewportAdapter);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             StateMachine = new StateMachine(new GetReadyState(this));
@@ -51,7 +49,7 @@ namespace flappyrogue_mg.GameSpace
             PauseButton = new PauseButton(this);
             CurrentScoreUI = new();
 
-            World = new World();
+            World = new World(GraphicsDevice);
             World.AddEntity(PipesSpawner);
             World.AddEntity(Floor);
             World.AddEntity(Bird);
@@ -82,14 +80,13 @@ namespace flappyrogue_mg.GameSpace
 
         public override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
-            _spriteBatch.Begin(transformMatrix: Camera.GetViewMatrix(), samplerState: SamplerState.PointClamp);
-            
-            _spriteBatch.Draw(_background, Vector2.Zero, Color.White);
+            GraphicsDevice.Clear(Color.Red);
 
-            World.Draw(_spriteBatch);
-
+            _spriteBatch.Begin(transformMatrix: _screenHandler.GetViewMatrix(forceYScale: true), samplerState: SamplerState.PointClamp);
+            Extensions.SpriteBatchExtensions.Draw(_spriteBatch, _background, Vector2.Zero, Constants.LAYER_DEPTH_INGAME);
             _spriteBatch.End();
+
+            World.Draw(_spriteBatch, _screenHandler.GetViewMatrix());
         }
     }
 }

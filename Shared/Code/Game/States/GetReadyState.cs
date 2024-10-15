@@ -17,7 +17,6 @@ public class GetReadyState : MainGameState
         MainGameScreen.EntityJumpClickRegion = new Entity();
         MainGameScreen.JumpBirdClickableRegionHandler = new ClickableRegionHandler(
             MainGameScreen.EntityJumpClickRegion,
-            MainGameScreen.Camera,
             FirstJump,
             JumpRegion);
     }
@@ -34,8 +33,7 @@ public class GetReadyState : MainGameState
         MainGameScreen.EntityJumpClickRegion = new Entity();
         MainGameScreen.JumpBirdClickableRegionHandler = new ClickableRegionHandler(
             MainGameScreen.EntityJumpClickRegion,
-            MainGameScreen.Camera,
-            MainGameScreen.Bird.Jump, //only change done here
+            MainGameScreen.Bird.Jump,
             JumpRegion);
     }
 

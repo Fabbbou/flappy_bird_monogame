@@ -75,8 +75,8 @@ namespace flappyrogue_mg.GameSpace
         /// <param name="spriteBatch"></param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_pipeTopTexture, PhysicsObjectPipeTop.Position, Color.White);
-            spriteBatch.Draw(_pipeBottomTexture, PhysicsObjectPipeBottom.Position, Color.White);
+            Extensions.SpriteBatchExtensions.Draw(spriteBatch, _pipeTopTexture, PhysicsObjectPipeTop.Position, LAYER_DEPTH_INGAME);
+            Extensions.SpriteBatchExtensions.Draw(spriteBatch, _pipeBottomTexture, PhysicsObjectPipeBottom.Position, LAYER_DEPTH_INGAME);
         }
 
         public void Kill()

@@ -5,6 +5,7 @@ using System;
 using System.Diagnostics;
 using MonoGame.Extended;
 using Microsoft.Xna.Framework.Graphics;
+using static Constants;
 
 public class ClickableRegionHandler : Gizmo
 {
@@ -19,17 +20,14 @@ public class ClickableRegionHandler : Gizmo
     }
     private Rectangle _clickableRegion;
     private readonly Action _onRegionClicked;
-    public OrthographicCamera Camera { get; private set; }
     public string Label => ToString();
-    public ClickableRegionHandler(Entity entity, OrthographicCamera camera, Action onRegionClicked, Rectangle clickableRegion)
+    public ClickableRegionHandler(Entity entity, Action onRegionClicked, Rectangle clickableRegion)
     {
         GizmosRegistry.Instance.Add(this);
         ClickRegistry.Instance.Add(this);
         _entity = entity;
         _clickableRegion = clickableRegion;
         _onRegionClicked = onRegionClicked;
-        Camera = camera;
-
     }
 
     ~ClickableRegionHandler() => Kill();
@@ -55,7 +53,7 @@ public class ClickableRegionHandler : Gizmo
     {
         if (!IsActive) return;
         if (IsPaused) return;
-        spriteBatch.DrawRectangle(_clickableRegion, Color.Red, 2);
+        spriteBatch.DrawRectangle(_clickableRegion, Color.Red, 2, layerDepth: LAYER_DEPTH_DEBUG);
     }
 
     public void Kill()

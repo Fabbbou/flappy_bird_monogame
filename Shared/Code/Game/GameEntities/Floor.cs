@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Graphics;
 using static Constants;
+using Extensions;
 
 namespace flappyrogue_mg.GameSpace
 {
@@ -45,8 +46,10 @@ namespace flappyrogue_mg.GameSpace
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_floorTexture, _texturePosition, Color.White);
-            spriteBatch.Draw(_floorTexture, _texture2Position, Color.White);
+            //riteBatch.Draw(texture, _texturePosition, sourceRectangle, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, layerDepth);
+            Extensions.SpriteBatchExtensions.Draw(spriteBatch, _floorTexture, _texturePosition, LAYER_DEPTH_INGAME);
+            //spriteBatch.Draw(_floorTexture.Texture, _texturePosition, LAYER_DEPTH_INGAME);
+            Extensions.SpriteBatchExtensions.Draw(spriteBatch, _floorTexture, _texture2Position,LAYER_DEPTH_INGAME);
         }
     }
 }

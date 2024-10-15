@@ -16,6 +16,12 @@ public class Constants
     public const float WORLD_MIDDLE_SCREEN_HEIGHT = WORLD_HEIGHT * .5f;
     public static readonly Color DEFAULT_DEBUG_COLOR_GIZMOS = Color.Yellow;
 
+    //Layer depth
+    public const float LAYER_DEPTH_INGAME = 0f;
+    public const float LAYER_DEPTH_UI = 0f;
+    public const float LAYER_DEPTH_DEBUG = 0f;
+
+
     // Flappy bird title sprite
     public static readonly Vector2 ATLAS_POSITION_LOGO_FLAPPYBIRD = new(351, 91);
     public static readonly Vector2 ATLAS_SIZE_LOGO_FLAPPYBIRD = new(89, 24);

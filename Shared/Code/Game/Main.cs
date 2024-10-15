@@ -7,6 +7,7 @@ using MonoGame.Extended.Screens.Transitions;
 using MonoGame.Extended.ViewportAdapters;
 using System;
 using System.Collections.Generic;
+using static Constants;
 
 
 namespace flappyrogue_mg.GameSpace
@@ -32,23 +33,29 @@ namespace flappyrogue_mg.GameSpace
         private readonly ScreenManager _screenManager;
         private ScreenName _currentScreen;
 
-        public ViewportAdapter ViewportAdapter { get; private set; }
+        public ScreenHandler ScreenHandler { get; private set; }
 
         private Main()
-        {
-            //uncomment to see the physics debug
-            //PhysicsGizmosRegistry.Instance.DrawGizmos(true);
-            
+        {            
             _graphics = new GraphicsDeviceManager(this);
 #if WINDOWS || DESKTOP
-            int height = (int)(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height * 0.75f);
-            _graphics.PreferredBackBufferHeight = height;
-            _graphics.PreferredBackBufferWidth = height * 9 / 16;
+            //int height = (int)(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height * 0.5f);
+            //_graphics.PreferredBackBufferHeight = height;
+            //_graphics.PreferredBackBufferWidth = height * 9 / 16;
+            //_graphics.ApplyChanges();
+            _graphics.PreferredBackBufferWidth = 388; //a phone sized screen to test the responsiveness
+            _graphics.PreferredBackBufferHeight = 736;
             _graphics.ApplyChanges();
+
 #elif ANDROID || IOS
-            _graphics.PreferredBackBufferWidth = Constants.WORLD_WIDTH;
-            _graphics.PreferredBackBufferHeight = Constants.WORLD_HEIGHT;
+            _graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            _graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            _graphics.IsFullScreen = true;
             _graphics.ApplyChanges();
+
+            //_graphics.PreferredBackBufferWidth = Constants.WORLD_WIDTH;
+            //_graphics.PreferredBackBufferHeight = Constants.WORLD_HEIGHT;
+            //_graphics.ApplyChanges();
 #endif
             Content.RootDirectory = "Content";
             Window.AllowUserResizing = true;
@@ -62,21 +69,21 @@ namespace flappyrogue_mg.GameSpace
         {
             //GizmosRegistry.Instance.DrawGizmos(true);
 
+            ScreenHandler = new(_graphics.GraphicsDevice, Window, WORLD_WIDTH, WORLD_HEIGHT);
+            //uncomment to see the physics debug
+            GizmosRegistry.Instance.Start(_graphics.GraphicsDevice, ScreenHandler);
+
             //  Initialize screens
-            _screens.Add(ScreenName.MenuScreen, new MenuScreen(this));
-            _screens.Add(ScreenName.MainGameScreen, new MainGameScreen(this));
-            _screens.Add(ScreenName.GameOverScreen, new GameOverScreen(this));
-
-            //debug purpose only
-            _screens.Add(ScreenName.ZoomedOutMainScreen, new ZoomedOutMainScreen(this));
-
+            _screens.Add(ScreenName.MenuScreen, new MenuScreen(this, ScreenHandler));
+            _screens.Add(ScreenName.MainGameScreen, new MainGameScreen(this, ScreenHandler));
+            _screens.Add(ScreenName.GameOverScreen, new GameOverScreen(this, ScreenHandler));
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
             AssetsLoader.Instance.LoadContent(Content);
-            LoadScreen(ScreenName.MenuScreen);
+            LoadScreen(ScreenName.MainGameScreen);
             //LoadScreen(ScreenName.ZoomedOutMainScreen);
         }
 

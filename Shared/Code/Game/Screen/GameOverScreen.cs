@@ -11,8 +11,9 @@ using static Constants;
 public class GameOverScreen : GameScreen
 {
     private BoxingViewportAdapter ViewportAdapter;
-    private OrthographicCamera _camera;
     private SpriteBatch _spriteBatch;
+    private ScreenHandler _screenHandler;
+
 
     //UI
     private Texture2DRegion _background;
@@ -32,18 +33,20 @@ public class GameOverScreen : GameScreen
 
     private ScoreManager.Score _score;
 
-    public GameOverScreen(Game game) : base(game){}
+    public GameOverScreen(Game game, ScreenHandler screenHandler) : base(game)
+    {
+        _screenHandler = screenHandler;
+    }
 
     public override void Initialize()
     {
         ViewportAdapter = new BoxingViewportAdapter(Game.Window, GraphicsDevice, Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
         Game.IsMouseVisible = true;
-        _camera = new OrthographicCamera(ViewportAdapter);
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
         _entityClickableZones = new Entity();
-        _playButtonClickHandler = new ClickableRegionHandler(_entityClickableZones, _camera, OnClickPlay, new(SPRITE_POSITION_PLAY_BUTTON_GAMEOVER.ToPoint(), ATLAS_SIZE_PLAY_BUTTON.ToPoint()));
-        _menuButtonClickHandler = new ClickableRegionHandler(_entityClickableZones, _camera, OnClickMenu, new(CLICK_REGION_POSITION_GAMEOVER_MENU_BUTTON.ToPoint(), CLICK_REGION_SIZE_GAMEOVER_MENU_BUTTON.ToPoint()));
+        _playButtonClickHandler = new ClickableRegionHandler(_entityClickableZones, OnClickPlay, new(SPRITE_POSITION_PLAY_BUTTON_GAMEOVER.ToPoint(), ATLAS_SIZE_PLAY_BUTTON.ToPoint()));
+        _menuButtonClickHandler = new ClickableRegionHandler(_entityClickableZones, OnClickMenu, new(CLICK_REGION_POSITION_GAMEOVER_MENU_BUTTON.ToPoint(), CLICK_REGION_SIZE_GAMEOVER_MENU_BUTTON.ToPoint()));
     }
 
     public override void LoadContent()
@@ -83,13 +86,13 @@ public class GameOverScreen : GameScreen
     public override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.Black);
-        _spriteBatch.Begin(transformMatrix: _camera.GetViewMatrix(), samplerState: SamplerState.PointClamp);
+        _spriteBatch.Begin(transformMatrix: _screenHandler.GetViewMatrix(), samplerState: SamplerState.PointClamp);
 
-        _spriteBatch.Draw(_background, Vector2.Zero, Color.White);
-        _spriteBatch.Draw(_gameOverTitle, SPRITE_POSITION_GAMEOVER, Color.White);
-        _spriteBatch.Draw(_playButtonTexture, SPRITE_POSITION_PLAY_BUTTON_GAMEOVER, Color.White);
-        
-        _spriteBatch.Draw(_uIScore, SPRITE_POSITION_SCORE_UI, Color.White);
+        Extensions.SpriteBatchExtensions.Draw(_spriteBatch, _background, Vector2.Zero, LAYER_DEPTH_UI);
+        Extensions.SpriteBatchExtensions.Draw(_spriteBatch,_gameOverTitle, SPRITE_POSITION_GAMEOVER, LAYER_DEPTH_UI);
+        Extensions.SpriteBatchExtensions.Draw(_spriteBatch, _playButtonTexture, SPRITE_POSITION_PLAY_BUTTON_GAMEOVER, LAYER_DEPTH_UI);
+
+        Extensions.SpriteBatchExtensions.Draw(_spriteBatch, _uIScore, SPRITE_POSITION_SCORE_UI, LAYER_DEPTH_UI);
         if(_badgeScore != null)
         {
             _spriteBatch.Draw(_badgeScore, SPRITE_POSITION_SCORE_BADGE, Color.White);
@@ -98,13 +101,13 @@ public class GameOverScreen : GameScreen
         {
             _spriteBatch.Draw(_badgeNew, SPRITE_POSITION_NEW_BADGE, Color.White);
         }
-        _spriteBatch.DrawString(_font, _score.Value.ToString(), TEXT_POSITION_SCORE_CURRENT, Color.White);    
-        _spriteBatch.DrawString(_font, _score.Best.ToString(), TEXT_POSITION_SCORE_BEST, Color.White);
-        _spriteBatch.Draw(_menuButtonTexture, SPRITE_POSITION_MENU_BUTTON_GAMEOVER, Color.White);
+        _spriteBatch.DrawString(_font, _score.Value.ToString(), TEXT_POSITION_SCORE_CURRENT, Color.White, layerDepth: LAYER_DEPTH_UI);    
+        _spriteBatch.DrawString(_font, _score.Best.ToString(), TEXT_POSITION_SCORE_BEST, Color.White, layerDepth: LAYER_DEPTH_UI);
+        Extensions.SpriteBatchExtensions.Draw(_spriteBatch, _menuButtonTexture, SPRITE_POSITION_MENU_BUTTON_GAMEOVER, LAYER_DEPTH_UI);
 
-        GizmosRegistry.Instance.Draw(_spriteBatch);
 
         _spriteBatch.End();
+        GizmosRegistry.Instance.Draw();
     }
 
     public override void Update(GameTime gameTime) 
