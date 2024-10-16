@@ -2,7 +2,6 @@ using flappyrogue_mg.Core;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended.ECS;
 using System.Collections.Generic;
 
 public class World
@@ -35,7 +34,7 @@ public class World
         PhysicsEngine.Instance.Update(gametime);
     }
 
-    public void Draw(SpriteBatch spriteBatch, Matrix transformationMatrix)
+    public void BatchDraw(SpriteBatch spriteBatch, Matrix transformationMatrix)
     {
         spriteBatch.Begin(transformMatrix: transformationMatrix, samplerState: SamplerState.PointClamp);
         foreach (var entity in _gameEntities)
@@ -47,7 +46,6 @@ public class World
             }
         }
         spriteBatch.End();
-        GizmosRegistry.Instance.Draw();
     }
 
     public void LoadContent(ContentManager content)
@@ -68,6 +66,5 @@ public class World
     {
         ClickRegistry.Instance.Clear();
         PhysicsEngine.Instance.Clear();
-        GizmosRegistry.Instance.Clear();
     }
 }

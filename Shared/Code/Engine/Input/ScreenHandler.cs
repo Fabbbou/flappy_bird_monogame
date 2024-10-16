@@ -11,6 +11,12 @@ using System.Diagnostics;
 /// </summary>
 public class ScreenHandler
 {
+    public enum ScreenMode
+    {
+        CropWorldBoundaries,
+        FitTopBottomScreen,
+        Debug
+    }
     private GraphicsDevice _graphicsDevice;
     public int VirtualWidth { get; private set; }
     public int VirtualHeight { get; private set; }
@@ -21,7 +27,7 @@ public class ScreenHandler
     public Vector2 VirtualScreenDimensions => new(VirtualWidth, VirtualHeight);
     public Viewport Viewport => _graphicsDevice.Viewport;
     public Vector2 ScaledVirtualDimensions => ComputeScale() * VirtualScreenDimensions;
-    private bool _isLetterBox;
+    private ScreenMode _screenMode;
 
     /// <summary>
     /// 
@@ -30,40 +36,55 @@ public class ScreenHandler
     /// <param name="gameWindow"></param>
     /// <param name="virtualWidth"></param>
     /// <param name="virtualHeight"></param>
-    public ScreenHandler(GraphicsDevice graphicsDevice, GameWindow gameWindow, int virtualWidth, int virtualHeight, bool isLetterBox = true)
+    public ScreenHandler(GraphicsDevice graphicsDevice, GameWindow gameWindow, int virtualWidth, int virtualHeight, ScreenMode screenMode = ScreenMode.CropWorldBoundaries)
     {
         _graphicsDevice = graphicsDevice;
         VirtualWidth = virtualWidth;
         VirtualHeight = virtualHeight;
-        _isLetterBox = isLetterBox;
+        _screenMode = screenMode;
         gameWindow.ClientSizeChanged += OnScreenResize;
         Origin = new Vector2(VirtualWidth / 2f, VirtualHeight / 2f);
+        //this center the game vertically on startup
         Position = (ScaledVirtualDimensions - ViewportDimensions) / 2 ;
-        SetupViewport();
     }
 
     private void OnScreenResize(object sender, EventArgs e)
     {
-        if (_isLetterBox)
+        switch (_screenMode)
         {
-            Position = Vector2.Zero;
-            SetupViewport();   
-        }
-        else
-        {
-            //just to center the game in the screen but showing out bound items
-            Position = ScaledVirtualDimensions/2 - ViewportDimensions/2;
+            case ScreenMode.CropWorldBoundaries:
+                Position = Vector2.Zero;
+                SetupViewportFitCropBoundaries();
+                break;
+            case ScreenMode.FitTopBottomScreen:
+                Position = (ScaledVirtualDimensions - ViewportDimensions) / 2;
+                SetupViewportVerticalFullScreen();
+                break;
+            case ScreenMode.Debug:
+                //just to center the game in the screen but showing out bound items
+                Position = ScaledVirtualDimensions / 2 - ViewportDimensions / 2;
+                break;
         }
         Debug.WriteLine($"Screen resized to: {_graphicsDevice.Viewport.Width}x{_graphicsDevice.Viewport.Height}");
     }
 
-    private void SetupViewport()
+    private void SetupViewportFitCropBoundaries()
     {
         _graphicsDevice.Viewport = new Viewport(
             (int)(_graphicsDevice.Viewport.Width - ScaledVirtualDimensions.X) / 2,
             (int)(_graphicsDevice.Viewport.Height - ScaledVirtualDimensions.Y) / 2,
             (int)ScaledVirtualDimensions.X,
             (int)ScaledVirtualDimensions.Y
+        );
+    }
+
+    private void SetupViewportVerticalFullScreen()
+    {
+        _graphicsDevice.Viewport = new Viewport(
+            (int)(_graphicsDevice.Viewport.Width - ScaledVirtualDimensions.X) / 2,
+            0,
+            (int)ScaledVirtualDimensions.X,
+            _graphicsDevice.Viewport.Height
         );
     }
 

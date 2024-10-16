@@ -87,9 +87,18 @@ public class GameOverScreen : GameScreen
     public override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.Black);
+        _spriteBatch.Begin();
+        //the upper sky
+        _spriteBatch.FillRectangle(new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height / 2), COLOR_SKY);
+        _spriteBatch.End();
+
         _spriteBatch.Begin(transformMatrix: _screenHandler.GetViewMatrix(), samplerState: SamplerState.PointClamp);
 
         _spriteBatch.Draw(_background, Vector2.Zero, LAYER_DEPTH_UI);
+
+        //padding floor to avoid seeing the end of the floor (and pipes too)
+        _spriteBatch.FillRectangle(new Rectangle(0, WORLD_HEIGHT, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), COLOR_TREES);
+
         _spriteBatch.Draw(_gameOverTitle, SPRITE_POSITION_GAMEOVER, LAYER_DEPTH_UI);
         _spriteBatch.Draw(_playButtonTexture, SPRITE_POSITION_PLAY_BUTTON_GAMEOVER, LAYER_DEPTH_UI);
 

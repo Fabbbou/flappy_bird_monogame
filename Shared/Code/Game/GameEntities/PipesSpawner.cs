@@ -12,8 +12,11 @@ public class PipesSpawner : GameEntity
 {
     public const float GAP_HEIGHT = 60f;
     public const float OFFSET_PIPES_VISIBLE = 14;
-    public static readonly float SPEED = 60f;
+    public const float SPEED = 60f;
 
+    //MIN and MAX are height from top to bottom (seems reversed)
+    public const float MIN_HEIGTH_PIPES = OFFSET_PIPES_VISIBLE;
+    public static readonly float MAX_HEIGTH_PIPES = Constants.PLAYABLE_WORLD_HEIGHT - GAP_HEIGHT - OFFSET_PIPES_VISIBLE;
     private List<Pipes> _pipes = new();
     private int pipesCounter = 0;
     private float _timeToSpawn = 2f;
@@ -42,10 +45,10 @@ public class PipesSpawner : GameEntity
 
     private static float RandomHeight()
     {
-        float minHeight = OFFSET_PIPES_VISIBLE; //to see a little bit of the pipe
+        //float minHeight = OFFSET_PIPES_VISIBLE; //to see a little bit of the pipe
         //max height is the height of the screen minus the height of the floor (PLAYABLE_WORLD_HEIGHT) minus the height of the pipe (so it doesnt fly)
-        float maxHeight = Constants.PLAYABLE_WORLD_HEIGHT - GAP_HEIGHT - OFFSET_PIPES_VISIBLE;
-        return (float)new Random().NextDouble() * (maxHeight - minHeight) + minHeight;
+        //float maxHeight = Constants.PLAYABLE_WORLD_HEIGHT - GAP_HEIGHT - OFFSET_PIPES_VISIBLE;
+        return (float)new Random().NextDouble() * (MAX_HEIGTH_PIPES - MIN_HEIGTH_PIPES) + MIN_HEIGTH_PIPES;
     }
 
     private void SpawnPipes(GameTime gameTime)
@@ -55,7 +58,8 @@ public class PipesSpawner : GameEntity
         {
             _timeToSpawnCounter = 0f;
             pipesCounter++;
-            _pipes.Add(CreatePipes());
+            //_pipes.Add(CreatePipes(RandomHeight()));
+            _pipes.Add(CreatePipes(RandomHeight()));
         }
     }
 
@@ -83,9 +87,9 @@ public class PipesSpawner : GameEntity
         }
     }
 
-    public Pipes CreatePipes()
+    public Pipes CreatePipes(float height)
     {
-        Pipes pipes = new(" " + pipesCounter, _xOffsetFromRightBorder, RandomHeight(), GAP_HEIGHT, SPEED);
+        Pipes pipes = new(" " + pipesCounter, _xOffsetFromRightBorder, height, GAP_HEIGHT, SPEED);
         pipes.BypassLoadContent();
         return pipes;
     }

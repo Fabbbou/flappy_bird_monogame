@@ -6,6 +6,7 @@ using MonoGame.Extended.Screens;
 using MonoGame.Extended.ViewportAdapters;
 using static Constants;
 using Extensions;
+using MonoGame.Extended;
 
 public class MenuScreen : GameScreen
 {
@@ -56,10 +57,17 @@ public class MenuScreen : GameScreen
     {
         GraphicsDevice.Clear(Color.Black);
 
-        _spriteBatch.Begin(transformMatrix: _screenHandler.GetViewMatrix(), samplerState: SamplerState.PointClamp);
+        _spriteBatch.Begin();
+        //the upper sky
+        _spriteBatch.FillRectangle(new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height / 2), COLOR_SKY);
+        _spriteBatch.End();
 
+        _spriteBatch.Begin(transformMatrix: _screenHandler.GetViewMatrix(), samplerState: SamplerState.PointClamp);
         _spriteBatch.Draw(_background, Vector2.Zero, LAYER_DEPTH_UI);
+
+        _spriteBatch.FillRectangle(new Rectangle(0, (int)SPRITE_POSITION_FLOOR.Y, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), COLOR_FLOOR);
         _floor.Draw(_spriteBatch);
+
         _spriteBatch.Draw(_flappybirdTitle, SPRITE_POSITION_MAIN_SCREEN_LOGO_FLAPPYBIRD, LAYER_DEPTH_UI);
         _spriteBatch.Draw(_playButtonTexture, SPRITE_POSITION_PLAY_BUTTON_MENU, LAYER_DEPTH_UI);
         _spriteBatch.End();

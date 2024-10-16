@@ -38,14 +38,15 @@ namespace flappyrogue_mg.GameSpace
         private Main()
         {            
             _graphics = new GraphicsDeviceManager(this);
+            _graphics.SynchronizeWithVerticalRetrace = true;
+            //IsFixedTimeStep = true; // This ensures the game runs at a fixed frame rate
+
 #if WINDOWS || DESKTOP
             //int height = (int)(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height * 0.5f);
             //_graphics.PreferredBackBufferHeight = height;
             //_graphics.PreferredBackBufferWidth = height * 9 / 16;
-            //_graphics.ApplyChanges();
             _graphics.PreferredBackBufferWidth = 388; //a phone sized screen to test the responsiveness
             _graphics.PreferredBackBufferHeight = 736;
-            _graphics.ApplyChanges();
 
 #elif ANDROID || IOS
             _graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
@@ -55,8 +56,8 @@ namespace flappyrogue_mg.GameSpace
 
             //_graphics.PreferredBackBufferWidth = Constants.WORLD_WIDTH;
             //_graphics.PreferredBackBufferHeight = Constants.WORLD_HEIGHT;
-            //_graphics.ApplyChanges();
 #endif
+            _graphics.ApplyChanges();
             Content.RootDirectory = "Content";
             Window.AllowUserResizing = true;
 
@@ -67,11 +68,9 @@ namespace flappyrogue_mg.GameSpace
 
         protected override void Initialize()
         {
-            //GizmosRegistry.Instance.DrawGizmos(true);
-
             ScreenHandler = new(_graphics.GraphicsDevice, Window, WORLD_WIDTH, WORLD_HEIGHT);
-            //uncomment to see the physics debug
-            GizmosRegistry.Instance.Start(_graphics.GraphicsDevice, ScreenHandler);
+            //uncomment to see the Gizmos to debug
+            //GizmosRegistry.Instance.Start(_graphics.GraphicsDevice, ScreenHandler);
 
             //  Initialize screens
             _screens.Add(ScreenName.MenuScreen, new MenuScreen(this, ScreenHandler));
@@ -83,8 +82,7 @@ namespace flappyrogue_mg.GameSpace
         protected override void LoadContent()
         {
             AssetsLoader.Instance.LoadContent(Content);
-            LoadScreen(ScreenName.MainGameScreen);
-            //LoadScreen(ScreenName.ZoomedOutMainScreen);
+            LoadScreen(ScreenName.MenuScreen);
         }
 
         public void LoadScreen(ScreenName screen)

@@ -3,7 +3,6 @@ using flappyrogue_mg.GameSpace;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended;
 using MonoGame.Extended.Graphics;
 using static Constants;
 using Extensions;
@@ -29,13 +28,10 @@ public class SoundUI : GameEntity
 
     public int FxVolume { get; private set; }
     public int MusicVolume { get; private set; }
-
-    private FilledRectangle _background;
     public SoundUI(MainGameScreen mainGameScreen)
     {
         IsActive = false;
         _mainGameScreen = mainGameScreen;
-        _background = new FilledRectangle(mainGameScreen.GraphicsDevice, new Rectangle(0, 0, WORLD_WIDTH, WORLD_HEIGHT), new Color(.6f, .6f, .6f, .9f));
 
         _okClickableRegionHandler = new ClickableRegionHandler(this, OnClickOk, new(CLICK_REGION_POSITION_OK_BUTTON.ToPoint(), CLICK_REGION_SIZE_OK_BUTTON.ToPoint()));
         _menuClickableRegionHandler = new ClickableRegionHandler(this, OnClickMenu, new(CLICK_REGION_SOUND_UI_POSITION_MENU_BUTTON.ToPoint(), CLICK_REGION_SOUND_UI_SIZE_MENU_BUTTON.ToPoint()));
@@ -51,7 +47,6 @@ public class SoundUI : GameEntity
 
     public override void LoadContent(ContentManager content)
     {
-        _background.LoadContent(content);
         _flappyBirdLogo = AssetsLoader.Instance.FlappyBirdLogo;
         _barSound = AssetsLoader.Instance.BarSound;
         _okButton = AssetsLoader.Instance.OkButton;
@@ -66,7 +61,6 @@ public class SoundUI : GameEntity
 
     public override void Draw(SpriteBatch spriteBatch)
     {
-        _background.Draw(spriteBatch);
         spriteBatch.Draw(_flappyBirdLogo, SPRITE_POSITION_SOUNDUI_LOGO_FLAPPYBIRD, LAYER_DEPTH_UI);
         spriteBatch.Draw(_okButton, SPRITE_POSITION_OK_BUTTON, LAYER_DEPTH_UI);
         spriteBatch.Draw(_menuButton, SPRITE_POSITION_MENU_BUTTON_SOUND_UI, LAYER_DEPTH_UI);

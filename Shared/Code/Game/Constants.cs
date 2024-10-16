@@ -19,6 +19,7 @@ public class Constants
     public static readonly Color COLOR_SKY = ColorHelper.FromHex("#54c0c9");
     public static readonly Color COLOR_TREES = ColorHelper.FromHex("#64e075");
     public static readonly Color COLOR_FLOOR = ColorHelper.FromHex("#ded798");
+    public static readonly Color COLOR_GRAY_UI = new(.6f, .6f, .6f, .9f);
     
 
     //Layer depth
@@ -35,8 +36,11 @@ public class Constants
 
     //floor sprite
     public static readonly Vector2 ATLAS_POSITION_FLOOR = new(292, 0);
-    public static readonly Vector2 ATLAS_SIZE_FLOOR = new(168, 56);
-    public static readonly float PLAYABLE_WORLD_HEIGHT = WORLD_HEIGHT - ATLAS_SIZE_FLOOR.Y;
+
+    public const int FLOOR_HEIGHT_GREEN_BANNER = 10;
+    public const int FLOOR_FULL_SIZE = 46 + FLOOR_HEIGHT_GREEN_BANNER;
+    public static readonly Vector2 ATLAS_SIZE_FLOOR = new(168, FLOOR_HEIGHT_GREEN_BANNER);
+    public static readonly float PLAYABLE_WORLD_HEIGHT = WORLD_HEIGHT - FLOOR_FULL_SIZE;
     public static readonly Vector2 SPRITE_POSITION_FLOOR = new(0, 200);
 
     //Pipes sprite

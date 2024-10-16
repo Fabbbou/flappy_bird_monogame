@@ -1,12 +1,11 @@
 using flappyrogue_mg.GameSpace;
 using Microsoft.Xna.Framework;
 
-public class PauseState : MainGameState
+public class PauseState(MainGameScreen mainGameScreen) : MainGameState(mainGameScreen)
 {
-
-    public PauseState(MainGameScreen mainGameScreen) : base(mainGameScreen) {}
     public override void Enter()
     {
+        MainGameScreen.GrayBackground.IsActive = true;
         MainGameScreen.SoundUI.IsActive = true;
         MainGameScreen.PauseButton.IsActive = false;
         MainGameScreen.EntityJumpClickRegion.IsActive = false;
@@ -24,6 +23,7 @@ public class PauseState : MainGameState
 
     public override void Exit()
     {
+        MainGameScreen.GrayBackground.IsActive = false;
         MainGameScreen.SoundUI.IsActive = false;
         MainGameScreen.PauseButton.IsActive = true;
         MainGameScreen.EntityJumpClickRegion.IsActive = true;
