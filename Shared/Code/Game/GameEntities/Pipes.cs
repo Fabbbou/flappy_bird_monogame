@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Graphics;
 using System.Diagnostics;
 using static Constants;
+using Extensions;
 
 namespace flappyrogue_mg.GameSpace
 {
@@ -75,8 +76,8 @@ namespace flappyrogue_mg.GameSpace
         /// <param name="spriteBatch"></param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            Extensions.SpriteBatchExtensions.Draw(spriteBatch, _pipeTopTexture, PhysicsObjectPipeTop.Position, LAYER_DEPTH_INGAME);
-            Extensions.SpriteBatchExtensions.Draw(spriteBatch, _pipeBottomTexture, PhysicsObjectPipeBottom.Position, LAYER_DEPTH_INGAME);
+            spriteBatch.Draw(_pipeTopTexture, PhysicsObjectPipeTop.Position, LAYER_DEPTH_INGAME);
+            spriteBatch.Draw(_pipeBottomTexture, PhysicsObjectPipeBottom.Position, LAYER_DEPTH_INGAME);
         }
 
         public void Kill()

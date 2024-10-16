@@ -14,21 +14,14 @@ public class ScreenHandler
     private GraphicsDevice _graphicsDevice;
     public int VirtualWidth { get; private set; }
     public int VirtualHeight { get; private set; }
-    public int OriginalScreenWidth { get; private set; }
-    public int OriginalScreenHeight { get; private set; }
 
-    /// <summary>
-    /// KeepFirstScreenSize is used to keep the first screen size when the window is resized
-    /// </summary>
-    public bool KeepFirstScreenSize { get; private set; }
     public Vector2 Origin;
     public Vector2 Position;
-    private Vector2 ScreenDimensions => _graphicsDevice.Viewport.Bounds.Size.ToVector2();
+    private Vector2 ViewportDimensions => _graphicsDevice.Viewport.Bounds.Size.ToVector2();
     public Vector2 VirtualScreenDimensions => new(VirtualWidth, VirtualHeight);
-    private Vector2 ActualResolution => KeepFirstScreenSize?
-              new (OriginalScreenWidth, OriginalScreenHeight)
-            : new (_graphicsDevice.Viewport.Width, _graphicsDevice.Viewport.Height);
     public Viewport Viewport => _graphicsDevice.Viewport;
+    public Vector2 ScaledVirtualDimensions => ComputeScale() * VirtualScreenDimensions;
+    private bool _isLetterBox;
 
     /// <summary>
     /// 
@@ -37,39 +30,61 @@ public class ScreenHandler
     /// <param name="gameWindow"></param>
     /// <param name="virtualWidth"></param>
     /// <param name="virtualHeight"></param>
-    /// <param name="keepFirstScreenSize"> is used to keep the first screen size when the window is resized (for desktop mainly)</param>
-    public ScreenHandler(GraphicsDevice graphicsDevice, GameWindow gameWindow, int virtualWidth, int virtualHeight, bool keepFirstScreenSize = false)
+    public ScreenHandler(GraphicsDevice graphicsDevice, GameWindow gameWindow, int virtualWidth, int virtualHeight, bool isLetterBox = true)
     {
         _graphicsDevice = graphicsDevice;
         VirtualWidth = virtualWidth;
         VirtualHeight = virtualHeight;
+        _isLetterBox = isLetterBox;
         gameWindow.ClientSizeChanged += OnScreenResize;
         Origin = new Vector2(VirtualWidth / 2f, VirtualHeight / 2f);
-        Position = Vector2.Zero;
-        OriginalScreenWidth = _graphicsDevice.Viewport.Width;
-        OriginalScreenHeight = _graphicsDevice.Viewport.Height;
-        KeepFirstScreenSize = keepFirstScreenSize;
+        Position = (ScaledVirtualDimensions - ViewportDimensions) / 2 ;
+        SetupViewport();
     }
 
     private void OnScreenResize(object sender, EventArgs e)
     {
-        if (KeepFirstScreenSize)
+        if (_isLetterBox)
         {
-            Position = -ScreenDimensions / 2 + ActualResolution /2;
+            Position = Vector2.Zero;
+            SetupViewport();   
+        }
+        else
+        {
+            //just to center the game in the screen but showing out bound items
+            Position = ScaledVirtualDimensions/2 - ViewportDimensions/2;
         }
         Debug.WriteLine($"Screen resized to: {_graphicsDevice.Viewport.Width}x{_graphicsDevice.Viewport.Height}");
+    }
+
+    private void SetupViewport()
+    {
+        _graphicsDevice.Viewport = new Viewport(
+            (int)(_graphicsDevice.Viewport.Width - ScaledVirtualDimensions.X) / 2,
+            (int)(_graphicsDevice.Viewport.Height - ScaledVirtualDimensions.Y) / 2,
+            (int)ScaledVirtualDimensions.X,
+            (int)ScaledVirtualDimensions.Y
+        );
     }
 
     public float Zoom { get; set; } = 1f;
 
     private Matrix GetScaleMatrix(bool forceXScale = false, bool forceYScale = false)
     {
+        return Matrix.CreateScale(ComputeScale(forceXScale, forceYScale) * Zoom);
+    }
+
+    private float ComputeScale(bool forceXScale = false, bool forceYScale = false)
+    {
         Vector2 virtualResolution = new(VirtualWidth, VirtualHeight);
 
-        float scaleX = ActualResolution.X / virtualResolution.X;
-        float scaleY = ActualResolution.Y / virtualResolution.Y;
+        float scaleX = ViewportDimensions.X / virtualResolution.X;
+        float scaleY = ViewportDimensions.Y / virtualResolution.Y;
+
 
         float scale = Math.Min(scaleX, scaleY);
+
+
         // Use the smaller scale to maintain aspect ratio
         if (forceXScale)
         {
@@ -79,8 +94,7 @@ public class ScreenHandler
         {
             scale = scaleY;
         }
-        // Create a matrix to scale the UI elements
-        return Matrix.CreateScale(scale * Zoom);
+        return scale;
     }
 
     public Vector2 ScreenToWorld(Vector2 screenPosition)

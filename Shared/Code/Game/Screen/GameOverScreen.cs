@@ -7,6 +7,7 @@ using MonoGame.Extended.Graphics;
 using MonoGame.Extended.Screens;
 using MonoGame.Extended.ViewportAdapters;
 using static Constants;
+using Extensions;
 
 public class GameOverScreen : GameScreen
 {
@@ -88,11 +89,11 @@ public class GameOverScreen : GameScreen
         GraphicsDevice.Clear(Color.Black);
         _spriteBatch.Begin(transformMatrix: _screenHandler.GetViewMatrix(), samplerState: SamplerState.PointClamp);
 
-        Extensions.SpriteBatchExtensions.Draw(_spriteBatch, _background, Vector2.Zero, LAYER_DEPTH_UI);
-        Extensions.SpriteBatchExtensions.Draw(_spriteBatch,_gameOverTitle, SPRITE_POSITION_GAMEOVER, LAYER_DEPTH_UI);
-        Extensions.SpriteBatchExtensions.Draw(_spriteBatch, _playButtonTexture, SPRITE_POSITION_PLAY_BUTTON_GAMEOVER, LAYER_DEPTH_UI);
+        _spriteBatch.Draw(_background, Vector2.Zero, LAYER_DEPTH_UI);
+        _spriteBatch.Draw(_gameOverTitle, SPRITE_POSITION_GAMEOVER, LAYER_DEPTH_UI);
+        _spriteBatch.Draw(_playButtonTexture, SPRITE_POSITION_PLAY_BUTTON_GAMEOVER, LAYER_DEPTH_UI);
 
-        Extensions.SpriteBatchExtensions.Draw(_spriteBatch, _uIScore, SPRITE_POSITION_SCORE_UI, LAYER_DEPTH_UI);
+        _spriteBatch.Draw(_uIScore, SPRITE_POSITION_SCORE_UI, LAYER_DEPTH_UI);
         if(_badgeScore != null)
         {
             _spriteBatch.Draw(_badgeScore, SPRITE_POSITION_SCORE_BADGE, Color.White);
@@ -103,7 +104,7 @@ public class GameOverScreen : GameScreen
         }
         _spriteBatch.DrawString(_font, _score.Value.ToString(), TEXT_POSITION_SCORE_CURRENT, Color.White, layerDepth: LAYER_DEPTH_UI);    
         _spriteBatch.DrawString(_font, _score.Best.ToString(), TEXT_POSITION_SCORE_BEST, Color.White, layerDepth: LAYER_DEPTH_UI);
-        Extensions.SpriteBatchExtensions.Draw(_spriteBatch, _menuButtonTexture, SPRITE_POSITION_MENU_BUTTON_GAMEOVER, LAYER_DEPTH_UI);
+        _spriteBatch.Draw(_menuButtonTexture, SPRITE_POSITION_MENU_BUTTON_GAMEOVER, LAYER_DEPTH_UI);
 
 
         _spriteBatch.End();

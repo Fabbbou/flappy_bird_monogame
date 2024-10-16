@@ -46,10 +46,8 @@ namespace flappyrogue_mg.GameSpace
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            //riteBatch.Draw(texture, _texturePosition, sourceRectangle, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, layerDepth);
-            Extensions.SpriteBatchExtensions.Draw(spriteBatch, _floorTexture, _texturePosition, LAYER_DEPTH_INGAME);
-            //spriteBatch.Draw(_floorTexture.Texture, _texturePosition, LAYER_DEPTH_INGAME);
-            Extensions.SpriteBatchExtensions.Draw(spriteBatch, _floorTexture, _texture2Position,LAYER_DEPTH_INGAME);
+            spriteBatch.Draw(_floorTexture, _texturePosition, LAYER_DEPTH_INGAME);
+            spriteBatch.Draw(_floorTexture, _texture2Position,LAYER_DEPTH_INGAME);
         }
     }
 }

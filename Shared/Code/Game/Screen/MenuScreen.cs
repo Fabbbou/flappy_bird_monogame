@@ -1,11 +1,11 @@
 using flappyrogue_mg.GameSpace;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended;
 using MonoGame.Extended.Graphics;
 using MonoGame.Extended.Screens;
 using MonoGame.Extended.ViewportAdapters;
 using static Constants;
+using Extensions;
 
 public class MenuScreen : GameScreen
 {
@@ -54,14 +54,14 @@ public class MenuScreen : GameScreen
 
     public override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(Color.Red);
+        GraphicsDevice.Clear(Color.Black);
 
         _spriteBatch.Begin(transformMatrix: _screenHandler.GetViewMatrix(), samplerState: SamplerState.PointClamp);
 
-        Extensions.SpriteBatchExtensions.Draw(_spriteBatch, _background, Vector2.Zero, LAYER_DEPTH_UI);
+        _spriteBatch.Draw(_background, Vector2.Zero, LAYER_DEPTH_UI);
         _floor.Draw(_spriteBatch);
-        Extensions.SpriteBatchExtensions.Draw(_spriteBatch, _flappybirdTitle, SPRITE_POSITION_MAIN_SCREEN_LOGO_FLAPPYBIRD, LAYER_DEPTH_UI);
-        Extensions.SpriteBatchExtensions.Draw(_spriteBatch, _playButtonTexture, SPRITE_POSITION_PLAY_BUTTON_MENU, LAYER_DEPTH_UI);
+        _spriteBatch.Draw(_flappybirdTitle, SPRITE_POSITION_MAIN_SCREEN_LOGO_FLAPPYBIRD, LAYER_DEPTH_UI);
+        _spriteBatch.Draw(_playButtonTexture, SPRITE_POSITION_PLAY_BUTTON_MENU, LAYER_DEPTH_UI);
         _spriteBatch.End();
 
         GizmosRegistry.Instance.Draw();

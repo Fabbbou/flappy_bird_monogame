@@ -1,5 +1,6 @@
 using flappyrogue_mg.GameSpace;
 using Microsoft.Xna.Framework;
+using Extensions;
 
 public class Constants
 {
@@ -14,7 +15,11 @@ public class Constants
     public const int WORLD_HEIGHT = 256;
     public const float WORLD_MIDDLE_SCREEN_WIDTH = WORLD_WIDTH * .5f;
     public const float WORLD_MIDDLE_SCREEN_HEIGHT = WORLD_HEIGHT * .5f;
-    public static readonly Color DEFAULT_DEBUG_COLOR_GIZMOS = Color.Yellow;
+    public static readonly Color COLOR_DEFAULT_DEBUG_GIZMOS = Color.Yellow;
+    public static readonly Color COLOR_SKY = ColorHelper.FromHex("#54c0c9");
+    public static readonly Color COLOR_TREES = ColorHelper.FromHex("#64e075");
+    public static readonly Color COLOR_FLOOR = ColorHelper.FromHex("#ded798");
+    
 
     //Layer depth
     public const float LAYER_DEPTH_INGAME = 0f;

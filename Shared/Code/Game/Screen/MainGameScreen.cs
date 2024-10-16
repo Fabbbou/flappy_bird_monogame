@@ -6,6 +6,7 @@ using MonoGame.Extended;
 using MonoGame.Extended.Graphics;
 using MonoGame.Extended.Screens;
 using MonoGame.Extended.ViewportAdapters;
+using Extensions;
 
 
 namespace flappyrogue_mg.GameSpace
@@ -16,6 +17,8 @@ namespace flappyrogue_mg.GameSpace
         private Texture2DRegion _background;
         private ScreenHandler _screenHandler;
         private ScalingViewportAdapter _viewportAdapter;
+        private BoxingViewportAdapter BoxingViewportAdapter;
+        private OrthographicCamera camera;
         public StateMachine StateMachine { get; private set; }
         public GetReadyUI GetReadyUI { get; private set; }
         public Bird Bird { get; private set; }
@@ -80,10 +83,10 @@ namespace flappyrogue_mg.GameSpace
 
         public override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Red);
+            GraphicsDevice.Clear(Color.Transparent);
 
-            _spriteBatch.Begin(transformMatrix: _screenHandler.GetViewMatrix(forceYScale: true), samplerState: SamplerState.PointClamp);
-            Extensions.SpriteBatchExtensions.Draw(_spriteBatch, _background, Vector2.Zero, Constants.LAYER_DEPTH_INGAME);
+            _spriteBatch.Begin(transformMatrix: _screenHandler.GetViewMatrix(), samplerState: SamplerState.PointClamp);
+            _spriteBatch.Draw(_background, Vector2.Zero, Constants.LAYER_DEPTH_INGAME);
             _spriteBatch.End();
 
             World.Draw(_spriteBatch, _screenHandler.GetViewMatrix());

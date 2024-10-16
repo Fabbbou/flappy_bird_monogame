@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Graphics;
 using static Constants;
+using Extensions;
 
 public class SoundUI : GameEntity
 {
@@ -66,10 +67,10 @@ public class SoundUI : GameEntity
     public override void Draw(SpriteBatch spriteBatch)
     {
         _background.Draw(spriteBatch);
-        Extensions.SpriteBatchExtensions.Draw(spriteBatch, _flappyBirdLogo, SPRITE_POSITION_SOUNDUI_LOGO_FLAPPYBIRD, LAYER_DEPTH_UI);
-        Extensions.SpriteBatchExtensions.Draw(spriteBatch, _okButton, SPRITE_POSITION_OK_BUTTON, LAYER_DEPTH_UI);
-        Extensions.SpriteBatchExtensions.Draw(spriteBatch, _menuButton, SPRITE_POSITION_MENU_BUTTON_SOUND_UI, LAYER_DEPTH_UI);
-        Extensions.SpriteBatchExtensions.Draw(spriteBatch, _uiSettings, SPRITE_POSITION_UI_SETTINGS, LAYER_DEPTH_UI);
+        spriteBatch.Draw(_flappyBirdLogo, SPRITE_POSITION_SOUNDUI_LOGO_FLAPPYBIRD, LAYER_DEPTH_UI);
+        spriteBatch.Draw(_okButton, SPRITE_POSITION_OK_BUTTON, LAYER_DEPTH_UI);
+        spriteBatch.Draw(_menuButton, SPRITE_POSITION_MENU_BUTTON_SOUND_UI, LAYER_DEPTH_UI);
+        spriteBatch.Draw(_uiSettings, SPRITE_POSITION_UI_SETTINGS, LAYER_DEPTH_UI);
         DrawFxBars(spriteBatch);
         DrawMusicBars(spriteBatch);
     }
@@ -78,7 +79,7 @@ public class SoundUI : GameEntity
     {
         for (int i = 0; i < FxVolume; i++)
         {
-            Extensions.SpriteBatchExtensions.Draw(spriteBatch, _barSound, new Vector2(POSITION_BARS_FX.X + (ATLAS_SIZE_BAR_SOUND.X + SETTINGS_UI_SPACE_BETWEEN_BARS) * i, POSITION_BARS_FX.Y), LAYER_DEPTH_UI);
+            spriteBatch.Draw(_barSound, new Vector2(POSITION_BARS_FX.X + (ATLAS_SIZE_BAR_SOUND.X + SETTINGS_UI_SPACE_BETWEEN_BARS) * i, POSITION_BARS_FX.Y), LAYER_DEPTH_UI);
         }
     }
 
@@ -86,7 +87,7 @@ public class SoundUI : GameEntity
     {
         for (int i = 0; i < MusicVolume; i++)
         {
-            Extensions.SpriteBatchExtensions.Draw(spriteBatch, _barSound, new Vector2(POSITION_BARS_MUSIC.X + (ATLAS_SIZE_BAR_SOUND.X + SETTINGS_UI_SPACE_BETWEEN_BARS) * i, POSITION_BARS_MUSIC.Y), LAYER_DEPTH_UI);
+            spriteBatch.Draw(_barSound, new Vector2(POSITION_BARS_MUSIC.X + (ATLAS_SIZE_BAR_SOUND.X + SETTINGS_UI_SPACE_BETWEEN_BARS) * i, POSITION_BARS_MUSIC.Y), LAYER_DEPTH_UI);
         }
     }
 

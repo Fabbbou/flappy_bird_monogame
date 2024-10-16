@@ -94,10 +94,10 @@ public class PhysicsObject : Gizmo
     {
         if(Collider is RectCollider rect)
         {
-            spriteBatch.DrawRectangle(rect.Position, rect.Size, Constants.DEFAULT_DEBUG_COLOR_GIZMOS, layerDepth: Constants.LAYER_DEPTH_DEBUG);
+            spriteBatch.DrawRectangle(rect.Position, rect.Size, Constants.COLOR_DEFAULT_DEBUG_GIZMOS, layerDepth: Constants.LAYER_DEPTH_DEBUG);
         }else if (Collider is CirclCollider circl)
         {
-            spriteBatch.DrawCircle(circl.Position, circl.Radius, 16, Constants.DEFAULT_DEBUG_COLOR_GIZMOS, layerDepth: Constants.LAYER_DEPTH_DEBUG);
+            spriteBatch.DrawCircle(circl.Position, circl.Radius, 16, Constants.COLOR_DEFAULT_DEBUG_GIZMOS, layerDepth: Constants.LAYER_DEPTH_DEBUG);
         }
     }
 

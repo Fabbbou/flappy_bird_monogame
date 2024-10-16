@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Graphics;
 using System.Diagnostics;
 using static Constants;
+using Extensions;
 
 public class PauseButton : GameEntity
 {
@@ -20,7 +21,7 @@ public class PauseButton : GameEntity
 
     public override void Draw(SpriteBatch spriteBatch)
     {
-        Extensions.SpriteBatchExtensions.Draw(spriteBatch, _pauseButtonTexture, SPRITE_POSITION_PAUSE_BUTTON, LAYER_DEPTH_UI);
+        spriteBatch.Draw(_pauseButtonTexture, SPRITE_POSITION_PAUSE_BUTTON, LAYER_DEPTH_UI);
     }
 
     public override void LoadContent(ContentManager content)

@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Debug\DebugPhysicsScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Entity\GameEntity.cs" />
+    <Compile Include="..\Shared\code\engine\extensions\ColorHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\input\ScreenHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\physics\collider\Collision.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\game\assets\AssetsLoader.cs" />
@@ -33,7 +34,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)code\game\screen\MenuScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Manager\SoundManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Sound\SoundUI.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)code\game\SpriteBatchExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Extensions\SpriteBatchExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\game\states\DeathState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\game\states\GetReadyState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\States\MainGameState.cs" />
@@ -81,6 +82,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Content\sprites\atlas.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Code\Engine\Extensions\" />
     <Folder Include="$(MSBuildThisFileDirectory)Code\Engine\Storage\" />
     <Folder Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\" />
     <Folder Include="$(MSBuildThisFileDirectory)Code\Game\Assets\" />
