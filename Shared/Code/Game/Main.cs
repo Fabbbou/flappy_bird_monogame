@@ -39,23 +39,18 @@ namespace flappyrogue_mg.GameSpace
         {            
             _graphics = new GraphicsDeviceManager(this);
             _graphics.SynchronizeWithVerticalRetrace = true;
-            //IsFixedTimeStep = true; // This ensures the game runs at a fixed frame rate
-
 #if WINDOWS || DESKTOP
-            //int height = (int)(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height * 0.5f);
-            //_graphics.PreferredBackBufferHeight = height;
-            //_graphics.PreferredBackBufferWidth = height * 9 / 16;
-            _graphics.PreferredBackBufferWidth = 388; //a phone sized screen to test the responsiveness
-            _graphics.PreferredBackBufferHeight = 736;
+            int height = (int)(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height * 0.75f);
+            _graphics.PreferredBackBufferHeight = height;
+            _graphics.PreferredBackBufferWidth = height * 9 / 16;
+            //_graphics.PreferredBackBufferWidth = 388; //a phone sized screen to test the responsiveness
+            //_graphics.PreferredBackBufferHeight = 736;
 
 #elif ANDROID || IOS
+            _graphics.IsFullScreen = true;
             _graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
             _graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-            _graphics.IsFullScreen = true;
             _graphics.ApplyChanges();
-
-            //_graphics.PreferredBackBufferWidth = Constants.WORLD_WIDTH;
-            //_graphics.PreferredBackBufferHeight = Constants.WORLD_HEIGHT;
 #endif
             _graphics.ApplyChanges();
             Content.RootDirectory = "Content";
