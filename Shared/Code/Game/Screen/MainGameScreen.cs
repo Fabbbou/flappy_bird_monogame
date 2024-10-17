@@ -89,15 +89,14 @@ namespace flappyrogue_mg.GameSpace
 
         public override void Draw(GameTime gameTime)
         {
-            //var ingameMatrix = _screenHandler.GetViewMatrix();
             var ingameMatrix = MainRegistry.I.GetScaleMatrix();
-            var startScreen = MainRegistry.I.Camera.ScreenToWorld(0, 0).ToPoint();
-            var endScreen = MainRegistry.I.Camera.ScreenToWorld(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height).ToPoint();
+            var startScreen = MainRegistry.I.ScreenToWorld(0, 0).ToPoint();
+            var endScreen = MainRegistry.I.ScreenToWorld(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height).ToPoint();
             GraphicsDevice.Clear(Color.Transparent);
             
             _spriteBatch.Begin(transformMatrix: ingameMatrix, samplerState: SamplerState.PointClamp);
             //background : background pic
-            _spriteBatch.FillRectangle(new Rectangle(startScreen.X, startScreen.Y, endScreen.X, endScreen.Y), COLOR_SKY);
+            _spriteBatch.FillRectangle(new Rectangle(startScreen.X, startScreen.Y, endScreen.X, endScreen.Y), Color.Red);
 
             _spriteBatch.Draw(_background, Vector2.Zero, Constants.LAYER_DEPTH_INGAME);
             _spriteBatch.End();
