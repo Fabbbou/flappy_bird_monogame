@@ -91,7 +91,7 @@ public class SoundUI : GameEntity
     }
     public void OnClickMenu()
     {
-        Main.Instance.LoadScreen(ScreenName.MenuScreen);
+        MainRegistry.I.ScreenRegistry.LoadScreen(ScreenName.MenuScreen);
     }
     public void OnClickFxMinus()
     {

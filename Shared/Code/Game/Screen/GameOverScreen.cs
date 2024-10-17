@@ -11,10 +11,7 @@ using Extensions;
 
 public class GameOverScreen : GameScreen
 {
-    private BoxingViewportAdapter ViewportAdapter;
     private SpriteBatch _spriteBatch;
-    private ScreenHandler _screenHandler;
-
 
     //UI
     private Texture2DRegion _background;
@@ -34,14 +31,10 @@ public class GameOverScreen : GameScreen
 
     private ScoreManager.Score _score;
 
-    public GameOverScreen(Game game, ScreenHandler screenHandler) : base(game)
-    {
-        _screenHandler = screenHandler;
-    }
+    public GameOverScreen(Game game) : base(game) { }
 
     public override void Initialize()
     {
-        ViewportAdapter = new BoxingViewportAdapter(Game.Window, GraphicsDevice, Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
         Game.IsMouseVisible = true;
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -92,7 +85,7 @@ public class GameOverScreen : GameScreen
         _spriteBatch.FillRectangle(new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height / 2), COLOR_SKY);
         _spriteBatch.End();
 
-        _spriteBatch.Begin(transformMatrix: _screenHandler.GetViewMatrix(), samplerState: SamplerState.PointClamp);
+        _spriteBatch.Begin(transformMatrix: MainRegistry.I.GetScaleMatrix(), samplerState: SamplerState.PointClamp);
 
         _spriteBatch.Draw(_background, Vector2.Zero, LAYER_DEPTH_UI);
 
@@ -127,13 +120,13 @@ public class GameOverScreen : GameScreen
 
     private void OnClickPlay()
     {
-        Main.Instance.LoadScreen(ScreenName.MainGameScreen);
+        MainRegistry.I.ScreenRegistry.LoadScreen(ScreenName.MainGameScreen);
     }
     private void OnClickScore()
     {
     }
     private void OnClickMenu()
     {
-        Main.Instance.LoadScreen(ScreenName.MenuScreen);
+        MainRegistry.I.ScreenRegistry.LoadScreen(ScreenName.MenuScreen);
     }
 }

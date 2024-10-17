@@ -14,9 +14,9 @@ namespace flappyrogue_mg.GameSpace
 {
     public class MainGameScreen : GameScreen
     {
+        public const int ROUNDING = 10;
         private SpriteBatch _spriteBatch;
         private Texture2DRegion _background;
-        private ScreenHandler _screenHandler;
         public StateMachine StateMachine { get; private set; }
         public GetReadyUI GetReadyUI { get; private set; }
         public Bird Bird { get; private set; }
@@ -29,10 +29,7 @@ namespace flappyrogue_mg.GameSpace
         public FullscreenRectangleEntity GrayBackground { get; private set; }
         public Entity EntityJumpClickRegion { get; set; }
         public ClickableRegionHandler JumpBirdClickableRegionHandler { get; set; }
-        public MainGameScreen(Game game, ScreenHandler screenHandler) : base(game)
-        {
-            _screenHandler = screenHandler;
-        }
+        public MainGameScreen(Game game) : base(game){}
 
         public override void Initialize()
         {
@@ -49,7 +46,7 @@ namespace flappyrogue_mg.GameSpace
             PauseButton = new PauseButton(this);
             CurrentScoreUI = new();
             SoundUI = new SoundUI(this);
-            GrayBackground = new FullscreenRectangleEntity(GraphicsDevice, COLOR_GRAY_UI)
+            GrayBackground = new FullscreenRectangleEntity(GraphicsDevice, COLOR_GRAY_UI, MainRegistry.I.Camera)
             {
                 IsActive = false
             };
@@ -63,8 +60,8 @@ namespace flappyrogue_mg.GameSpace
             World.AddIngameEntity(GetReadyUI); //should be UI
             //CurrentScoreUI Font is scaling from transformation matrix
             //this is working because we are using the same matrix for the UI
-            World.AddUIEntity(CurrentScoreUI); 
-            
+            World.AddUIEntity(CurrentScoreUI);
+            MainRegistry.I.ViewportAdapter.Reset();
         }
 
         public override void LoadContent()
@@ -92,16 +89,19 @@ namespace flappyrogue_mg.GameSpace
 
         public override void Draw(GameTime gameTime)
         {
-            var ingameMatrix = _screenHandler.GetViewMatrix();
+            //var ingameMatrix = _screenHandler.GetViewMatrix();
+            var ingameMatrix = MainRegistry.I.GetScaleMatrix();
+            //var startScreen = ScreenHandler.I.ScreenToWorld(0 - ROUNDING, 0 - ROUNDING).ToPoint();
+            //var endScreen = ScreenHandler.I.ScreenToWorld(GraphicsDevice.Viewport.Width+ROUNDING, GraphicsDevice.Viewport.Height + ROUNDING).ToPoint();
+            var startScreen = new Vector2(0, 0).ToPoint();
+            var endScreen = new Vector2(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height).ToPoint();
             GraphicsDevice.Clear(Color.Transparent);
-
-            _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-            //background : Sky out of bounds
-            _spriteBatch.FillRectangle(new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height/2), COLOR_SKY);
-            _spriteBatch.End();
             
             _spriteBatch.Begin(transformMatrix: ingameMatrix, samplerState: SamplerState.PointClamp);
             //background : background pic
+            //var endPoint = ScreenHandler.I.ScreenToWorld(GraphicsDevice.Viewport.Width+ ROUNDING, (GraphicsDevice.Viewport.Height + ROUNDING) / 2).ToPoint();
+            //_spriteBatch.FillRectangle(new Rectangle(startScreen.X, startScreen.Y, endScreen.X, endScreen.Y), COLOR_SKY);
+
             _spriteBatch.Draw(_background, Vector2.Zero, Constants.LAYER_DEPTH_INGAME);
             _spriteBatch.End();
 
@@ -110,12 +110,12 @@ namespace flappyrogue_mg.GameSpace
 
             _spriteBatch.Begin(transformMatrix: ingameMatrix, samplerState: SamplerState.PointClamp);
             //Floor: brown part 
-            _spriteBatch.FillRectangle(new Rectangle(0, (int)SPRITE_POSITION_FLOOR.Y+ FLOOR_HEIGHT_GREEN_BANNER, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), COLOR_FLOOR);
+            //_spriteBatch.FillRectangle(new Rectangle(0, (int)SPRITE_POSITION_FLOOR.Y+ FLOOR_HEIGHT_GREEN_BANNER, endScreen.X, endScreen.Y), COLOR_FLOOR);
             _spriteBatch.End();
 
             if (GrayBackground.IsActive)
             {
-                _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+                _spriteBatch.Begin(transformMatrix: ingameMatrix, samplerState: SamplerState.PointClamp);
                 GrayBackground.Draw(_spriteBatch);
                 _spriteBatch.End();
             }
@@ -134,6 +134,10 @@ namespace flappyrogue_mg.GameSpace
             {
                 _spriteBatch.Begin(transformMatrix: ingameMatrix, samplerState: SamplerState.PointClamp);
                 _spriteBatch.DrawRectangle(new Rectangle(0, 0, WORLD_WIDTH, WORLD_HEIGHT), Color.Blue);
+                _spriteBatch.End();
+
+                _spriteBatch.Begin( samplerState: SamplerState.PointClamp);
+                _spriteBatch.DrawRectangle(new Rectangle(0, 0, MainRegistry.I.ViewportAdapter.ViewportWidth, MainRegistry.I.ViewportAdapter.ViewportHeight), Color.Green, thickness: 2);
                 _spriteBatch.End();
             }
         }

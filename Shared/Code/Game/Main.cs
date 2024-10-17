@@ -14,29 +14,12 @@ namespace flappyrogue_mg.GameSpace
 {
     public class Main : Game
     {
-        private static Main _instance;
-        public static Main Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new Main();
-                }
-                return _instance;
-            }
-        }
         private GraphicsDeviceManager _graphics;
         private readonly FramesPerSecondCounter _fpsCounter = new FramesPerSecondCounter();
-        private readonly Dictionary<ScreenName, GameScreen> _screens = new Dictionary<ScreenName, GameScreen>();
-
-        private readonly ScreenManager _screenManager;
-        private ScreenName _currentScreen;
-
-        public ScreenHandler ScreenHandler { get; private set; }
-
-        private Main()
+        ScreenRegistry _screenRegistry;
+        public Main()
         {            
+            _screenRegistry = new ScreenRegistry(this);
             _graphics = new GraphicsDeviceManager(this);
             _graphics.SynchronizeWithVerticalRetrace = true;
 #if WINDOWS || DESKTOP
@@ -56,41 +39,26 @@ namespace flappyrogue_mg.GameSpace
             Content.RootDirectory = "Content";
             Window.AllowUserResizing = true;
 
-            _screenManager = new ScreenManager();
-            Components.Add(_screenManager);
+            MainRegistry.I.Init(this, _graphics, WORLD_WIDTH, WORLD_HEIGHT, _screenRegistry);
         }
 
 
         protected override void Initialize()
         {
-            ScreenHandler.I.Init(_graphics, Window, WORLD_WIDTH, WORLD_HEIGHT);
-            ScreenHandler = ScreenHandler.I;
             //uncomment to see the Gizmos to debug
-            GizmosRegistry.Instance.Start(_graphics.GraphicsDevice, ScreenHandler);
+            GizmosRegistry.Instance.Start(_graphics.GraphicsDevice, true);
 
             //  Initialize screens
-            _screens.Add(ScreenName.MenuScreen, new MenuScreen(this, ScreenHandler));
-            _screens.Add(ScreenName.MainGameScreen, new MainGameScreen(this, ScreenHandler));
-            _screens.Add(ScreenName.GameOverScreen, new GameOverScreen(this, ScreenHandler));
+            _screenRegistry.AddScreen(ScreenName.MenuScreen, new MenuScreen(this));
+            _screenRegistry.AddScreen(ScreenName.MainGameScreen, new MainGameScreen(this));
+            _screenRegistry.AddScreen(ScreenName.GameOverScreen, new GameOverScreen(this));
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
             AssetsLoader.Instance.LoadContent(Content);
-            LoadScreen(ScreenName.MenuScreen);
-        }
-
-        public void LoadScreen(ScreenName screen)
-        {
-            _screenManager.LoadScreen(_screens[screen]);
-            _currentScreen = screen;
-        }
-
-        public void LoadScreen(ScreenName screen, Transition transition)
-        {
-            _screenManager.LoadScreen(_screens[screen], transition);
-            _currentScreen = screen;
+            _screenRegistry.LoadScreen(ScreenName.MainGameScreen);
         }
 
         protected override void Update(GameTime gameTime)
@@ -104,7 +72,7 @@ namespace flappyrogue_mg.GameSpace
         {
 
             _fpsCounter.Draw(gameTime);
-            Window.Title = $"{_currentScreen} {_fpsCounter.FramesPerSecond}";
+            Window.Title = $"{_screenRegistry.CurrentScreen} {_fpsCounter.FramesPerSecond}";
             base.Draw(gameTime);
         }
     }

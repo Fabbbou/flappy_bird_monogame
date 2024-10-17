@@ -34,7 +34,7 @@ namespace Android
             Immersive = true;
 
 
-            _game = Main.Instance;
+            _game = new Main();
             _view = _game.Services.GetService(typeof(View)) as View;
 
             SetContentView(_view);
