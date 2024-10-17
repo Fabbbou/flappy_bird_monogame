@@ -4,14 +4,15 @@ using MonoGame.Extended.ViewportAdapters;
 using System;
 using MonoGame.Extended;
 
-public class BoxingViewportAdapter2 : ScalingViewportAdapter
+public class VerticalBoxingViewportAdapter : ScalingViewportAdapter
 {
     private readonly GameWindow _window;
     private readonly GraphicsDevice _graphicsDevice;
+    public OrthographicCamera Camera;
 
     // Summary:
     //     Initializes a new instance of the MonoGame.Extended.ViewportAdapters.BoxingViewportAdapter.
-    public BoxingViewportAdapter2(GameWindow window, GraphicsDevice graphicsDevice, int virtualWidth, int virtualHeight)
+    public VerticalBoxingViewportAdapter(GameWindow window, GraphicsDevice graphicsDevice, int virtualWidth, int virtualHeight)
         : base(graphicsDevice, virtualWidth, virtualHeight)
     {
         _window = window;
@@ -25,7 +26,6 @@ public class BoxingViewportAdapter2 : ScalingViewportAdapter
         base.Dispose();
     }
 
-    public OrthographicCamera Camera;
     private void OnClientSizeChanged(object sender, EventArgs eventArgs)
     {
         float scale = ComputeScale();
@@ -37,7 +37,7 @@ public class BoxingViewportAdapter2 : ScalingViewportAdapter
         int y = clientBounds.Height / 2 - scaleY / 2;
         if (Camera != null)
         {
-            Camera.Position = new Vector2(0, -y/2);
+           Camera.Position = new Vector2(0, -y/2);
         }
         base.GraphicsDevice.Viewport = new Viewport(x, 0, scaleX, ViewportHeight);
     }

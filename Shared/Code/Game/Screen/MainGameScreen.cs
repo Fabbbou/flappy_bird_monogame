@@ -91,16 +91,13 @@ namespace flappyrogue_mg.GameSpace
         {
             //var ingameMatrix = _screenHandler.GetViewMatrix();
             var ingameMatrix = MainRegistry.I.GetScaleMatrix();
-            //var startScreen = ScreenHandler.I.ScreenToWorld(0 - ROUNDING, 0 - ROUNDING).ToPoint();
-            //var endScreen = ScreenHandler.I.ScreenToWorld(GraphicsDevice.Viewport.Width+ROUNDING, GraphicsDevice.Viewport.Height + ROUNDING).ToPoint();
-            var startScreen = new Vector2(0, 0).ToPoint();
-            var endScreen = new Vector2(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height).ToPoint();
+            var startScreen = MainRegistry.I.Camera.ScreenToWorld(0, 0).ToPoint();
+            var endScreen = MainRegistry.I.Camera.ScreenToWorld(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height).ToPoint();
             GraphicsDevice.Clear(Color.Transparent);
             
             _spriteBatch.Begin(transformMatrix: ingameMatrix, samplerState: SamplerState.PointClamp);
             //background : background pic
-            //var endPoint = ScreenHandler.I.ScreenToWorld(GraphicsDevice.Viewport.Width+ ROUNDING, (GraphicsDevice.Viewport.Height + ROUNDING) / 2).ToPoint();
-            //_spriteBatch.FillRectangle(new Rectangle(startScreen.X, startScreen.Y, endScreen.X, endScreen.Y), COLOR_SKY);
+            _spriteBatch.FillRectangle(new Rectangle(startScreen.X, startScreen.Y, endScreen.X, endScreen.Y), COLOR_SKY);
 
             _spriteBatch.Draw(_background, Vector2.Zero, Constants.LAYER_DEPTH_INGAME);
             _spriteBatch.End();
@@ -110,7 +107,7 @@ namespace flappyrogue_mg.GameSpace
 
             _spriteBatch.Begin(transformMatrix: ingameMatrix, samplerState: SamplerState.PointClamp);
             //Floor: brown part 
-            //_spriteBatch.FillRectangle(new Rectangle(0, (int)SPRITE_POSITION_FLOOR.Y+ FLOOR_HEIGHT_GREEN_BANNER, endScreen.X, endScreen.Y), COLOR_FLOOR);
+            _spriteBatch.FillRectangle(new Rectangle(0, (int)SPRITE_POSITION_FLOOR.Y+ FLOOR_HEIGHT_GREEN_BANNER, endScreen.X, endScreen.Y), COLOR_FLOOR);
             _spriteBatch.End();
 
             if (GrayBackground.IsActive)

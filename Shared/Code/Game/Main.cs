@@ -39,7 +39,8 @@ namespace flappyrogue_mg.GameSpace
             Content.RootDirectory = "Content";
             Window.AllowUserResizing = true;
 
-            MainRegistry.I.Init(this, _graphics, WORLD_WIDTH, WORLD_HEIGHT, _screenRegistry);
+            ViewportAdapterFactory factory = new VerticalViewportAdapterFactory(this, _graphics, WORLD_WIDTH, WORLD_HEIGHT);
+            MainRegistry.I.Init(_graphics, _screenRegistry, factory);
         }
 
 
