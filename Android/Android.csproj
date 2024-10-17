@@ -8,6 +8,9 @@
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Resources\Values\styles.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="MonoGame.Aseprite" Version="6.0.7" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.2.1105" />
     <PackageReference Include="MonoGame.Extended" Version="4.0.2" />

@@ -12,6 +12,8 @@ namespace Android
         MainLauncher = true,
         Icon = "@drawable/icon",
         AlwaysRetainTaskState = true,
+        //add styles.xml to  this
+        Theme = "@style/Theme.FabouBird",
         LaunchMode = LaunchMode.SingleInstance,
         ScreenOrientation = ScreenOrientation.Portrait,
         ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden | ConfigChanges.ScreenSize
@@ -24,6 +26,13 @@ namespace Android
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+
+            Window.AddFlags(WindowManagerFlags.Fullscreen);
+            Window.ClearFlags(WindowManagerFlags.ForceNotFullscreen);
+            SystemUiFlags flags = SystemUiFlags.HideNavigation | SystemUiFlags.Fullscreen | SystemUiFlags.ImmersiveSticky | SystemUiFlags.Immersive;
+            Window.DecorView.SystemUiVisibility = (StatusBarVisibility)flags;
+            Immersive = true;
+
 
             _game = Main.Instance;
             _view = _game.Services.GetService(typeof(View)) as View;

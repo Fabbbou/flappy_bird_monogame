@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- a Styles.xml for the androidd main activity -->
+<resources>
+<style name="Theme.FabouBird" parent="android:Theme.Holo.Light">
+
+ <item name="android:windowFullscreen">true</item>
+ <!--make the top status bar dissappear so the game is fullscreen-->
+ <item name="android:windowContentOverlay">@null</item>
+  
+
+</style>
+</resources>

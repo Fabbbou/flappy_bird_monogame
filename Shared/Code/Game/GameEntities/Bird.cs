@@ -27,7 +27,6 @@ namespace flappyrogue_mg.GameSpace
 
         private MainGameScreen _screen;
         public readonly PhysicsObject PhysicsObject;
-        private SpriteSheet _spriteSheet;
         private AnimatedSprite _idleCycle;
         private BitmapFont _font;
         private Vector2 _jumpForce = new Vector2(0, -BIRD_SPEED);

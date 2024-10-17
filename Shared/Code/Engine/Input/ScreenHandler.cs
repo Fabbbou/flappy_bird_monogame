@@ -11,41 +11,63 @@ using System.Diagnostics;
 /// </summary>
 public class ScreenHandler
 {
+    //singleton
+    private static ScreenHandler _instance;
+    public static ScreenHandler I
+    {
+        get
+        {
+            _instance ??= new ScreenHandler();
+            return _instance;
+        }
+    }
     public enum ScreenMode
     {
         CropWorldBoundaries,
         FitTopBottomScreen,
         Debug
     }
-    private GraphicsDevice _graphicsDevice;
+    private GraphicsDeviceManager _graphicsDeviceManager;
+    private GraphicsDevice GraphicsDevice => _graphicsDeviceManager.GraphicsDevice;
     public int VirtualWidth { get; private set; }
     public int VirtualHeight { get; private set; }
 
     public Vector2 Origin;
     public Vector2 Position;
-    private Vector2 ViewportDimensions => _graphicsDevice.Viewport.Bounds.Size.ToVector2();
+    private Vector2 ViewportDimensions => GraphicsDevice.Viewport.Bounds.Size.ToVector2();
     public Vector2 VirtualScreenDimensions => new(VirtualWidth, VirtualHeight);
-    public Viewport Viewport => _graphicsDevice.Viewport;
+    public Viewport Viewport => GraphicsDevice.Viewport;
     public Vector2 ScaledVirtualDimensions => ComputeScale() * VirtualScreenDimensions;
+
     private ScreenMode _screenMode;
+    private int Width => Viewport.Width;
+    private int Height => Viewport.Height;
+    private Vector2 TopLeft => new(0, 0);
+    private Vector2 TopMiddle => new(Width / 2, 0);
+    private Vector2 TopRight => new(Width, 0);
+    private Vector2 BottomLeft => new(0, Height);
+    private Vector2 BottomMiddle => new(Width / 2, Height);
+    private Vector2 BottomRight => new(Width, Height);
+    private Vector2 MiddleLeft => new(0, Height / 2);
+    private Vector2 Center => new(Width / 2, Height / 2);
+    private Vector2 MiddleRight => new(Width, Height / 2);
 
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="graphicsDevice"></param>
     /// <param name="gameWindow"></param>
     /// <param name="virtualWidth"></param>
     /// <param name="virtualHeight"></param>
-    public ScreenHandler(GraphicsDevice graphicsDevice, GameWindow gameWindow, int virtualWidth, int virtualHeight, ScreenMode screenMode = ScreenMode.CropWorldBoundaries)
+    public void Init(GraphicsDeviceManager graphicsDeviceManager, GameWindow gameWindow, int virtualWidth, int virtualHeight, ScreenMode screenMode = ScreenMode.CropWorldBoundaries)
     {
-        _graphicsDevice = graphicsDevice;
+        _graphicsDeviceManager = graphicsDeviceManager;
         VirtualWidth = virtualWidth;
         VirtualHeight = virtualHeight;
         _screenMode = screenMode;
         gameWindow.ClientSizeChanged += OnScreenResize;
         Origin = new Vector2(VirtualWidth / 2f, VirtualHeight / 2f);
         //this center the game vertically on startup
-        Position = (ScaledVirtualDimensions - ViewportDimensions) / 2 ;
+        Position = (ScaledVirtualDimensions - ViewportDimensions) / 2;
     }
 
     private void OnScreenResize(object sender, EventArgs e)
@@ -65,26 +87,28 @@ public class ScreenHandler
                 Position = ScaledVirtualDimensions / 2 - ViewportDimensions / 2;
                 break;
         }
-        Debug.WriteLine($"Screen resized to: {_graphicsDevice.Viewport.Width}x{_graphicsDevice.Viewport.Height}");
+        Debug.WriteLine($"Screen resized to: {GraphicsDevice.Viewport.Width}x{GraphicsDevice.Viewport.Height}");
     }
 
     private void SetupViewportFitCropBoundaries()
     {
-        _graphicsDevice.Viewport = new Viewport(
-            (int)(_graphicsDevice.Viewport.Width - ScaledVirtualDimensions.X) / 2,
-            (int)(_graphicsDevice.Viewport.Height - ScaledVirtualDimensions.Y) / 2,
-            (int)ScaledVirtualDimensions.X,
-            (int)ScaledVirtualDimensions.Y
+        var scale = ScaledVirtualDimensions;
+        GraphicsDevice.Viewport = new Viewport(
+            (int)(GraphicsDevice.Viewport.Width - scale.X) / 2,
+            (int)(GraphicsDevice.Viewport.Height - scale.Y) / 2,
+            (int)scale.X,
+            (int)scale.Y
         );
     }
 
     private void SetupViewportVerticalFullScreen()
     {
-        _graphicsDevice.Viewport = new Viewport(
-            (int)(_graphicsDevice.Viewport.Width - ScaledVirtualDimensions.X) / 2,
+        var scale = ScaledVirtualDimensions;
+        GraphicsDevice.Viewport = new Viewport(
+            (int)(GraphicsDevice.Viewport.Width - scale.X) / 2,
             0,
-            (int)ScaledVirtualDimensions.X,
-            _graphicsDevice.Viewport.Height
+            (int)scale.X,
+            GraphicsDevice.Viewport.Height
         );
     }
 
@@ -102,10 +126,7 @@ public class ScreenHandler
         float scaleX = ViewportDimensions.X / virtualResolution.X;
         float scaleY = ViewportDimensions.Y / virtualResolution.Y;
 
-
         float scale = Math.Min(scaleX, scaleY);
-
-
         // Use the smaller scale to maintain aspect ratio
         if (forceXScale)
         {
@@ -116,12 +137,6 @@ public class ScreenHandler
             scale = scaleY;
         }
         return scale;
-    }
-
-    public Vector2 ScreenToWorld(Vector2 screenPosition)
-    {
-        return Vector2.Transform(screenPosition - new Vector2(Viewport.X, Viewport.Y),
-            Matrix.Invert(GetViewMatrix()));
     }
 
     public Matrix GetViewMatrix(bool forceXScale = false, bool forceYScale = false)
@@ -137,5 +152,16 @@ public class ScreenHandler
     {
         Matrix matrix = Matrix.Invert(GetScaleMatrix());
         return Vector2.Transform(new Vector2(x, y), matrix).ToPoint();
+    }
+
+    public Vector2 ScreenToWorld(Vector2 screenPosition)
+    {
+        return Vector2.Transform(screenPosition - new Vector2(Viewport.X, Viewport.Y),
+            Matrix.Invert(GetViewMatrix()));
+    }
+
+    public Vector2 S2WFromTopMiddle(float x, float y)
+    {
+        return ScreenToWorld(TopMiddle) + ScreenToWorld(new Vector2(x, y));
     }
 }

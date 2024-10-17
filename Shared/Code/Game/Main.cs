@@ -40,11 +40,11 @@ namespace flappyrogue_mg.GameSpace
             _graphics = new GraphicsDeviceManager(this);
             _graphics.SynchronizeWithVerticalRetrace = true;
 #if WINDOWS || DESKTOP
-            int height = (int)(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height * 0.75f);
-            _graphics.PreferredBackBufferHeight = height;
-            _graphics.PreferredBackBufferWidth = height * 9 / 16;
-            //_graphics.PreferredBackBufferWidth = 388; //a phone sized screen to test the responsiveness
-            //_graphics.PreferredBackBufferHeight = 736;
+            //int height = (int)(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height * 0.75f);
+            //_graphics.PreferredBackBufferHeight = height;
+            //_graphics.PreferredBackBufferWidth = height * 9 / 16;
+            _graphics.PreferredBackBufferWidth = 388; //a phone sized screen to test the responsiveness
+            _graphics.PreferredBackBufferHeight = 736;
 
 #elif ANDROID || IOS
             _graphics.IsFullScreen = true;
@@ -63,9 +63,10 @@ namespace flappyrogue_mg.GameSpace
 
         protected override void Initialize()
         {
-            ScreenHandler = new(_graphics.GraphicsDevice, Window, WORLD_WIDTH, WORLD_HEIGHT);
+            ScreenHandler.I.Init(_graphics, Window, WORLD_WIDTH, WORLD_HEIGHT);
+            ScreenHandler = ScreenHandler.I;
             //uncomment to see the Gizmos to debug
-            //GizmosRegistry.Instance.Start(_graphics.GraphicsDevice, ScreenHandler);
+            GizmosRegistry.Instance.Start(_graphics.GraphicsDevice, ScreenHandler);
 
             //  Initialize screens
             _screens.Add(ScreenName.MenuScreen, new MenuScreen(this, ScreenHandler));

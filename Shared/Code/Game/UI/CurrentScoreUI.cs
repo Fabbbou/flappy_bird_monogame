@@ -15,6 +15,9 @@ public class CurrentScoreUI : DrawableEntity
     {
         var text = ScoreManager.Instance.CurrentScore.ToString();
         var textToRect = _font.GetStringRectangle(text, Vector2.Zero);
-        spriteBatch.DrawString(_font, text, new Vector2(Constants.WORLD_MIDDLE_SCREEN_WIDTH - textToRect.Width * .5f, 10), Color.White, layerDepth:Constants.LAYER_DEPTH_UI);
+        //spriteBatch.DrawString(_font, text, new Vector2(Constants.WORLD_MIDDLE_SCREEN_WIDTH - textToRect.Width * .5f, 10), Color.White, layerDepth:Constants.LAYER_DEPTH_UI);
+
+        //the following example is not working because this texture is rendered using the ingame scaling, andd not the screen scaling (no transformation matrix)
+        spriteBatch.DrawString(_font, text, ScreenHandler.I.S2WFromTopMiddle(textToRect.Width * .5f, 10), Color.White, layerDepth:Constants.LAYER_DEPTH_UI);
     }
 }

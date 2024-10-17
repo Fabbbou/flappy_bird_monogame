@@ -33,7 +33,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)code\game\screen\GameOverScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\game\screen\MenuScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Manager\SoundManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Sound\SoundUI.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Game\ui\SoundUI.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Helpers\SpriteBatchExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\game\states\DeathState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\game\states\GetReadyState.cs" />
@@ -87,7 +87,6 @@
     <Folder Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\" />
     <Folder Include="$(MSBuildThisFileDirectory)Code\Game\Assets\" />
     <Folder Include="$(MSBuildThisFileDirectory)Code\Game\Manager\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Code\Game\Sound\" />
     <Folder Include="$(MSBuildThisFileDirectory)Code\Game\States\" />
   </ItemGroup>
 </Project>

@@ -17,9 +17,6 @@ namespace flappyrogue_mg.GameSpace
         private SpriteBatch _spriteBatch;
         private Texture2DRegion _background;
         private ScreenHandler _screenHandler;
-        private ScalingViewportAdapter _viewportAdapter;
-        private BoxingViewportAdapter BoxingViewportAdapter;
-        private OrthographicCamera camera;
         public StateMachine StateMachine { get; private set; }
         public GetReadyUI GetReadyUI { get; private set; }
         public Bird Bird { get; private set; }
@@ -58,12 +55,16 @@ namespace flappyrogue_mg.GameSpace
             };
 
             World = new World(GraphicsDevice);
-            World.AddEntity(PipesSpawner);
-            World.AddEntity(Floor);
-            World.AddEntity(Bird);
-            World.AddEntity(PauseButton);
-            World.AddEntity(CurrentScoreUI);
-            World.AddEntity(GetReadyUI);
+            World.AddIngameEntity(PipesSpawner);
+            World.AddIngameEntity(Floor);
+            World.AddIngameEntity(Bird);
+
+            World.AddIngameEntity(PauseButton); //should be UI
+            World.AddIngameEntity(GetReadyUI); //should be UI
+            //CurrentScoreUI Font is scaling from transformation matrix
+            //this is working because we are using the same matrix for the UI
+            World.AddUIEntity(CurrentScoreUI); 
+            
         }
 
         public override void LoadContent()
@@ -84,35 +85,34 @@ namespace flappyrogue_mg.GameSpace
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Game.Exit();
             StateMachine.Update(gameTime);
+            World.UpdateV2(gameTime);
             World.Update(gameTime);
+
         }
 
         public override void Draw(GameTime gameTime)
         {
+            var ingameMatrix = _screenHandler.GetViewMatrix();
             GraphicsDevice.Clear(Color.Transparent);
-            
-            _spriteBatch.Begin();
-            //the upper sky
+
+            _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+            //background : Sky out of bounds
             _spriteBatch.FillRectangle(new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height/2), COLOR_SKY);
             _spriteBatch.End();
-
-            _spriteBatch.Begin(transformMatrix: _screenHandler.GetViewMatrix(), samplerState: SamplerState.PointClamp);
+            
+            _spriteBatch.Begin(transformMatrix: ingameMatrix, samplerState: SamplerState.PointClamp);
+            //background : background pic
             _spriteBatch.Draw(_background, Vector2.Zero, Constants.LAYER_DEPTH_INGAME);
             _spriteBatch.End();
 
-            World.BatchDraw(_spriteBatch, _screenHandler.GetViewMatrix());
+            World.BatchDraw(_spriteBatch, ingameMatrix);
+            World.Draw(ingameMatrix);
 
-
-            _spriteBatch.Begin(transformMatrix: _screenHandler.GetViewMatrix(), samplerState: SamplerState.PointClamp);
-            //padding floor to avoid seeing the end of the floor (and pipes too)
+            _spriteBatch.Begin(transformMatrix: ingameMatrix, samplerState: SamplerState.PointClamp);
+            //Floor: brown part 
             _spriteBatch.FillRectangle(new Rectangle(0, (int)SPRITE_POSITION_FLOOR.Y+ FLOOR_HEIGHT_GREEN_BANNER, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), COLOR_FLOOR);
-            if (GizmosRegistry.Instance.IsDebugging)
-            {
-                //draw the ingame world boundaries if debugging
-                _spriteBatch.DrawRectangle(new Rectangle(0, 0, WORLD_WIDTH, WORLD_HEIGHT), Color.Blue);
-            }
             _spriteBatch.End();
-            
+
             if (GrayBackground.IsActive)
             {
                 _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
@@ -120,23 +120,22 @@ namespace flappyrogue_mg.GameSpace
                 _spriteBatch.End();
             }
 
-            if(SoundUI.IsActive)
+            if (SoundUI.IsActive)
             {
-                _spriteBatch.Begin(transformMatrix: _screenHandler.GetViewMatrix(), samplerState: SamplerState.PointClamp);
+                _spriteBatch.Begin(transformMatrix: ingameMatrix, samplerState: SamplerState.PointClamp);
                 SoundUI.Draw(_spriteBatch);
                 _spriteBatch.End();
             }
 
+            GizmosRegistry.Instance.Draw();
 
-            //DEBUG
-            _spriteBatch.Begin(transformMatrix: _screenHandler.GetViewMatrix(), samplerState: SamplerState.PointClamp);
+            //draw the ingame world boundaries if debugging
             if (GizmosRegistry.Instance.IsDebugging)
             {
-            //draw the ingame world boundaries if debugging
+                _spriteBatch.Begin(transformMatrix: ingameMatrix, samplerState: SamplerState.PointClamp);
                 _spriteBatch.DrawRectangle(new Rectangle(0, 0, WORLD_WIDTH, WORLD_HEIGHT), Color.Blue);
+                _spriteBatch.End();
             }
-            _spriteBatch.End();
-            GizmosRegistry.Instance.Draw();
         }
     }
 }
