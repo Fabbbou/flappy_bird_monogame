@@ -60,6 +60,7 @@ public class MainRegistry
         return Vector2.Transform(screenPosition + avoidRoundingError, Matrix.Invert(GetScaleMatrix()));
     }
 
+
     public Vector2 ScreenToWorld(float x, float y)
     {
         return ScreenToWorld(new Vector2(x, y));

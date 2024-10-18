@@ -91,13 +91,13 @@ namespace flappyrogue_mg.GameSpace
         {
             var ingameMatrix = MainRegistry.I.GetScaleMatrix();
             var startScreen = MainRegistry.I.ScreenToWorld(0, 0).ToPoint();
-            var endScreen = MainRegistry.I.ScreenToWorld(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height).ToPoint();
+            var endScreen = MainRegistry.I.ViewportAdapter.PointToScreen(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
             GraphicsDevice.Clear(Color.Transparent);
             
             _spriteBatch.Begin(transformMatrix: ingameMatrix, samplerState: SamplerState.PointClamp);
+            //background : the sky above the picture (out of world bounds, for responsiveness)
+            _spriteBatch.FillRectangle(new Rectangle(startScreen.X, startScreen.Y, endScreen.X, endScreen.Y), COLOR_SKY);
             //background : background pic
-            _spriteBatch.FillRectangle(new Rectangle(startScreen.X, startScreen.Y, endScreen.X, endScreen.Y), Color.Red);
-
             _spriteBatch.Draw(_background, Vector2.Zero, Constants.LAYER_DEPTH_INGAME);
             _spriteBatch.End();
 
@@ -106,22 +106,25 @@ namespace flappyrogue_mg.GameSpace
 
             _spriteBatch.Begin(transformMatrix: ingameMatrix, samplerState: SamplerState.PointClamp);
             //Floor: brown part 
-            _spriteBatch.FillRectangle(new Rectangle(0, (int)SPRITE_POSITION_FLOOR.Y+ FLOOR_HEIGHT_GREEN_BANNER, endScreen.X, endScreen.Y), COLOR_FLOOR);
-            _spriteBatch.End();
+            _spriteBatch.FillRectangle(new Rectangle(0, (int)SPRITE_POSITION_FLOOR.Y + FLOOR_HEIGHT_GREEN_BANNER, endScreen.X, endScreen.Y), COLOR_FLOOR);
+            //_spriteBatch.End();
 
             if (GrayBackground.IsActive)
             {
-                _spriteBatch.Begin(transformMatrix: ingameMatrix, samplerState: SamplerState.PointClamp);
-                GrayBackground.Draw(_spriteBatch);
-                _spriteBatch.End();
+                //_spriteBatch.Begin(transformMatrix: ingameMatrix, samplerState: SamplerState.PointClamp);
+                //GrayBackground.Draw(_spriteBatch);
+                _spriteBatch.FillRectangle(new Rectangle(startScreen.X, startScreen.Y, endScreen.X, endScreen.Y), COLOR_GRAY_UI);
+
+                //_spriteBatch.End();
             }
 
             if (SoundUI.IsActive)
             {
-                _spriteBatch.Begin(transformMatrix: ingameMatrix, samplerState: SamplerState.PointClamp);
+                //_spriteBatch.Begin(transformMatrix: ingameMatrix, samplerState: SamplerState.PointClamp);
                 SoundUI.Draw(_spriteBatch);
-                _spriteBatch.End();
+                //_spriteBatch.End();
             }
+            _spriteBatch.End();
 
             GizmosRegistry.Instance.Draw();
 
