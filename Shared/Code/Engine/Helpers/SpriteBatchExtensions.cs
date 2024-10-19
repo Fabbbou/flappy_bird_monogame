@@ -17,5 +17,10 @@ namespace Extensions
         {
             spriteBatch.Draw(texture.Texture, position, texture.Bounds, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, layerDepth);
         }
+
+        public static void Draw(this SpriteBatch spriteBatch, Texture2DRegion texture, Vector2 position, float scale, float layerDepth)
+        {
+            spriteBatch.Draw(texture.Texture, position, texture.Bounds, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, layerDepth);
+        }
     }
 }

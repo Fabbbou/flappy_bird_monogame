@@ -8,6 +8,7 @@ using MonoGame.Extended.Screens;
 using MonoGame.Extended.ViewportAdapters;
 using Extensions;
 using static Constants;
+using System.Diagnostics;
 
 
 namespace flappyrogue_mg.GameSpace
@@ -16,17 +17,18 @@ namespace flappyrogue_mg.GameSpace
     {
         public const int ROUNDING = 10;
         private SpriteBatch _spriteBatch;
-        private Texture2DRegion _background;
         public StateMachine StateMachine { get; private set; }
+        public World World { get; private set; }
+        public FullscreenRectangleEntity SkyBackgroundBox { get; private set; }
+        public BackgroundPicture Background { get; private set; }
         public GetReadyUI GetReadyUI { get; private set; }
         public Bird Bird { get; private set; }
         public Floor Floor { get; private set; }
         public PipesSpawner PipesSpawner { get; private set; }
         public PauseButton PauseButton { get; private set; }
         public CurrentScoreUI CurrentScoreUI { get; private set; }
-        public World World { get; private set; }
         public SoundUI SoundUI { get; private set; }
-        public FullscreenRectangleEntity GrayBackground { get; private set; }
+        public FullscreenRectangleEntity GrayUIBackground { get; private set; }
         public Entity EntityJumpClickRegion { get; set; }
         public ClickableRegionHandler JumpBirdClickableRegionHandler { get; set; }
         public MainGameScreen(Game game) : base(game){}
@@ -40,34 +42,40 @@ namespace flappyrogue_mg.GameSpace
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             StateMachine = new StateMachine(new GetReadyState(this));
             GetReadyUI = new GetReadyUI();
+            SkyBackgroundBox = new FullscreenRectangleEntity(GraphicsDevice, COLOR_SKY);
+            Background = new BackgroundPicture();
             Floor = new Floor();
             PipesSpawner = new PipesSpawner();
             Bird = new Bird(this);
             PauseButton = new PauseButton(this);
             CurrentScoreUI = new();
             SoundUI = new SoundUI(this);
-            GrayBackground = new FullscreenRectangleEntity(GraphicsDevice, COLOR_GRAY_UI, MainRegistry.I.Camera)
+            GrayUIBackground = new FullscreenRectangleEntity(GraphicsDevice, COLOR_GRAY_UI)
             {
                 IsActive = false
             };
 
             World = new World(GraphicsDevice);
+            World.AddBackgroundUIEntity(SkyBackgroundBox);
+            // because the UI is drawn on top of the ingame entities, could not do this for background pic as its a pic sized for ingame
+            World.AddIngameEntity(Background); 
             World.AddIngameEntity(PipesSpawner);
             World.AddIngameEntity(Floor);
             World.AddIngameEntity(Bird);
-
+           
             World.AddIngameEntity(PauseButton); //should be UI
             World.AddIngameEntity(GetReadyUI); //should be UI
             //CurrentScoreUI Font is scaling from transformation matrix
             //this is working because we are using the same matrix for the UI
             World.AddUIEntity(CurrentScoreUI);
+            World.AddUIEntity(GrayUIBackground);
+            World.AddUIEntity(SoundUI);
             MainRegistry.I.ViewportAdapter.Reset();
         }
 
         public override void LoadContent()
         {            
             World.LoadContent(Content);
-            _background = AssetsLoader.Instance.Background;
             SoundUI.LoadContent(Content);
         }
 
@@ -82,49 +90,18 @@ namespace flappyrogue_mg.GameSpace
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Game.Exit();
             StateMachine.Update(gameTime);
-            World.UpdateV2(gameTime);
             World.Update(gameTime);
-
         }
 
         public override void Draw(GameTime gameTime)
         {
             var ingameMatrix = MainRegistry.I.GetScaleMatrix();
-            var startScreen = MainRegistry.I.ScreenToWorld(0, 0).ToPoint();
-            var endScreen = MainRegistry.I.ViewportAdapter.PointToScreen(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+            var startScreen = MainRegistry.I.PointToScreen(0, 0);
+            var endScreen = MainRegistry.I.ScreenToWorld(MainRegistry.I.ViewportAdapter.ViewportWidth, MainRegistry.I.ViewportAdapter.ViewportHeight).ToPoint();
             GraphicsDevice.Clear(Color.Transparent);
-            
-            _spriteBatch.Begin(transformMatrix: ingameMatrix, samplerState: SamplerState.PointClamp);
-            //background : the sky above the picture (out of world bounds, for responsiveness)
-            _spriteBatch.FillRectangle(new Rectangle(startScreen.X, startScreen.Y, endScreen.X, endScreen.Y), COLOR_SKY);
-            //background : background pic
-            _spriteBatch.Draw(_background, Vector2.Zero, Constants.LAYER_DEPTH_INGAME);
-            _spriteBatch.End();
 
-            World.BatchDraw(_spriteBatch, ingameMatrix);
+
             World.Draw(ingameMatrix);
-
-            _spriteBatch.Begin(transformMatrix: ingameMatrix, samplerState: SamplerState.PointClamp);
-            //Floor: brown part 
-            _spriteBatch.FillRectangle(new Rectangle(0, (int)SPRITE_POSITION_FLOOR.Y + FLOOR_HEIGHT_GREEN_BANNER, endScreen.X, endScreen.Y), COLOR_FLOOR);
-            //_spriteBatch.End();
-
-            if (GrayBackground.IsActive)
-            {
-                //_spriteBatch.Begin(transformMatrix: ingameMatrix, samplerState: SamplerState.PointClamp);
-                //GrayBackground.Draw(_spriteBatch);
-                _spriteBatch.FillRectangle(new Rectangle(startScreen.X, startScreen.Y, endScreen.X, endScreen.Y), COLOR_GRAY_UI);
-
-                //_spriteBatch.End();
-            }
-
-            if (SoundUI.IsActive)
-            {
-                //_spriteBatch.Begin(transformMatrix: ingameMatrix, samplerState: SamplerState.PointClamp);
-                SoundUI.Draw(_spriteBatch);
-                //_spriteBatch.End();
-            }
-            _spriteBatch.End();
 
             GizmosRegistry.Instance.Draw();
 

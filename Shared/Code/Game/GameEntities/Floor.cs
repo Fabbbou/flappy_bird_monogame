@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Graphics;
 using static Constants;
 using Extensions;
+using MonoGame.Extended;
 
 namespace flappyrogue_mg.GameSpace
 {
@@ -48,6 +49,9 @@ namespace flappyrogue_mg.GameSpace
         {
             spriteBatch.Draw(_floorTexture, _texturePosition, LAYER_DEPTH_INGAME);
             spriteBatch.Draw(_floorTexture, _texture2Position,LAYER_DEPTH_INGAME);
+            //padding floor to avoid seeing the end of the floor (and pipes too)
+            spriteBatch.FillRectangle(new Rectangle(0, (int)(SPRITE_POSITION_FLOOR.Y + ATLAS_SIZE_FLOOR.Y), MainRegistry.I.GraphicsDevice.Viewport.Width, MainRegistry.I.GraphicsDevice.Viewport.Height), COLOR_FLOOR);
+
         }
     }
 }

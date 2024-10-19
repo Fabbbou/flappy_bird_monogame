@@ -3,16 +3,14 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 
-public class FullscreenRectangleEntity(GraphicsDevice graphicsDevice, Color color, OrthographicCamera camera) : DrawableEntity
+public class FullscreenRectangleEntity(GraphicsDevice graphicsDevice, Color color) : DrawableEntity
 {
     private int ScreenWidth => graphicsDevice.Viewport.Width;
     private int ScreenHeight => graphicsDevice.Viewport.Height;
 
     public override void Draw(SpriteBatch spriteBatch)
     {
-        var startScreen = MainRegistry.I.Camera.ScreenToWorld(0, 0).ToPoint();
-        var endScreen = MainRegistry.I.ViewportAdapter.PointToScreen(ScreenWidth, ScreenHeight);
-        spriteBatch.FillRectangle(new Rectangle(startScreen.X, startScreen.Y, endScreen.X, endScreen.Y), color);
+        spriteBatch.FillRectangle(new Rectangle(0, 0, ScreenWidth, ScreenHeight), color);
     }
 
     public override void LoadContent(ContentManager content) {}

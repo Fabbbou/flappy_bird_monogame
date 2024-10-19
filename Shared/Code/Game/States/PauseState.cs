@@ -5,7 +5,7 @@ public class PauseState(MainGameScreen mainGameScreen) : MainGameState(mainGameS
 {
     public override void Enter()
     {
-        MainGameScreen.GrayBackground.IsActive = true;
+        MainGameScreen.GrayUIBackground.IsActive = true;
         MainGameScreen.SoundUI.IsActive = true;
         MainGameScreen.PauseButton.IsActive = false;
         MainGameScreen.EntityJumpClickRegion.IsActive = false;
@@ -23,7 +23,7 @@ public class PauseState(MainGameScreen mainGameScreen) : MainGameState(mainGameS
 
     public override void Exit()
     {
-        MainGameScreen.GrayBackground.IsActive = false;
+        MainGameScreen.GrayUIBackground.IsActive = false;
         MainGameScreen.SoundUI.IsActive = false;
         MainGameScreen.PauseButton.IsActive = true;
         MainGameScreen.EntityJumpClickRegion.IsActive = true;

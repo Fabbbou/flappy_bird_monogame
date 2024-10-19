@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.ViewportAdapters;
 
@@ -15,23 +16,21 @@ public class MainRegistry
             return _instance;
         }
     }
+    public Game Game { get; private set; }
     public GraphicsDeviceManager GraphicsDeviceManager { get; private set; }
     public ViewportAdapter ViewportAdapter { get; private set; }
     public ScreenRegistry ScreenRegistry { get; private set; }
     public OrthographicCamera Camera { get; private set; }
-    //public GizmosRegistry GizmosRegistry { get; private set; }
-    //public PhysicsEngine PhysicsEngine { get; private set; }
     public GraphicsDevice GraphicsDevice => GraphicsDeviceManager.GraphicsDevice;
+    public float VirtualScreenScale => ViewportAdapter.GetScaleMatrix().M11;
 
-    public void Init(GraphicsDeviceManager graphicsDeviceManager, ScreenRegistry screenRegistry, ViewportAdapterFactory viewportAdapterFactory)
+    public void Init(Game game, GraphicsDeviceManager graphicsDeviceManager, ScreenRegistry screenRegistry, ViewportAdapterFactory viewportAdapterFactory)
     {
+        Game = game;
         GraphicsDeviceManager = graphicsDeviceManager;
         ViewportAdapter = viewportAdapterFactory.BuildViewport();
         Camera = viewportAdapterFactory.BuildCamera();
         ScreenRegistry = screenRegistry;
-        //GizmosRegistry = new GizmosRegistry();
-        //GizmosRegistry.Start(GraphicsDevice, false);
-        //PhysicsEngine = new PhysicsEngine();
     }
 
     public Matrix GetScaleMatrix()
@@ -55,9 +54,21 @@ public class MainRegistry
     /// <returns>Ingame position</returns>
     public Vector2 ScreenToWorld(Vector2 screenPosition)
     {
-        Viewport viewport = ViewportAdapter.Viewport;
-        Vector2 avoidRoundingError = Vector2.One * .5f;
-        return Vector2.Transform(screenPosition + avoidRoundingError, Matrix.Invert(GetScaleMatrix()));
+        return Camera.ScreenToWorld(screenPosition);
+    }
+
+    public Rectangle PointToScreen(Rectangle rectangle)
+    {
+        return new(ViewportAdapter.PointToScreen(rectangle.Location), ViewportAdapter.PointToScreen(rectangle.Size));
+    }
+    public Point PointToScreen(int x, int y)
+    {
+        Matrix matrix = Matrix.Invert(GetScaleMatrix());
+        return Vector2.Transform(new Vector2(x, y), matrix).ToPoint();
+    }
+    public Point PointToScreen(Vector2 v)
+    {
+        return ViewportAdapter.PointToScreen(v.ToPoint());
     }
 
 

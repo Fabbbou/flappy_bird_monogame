@@ -29,17 +29,17 @@ public class VerticalBoxingViewportAdapter : ScalingViewportAdapter
     private void OnClientSizeChanged(object sender, EventArgs eventArgs)
     {
         float scale = ComputeScale();
-        int scaleX = (int)(scale * (float)VirtualWidth);
-        int scaleY = (int)(scale * (float)VirtualHeight);
+        int scaledViewportWidthX = (int)(scale * (float)VirtualWidth +.5f);
+        int scaledViewportHeightY = (int)(scale * (float)VirtualHeight + .5f);
 
         Rectangle clientBounds = _window.ClientBounds;
-        int x = clientBounds.Width / 2 - scaleX / 2;
-        int y = clientBounds.Height / 2 - scaleY / 2;
+        int x = clientBounds.Width / 2 - scaledViewportWidthX / 2;
+        int y = clientBounds.Height / 2 - scaledViewportHeightY / 2;
         if (Camera != null)
         {
            Camera.Position = new Vector2(0, -y/2);
         }
-        base.GraphicsDevice.Viewport = new Viewport(x, 0, scaleX, ViewportHeight);
+        base.GraphicsDevice.Viewport = new Viewport(x, 0, scaledViewportWidthX, clientBounds.Height);
     }
 
     private float ComputeScale()

@@ -40,7 +40,7 @@ namespace flappyrogue_mg.GameSpace
             Window.AllowUserResizing = true;
 
             ViewportAdapterFactory factory = new VerticalViewportAdapterFactory(this, _graphics, WORLD_WIDTH, WORLD_HEIGHT);
-            MainRegistry.I.Init(_graphics, _screenRegistry, factory);
+            MainRegistry.I.Init(this, _graphics, _screenRegistry, factory);
         }
 
 
@@ -71,7 +71,6 @@ namespace flappyrogue_mg.GameSpace
 
         protected override void Draw(GameTime gameTime)
         {
-
             _fpsCounter.Draw(gameTime);
             Window.Title = $"{_screenRegistry.CurrentScreen} {_fpsCounter.FramesPerSecond}";
             base.Draw(gameTime);
