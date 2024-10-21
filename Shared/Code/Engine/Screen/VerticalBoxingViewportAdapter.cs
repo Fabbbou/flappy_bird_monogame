@@ -9,20 +9,30 @@ public class VerticalBoxingViewportAdapter : ScalingViewportAdapter
     private readonly GameWindow _window;
     private readonly GraphicsDevice _graphicsDevice;
     public OrthographicCamera Camera;
+    private bool _updateOnResizeWindow;
 
     // Summary:
     //     Initializes a new instance of the MonoGame.Extended.ViewportAdapters.BoxingViewportAdapter.
-    public VerticalBoxingViewportAdapter(GameWindow window, GraphicsDevice graphicsDevice, int virtualWidth, int virtualHeight)
+    public VerticalBoxingViewportAdapter(GameWindow window, GraphicsDevice graphicsDevice, int virtualWidth, int virtualHeight, bool updateOnResizeWindow)
         : base(graphicsDevice, virtualWidth, virtualHeight)
     {
         _window = window;
         _graphicsDevice = graphicsDevice;
-        window.ClientSizeChanged += OnClientSizeChanged;
+        _updateOnResizeWindow = updateOnResizeWindow;
+        //WARN: this is messing with Gum rendering
+        if (_updateOnResizeWindow)
+        {
+            _window.ClientSizeChanged += OnClientSizeChanged;
+        }
+        _window.ClientSizeChanged += OnClientSizeChanged;
     }
 
     public override void Dispose()
     {
-        _window.ClientSizeChanged -= OnClientSizeChanged;
+        if(_updateOnResizeWindow)
+        {
+            _window.ClientSizeChanged -= OnClientSizeChanged;
+        }
         base.Dispose();
     }
 
@@ -52,15 +62,15 @@ public class VerticalBoxingViewportAdapter : ScalingViewportAdapter
         return scale;
     }
 
-    public override Matrix GetScaleMatrix()
-    {
-        return Matrix.CreateScale(ComputeScale());
-    }
-
     public override void Reset()
     {
         base.Reset();
         OnClientSizeChanged(this, EventArgs.Empty);
+    }
+
+    public override Matrix GetScaleMatrix()
+    {
+        return Matrix.CreateScale(ComputeScale());
     }
 
     public override Point PointToScreen(int x, int y)

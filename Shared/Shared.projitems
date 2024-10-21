@@ -9,6 +9,8 @@
     <Import_RootNamespace>Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\DebugTools\Gizmo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\DebugTools\GizmosRegistry.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\helpers\Memoizer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Screen\ScreenRegistry.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Screen\VerticalBoxingViewportAdapter.cs" />
@@ -20,8 +22,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)code\game\assets\AssetsLoader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Constants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Entity\Entity.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\DebugTools\Gizmo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Entity\DrawableEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Gum\GumTransparentButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)code\game\gum\GumWindowResizer.cs" />
     <Compile Include="..\Shared\code\game\gameentities\BackgroundPicture.cs" />
     <Compile Include="..\Shared\Code\Engine\Entity\FullscreenRectangleEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Input\ClickableRegionHandler.cs" />
@@ -51,7 +54,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\Collider\RectCollider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\game\ui\GetReadyUI.cs" />
     <Compile Include="..\Shared\code\game\ui\CurrentScoreUI.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\DebugTools\GizmosRegistry.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Input\Keyboard.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\PhysicsObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Main.cs" />
@@ -69,13 +71,50 @@
     <None Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
     <None Include="$(MSBuildThisFileDirectory)Content\fonts\04b19.fnt" />
     <None Include="$(MSBuildThisFileDirectory)Content\fonts\arial.spritefont" />
-    <None Include="$(MSBuildThisFileDirectory)Content\sprites\background.aseprite" />
-    <None Include="$(MSBuildThisFileDirectory)Content\sprites\bird.aseprite" />
+    <None Include="$(MSBuildThisFileDirectory)Content\proj.gumx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\Screens\MenuScreen.gusx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\Screens\MenuScreenAnimations.ganx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\Standards\Circle.gutx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\Standards\ColoredRectangle.gutx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\Standards\Component.gutx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\Standards\Container.gutx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\Standards\NineSlice.gutx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\Standards\Polygon.gutx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\Standards\Rectangle.gutx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\Standards\Sprite.gutx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\Standards\Text.gutx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="$(MSBuildThisFileDirectory)pipeline-references\Monogame.Aseprite.Content.Pipeline.dll" />
     <None Include="$(MSBuildThisFileDirectory)pipeline-references\MonoGame.Extended.Content.Pipeline.dll" />
     <None Include="$(MSBuildThisFileDirectory)pipeline-references\MonoGame.Extended.dll" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Content\EventExport\gum_events.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="$(MSBuildThisFileDirectory)Content\fonts\04b19_0.png" />
     <Content Include="$(MSBuildThisFileDirectory)Content\fonts\04B_19__.TTF" />
     <Content Include="$(MSBuildThisFileDirectory)Content\fonts\Arial.ttf" />
@@ -84,7 +123,9 @@
     <Content Include="$(MSBuildThisFileDirectory)Content\sounds\sfx_point.wav" />
     <Content Include="$(MSBuildThisFileDirectory)Content\sounds\sfx_swooshing.wav" />
     <Content Include="$(MSBuildThisFileDirectory)Content\sounds\sfx_wing.wav" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\sprites\atlas.png" />
+    <None Include="$(MSBuildThisFileDirectory)Content\sprites\atlas.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Code\Engine\Helpers\" />
@@ -92,6 +133,9 @@
     <Folder Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\" />
     <Folder Include="$(MSBuildThisFileDirectory)Code\Game\Assets\" />
     <Folder Include="$(MSBuildThisFileDirectory)Code\Game\Manager\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Code\Game\Gum\" />
     <Folder Include="$(MSBuildThisFileDirectory)Code\Game\States\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Content\Behaviors\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Content\Components\" />
   </ItemGroup>
 </Project>

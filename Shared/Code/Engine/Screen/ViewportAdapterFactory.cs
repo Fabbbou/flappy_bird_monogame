@@ -6,10 +6,10 @@ using MonoGame.Extended.ViewportAdapters;
 public abstract class ViewportAdapterFactory
 {
     public Game Game { get; private set; }
-    public GraphicsDeviceManager GraphicsDeviceManager { get; private set; }
-    public ViewportAdapterFactory(Game game, GraphicsDeviceManager graphicsDeviceManager)
+    public GraphicsDevice GraphicsDevice { get; private set; }
+    public ViewportAdapterFactory(Game game, GraphicsDevice graphicsDevice)
     {
-        GraphicsDeviceManager = graphicsDeviceManager;
+        GraphicsDevice = graphicsDevice;
         Game = game;
     }
 
@@ -22,15 +22,17 @@ public class VerticalViewportAdapterFactory : ViewportAdapterFactory
     private readonly int _virtualHeight;
     private OrthographicCamera _camera;
     private VerticalBoxingViewportAdapter _verticalBoxingViewportAdapter;
-    public VerticalViewportAdapterFactory(Game Game, GraphicsDeviceManager GraphicsDeviceManager, int virtualWidth, int virtualHeight) : base(Game, GraphicsDeviceManager)
+    private bool _updateOnResizeWindow;
+    public VerticalViewportAdapterFactory(Game Game, GraphicsDevice GraphicsDevice, int virtualWidth, int virtualHeight, bool updateOnResizeWindow) : base(Game, GraphicsDevice)
     {
         _virtualWidth = virtualWidth;
         _virtualHeight = virtualHeight;
+        _updateOnResizeWindow = updateOnResizeWindow;
     }
 
     public override ViewportAdapter BuildViewport()
     {
-        _verticalBoxingViewportAdapter = new VerticalBoxingViewportAdapter(Game.Window, GraphicsDeviceManager.GraphicsDevice, _virtualWidth, _virtualHeight);
+        _verticalBoxingViewportAdapter = new VerticalBoxingViewportAdapter(Game.Window, GraphicsDevice, _virtualWidth, _virtualHeight, _updateOnResizeWindow);
         _camera = new OrthographicCamera(_verticalBoxingViewportAdapter);
         _verticalBoxingViewportAdapter.Camera = _camera;
         return _verticalBoxingViewportAdapter;

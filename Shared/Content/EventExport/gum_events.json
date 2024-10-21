@@ -1,0 +1,167 @@
+{
+  "UserEvents": {
+    "DeiGr": [
+      {
+        "NewName": "menu",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 0,
+        "TimestampUtc": "2024-10-19T14:28:28.8568618Z"
+      },
+      {
+        "NewName": "menu.SpriteInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-19T14:28:37.6876136Z"
+      },
+      {
+        "NewName": "menu.background",
+        "OldName": "menu.SpriteInstance",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-19T14:29:19.2326553Z"
+      },
+      {
+        "NewName": "menu.BackgroundPic",
+        "OldName": "menu.background",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-19T14:29:24.6844033Z"
+      },
+      {
+        "NewName": "menu.ContainerInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-19T14:29:30.2426584Z"
+      },
+      {
+        "NewName": "menu.SpriteInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-19T14:29:35.6218823Z"
+      },
+      {
+        "NewName": "menu.SpriteInstance1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-19T14:29:37.9366645Z"
+      },
+      {
+        "NewName": "menu.Title",
+        "OldName": "menu.SpriteInstance",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-20T11:42:51.7929609Z"
+      },
+      {
+        "NewName": "menu.button",
+        "OldName": "menu.SpriteInstance1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-20T11:42:56.7890277Z"
+      },
+      {
+        "NewName": "menu.ContainerInstance1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-20T12:00:00.1134851Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "menu.Container ContainerInstance1 in menu",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-20T12:04:05.3305081Z"
+      },
+      {
+        "NewName": "menu.ContainerInstance1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-20T12:07:23.6324054Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "menu.Container ContainerInstance1 in menu",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-20T12:18:35.9512058Z"
+      },
+      {
+        "NewName": "menu.ContainerInstance1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-20T12:19:54.6103018Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "menu.Container ContainerInstance1 in menu",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-20T12:27:18.3326221Z"
+      },
+      {
+        "NewName": "menu.PlayButton",
+        "OldName": "menu.button",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-20T12:30:27.3391912Z"
+      },
+      {
+        "NewName": "menu.ColoredRectangleInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-20T14:08:35.5056536Z"
+      },
+      {
+        "NewName": "menu.SkyRectangle",
+        "OldName": "menu.ColoredRectangleInstance",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-20T14:19:01.5664666Z"
+      },
+      {
+        "NewName": "menu.SkyRectangle1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-20T14:19:17.8101385Z"
+      },
+      {
+        "NewName": "menu.TreesRectangle",
+        "OldName": "menu.SkyRectangle1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-20T14:19:37.6862146Z"
+      },
+      {
+        "NewName": "menu.MobileTopSkyRectangle",
+        "OldName": "menu.SkyRectangle",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-20T14:25:18.6755213Z"
+      },
+      {
+        "NewName": "menu.MobileBottomTreesRectangle",
+        "OldName": "menu.TreesRectangle",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-20T14:25:27.4281929Z"
+      },
+      {
+        "NewName": "MenuScreen",
+        "OldName": "menu",
+        "ElementType": "Screens",
+        "EventType": 2,
+        "TimestampUtc": "2024-10-21T12:56:55.316856Z"
+      }
+    ]
+  }
+}

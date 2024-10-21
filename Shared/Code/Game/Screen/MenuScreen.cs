@@ -7,76 +7,92 @@ using MonoGame.Extended.ViewportAdapters;
 using static Constants;
 using Extensions;
 using MonoGame.Extended;
+using GumFormsSample;
+using Gum.Wireframe;
+using MonoGameGum.Forms;
+using RenderingLibrary;
+using System;
 
 public class MenuScreen : GameScreen
 {
     private SpriteBatch _spriteBatch;
+    private GumWindowResizer _gumWindowResizer;
 
-    private Texture2DRegion _background;
-    private Texture2DRegion _flappybirdTitle;
-    private Texture2DRegion _playButtonTexture;
-    private ClickableRegionHandler _playButtonClickHandler;
-
-    private Entity _entity;
-    private Floor _floor;
-
+    private GraphicalUiElement _gumScreen;
+    private GraphicalUiElement BackgroundPic;
+    private GraphicalUiElement MobileTopSkyRectangle;
+    private GraphicalUiElement MobileBottomTreesRectangle;
+    private GraphicalUiElement PlayButton;
     public MenuScreen(Game game) : base(game) {}
 
     public override void Initialize()
     {
         Game.IsMouseVisible = true;
         _spriteBatch = new SpriteBatch(GraphicsDevice);
+        _gumScreen = MainRegistry.I.GetGumScreen("MenuScreen");
+        _gumWindowResizer = new GumWindowResizer(GraphicsDevice, _gumScreen);
 
-        _entity = new Entity();
-        _playButtonClickHandler = new ClickableRegionHandler(_entity, OnClickPlay, new(SPRITE_POSITION_PLAY_BUTTON_MENU.ToPoint(), ATLAS_SIZE_PLAY_BUTTON.ToPoint()));
+        BackgroundPic = _gumScreen.GetGraphicalUiElementByName("BackgroundPic");
+        MobileTopSkyRectangle = _gumScreen.GetGraphicalUiElementByName("MobileTopSkyRectangle");
+        MobileBottomTreesRectangle = _gumScreen.GetGraphicalUiElementByName("MobileBottomTreesRectangle");
+        PlayButton = _gumScreen.GetGraphicalUiElementByName("PlayButton");
+        var button = new GumTransparentButton();
+        button.Click += OnClickPlayButton;
+        PlayButton.Children.Add(button);
+        Game.Window.ClientSizeChanged += OnClientResize;
+
+        //calling it once to make sure the screen is properly resized on app startup
+        OnClientResize(null, null);
+    }
+    private void OnClickPlayButton(object not, EventArgs used) => MainRegistry.I.ScreenRegistry.LoadScreen(ScreenName.MainGameScreen);
+
+    public override void Update(GameTime gameTime)
+    {
+        //gum update
+        if (Game.IsActive) FormsUtilities.Update(gameTime, _gumScreen);
+        SystemManagers.Default.Activity(gameTime.TotalGameTime.TotalSeconds);
+    }
+    public override void Draw(GameTime gameTime)
+    {
+        GraphicsDevice.Clear(Color.Black);
+        SystemManagers.Default.Draw();
     }
 
-    public override void LoadContent()
+    public override void Dispose()
     {
-        _background = AssetsLoader.Instance.Background;
-        _flappybirdTitle = AssetsLoader.Instance.FlappyBirdLogo;
-        _playButtonTexture = AssetsLoader.Instance.PlayButton;
-        _flappybirdTitle = AssetsLoader.Instance.FlappyBirdLogo;
-        _floor = new Floor();
-        _floor.LoadContent(Game.Content);
+        _gumScreen.RemoveFromManagers();
+        Game.Window.ClientSizeChanged -= OnClientResize;
     }
 
     public override void UnloadContent()
     {
-        GizmosRegistry.Instance.Clear();
-        ClickRegistry.Instance.Clear();
+        _gumScreen.RemoveFromManagers();
+        Game.Window.ClientSizeChanged -= OnClientResize;
     }
 
-    public override void Draw(GameTime gameTime)
+    private void OnClientResize(object sender, EventArgs e)
     {
-        GraphicsDevice.Clear(Color.Black);
-
-        _spriteBatch.Begin();
-        //the upper sky
-        _spriteBatch.FillRectangle(new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height / 2), COLOR_SKY);
-        _spriteBatch.End();
-
-        _spriteBatch.Begin(transformMatrix: MainRegistry.I.GetScaleMatrix(), samplerState: SamplerState.PointClamp);
-        _spriteBatch.Draw(_background, Vector2.Zero, LAYER_DEPTH_UI);
-
-        _spriteBatch.FillRectangle(new Rectangle(0, (int)SPRITE_POSITION_FLOOR.Y, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), COLOR_FLOOR);
-        _floor.Draw(_spriteBatch);
-
-        _spriteBatch.Draw(_flappybirdTitle, SPRITE_POSITION_MAIN_SCREEN_LOGO_FLAPPYBIRD, LAYER_DEPTH_UI);
-        _spriteBatch.Draw(_playButtonTexture, SPRITE_POSITION_PLAY_BUTTON_MENU, LAYER_DEPTH_UI);
-        _spriteBatch.End();
-
-        GizmosRegistry.Instance.Draw();
-    }
-
-    public override void Update(GameTime gameTime)
-    {
-        ClickRegistry.Instance.Update(gameTime);
-        _floor.Update(gameTime);
-    }
-
-    private void OnClickPlay()
-    {
-        MainRegistry.I.ScreenRegistry.LoadScreen(ScreenName.MainGameScreen);
+        _gumWindowResizer.Resize();
+        
+        float scaleX = (float)GraphicsDevice.Viewport.Width / BackgroundPic.TextureWidth;
+        float scaleY = (float)GraphicsDevice.Viewport.Height / BackgroundPic.TextureHeight;
+        float currentScale = Math.Min(scaleX, scaleY);
+        bool IsWideScreen = currentScale == scaleY;
+        if (IsWideScreen)
+        {
+            //when the screen is a desktop (landscape) we want to maintain the aspect ratio of the background image
+            BackgroundPic.WidthUnits = Gum.DataTypes.DimensionUnitType.MaintainFileAspectRatio;
+            BackgroundPic.HeightUnits = Gum.DataTypes.DimensionUnitType.Percentage;
+            MobileTopSkyRectangle.Visible = false;
+            MobileBottomTreesRectangle.Visible = false;
+        }
+        else
+        {
+            //when the screen is phone (portrait) oriented
+            BackgroundPic.WidthUnits = Gum.DataTypes.DimensionUnitType.Percentage;
+            BackgroundPic.HeightUnits = Gum.DataTypes.DimensionUnitType.MaintainFileAspectRatio;
+            MobileTopSkyRectangle.Visible = true;
+            MobileBottomTreesRectangle.Visible = true;
+        }
     }
 }

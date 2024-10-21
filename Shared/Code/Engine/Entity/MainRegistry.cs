@@ -1,8 +1,13 @@
+using Gum.DataTypes;
+using Gum.Managers;
+using Gum.Wireframe;
+using GumRuntime;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.ViewportAdapters;
+using RenderingLibrary;
 
 public class MainRegistry
 {
@@ -17,20 +22,32 @@ public class MainRegistry
         }
     }
     public Game Game { get; private set; }
-    public GraphicsDeviceManager GraphicsDeviceManager { get; private set; }
-    public ViewportAdapter ViewportAdapter { get; private set; }
+    public GraphicsDevice GraphicsDevice { get; private set; }
+    private ViewportAdapterFactory ViewportAdapterFactory;
+    private ViewportAdapter _viewportAdapter;
     public ScreenRegistry ScreenRegistry { get; private set; }
     public OrthographicCamera Camera { get; private set; }
-    public GraphicsDevice GraphicsDevice => GraphicsDeviceManager.GraphicsDevice;
-    public float VirtualScreenScale => ViewportAdapter.GetScaleMatrix().M11;
-
-    public void Init(Game game, GraphicsDeviceManager graphicsDeviceManager, ScreenRegistry screenRegistry, ViewportAdapterFactory viewportAdapterFactory)
+    public GumProjectSave GumProject;
+    public void Initialize(Game game, GraphicsDevice graphicsDevice, ScreenRegistry screenRegistry, ViewportAdapterFactory viewportAdapterFactory, string gumProjectPath = null)
     {
         Game = game;
-        GraphicsDeviceManager = graphicsDeviceManager;
-        ViewportAdapter = viewportAdapterFactory.BuildViewport();
-        Camera = viewportAdapterFactory.BuildCamera();
+        GraphicsDevice = graphicsDevice;
         ScreenRegistry = screenRegistry;
+        ViewportAdapterFactory = viewportAdapterFactory;
+        _viewportAdapter = viewportAdapterFactory.BuildViewport();
+        Camera = viewportAdapterFactory.BuildCamera();
+        if (gumProjectPath != null)
+        {
+            //Gum init
+            GumProject = GumProjectSave.Load(gumProjectPath);
+            ObjectFinder.Self.GumProjectSave = GumProject;
+            GumProject.Initialize();
+        }
+    }
+
+    public GraphicalUiElement GetGumScreen(string screenName, bool andLoadTheScreen = true)
+    {
+        return GumProject.Screens.Find(item => item.Name == screenName).ToGraphicalUiElement(SystemManagers.Default, addToManagers: andLoadTheScreen);
     }
 
     public Matrix GetScaleMatrix()
@@ -38,42 +55,9 @@ public class MainRegistry
         return Camera.GetViewMatrix();
     }
 
-    /// <summary>
-    /// 
-    /// Basically, this method converts a screen position to a world position.
-    /// It is very convenient to use this method to convert an absolute position (that uses the Viewport borders for example) to a world position.
-    /// 
-    /// 
-    /// This ScreenToWorld ignores Viewport position (as the current is always 0,0)
-    /// There is also some rounding to avoid  1 pixel missing
-    /// 
-    /// Note that here, we are using the CameraViewMatrix to convert the screen position to a world position, and not the ScaleMatrix itself.
-    ///
-    /// </summary>
-    /// <param name="screenPosition"></param>
-    /// <returns>Ingame position</returns>
-    public Vector2 ScreenToWorld(Vector2 screenPosition)
-    {
-        return Camera.ScreenToWorld(screenPosition);
-    }
-
-    public Rectangle PointToScreen(Rectangle rectangle)
-    {
-        return new(ViewportAdapter.PointToScreen(rectangle.Location), ViewportAdapter.PointToScreen(rectangle.Size));
-    }
     public Point PointToScreen(int x, int y)
     {
         Matrix matrix = Matrix.Invert(GetScaleMatrix());
         return Vector2.Transform(new Vector2(x, y), matrix).ToPoint();
-    }
-    public Point PointToScreen(Vector2 v)
-    {
-        return ViewportAdapter.PointToScreen(v.ToPoint());
-    }
-
-
-    public Vector2 ScreenToWorld(float x, float y)
-    {
-        return ScreenToWorld(new Vector2(x, y));
     }
 }

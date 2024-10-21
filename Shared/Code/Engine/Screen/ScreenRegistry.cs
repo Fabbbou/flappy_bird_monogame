@@ -13,6 +13,7 @@ public class ScreenRegistry
     {
         _screenManager = new ScreenManager();
         game.Components.Add(_screenManager);
+        CurrentScreen = ScreenName.None;
     }
     public void AddScreen(ScreenName screen, GameScreen gameScreen)
     {

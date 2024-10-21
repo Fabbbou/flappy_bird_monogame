@@ -1,14 +1,10 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoGame.Aseprite;
 using MonoGame.Extended;
-using MonoGame.Extended.Graphics;
 using MonoGame.Extended.Screens;
 using MonoGame.Extended.ViewportAdapters;
-using Extensions;
 using static Constants;
-using System.Diagnostics;
 
 
 namespace flappyrogue_mg.GameSpace
@@ -17,6 +13,8 @@ namespace flappyrogue_mg.GameSpace
     {
         public const int ROUNDING = 10;
         private SpriteBatch _spriteBatch;
+        private ViewportAdapter _viewportAdapter;
+        private OrthographicCamera _camera;
         public StateMachine StateMachine { get; private set; }
         public World World { get; private set; }
         public FullscreenRectangleEntity SkyBackgroundBox { get; private set; }
@@ -40,6 +38,10 @@ namespace flappyrogue_mg.GameSpace
             // for a pixel perfect game, the viewport has to be the exact size of the background img
             Game.IsMouseVisible = true;
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            ViewportAdapterFactory factory = new VerticalViewportAdapterFactory(Game, GraphicsDevice, WORLD_WIDTH, WORLD_HEIGHT, true);
+            _viewportAdapter = factory.BuildViewport();
+            _camera = factory.BuildCamera();
+
             StateMachine = new StateMachine(new GetReadyState(this));
             GetReadyUI = new GetReadyUI();
             SkyBackgroundBox = new FullscreenRectangleEntity(GraphicsDevice, COLOR_SKY);
@@ -70,7 +72,7 @@ namespace flappyrogue_mg.GameSpace
             World.AddUIEntity(CurrentScoreUI);
             World.AddUIEntity(GrayUIBackground);
             World.AddUIEntity(SoundUI);
-            MainRegistry.I.ViewportAdapter.Reset();
+            _viewportAdapter.Reset();
         }
 
         public override void LoadContent()
@@ -83,6 +85,7 @@ namespace flappyrogue_mg.GameSpace
         {
             World.UnloadContent();
             GizmosRegistry.Instance.Clear();
+            _viewportAdapter.Dispose();
         }
 
         public override void Update(GameTime gameTime)
@@ -95,9 +98,9 @@ namespace flappyrogue_mg.GameSpace
 
         public override void Draw(GameTime gameTime)
         {
-            var ingameMatrix = MainRegistry.I.GetScaleMatrix();
+            var ingameMatrix = _camera.GetViewMatrix();
             var startScreen = MainRegistry.I.PointToScreen(0, 0);
-            var endScreen = MainRegistry.I.ScreenToWorld(MainRegistry.I.ViewportAdapter.ViewportWidth, MainRegistry.I.ViewportAdapter.ViewportHeight).ToPoint();
+            var endScreen = _camera.ScreenToWorld(new(_viewportAdapter.ViewportWidth, _viewportAdapter.ViewportHeight)).ToPoint();
             GraphicsDevice.Clear(Color.Transparent);
 
 
@@ -113,7 +116,7 @@ namespace flappyrogue_mg.GameSpace
                 _spriteBatch.End();
 
                 _spriteBatch.Begin( samplerState: SamplerState.PointClamp);
-                _spriteBatch.DrawRectangle(new Rectangle(0, 0, MainRegistry.I.ViewportAdapter.ViewportWidth, MainRegistry.I.ViewportAdapter.ViewportHeight), Color.Green, thickness: 2);
+                _spriteBatch.DrawRectangle(new Rectangle(0, 0, _viewportAdapter.ViewportWidth, _viewportAdapter.ViewportHeight), Color.Green, thickness: 2);
                 _spriteBatch.End();
             }
         }
