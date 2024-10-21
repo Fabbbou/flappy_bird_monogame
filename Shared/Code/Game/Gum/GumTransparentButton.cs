@@ -26,7 +26,8 @@ namespace GumFormsSample
                     Height = 100f,
                     WidthUnits = DimensionUnitType.Percentage,
                     HeightUnits = DimensionUnitType.Percentage,
-                    Name = "ButtonBackground"
+                    Name = "ButtonBackground",
+                    Color = Color.Transparent,
                 };
                 this.Children.Add(item);
                 AddCategory(new StateSaveCategory
@@ -34,18 +35,18 @@ namespace GumFormsSample
                     Name = "ButtonCategory",
                     States =
                 {
-                    new StateSave
-                    {
-                        Name = "Enabled",
-                        Variables = new List<VariableSave>
-                        {
-                            new VariableSave
-                            {
-                                Name = "ButtonBackground.Color",
-                                Value = Color.Transparent,
-                            }
-                        }
-                    },
+                    //new StateSave
+                    //{
+                    //    Name = "Enabled",
+                    //    Variables = new List<VariableSave>
+                    //    {
+                    //        new VariableSave
+                    //        {
+                    //            Name = "ButtonBackground.Color",
+                    //            Value = Color.Transparent,
+                    //        }
+                    //    }
+                    //},
                     //new StateSave
                     //{
                     //    Name = "Highlighted",
@@ -58,18 +59,18 @@ namespace GumFormsSample
                     //        }
                     //    }
                     //},
-                    //new StateSave
-                    //{
-                    //    Name = "Pushed",
-                    //    Variables = new List<VariableSave>
-                    //    {
-                    //        new VariableSave
-                    //        {
-                    //            Name = "ButtonBackground.Color",
-                    //            Value = new Color(0, 0, 96)
-                    //        }
-                    //    }
-                    //},
+                    new StateSave
+                    {
+                        Name = "Pushed",
+                        Variables = new List<VariableSave>
+                        {
+                            new VariableSave
+                            {
+                                Name = "ButtonBackground.Color",
+                                Value = Color.Transparent,
+                            }
+                        }
+                    },
                     //new StateSave
                     //{
                     //    Name = "Disabled",

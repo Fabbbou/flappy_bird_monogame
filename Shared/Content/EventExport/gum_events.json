@@ -161,6 +161,153 @@
         "ElementType": "Screens",
         "EventType": 2,
         "TimestampUtc": "2024-10-21T12:56:55.316856Z"
+      },
+      {
+        "NewName": "ScreenMock",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-10-21T14:27:47.7132051Z"
+      },
+      {
+        "NewName": "ScreenMock (Container).MobileTopSkyRectangle",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-21T14:27:52.3357495Z"
+      },
+      {
+        "NewName": "ScreenMock (Container).MobileBottomTreesRectangle",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-21T14:27:52.336749Z"
+      },
+      {
+        "NewName": "ScreenMock (Container).BackgroundPic",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-21T14:27:52.3467782Z"
+      },
+      {
+        "NewName": "ScreenMock (Container).ContainerInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-21T14:27:52.3508814Z"
+      },
+      {
+        "NewName": "ScreenMock (Container).Title",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-21T14:27:52.3579208Z"
+      },
+      {
+        "NewName": "ScreenMock (Container).PlayButton",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-21T14:27:52.3638669Z"
+      },
+      {
+        "NewName": "GameOverScreen",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 0,
+        "TimestampUtc": "2024-10-21T14:28:03.7401615Z"
+      },
+      {
+        "NewName": "ScreenMock1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-10-21T14:28:21.6716444Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "ScreenMock1",
+        "ElementType": "Components",
+        "EventType": 1,
+        "TimestampUtc": "2024-10-21T14:28:27.8504558Z"
+      },
+      {
+        "NewName": "GameOverScreen.test",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-21T14:28:42.5147881Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameOverScreen.Container test in GameOverScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-21T14:29:50.1336812Z"
+      },
+      {
+        "NewName": "GameOverScreen.ScreenMockInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-21T14:29:52.5909509Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameOverScreen.ScreenMock ScreenMockInstance in GameOverScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-21T14:31:35.3609895Z"
+      },
+      {
+        "NewName": "ScreenBackground",
+        "OldName": "ScreenMock",
+        "ElementType": "Components",
+        "EventType": 2,
+        "TimestampUtc": "2024-10-21T14:31:48.0789767Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "ScreenBackground (Container).Sprite PlayButton in ScreenBackground (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-21T14:32:06.0082526Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "ScreenBackground (Container).Sprite Title in ScreenBackground (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-21T14:32:06.0092551Z"
+      },
+      {
+        "NewName": "GameOverScreen.ScreenBackgroundInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-21T14:32:26.839329Z"
+      },
+      {
+        "NewName": "GameOverScreen.PlayButton",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-21T14:32:47.8002982Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MenuScreen.Sprite Title in MenuScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-21T14:32:51.4976202Z"
+      },
+      {
+        "NewName": "GameOverScreen.Title",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-21T14:32:59.1281518Z"
       }
     ]
   }

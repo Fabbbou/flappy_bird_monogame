@@ -37,7 +37,7 @@ public class MenuScreen : GameScreen
         MobileBottomTreesRectangle = _gumScreen.GetGraphicalUiElementByName("MobileBottomTreesRectangle");
         PlayButton = _gumScreen.GetGraphicalUiElementByName("PlayButton");
         var button = new GumTransparentButton();
-        button.Click += OnClickPlayButton;
+        button.Push += OnClickPlayButton;
         PlayButton.Children.Add(button);
         Game.Window.ClientSizeChanged += OnClientResize;
 
