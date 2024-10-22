@@ -28,10 +28,7 @@ public class MenuScreen : GameScreen
         _gumWindowResizer = new ScaledGumWindowResizer(Game.Window, GraphicsDevice, _gumScreen);
 
         PlayButton = _gumScreen.GetGraphicalUiElementByName("PlayButton");
-        var button = new GumTransparentButton();
-        button.Push += OnClickPlayButton;
-        PlayButton.Children.Add(button);
-
+        GumTransparentButton.AttachButton(_gumScreen.GetGraphicalUiElementByName("PlayButton"), OnClickPlayButton);
         _gumWindowResizer.InitAndResizeOnce();
     }
     private void OnClickPlayButton(object not, EventArgs used) => MainRegistry.I.ScreenRegistry.LoadScreen(ScreenName.MainGameScreen);
@@ -41,6 +38,8 @@ public class MenuScreen : GameScreen
         //gum update
         if (Game.IsActive) FormsUtilities.Update(gameTime, _gumScreen);
         SystemManagers.Default.Activity(gameTime.TotalGameTime.TotalSeconds);
+        //to update touchscreen clicks
+        MainRegistry.I.TouchscreenCursor.UpdateButtons();
     }
     public override void Draw(GameTime gameTime)
     {
@@ -51,10 +50,11 @@ public class MenuScreen : GameScreen
     public override void Dispose()
     {
         _gumWindowResizer.Dispose();
+        MainRegistry.I.TouchscreenCursor.ClearButtons();
     }
 
-    public override void UnloadContent()
-    {
-        _gumScreen.RemoveFromManagers();
-    }
+    //public override void UnloadContent()
+    //{
+    //    _gumScreen.RemoveFromManagers();
+    //}
 }

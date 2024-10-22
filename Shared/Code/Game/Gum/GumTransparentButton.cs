@@ -11,12 +11,15 @@ using System;
 
 namespace GumFormsSample
 {
-    internal class GumTransparentButton : CustomInteractiveGue
+    public class GumTransparentButton : InteractiveGue
     {
+        public Action PushBtn;
         public static void AttachButton(GraphicalUiElement component, EventHandler onPushAction)
         {
             var button = new GumTransparentButton();
             button.Push += onPushAction;
+            button.PushBtn = () => onPushAction.Invoke(button, null);
+            MainRegistry.I.TouchscreenCursor.AddButton(button);
             component.Children.Add(button);
         }
         public GumTransparentButton(bool fullInstantiation = true, bool tryCreateFormsObject = true) : base(new InvisibleRenderable()) {

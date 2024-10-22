@@ -32,14 +32,15 @@ public class GameOverScreen : GameScreen
         _gumWindowResizer.InitAndResizeOnce();
     }
 
-    public override void UnloadContent()
-    {
-        _gumScreen.RemoveFromManagers();
-    }
+    //public override void UnloadContent()
+    //{
+    //    _gumScreen.RemoveFromManagers();
+    //}
 
     public override void Dispose()
     {
         _gumWindowResizer.Dispose();
+        MainRegistry.I.TouchscreenCursor.ClearButtons();
         base.Dispose();
     }
 
@@ -48,6 +49,7 @@ public class GameOverScreen : GameScreen
         //gum update
         if (Game.IsActive) FormsUtilities.Update(gameTime, _gumScreen);
         SystemManagers.Default.Activity(gameTime.TotalGameTime.TotalSeconds);
+        MainRegistry.I.TouchscreenCursor.UpdateButtons();
     }
     public override void Draw(GameTime gameTime)
     {

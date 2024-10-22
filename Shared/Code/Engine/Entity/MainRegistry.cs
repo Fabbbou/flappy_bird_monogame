@@ -1,6 +1,7 @@
 using Gum.DataTypes;
 using Gum.Managers;
 using Gum.Wireframe;
+using GumFormsSample;
 using GumRuntime;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -22,6 +23,7 @@ public class MainRegistry
         }
     }
     public Game Game { get; private set; }
+    public TouchscreenCursor TouchscreenCursor = new TouchscreenCursor();
     public GraphicsDevice GraphicsDevice { get; private set; }
     private ViewportAdapterFactory ViewportAdapterFactory;
     private ViewportAdapter _viewportAdapter;

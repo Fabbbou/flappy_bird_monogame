@@ -58,11 +58,6 @@ namespace flappyrogue_mg.GameSpace
 
             SetStartupWindowSize();
 
-            //for tests
-            //_graphics.PreferredBackBufferWidth = 388; //a phone sized screen to test the responsiveness
-            //_graphics.PreferredBackBufferHeight = 736;
-            //_graphics.ApplyChanges();
-
             base.Initialize();
         }
 

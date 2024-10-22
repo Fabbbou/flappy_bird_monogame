@@ -94,6 +94,7 @@ namespace flappyrogue_mg.GameSpace
                 Game.Exit();
             StateMachine.Update(gameTime);
             World.Update(gameTime);
+            MainRegistry.I.TouchscreenCursor.UpdateButtons();
         }
 
         public override void Draw(GameTime gameTime)
