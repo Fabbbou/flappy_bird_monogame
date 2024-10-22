@@ -2,7 +2,6 @@ using Gum.Converters;
 using Gum.DataTypes.Variables;
 using Gum.DataTypes;
 using MonoGameGum.Forms.Controls;
-using MonoGameGum.Forms.DefaultVisuals;
 using MonoGameGum.GueDeriving;
 using RenderingLibrary.Graphics;
 using System.Collections.Generic;
@@ -42,18 +41,18 @@ namespace GumFormsSample
                     Name = "ButtonCategory",
                     States =
                 {
-                    //new StateSave
-                    //{
-                    //    Name = "Enabled",
-                    //    Variables = new List<VariableSave>
-                    //    {
-                    //        new VariableSave
-                    //        {
-                    //            Name = "ButtonBackground.Color",
-                    //            Value = Color.Transparent,
-                    //        }
-                    //    }
-                    //},
+                    new StateSave
+                    {
+                        Name = "Enabled",
+                        Variables = new List<VariableSave>
+                        {
+                            new VariableSave
+                            {
+                                Name = "ButtonBackground.Color",
+                                Value = Color.Transparent,
+                            }
+                        }
+                    },
                     //new StateSave
                     //{
                     //    Name = "Highlighted",

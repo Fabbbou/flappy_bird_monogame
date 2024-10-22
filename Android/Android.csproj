@@ -11,12 +11,25 @@
     <None Remove="Resources\Values\styles.xml" />
   </ItemGroup>
   <ItemGroup>
+      <AndroidAsset Include="..\Shared\Content\**\*.*" Link="Content\%(RecursiveDir)%(FileName)%(Extension)" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Remove="..\Shared\Content\bin\**" />
+    <AndroidAsset Remove="..\Shared\Content\obj\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Remove="..\Shared\Content\Content.mgcb" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Gum.MonoGame" Version="2024.10.14.3" />
     <PackageReference Include="MonoGame.Aseprite" Version="6.0.7" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.2.1105" />
     <PackageReference Include="MonoGame.Extended" Version="4.0.2" />
     <PackageReference Include="MonoGame.Extended.Content.Pipeline" Version="4.0.2" />
     <PackageReference Include="MonoGame.Framework.Android" Version="3.8.2.1105" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\" />
   </ItemGroup>
   <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
     <Message Text="Restoring dotnet tools" Importance="High" />

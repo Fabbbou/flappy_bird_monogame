@@ -138,9 +138,6 @@
     <None Include="$(MSBuildThisFileDirectory)Content\EventExport\gum_events.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="$(MSBuildThisFileDirectory)Content\Gum\**\*.*">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="$(MSBuildThisFileDirectory)Content\sprites\atlas.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
