@@ -458,7 +458,7 @@
     <Variable>
       <Type>float</Type>
       <Name>PlayButton.Width</Name>
-      <Value xsi:type="xsd:float">35</Value>
+      <Value xsi:type="xsd:float">36.11</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
