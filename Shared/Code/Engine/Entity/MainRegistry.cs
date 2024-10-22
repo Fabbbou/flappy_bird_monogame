@@ -44,7 +44,7 @@ public class MainRegistry
         }
     }
 
-    public GraphicalUiElement GetGumScreen(string screenName, bool andLoadTheScreen = true)
+    public GraphicalUiElement LoadGumScreen(string screenName, bool andLoadTheScreen = true)
     {
         return GumProject.Screens.Find(item => item.Name == screenName).ToGraphicalUiElement(SystemManagers.Default, addToManagers: andLoadTheScreen);
     }

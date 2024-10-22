@@ -1,106 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ComponentSave xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Name>ScreenBackground</Name>
+  <Name>PortaitMarginColors</Name>
   <BaseType>Container</BaseType>
   <State>
     <Name>Default</Name>
-    <Variable>
-      <Type>DimensionUnitType</Type>
-      <Name>BackgroundPic.Height Units</Name>
-      <Value xsi:type="xsd:int">1</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>string</Type>
-      <Name>BackgroundPic.Parent</Name>
-      <Value xsi:type="xsd:string">ContainerInstance</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <IsFile>true</IsFile>
-      <Type>string</Type>
-      <Name>BackgroundPic.SourceFile</Name>
-      <Value xsi:type="xsd:string">sprites\atlas.png</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>TextureAddress</Type>
-      <Name>BackgroundPic.Texture Address</Name>
-      <Value xsi:type="xsd:int">1</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>BackgroundPic.Texture Height</Name>
-      <Value xsi:type="xsd:int">256</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>BackgroundPic.Texture Left</Name>
-      <Value xsi:type="xsd:int">0</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>BackgroundPic.Texture Top</Name>
-      <Value xsi:type="xsd:int">0</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>BackgroundPic.Texture Width</Name>
-      <Value xsi:type="xsd:int">144</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>bool</Type>
-      <Name>BackgroundPic.Visible</Name>
-      <Value xsi:type="xsd:boolean">true</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>DimensionUnitType</Type>
-      <Name>BackgroundPic.Width Units</Name>
-      <Value xsi:type="xsd:int">6</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>BackgroundPic.X</Name>
-      <Value xsi:type="xsd:float">0</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>HorizontalAlignment</Type>
-      <Name>BackgroundPic.X Origin</Name>
-      <Value xsi:type="xsd:int">1</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>PositionUnitType</Type>
-      <Name>BackgroundPic.X Units</Name>
-      <Value xsi:type="xsd:int">6</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>BackgroundPic.Y</Name>
-      <Value xsi:type="xsd:float">0</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>VerticalAlignment</Type>
-      <Name>BackgroundPic.Y Origin</Name>
-      <Value xsi:type="xsd:int">1</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>PositionUnitType</Type>
-      <Name>BackgroundPic.Y Units</Name>
-      <Value xsi:type="xsd:int">7</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
     <Variable>
       <Type>ChildrenLayout</Type>
       <Name>ContainerInstance.Children Layout</Name>
@@ -206,6 +109,16 @@
       <Type>DimensionUnitType</Type>
       <Name>Height Units</Name>
       <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>HideBoxes</Type>
+      <Name>HideBoxesState</Name>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>MarginBoxesVisible</Type>
+      <Name>MarginBoxesVisibleState</Name>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -401,11 +314,6 @@
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
-      <Type>ScreenMode</Type>
-      <Name>ScreenModeState</Name>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
       <Type>State</Type>
       <Name>State</Name>
       <Value xsi:type="xsd:string">Default</Value>
@@ -423,43 +331,12 @@
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
-    <VariableList xsi:type="VariableListSaveOfString">
-      <Type>string</Type>
-      <Name>BackgroundPic.AnimationFrames</Name>
-      <IsFile>false</IsFile>
-      <IsHiddenInPropertyGrid>false</IsHiddenInPropertyGrid>
-      <Value />
-    </VariableList>
   </State>
   <Category>
-    <Name>ScreenMode</Name>
+    <Name>MarginBoxesVisible</Name>
     <IsSetRecursively>false</IsSetRecursively>
     <State>
-      <Name>Portrait</Name>
-      <Variable>
-        <Type>DimensionUnitType</Type>
-        <Name>BackgroundPic.Height Units</Name>
-        <Value xsi:type="xsd:int">6</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>bool</Type>
-        <Name>BackgroundPic.Visible</Name>
-        <Value xsi:type="xsd:boolean">true</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>DimensionUnitType</Type>
-        <Name>BackgroundPic.Width Units</Name>
-        <Value xsi:type="xsd:int">1</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>float</Type>
-        <Name>Height</Name>
-        <Value xsi:type="xsd:float">100.000008</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
+      <Name>Enabled</Name>
       <Variable>
         <Type>bool</Type>
         <Name>MobileBottomTreesRectangle.Visible</Name>
@@ -467,44 +344,14 @@
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
-        <Type>PositionUnitType</Type>
-        <Name>MobileBottomTreesRectangle.Y Units</Name>
-        <Value xsi:type="xsd:int">7</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
         <Type>bool</Type>
         <Name>MobileTopSkyRectangle.Visible</Name>
         <Value xsi:type="xsd:boolean">true</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>float</Type>
-        <Name>Width</Name>
-        <Value xsi:type="xsd:float">100</Value>
         <SetsValue>true</SetsValue>
       </Variable>
     </State>
     <State>
-      <Name>Landscape</Name>
-      <Variable>
-        <Type>DimensionUnitType</Type>
-        <Name>BackgroundPic.Height Units</Name>
-        <Value xsi:type="xsd:int">1</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>DimensionUnitType</Type>
-        <Name>BackgroundPic.Width Units</Name>
-        <Value xsi:type="xsd:int">6</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>float</Type>
-        <Name>Height</Name>
-        <Value xsi:type="xsd:float">100</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
+      <Name>Disabled</Name>
       <Variable>
         <Type>bool</Type>
         <Name>MobileBottomTreesRectangle.Visible</Name>
@@ -512,21 +359,9 @@
         <SetsValue>true</SetsValue>
       </Variable>
       <Variable>
-        <Type>PositionUnitType</Type>
-        <Name>MobileBottomTreesRectangle.Y Units</Name>
-        <Value xsi:type="xsd:int">1</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
         <Type>bool</Type>
         <Name>MobileTopSkyRectangle.Visible</Name>
         <Value xsi:type="xsd:boolean">false</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>float</Type>
-        <Name>Width</Name>
-        <Value xsi:type="xsd:float">100</Value>
         <SetsValue>true</SetsValue>
       </Variable>
     </State>
@@ -544,11 +379,6 @@
   <Instance>
     <Name>ContainerInstance</Name>
     <BaseType>Container</BaseType>
-    <DefinedByBase>false</DefinedByBase>
-  </Instance>
-  <Instance>
-    <Name>BackgroundPic</Name>
-    <BaseType>Sprite</BaseType>
     <DefinedByBase>false</DefinedByBase>
   </Instance>
   <Behaviors />

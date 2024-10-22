@@ -15,34 +15,24 @@ using System;
 
 public class MenuScreen : GameScreen
 {
-    private SpriteBatch _spriteBatch;
-    private GumWindowResizer _gumWindowResizer;
+    private ScaledGumWindowResizer _gumWindowResizer;
 
     private GraphicalUiElement _gumScreen;
-    private GraphicalUiElement BackgroundPic;
-    private GraphicalUiElement MobileTopSkyRectangle;
-    private GraphicalUiElement MobileBottomTreesRectangle;
+
     private GraphicalUiElement PlayButton;
     public MenuScreen(Game game) : base(game) {}
 
     public override void Initialize()
     {
-        Game.IsMouseVisible = true;
-        _spriteBatch = new SpriteBatch(GraphicsDevice);
-        _gumScreen = MainRegistry.I.GetGumScreen("MenuScreen");
-        _gumWindowResizer = new GumWindowResizer(GraphicsDevice, _gumScreen);
+        _gumScreen = MainRegistry.I.LoadGumScreen("MenuScreen");
+        _gumWindowResizer = new ScaledGumWindowResizer(Game.Window, GraphicsDevice, _gumScreen);
 
-        BackgroundPic = _gumScreen.GetGraphicalUiElementByName("BackgroundPic");
-        MobileTopSkyRectangle = _gumScreen.GetGraphicalUiElementByName("MobileTopSkyRectangle");
-        MobileBottomTreesRectangle = _gumScreen.GetGraphicalUiElementByName("MobileBottomTreesRectangle");
         PlayButton = _gumScreen.GetGraphicalUiElementByName("PlayButton");
         var button = new GumTransparentButton();
         button.Push += OnClickPlayButton;
         PlayButton.Children.Add(button);
-        Game.Window.ClientSizeChanged += OnClientResize;
 
-        //calling it once to make sure the screen is properly resized on app startup
-        OnClientResize(null, null);
+        _gumWindowResizer.InitAndResizeOnce();
     }
     private void OnClickPlayButton(object not, EventArgs used) => MainRegistry.I.ScreenRegistry.LoadScreen(ScreenName.MainGameScreen);
 
@@ -60,39 +50,11 @@ public class MenuScreen : GameScreen
 
     public override void Dispose()
     {
-        _gumScreen.RemoveFromManagers();
-        Game.Window.ClientSizeChanged -= OnClientResize;
+        _gumWindowResizer.Dispose();
     }
 
     public override void UnloadContent()
     {
         _gumScreen.RemoveFromManagers();
-        Game.Window.ClientSizeChanged -= OnClientResize;
-    }
-
-    private void OnClientResize(object sender, EventArgs e)
-    {
-        _gumWindowResizer.Resize();
-        
-        float scaleX = (float)GraphicsDevice.Viewport.Width / BackgroundPic.TextureWidth;
-        float scaleY = (float)GraphicsDevice.Viewport.Height / BackgroundPic.TextureHeight;
-        float currentScale = Math.Min(scaleX, scaleY);
-        bool IsWideScreen = currentScale == scaleY;
-        if (IsWideScreen)
-        {
-            //when the screen is a desktop (landscape) we want to maintain the aspect ratio of the background image
-            BackgroundPic.WidthUnits = Gum.DataTypes.DimensionUnitType.MaintainFileAspectRatio;
-            BackgroundPic.HeightUnits = Gum.DataTypes.DimensionUnitType.Percentage;
-            MobileTopSkyRectangle.Visible = false;
-            MobileBottomTreesRectangle.Visible = false;
-        }
-        else
-        {
-            //when the screen is phone (portrait) oriented
-            BackgroundPic.WidthUnits = Gum.DataTypes.DimensionUnitType.Percentage;
-            BackgroundPic.HeightUnits = Gum.DataTypes.DimensionUnitType.MaintainFileAspectRatio;
-            MobileTopSkyRectangle.Visible = true;
-            MobileBottomTreesRectangle.Visible = true;
-        }
     }
 }

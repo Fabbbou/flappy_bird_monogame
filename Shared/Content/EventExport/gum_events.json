@@ -532,6 +532,111 @@
         "ElementType": "Components",
         "EventType": 1,
         "TimestampUtc": "2024-10-22T09:07:05.353406Z"
+      },
+      {
+        "NewName": "BGPic",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-10-22T09:29:00.1119337Z"
+      },
+      {
+        "NewName": "BGPic (Container).BackgroundPic",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T09:29:03.9828934Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "ScreenBackground (Container).Sprite BackgroundPic in ScreenBackground (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T09:30:47.7490151Z"
+      },
+      {
+        "NewName": "PortaitMarginColors",
+        "OldName": "ScreenBackground",
+        "ElementType": "Components",
+        "EventType": 2,
+        "TimestampUtc": "2024-10-22T09:34:10.6822301Z"
+      },
+      {
+        "NewName": "ScreenMode",
+        "OldName": "SScreenMode",
+        "ElementType": "Components",
+        "EventType": 4,
+        "TimestampUtc": "2024-10-22T09:37:20.0368304Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameOverScreen.PortaitMarginColors ScreenBackgroundInstance in GameOverScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T09:39:37.0566343Z"
+      },
+      {
+        "NewName": "GameOverScreen.PortaitMarginColorsInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T09:39:41.4523793Z"
+      },
+      {
+        "NewName": "GameOverScreen.BGPicInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T09:39:46.728786Z"
+      },
+      {
+        "NewName": "MarginBoxesVisible",
+        "OldName": "HideBoxes",
+        "ElementType": "Components",
+        "EventType": 4,
+        "TimestampUtc": "2024-10-22T09:43:35.6428296Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MenuScreen.Container ContainerInstance in MenuScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T10:51:04.4672391Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MenuScreen.ColoredRectangle MobileTopSkyRectangle in MenuScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T10:51:08.2763644Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MenuScreen.ColoredRectangle MobileBottomTreesRectangle in MenuScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T10:51:08.2773379Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MenuScreen.Sprite BackgroundPic in MenuScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T10:51:08.2843384Z"
+      },
+      {
+        "NewName": "MenuScreen.PortaitMarginColorsInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T10:51:11.5844293Z"
+      },
+      {
+        "NewName": "MenuScreen.BGPicInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T10:51:14.1049921Z"
       }
     ]
   }

@@ -4,6 +4,24 @@
   <State>
     <Name>Default</Name>
     <Variable>
+      <Type>string</Type>
+      <Name>BGPicInstance.Parent</Name>
+      <Value xsi:type="xsd:string">PortaitMarginColorsInstance</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>ScreenMode</Type>
+      <Name>BGPicInstance.ScreenModeState</Name>
+      <Value xsi:type="xsd:string">Portrait</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>State</Type>
+      <Name>BGPicInstance.State</Name>
+      <Value xsi:type="xsd:string">Default</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
       <Type>float</Type>
       <Name>GameOverTitle.Height</Name>
       <Value xsi:type="xsd:float">100</Value>
@@ -18,7 +36,7 @@
     <Variable>
       <Type>string</Type>
       <Name>GameOverTitle.Parent</Name>
-      <Value xsi:type="xsd:string">ScreenBackgroundInstance</Value>
+      <Value xsi:type="xsd:string">BGPicInstance</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -121,7 +139,7 @@
     <Variable>
       <Type>string</Type>
       <Name>Medal.Parent</Name>
-      <Value xsi:type="xsd:string">ScreenBackgroundInstance</Value>
+      <Value xsi:type="xsd:string">BGPicInstance</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -339,7 +357,7 @@
     <Variable>
       <Type>string</Type>
       <Name>PlayButton.Parent</Name>
-      <Value xsi:type="xsd:string">ScreenBackgroundInstance</Value>
+      <Value xsi:type="xsd:string">BGPicInstance</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -429,13 +447,31 @@
     </Variable>
     <Variable>
       <Type>float</Type>
-      <Name>ScreenBackgroundInstance.Height</Name>
+      <Name>PortaitMarginColorsInstance.Height</Name>
       <Value xsi:type="xsd:float">100</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
+      <Type>MarginBoxesVisible</Type>
+      <Name>PortaitMarginColorsInstance.MarginBoxesVisibleState</Name>
+      <Value xsi:type="xsd:string">Enabled</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>State</Type>
+      <Name>PortaitMarginColorsInstance.State</Name>
+      <Value xsi:type="xsd:string">Default</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>bool</Type>
+      <Name>PortaitMarginColorsInstance.Visible</Name>
+      <Value xsi:type="xsd:boolean">true</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
       <Type>float</Type>
-      <Name>ScreenBackgroundInstance.Width</Name>
+      <Name>PortaitMarginColorsInstance.Width</Name>
       <Value xsi:type="xsd:float">100</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -469,11 +505,6 @@
     </VariableList>
   </State>
   <Instance>
-    <Name>ScreenBackgroundInstance</Name>
-    <BaseType>ScreenBackground</BaseType>
-    <DefinedByBase>false</DefinedByBase>
-  </Instance>
-  <Instance>
     <Name>GameOverTitle</Name>
     <BaseType>Sprite</BaseType>
     <DefinedByBase>false</DefinedByBase>
@@ -491,6 +522,16 @@
   <Instance>
     <Name>PlayButton</Name>
     <BaseType>Sprite</BaseType>
+    <DefinedByBase>false</DefinedByBase>
+  </Instance>
+  <Instance>
+    <Name>PortaitMarginColorsInstance</Name>
+    <BaseType>PortaitMarginColors</BaseType>
+    <DefinedByBase>false</DefinedByBase>
+  </Instance>
+  <Instance>
+    <Name>BGPicInstance</Name>
+    <BaseType>BGPic</BaseType>
     <DefinedByBase>false</DefinedByBase>
   </Instance>
   <Behaviors />

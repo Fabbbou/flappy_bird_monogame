@@ -25,6 +25,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Entity\DrawableEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Gum\GumTransparentButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\game\gum\GumWindowResizer.cs" />
+    <Compile Include="..\Shared\code\game\gum\ScaledGumWindowResizer.cs" />
     <Compile Include="..\Shared\code\game\gameentities\BackgroundPicture.cs" />
     <Compile Include="..\Shared\Code\Engine\Entity\FullscreenRectangleEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Input\ClickableRegionHandler.cs" />
@@ -68,10 +69,13 @@
     <MonoGameContentReference Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
     <None Include="$(MSBuildThisFileDirectory).gitignore" />
     <None Include="$(MSBuildThisFileDirectory)Code\Engine\DebugTools\.gitkeep" />
-    <None Include="$(MSBuildThisFileDirectory)Content\Components\ScreenBackground.gucx">
+    <None Include="$(MSBuildThisFileDirectory)Content\Components\BGPic.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="$(MSBuildThisFileDirectory)Content\Components\ScreenBackgroundAnimations.ganx">
+    <None Include="$(MSBuildThisFileDirectory)Content\Components\PortaitMarginColors.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\Components\PortaitMarginColorsAnimations.ganx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
@@ -84,9 +88,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Content\Screens\MenuScreen.gusx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Content\Screens\MenuScreenAnimations.ganx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Content\Standards\Circle.gutx">

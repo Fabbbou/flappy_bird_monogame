@@ -8,11 +8,18 @@ using RenderingLibrary.Graphics;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Gum.Wireframe;
+using System;
 
 namespace GumFormsSample
 {
     internal class GumTransparentButton : InteractiveGue
     {
+        public static void AttachButton(GraphicalUiElement component, EventHandler onPushAction)
+        {
+            var button = new GumTransparentButton();
+            button.Push += onPushAction;
+            component.Children.Add(button);
+        }
         public GumTransparentButton(bool fullInstantiation = true, bool tryCreateFormsObject = true) : base(new InvisibleRenderable()) {
             if (fullInstantiation)
             {
