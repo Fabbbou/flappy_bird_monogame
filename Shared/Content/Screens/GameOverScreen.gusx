@@ -452,6 +452,12 @@
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
+      <Type>HideBoxes</Type>
+      <Name>PortaitMarginColorsInstance.HideBoxesState</Name>
+      <Value xsi:type="xsd:string">Enabled</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
       <Type>MarginBoxesVisible</Type>
       <Name>PortaitMarginColorsInstance.MarginBoxesVisibleState</Name>
       <Value xsi:type="xsd:string">Enabled</Value>

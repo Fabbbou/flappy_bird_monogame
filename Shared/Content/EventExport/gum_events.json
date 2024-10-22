@@ -637,6 +637,118 @@
         "ElementType": "Screens",
         "EventType": 5,
         "TimestampUtc": "2024-10-22T10:51:14.1049921Z"
+      },
+      {
+        "NewName": "GameScreen",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 0,
+        "TimestampUtc": "2024-10-22T11:24:59.2266489Z"
+      },
+      {
+        "NewName": "GameScreen.PortaitMarginColorsInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T11:25:06.8305933Z"
+      },
+      {
+        "NewName": "GameScreen.BGPicInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T11:25:09.6561786Z"
+      },
+      {
+        "NewName": "GameScreen.SpriteInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T11:26:14.4186266Z"
+      },
+      {
+        "NewName": "GameScreen.PauseButton",
+        "OldName": "GameScreen.SpriteInstance",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T11:28:51.6158142Z"
+      },
+      {
+        "NewName": "GameScreen.ContainerInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T11:37:31.6712612Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameScreen.Container ContainerInstance in GameScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T11:41:07.3332504Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameScreen",
+        "ElementType": "Screens",
+        "EventType": 1,
+        "TimestampUtc": "2024-10-22T11:56:11.957628Z"
+      },
+      {
+        "NewName": "GameScreen",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 0,
+        "TimestampUtc": "2024-10-22T11:56:17.486249Z"
+      },
+      {
+        "NewName": "GameScreen.PortaitMarginColorsInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T11:56:20.8608338Z"
+      },
+      {
+        "NewName": "GameScreen.BGPicInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T11:56:23.9759617Z"
+      },
+      {
+        "NewName": "GameScreen.SpriteInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T11:56:32.779014Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameScreen.BGPic BGPicInstance in GameScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T11:58:04.4827878Z"
+      },
+      {
+        "NewName": "GameScreen.BackgroundPic",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T11:58:12.4735552Z"
+      },
+      {
+        "NewName": "GameScreen.PuaseButton",
+        "OldName": "GameScreen.SpriteInstance",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T11:58:34.9665067Z"
+      },
+      {
+        "NewName": "GameScreen.PauseButton",
+        "OldName": "GameScreen.PuaseButton",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T11:58:41.575052Z"
       }
     ]
   }
