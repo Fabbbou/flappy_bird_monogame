@@ -26,7 +26,7 @@ namespace flappyrogue_mg.GameSpace
     {
         private GraphicsDeviceManager _graphics;
         FramesPerSecondCounter _fpsCounter = new FramesPerSecondCounter();
-        
+
         public Main()
         {
             _graphics = new GraphicsDeviceManager(this);

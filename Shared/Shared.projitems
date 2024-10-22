@@ -69,6 +69,12 @@
     <MonoGameContentReference Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
     <None Include="$(MSBuildThisFileDirectory).gitignore" />
     <None Include="$(MSBuildThisFileDirectory)Code\Engine\DebugTools\.gitkeep" />
+    <None Include="$(MSBuildThisFileDirectory)Content\Components\BarSound.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\Components\BarSoundAnimations.ganx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="$(MSBuildThisFileDirectory)Content\Components\BGPic.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -79,8 +85,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
-    <None Include="$(MSBuildThisFileDirectory)Content\fonts\04b19.fnt" />
-    <None Include="$(MSBuildThisFileDirectory)Content\fonts\arial.spritefont" />
     <None Include="$(MSBuildThisFileDirectory)Content\proj.gumx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -91,6 +95,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Content\Screens\MenuScreen.gusx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\Screens\SoundUI.gusx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\Screens\SoundUIAnimations.ganx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Content\Standards\Circle.gutx">
@@ -128,14 +138,9 @@
     <None Include="$(MSBuildThisFileDirectory)Content\EventExport\gum_events.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="$(MSBuildThisFileDirectory)Content\fonts\04b19_0.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\fonts\04B_19__.TTF" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\fonts\Arial.ttf" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\sounds\sfx_die.wav" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\sounds\sfx_hit.wav" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\sounds\sfx_point.wav" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\sounds\sfx_swooshing.wav" />
-    <Content Include="$(MSBuildThisFileDirectory)Content\sounds\sfx_wing.wav" />
+    <Content Include="$(MSBuildThisFileDirectory)Content\Gum\**\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="$(MSBuildThisFileDirectory)Content\sprites\atlas.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -146,8 +151,6 @@
     <Folder Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\" />
     <Folder Include="$(MSBuildThisFileDirectory)Code\Game\Assets\" />
     <Folder Include="$(MSBuildThisFileDirectory)Code\Game\Manager\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Code\Game\Gum\" />
     <Folder Include="$(MSBuildThisFileDirectory)Code\Game\States\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Content\Behaviors\" />
   </ItemGroup>
 </Project>

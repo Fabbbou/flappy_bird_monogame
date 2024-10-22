@@ -16,6 +16,11 @@
   <ShowLocalizationInGum>true</ShowLocalizationInGum>
   <CurrentLanguageIndex>0</CurrentLanguageIndex>
   <ScreenReference>
+    <Name>SoundUI</Name>
+    <ElementType>Screen</ElementType>
+    <LinkType>ReferenceOriginal</LinkType>
+  </ScreenReference>
+  <ScreenReference>
     <Name>GameOverScreen</Name>
     <ElementType>Screen</ElementType>
     <LinkType>ReferenceOriginal</LinkType>
@@ -30,6 +35,11 @@
     <ElementType>Screen</ElementType>
     <LinkType>ReferenceOriginal</LinkType>
   </ScreenReference>
+  <ComponentReference>
+    <Name>BarSound</Name>
+    <ElementType>Component</ElementType>
+    <LinkType>ReferenceOriginal</LinkType>
+  </ComponentReference>
   <ComponentReference>
     <Name>BGPic</Name>
     <ElementType>Component</ElementType>

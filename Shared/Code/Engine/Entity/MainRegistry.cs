@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.ViewportAdapters;
 using RenderingLibrary;
+using ToolsUtilities;
 
 public class MainRegistry
 {
@@ -37,6 +38,7 @@ public class MainRegistry
         Camera = viewportAdapterFactory.BuildCamera();
         if (gumProjectPath != null)
         {
+            //FileManager.RelativeDirectory = "Content/Gum/";
             //Gum init
             GumProject = GumProjectSave.Load(gumProjectPath);
             ObjectFinder.Self.GumProjectSave = GumProject;

@@ -1,0 +1,1168 @@
+{
+  "UserEvents": {
+    "DeiGr": [
+      {
+        "NewName": "menu",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 0,
+        "TimestampUtc": "2024-10-19T14:28:28.8568618Z"
+      },
+      {
+        "NewName": "menu.SpriteInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-19T14:28:37.6876136Z"
+      },
+      {
+        "NewName": "menu.background",
+        "OldName": "menu.SpriteInstance",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-19T14:29:19.2326553Z"
+      },
+      {
+        "NewName": "menu.BackgroundPic",
+        "OldName": "menu.background",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-19T14:29:24.6844033Z"
+      },
+      {
+        "NewName": "menu.ContainerInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-19T14:29:30.2426584Z"
+      },
+      {
+        "NewName": "menu.SpriteInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-19T14:29:35.6218823Z"
+      },
+      {
+        "NewName": "menu.SpriteInstance1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-19T14:29:37.9366645Z"
+      },
+      {
+        "NewName": "menu.Title",
+        "OldName": "menu.SpriteInstance",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-20T11:42:51.7929609Z"
+      },
+      {
+        "NewName": "menu.button",
+        "OldName": "menu.SpriteInstance1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-20T11:42:56.7890277Z"
+      },
+      {
+        "NewName": "menu.ContainerInstance1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-20T12:00:00.1134851Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "menu.Container ContainerInstance1 in menu",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-20T12:04:05.3305081Z"
+      },
+      {
+        "NewName": "menu.ContainerInstance1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-20T12:07:23.6324054Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "menu.Container ContainerInstance1 in menu",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-20T12:18:35.9512058Z"
+      },
+      {
+        "NewName": "menu.ContainerInstance1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-20T12:19:54.6103018Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "menu.Container ContainerInstance1 in menu",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-20T12:27:18.3326221Z"
+      },
+      {
+        "NewName": "menu.PlayButton",
+        "OldName": "menu.button",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-20T12:30:27.3391912Z"
+      },
+      {
+        "NewName": "menu.ColoredRectangleInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-20T14:08:35.5056536Z"
+      },
+      {
+        "NewName": "menu.SkyRectangle",
+        "OldName": "menu.ColoredRectangleInstance",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-20T14:19:01.5664666Z"
+      },
+      {
+        "NewName": "menu.SkyRectangle1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-20T14:19:17.8101385Z"
+      },
+      {
+        "NewName": "menu.TreesRectangle",
+        "OldName": "menu.SkyRectangle1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-20T14:19:37.6862146Z"
+      },
+      {
+        "NewName": "menu.MobileTopSkyRectangle",
+        "OldName": "menu.SkyRectangle",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-20T14:25:18.6755213Z"
+      },
+      {
+        "NewName": "menu.MobileBottomTreesRectangle",
+        "OldName": "menu.TreesRectangle",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-20T14:25:27.4281929Z"
+      },
+      {
+        "NewName": "MenuScreen",
+        "OldName": "menu",
+        "ElementType": "Screens",
+        "EventType": 2,
+        "TimestampUtc": "2024-10-21T12:56:55.316856Z"
+      },
+      {
+        "NewName": "ScreenMock",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-10-21T14:27:47.7132051Z"
+      },
+      {
+        "NewName": "ScreenMock (Container).MobileTopSkyRectangle",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-21T14:27:52.3357495Z"
+      },
+      {
+        "NewName": "ScreenMock (Container).MobileBottomTreesRectangle",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-21T14:27:52.336749Z"
+      },
+      {
+        "NewName": "ScreenMock (Container).BackgroundPic",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-21T14:27:52.3467782Z"
+      },
+      {
+        "NewName": "ScreenMock (Container).ContainerInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-21T14:27:52.3508814Z"
+      },
+      {
+        "NewName": "ScreenMock (Container).Title",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-21T14:27:52.3579208Z"
+      },
+      {
+        "NewName": "ScreenMock (Container).PlayButton",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-21T14:27:52.3638669Z"
+      },
+      {
+        "NewName": "GameOverScreen",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 0,
+        "TimestampUtc": "2024-10-21T14:28:03.7401615Z"
+      },
+      {
+        "NewName": "ScreenMock1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-10-21T14:28:21.6716444Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "ScreenMock1",
+        "ElementType": "Components",
+        "EventType": 1,
+        "TimestampUtc": "2024-10-21T14:28:27.8504558Z"
+      },
+      {
+        "NewName": "GameOverScreen.test",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-21T14:28:42.5147881Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameOverScreen.Container test in GameOverScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-21T14:29:50.1336812Z"
+      },
+      {
+        "NewName": "GameOverScreen.ScreenMockInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-21T14:29:52.5909509Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameOverScreen.ScreenMock ScreenMockInstance in GameOverScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-21T14:31:35.3609895Z"
+      },
+      {
+        "NewName": "ScreenBackground",
+        "OldName": "ScreenMock",
+        "ElementType": "Components",
+        "EventType": 2,
+        "TimestampUtc": "2024-10-21T14:31:48.0789767Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "ScreenBackground (Container).Sprite PlayButton in ScreenBackground (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-21T14:32:06.0082526Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "ScreenBackground (Container).Sprite Title in ScreenBackground (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-21T14:32:06.0092551Z"
+      },
+      {
+        "NewName": "GameOverScreen.ScreenBackgroundInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-21T14:32:26.839329Z"
+      },
+      {
+        "NewName": "GameOverScreen.PlayButton",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-21T14:32:47.8002982Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MenuScreen.Sprite Title in MenuScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-21T14:32:51.4976202Z"
+      },
+      {
+        "NewName": "GameOverScreen.Title",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-21T14:32:59.1281518Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameOverScreen.Sprite Title in GameOverScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T08:33:10.603697Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameOverScreen.Sprite PlayButton in GameOverScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T08:33:10.6056967Z"
+      },
+      {
+        "NewName": "GameOverScreen.Title",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T08:33:59.1353405Z"
+      },
+      {
+        "NewName": "GameOverScreen.GameOverTitle",
+        "OldName": "GameOverScreen.Title",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T08:34:08.7511989Z"
+      },
+      {
+        "NewName": "GameOverScreen.GameOverTitle1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T08:35:01.2758943Z"
+      },
+      {
+        "NewName": "GameOverScreen.Medal",
+        "OldName": "GameOverScreen.GameOverTitle1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T08:35:07.0805269Z"
+      },
+      {
+        "NewName": "GameOverScreen.Medal1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T08:46:40.1157376Z"
+      },
+      {
+        "NewName": "GameOverScreen.MenuButton",
+        "OldName": "GameOverScreen.Medal1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T08:46:47.0263322Z"
+      },
+      {
+        "NewName": "GameOverScreen.PlayButton",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T08:49:29.8097327Z"
+      },
+      {
+        "NewName": "BackPic",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-10-22T08:57:07.5627062Z"
+      },
+      {
+        "NewName": "BackPic (Container).BackgroundPic",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T08:57:10.1162404Z"
+      },
+      {
+        "NewName": "ScreenBackground (Container).BackPicInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T08:57:41.1136948Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "ScreenBackground (Container).Sprite BackgroundPic in ScreenBackground (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T08:57:59.7756386Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "BackPic (Container).Sprite BackgroundPic in BackPic (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T09:02:06.528422Z"
+      },
+      {
+        "NewName": "BackPic (Container).ContainerInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T09:02:15.4187489Z"
+      },
+      {
+        "NewName": "BackPic (Container).MobileTopSkyRectangle",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T09:02:21.9637189Z"
+      },
+      {
+        "NewName": "BackPic (Container).MobileBottomTreesRectangle",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T09:02:21.9852462Z"
+      },
+      {
+        "NewName": "BackPic (Container).BackPicInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T09:02:21.9977706Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "BackPic (Container).ColoredRectangle MobileTopSkyRectangle in BackPic (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T09:02:58.2956745Z"
+      },
+      {
+        "NewName": "BackPic (Container).MobileTopSkyRectangle",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T09:03:06.5477201Z"
+      },
+      {
+        "NewName": "BackPic (Container).BackPicInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T09:03:09.8017357Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "ScreenBackground (Container).BackPic BackPicInstance in ScreenBackground (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T09:03:46.6659922Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "BackPic (Container).Container ContainerInstance in BackPic (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T09:03:50.0358038Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "BackPic (Container).ColoredRectangle MobileBottomTreesRectangle in BackPic (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T09:03:59.9878817Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "BackPic (Container).ColoredRectangle MobileTopSkyRectangle in BackPic (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T09:03:59.9884168Z"
+      },
+      {
+        "NewName": "ScreenBackground (Container).BackgroundPic",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T09:04:14.9463705Z"
+      },
+      {
+        "NewName": "ScreenBackground (Container).Title",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T09:04:14.9499115Z"
+      },
+      {
+        "NewName": "ScreenBackground (Container).PlayButton",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T09:04:14.9584494Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "ScreenBackground (Container).Sprite Title in ScreenBackground (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T09:04:18.79855Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "ScreenBackground (Container).Sprite PlayButton in ScreenBackground (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T09:04:18.7995506Z"
+      },
+      {
+        "NewName": "BackPic (Container).BackgroundPic",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T09:04:35.6578056Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "BackPic",
+        "ElementType": "Components",
+        "EventType": 1,
+        "TimestampUtc": "2024-10-22T09:07:05.353406Z"
+      },
+      {
+        "NewName": "BGPic",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-10-22T09:29:00.1119337Z"
+      },
+      {
+        "NewName": "BGPic (Container).BackgroundPic",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T09:29:03.9828934Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "ScreenBackground (Container).Sprite BackgroundPic in ScreenBackground (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T09:30:47.7490151Z"
+      },
+      {
+        "NewName": "PortaitMarginColors",
+        "OldName": "ScreenBackground",
+        "ElementType": "Components",
+        "EventType": 2,
+        "TimestampUtc": "2024-10-22T09:34:10.6822301Z"
+      },
+      {
+        "NewName": "ScreenMode",
+        "OldName": "SScreenMode",
+        "ElementType": "Components",
+        "EventType": 4,
+        "TimestampUtc": "2024-10-22T09:37:20.0368304Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameOverScreen.PortaitMarginColors ScreenBackgroundInstance in GameOverScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T09:39:37.0566343Z"
+      },
+      {
+        "NewName": "GameOverScreen.PortaitMarginColorsInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T09:39:41.4523793Z"
+      },
+      {
+        "NewName": "GameOverScreen.BGPicInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T09:39:46.728786Z"
+      },
+      {
+        "NewName": "MarginBoxesVisible",
+        "OldName": "HideBoxes",
+        "ElementType": "Components",
+        "EventType": 4,
+        "TimestampUtc": "2024-10-22T09:43:35.6428296Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MenuScreen.Container ContainerInstance in MenuScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T10:51:04.4672391Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MenuScreen.ColoredRectangle MobileTopSkyRectangle in MenuScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T10:51:08.2763644Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MenuScreen.ColoredRectangle MobileBottomTreesRectangle in MenuScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T10:51:08.2773379Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MenuScreen.Sprite BackgroundPic in MenuScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T10:51:08.2843384Z"
+      },
+      {
+        "NewName": "MenuScreen.PortaitMarginColorsInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T10:51:11.5844293Z"
+      },
+      {
+        "NewName": "MenuScreen.BGPicInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T10:51:14.1049921Z"
+      },
+      {
+        "NewName": "GameScreen",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 0,
+        "TimestampUtc": "2024-10-22T11:24:59.2266489Z"
+      },
+      {
+        "NewName": "GameScreen.PortaitMarginColorsInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T11:25:06.8305933Z"
+      },
+      {
+        "NewName": "GameScreen.BGPicInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T11:25:09.6561786Z"
+      },
+      {
+        "NewName": "GameScreen.SpriteInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T11:26:14.4186266Z"
+      },
+      {
+        "NewName": "GameScreen.PauseButton",
+        "OldName": "GameScreen.SpriteInstance",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T11:28:51.6158142Z"
+      },
+      {
+        "NewName": "GameScreen.ContainerInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T11:37:31.6712612Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameScreen.Container ContainerInstance in GameScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T11:41:07.3332504Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameScreen",
+        "ElementType": "Screens",
+        "EventType": 1,
+        "TimestampUtc": "2024-10-22T11:56:11.957628Z"
+      },
+      {
+        "NewName": "GameScreen",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 0,
+        "TimestampUtc": "2024-10-22T11:56:17.486249Z"
+      },
+      {
+        "NewName": "GameScreen.PortaitMarginColorsInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T11:56:20.8608338Z"
+      },
+      {
+        "NewName": "GameScreen.BGPicInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T11:56:23.9759617Z"
+      },
+      {
+        "NewName": "GameScreen.SpriteInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T11:56:32.779014Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameScreen.BGPic BGPicInstance in GameScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T11:58:04.4827878Z"
+      },
+      {
+        "NewName": "GameScreen.BackgroundPic",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T11:58:12.4735552Z"
+      },
+      {
+        "NewName": "GameScreen.PuaseButton",
+        "OldName": "GameScreen.SpriteInstance",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T11:58:34.9665067Z"
+      },
+      {
+        "NewName": "GameScreen.PauseButton",
+        "OldName": "GameScreen.PuaseButton",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T11:58:41.575052Z"
+      },
+      {
+        "NewName": "draft",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 0,
+        "TimestampUtc": "2024-10-22T15:38:56.6472671Z"
+      },
+      {
+        "NewName": "SoundUI",
+        "OldName": "draft",
+        "ElementType": "Screens",
+        "EventType": 2,
+        "TimestampUtc": "2024-10-22T15:39:13.4224558Z"
+      },
+      {
+        "NewName": "SoundUI.ColoredRectangleInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T15:39:53.8648008Z"
+      },
+      {
+        "NewName": "SoundUI.Title",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T15:41:51.9886362Z"
+      },
+      {
+        "NewName": "SoundUI.Panel",
+        "OldName": "SoundUI.Title",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T16:03:26.783246Z"
+      },
+      {
+        "NewName": "SoundUI.SettingsPanel",
+        "OldName": "SoundUI.Panel",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T16:03:32.9653476Z"
+      },
+      {
+        "NewName": "SoundUI.SettingsPanel1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T16:04:03.0632836Z"
+      },
+      {
+        "NewName": "SoundUI.MusicMuteButton",
+        "OldName": "SoundUI.SettingsPanel1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T16:04:14.3971868Z"
+      },
+      {
+        "NewName": "SoundUI.MusicMuteButton1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T16:05:22.1342972Z"
+      },
+      {
+        "NewName": "SoundUI.FxMuteButton",
+        "OldName": "SoundUI.MusicMuteButton1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T16:05:36.2364929Z"
+      },
+      {
+        "NewName": "SoundUI.FxMuteButton1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T16:07:08.341676Z"
+      },
+      {
+        "NewName": "SoundUI.FxPlusButton",
+        "OldName": "SoundUI.FxMuteButton1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T16:07:31.1169139Z"
+      },
+      {
+        "NewName": "SoundUI.FxPlusButton1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T16:08:25.9259489Z"
+      },
+      {
+        "NewName": "SoundUI.MusicPlusButton1",
+        "OldName": "SoundUI.FxPlusButton1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T16:08:51.4524369Z"
+      },
+      {
+        "NewName": "SoundUI.MusicPlusButton",
+        "OldName": "SoundUI.MusicPlusButton1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T16:08:55.605891Z"
+      },
+      {
+        "NewName": "SoundUI.MusicPlusButton1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T16:09:01.1087093Z"
+      },
+      {
+        "NewName": "SoundUI.MusicPlusButton2",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T16:09:28.9170389Z"
+      },
+      {
+        "NewName": "SoundUI.MusicMinusButton",
+        "OldName": "SoundUI.MusicPlusButton1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T16:09:53.2843523Z"
+      },
+      {
+        "NewName": "SoundUI.FxMinusButton",
+        "OldName": "SoundUI.MusicPlusButton2",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T16:10:05.3260258Z"
+      },
+      {
+        "NewName": "SoundUI.FxPlusButton1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T16:10:22.0316778Z"
+      },
+      {
+        "NewName": "SoundUI.FxPlusButton2",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T16:11:22.4770639Z"
+      },
+      {
+        "NewName": "SoundUI.FxPlusButton3",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T16:11:25.1895755Z"
+      },
+      {
+        "NewName": "SoundUI.FxBarButton1",
+        "OldName": "SoundUI.FxPlusButton1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T16:11:46.1623881Z"
+      },
+      {
+        "NewName": "SoundUI.FxBarButton2",
+        "OldName": "SoundUI.FxPlusButton2",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T16:11:52.2267137Z"
+      },
+      {
+        "NewName": "SoundUI.FxBarButton3",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T16:12:05.1032378Z"
+      },
+      {
+        "NewName": "SoundUI.FxBarButton4",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T16:12:05.1072375Z"
+      },
+      {
+        "NewName": "SoundUI.FxPlusButton4",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T16:12:05.1138281Z"
+      },
+      {
+        "NewName": "SoundUI.MusicBarButton1",
+        "OldName": "SoundUI.FxBarButton3",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T16:12:39.1943381Z"
+      },
+      {
+        "NewName": "SoundUI.MusicBarButton2",
+        "OldName": "SoundUI.FxBarButton4",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T16:12:45.7700965Z"
+      },
+      {
+        "NewName": "SoundUI.MusicBarButton3",
+        "OldName": "SoundUI.FxPlusButton4",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T16:12:50.3217085Z"
+      },
+      {
+        "NewName": "BarSoundFull",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-10-22T16:14:16.952332Z"
+      },
+      {
+        "NewName": "BarSound",
+        "OldName": "BarSoundFull",
+        "ElementType": "Components",
+        "EventType": 2,
+        "TimestampUtc": "2024-10-22T16:14:42.941676Z"
+      },
+      {
+        "NewName": "BarSound (Container).MusicBarButton3",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T16:14:58.748159Z"
+      },
+      {
+        "NewName": "BarSound (Container).MusicBarButton4",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T16:15:49.9424835Z"
+      },
+      {
+        "NewName": "BarSound (Container).SoundBarEmpty",
+        "OldName": "BarSound (Container).MusicBarButton3",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T16:16:05.748394Z"
+      },
+      {
+        "NewName": "BarSound (Container).SoundBar",
+        "OldName": "BarSound (Container).SoundBarEmpty",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T16:16:10.4696009Z"
+      },
+      {
+        "NewName": "BarSound (Container).SoundBarFull",
+        "OldName": "BarSound (Container).MusicBarButton4",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T16:18:53.6219366Z"
+      },
+      {
+        "NewName": "BarSound (Container).SoundBarFull",
+        "OldName": "BarSound (Container).MusicBarButton4",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T16:18:53.622942Z"
+      },
+      {
+        "NewName": "BarSound (Container).SoundBarFull",
+        "OldName": "BarSound (Container).MusicBarButton4",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T16:18:53.6302486Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "SoundUI.Sprite MusicBarButton1 in SoundUI",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T16:20:01.7564374Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "SoundUI.Sprite MusicBarButton2 in SoundUI",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T16:20:01.7574368Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "SoundUI.Sprite MusicBarButton3 in SoundUI",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T16:20:01.7660022Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "SoundUI.Sprite FxBarButton1 in SoundUI",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T16:20:04.8476692Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "SoundUI.Sprite FxBarButton2 in SoundUI",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T16:20:04.8486681Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "SoundUI.Sprite FxPlusButton3 in SoundUI",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-22T16:20:04.8557316Z"
+      },
+      {
+        "NewName": "SoundUI.BarSoundInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T16:20:11.259143Z"
+      },
+      {
+        "NewName": "SoundUI.BarSoundInstance1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T16:20:21.4336317Z"
+      },
+      {
+        "NewName": "SoundUI.BarSoundInstance2",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T16:20:24.1938992Z"
+      },
+      {
+        "NewName": "SoundUI.BarSoundInstance3",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T16:20:44.0300978Z"
+      },
+      {
+        "NewName": "SoundUI.BarSoundInstance4",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T16:20:44.0334788Z"
+      },
+      {
+        "NewName": "SoundUI.BarSoundInstance5",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-22T16:20:44.0490123Z"
+      },
+      {
+        "NewName": "SoundUI.FxBarSound1",
+        "OldName": "SoundUI.BarSoundInstance3",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T16:21:23.3575398Z"
+      },
+      {
+        "NewName": "SoundUI.FxBarSound2",
+        "OldName": "SoundUI.BarSoundInstance4",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T16:21:29.1166555Z"
+      },
+      {
+        "NewName": "SoundUI.FxBarSound3",
+        "OldName": "SoundUI.FxBarSound2",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T16:21:32.2937443Z"
+      },
+      {
+        "NewName": "SoundUI.FxBarSound2",
+        "OldName": "SoundUI.FxBarSound3",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T16:21:37.3017509Z"
+      },
+      {
+        "NewName": "SoundUI.FxBarSound3",
+        "OldName": "SoundUI.BarSoundInstance5",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T16:21:43.4686942Z"
+      },
+      {
+        "NewName": "SoundUI.MusicBarSound1",
+        "OldName": "SoundUI.BarSoundInstance",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T16:22:06.4211761Z"
+      },
+      {
+        "NewName": "SoundUI.MusicBarSound2",
+        "OldName": "SoundUI.BarSoundInstance1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T16:22:13.7173614Z"
+      },
+      {
+        "NewName": "SoundUI.MusicBarSound3",
+        "OldName": "SoundUI.BarSoundInstance2",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-22T16:22:19.38204Z"
+      }
+    ]
+  }
+}
