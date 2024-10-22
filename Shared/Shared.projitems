@@ -25,6 +25,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Entity\DrawableEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Gum\GumTransparentButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\game\gum\GumWindowResizer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)code\game\gum\TouchscreenCursor.cs" />
     <Compile Include="..\Shared\code\game\gum\ScaledGumWindowResizer.cs" />
     <Compile Include="..\Shared\code\game\gameentities\BackgroundPicture.cs" />
     <Compile Include="..\Shared\Code\Engine\Entity\FullscreenRectangleEntity.cs" />

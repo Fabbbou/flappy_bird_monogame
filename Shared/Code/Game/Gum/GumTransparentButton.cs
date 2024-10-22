@@ -11,7 +11,7 @@ using System;
 
 namespace GumFormsSample
 {
-    internal class GumTransparentButton : InteractiveGue
+    internal class GumTransparentButton : CustomInteractiveGue
     {
         public static void AttachButton(GraphicalUiElement component, EventHandler onPushAction)
         {
