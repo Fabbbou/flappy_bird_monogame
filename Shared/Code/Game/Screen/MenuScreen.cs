@@ -39,7 +39,6 @@ public class MenuScreen : GameScreen
         if (Game.IsActive) FormsUtilities.Update(gameTime, _gumScreen);
         SystemManagers.Default.Activity(gameTime.TotalGameTime.TotalSeconds);
         //to update touchscreen clicks
-        MainRegistry.I.TouchscreenCursor.UpdateButtons();
     }
     public override void Draw(GameTime gameTime)
     {
@@ -50,11 +49,10 @@ public class MenuScreen : GameScreen
     public override void Dispose()
     {
         _gumWindowResizer.Dispose();
-        MainRegistry.I.TouchscreenCursor.ClearButtons();
     }
 
-    //public override void UnloadContent()
-    //{
-    //    _gumScreen.RemoveFromManagers();
-    //}
+    public override void UnloadContent()
+    {
+        _gumScreen.RemoveFromManagers();
+    }
 }
