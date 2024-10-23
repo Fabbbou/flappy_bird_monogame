@@ -94,7 +94,7 @@ public class World
     public void LoadContent(ContentManager content)
     {
         SettingsManager.Instance.LoadSettings();
-        SoundManager.Instance.LoadContent(content);
+        SoundManager.Instance.Initialize();
 
         foreach (Entity entity in _backgroundUIEntities)
         {

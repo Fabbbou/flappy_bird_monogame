@@ -33,7 +33,7 @@ public class SoundManager
 
     private Dictionary<SoundEffectInstance, SoundType> _sounds = new Dictionary<SoundEffectInstance, SoundType>();
 
-    public void LoadContent(ContentManager content)
+    public void Initialize()
     {
         if (IsLoaded) return;
         IsLoaded = true;

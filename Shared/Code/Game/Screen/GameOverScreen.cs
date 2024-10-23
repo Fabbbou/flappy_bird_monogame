@@ -11,7 +11,7 @@ using GumFormsSample;
 
 public class GameOverScreen : GameScreen
 {
-    private ScaledGumWindowResizer _gumWindowResizer;
+    private BackgroundGumWindowResizer _gumWindowResizer;
     private GraphicalUiElement _gumScreen;
 
     private SpriteBatch _spriteBatch;
@@ -24,7 +24,7 @@ public class GameOverScreen : GameScreen
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         _gumScreen = MainRegistry.I.LoadGumScreen("GameOverScreen");
-        _gumWindowResizer = new ScaledGumWindowResizer(Game.Window, GraphicsDevice, _gumScreen);
+        _gumWindowResizer = new BackgroundGumWindowResizer(Game.Window, GraphicsDevice, _gumScreen);
 
         GumTransparentButton.AttachButton(_gumScreen.GetGraphicalUiElementByName("MenuButton"), OnClickMenu);
         GumTransparentButton.AttachButton(_gumScreen.GetGraphicalUiElementByName("PlayButton"), OnClickPlay);

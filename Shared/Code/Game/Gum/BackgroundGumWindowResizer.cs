@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Screens;
 using System;
 
-public class ScaledGumWindowResizer(GameWindow gameWindow, GraphicsDevice graphicsDevice, GraphicalUiElement _gumScreen) : IDisposable
+public class BackgroundGumWindowResizer(GameWindow gameWindow, GraphicsDevice graphicsDevice, GraphicalUiElement _gumScreen) : IDisposable
 {
     private GraphicalUiElement _portaitMarginColorsInstance;
     private GraphicalUiElement _bgPicInstance;

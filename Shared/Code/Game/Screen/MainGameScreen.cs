@@ -1,9 +1,13 @@
+using Gum.Wireframe;
+using GumFormsSample;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.Screens;
 using MonoGame.Extended.ViewportAdapters;
+using MonoGameGum.Forms;
+using RenderingLibrary;
 using static Constants;
 
 
@@ -11,6 +15,12 @@ namespace flappyrogue_mg.GameSpace
 {
     public class MainGameScreen : GameScreen
     {
+        //gum
+        public GraphicalUiElement SoundUIScreen { get; private set; }
+        public SoundUI SoundUI { get; private set; }
+        public GumWindowResizer Resizer { get; private set; }
+        //end gum
+
         public const int ROUNDING = 10;
         private SpriteBatch _spriteBatch;
         private ViewportAdapter _viewportAdapter;
@@ -25,14 +35,12 @@ namespace flappyrogue_mg.GameSpace
         public PipesSpawner PipesSpawner { get; private set; }
         public PauseButton PauseButton { get; private set; }
         public CurrentScoreUI CurrentScoreUI { get; private set; }
-        public SoundUI SoundUI { get; private set; }
-        public FullscreenRectangleEntity GrayUIBackground { get; private set; }
         public Entity EntityJumpClickRegion { get; set; }
         public ClickableRegionHandler JumpBirdClickableRegionHandler { get; set; }
         public MainGameScreen(Game game) : base(game){}
 
         public override void Initialize()
-        {
+        { 
             // setting the viewport dimensions to be the same as the background (bg) image
             // as the bg is portrait, the game will be portrait to
             // for a pixel perfect game, the viewport has to be the exact size of the background img
@@ -51,11 +59,6 @@ namespace flappyrogue_mg.GameSpace
             Bird = new Bird(this);
             PauseButton = new PauseButton(this);
             CurrentScoreUI = new();
-            SoundUI = new SoundUI(this);
-            GrayUIBackground = new FullscreenRectangleEntity(GraphicsDevice, COLOR_GRAY_UI)
-            {
-                IsActive = false
-            };
 
             World = new World(GraphicsDevice);
             World.AddBackgroundUIEntity(SkyBackgroundBox);
@@ -70,22 +73,30 @@ namespace flappyrogue_mg.GameSpace
             //CurrentScoreUI Font is scaling from transformation matrix
             //this is working because we are using the same matrix for the UI
             World.AddUIEntity(CurrentScoreUI);
-            World.AddUIEntity(GrayUIBackground);
-            World.AddUIEntity(SoundUI);
-            _viewportAdapter.Reset();
+            //_viewportAdapter.Reset();
+
+            //gum
+            SoundUIScreen = MainRegistry.I.LoadGumScreen("SoundUI", andLoadTheScreen:false);
+            SoundUI = new(this, SoundUIScreen);
+            Resizer = new GumWindowResizer(GraphicsDevice, SoundUIScreen);
+            Resizer.Resize();
+            Game.Window.ClientSizeChanged += Resizer.Resize;
+            FormsUtilities.InitializeDefaults();
+            //end gum
         }
 
         public override void LoadContent()
-        {            
+        {
             World.LoadContent(Content);
-            SoundUI.LoadContent(Content);
+            SoundUI.Load();
         }
 
         public override void UnloadContent()
         {
             World.UnloadContent();
             GizmosRegistry.Instance.Clear();
-            _viewportAdapter.Dispose();
+            SoundUIScreen.RemoveFromManagers();
+            //_viewportAdapter.Dispose();
         }
 
         public override void Update(GameTime gameTime)
@@ -94,16 +105,16 @@ namespace flappyrogue_mg.GameSpace
                 Game.Exit();
             StateMachine.Update(gameTime);
             World.Update(gameTime);
-            MainRegistry.I.TouchscreenCursor.UpdateButtons();
+            if (SoundUI.IsActive) FormsUtilities.Update(gameTime, SoundUIScreen);
+            SystemManagers.Default.Activity(gameTime.TotalGameTime.TotalSeconds);
         }
 
         public override void Draw(GameTime gameTime)
         {
+            GraphicsDevice.Clear(Color.Black);
             var ingameMatrix = _camera.GetViewMatrix();
             var startScreen = MainRegistry.I.PointToScreen(0, 0);
             var endScreen = _camera.ScreenToWorld(new(_viewportAdapter.ViewportWidth, _viewportAdapter.ViewportHeight)).ToPoint();
-            GraphicsDevice.Clear(Color.Transparent);
-
 
             World.Draw(ingameMatrix);
 
@@ -120,6 +131,7 @@ namespace flappyrogue_mg.GameSpace
                 _spriteBatch.DrawRectangle(new Rectangle(0, 0, _viewportAdapter.ViewportWidth, _viewportAdapter.ViewportHeight), Color.Green, thickness: 2);
                 _spriteBatch.End();
             }
+            SystemManagers.Default.Draw();
         }
     }
 }

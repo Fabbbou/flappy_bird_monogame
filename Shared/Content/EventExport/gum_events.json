@@ -1162,6 +1162,286 @@
         "ElementType": "Screens",
         "EventType": 7,
         "TimestampUtc": "2024-10-22T16:22:19.38204Z"
+      },
+      {
+        "NewName": "SoundUI.ContainerInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-23T11:57:35.077617Z"
+      },
+      {
+        "NewName": "SoundUI.MusicContainer",
+        "OldName": "SoundUI.ContainerInstance",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-23T11:59:10.5652798Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "SoundUI.BarSound MusicBarSound3 in SoundUI",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-23T12:04:57.8483545Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "SoundUI.BarSound MusicBarSound2 in SoundUI",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-23T12:04:57.8503515Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "SoundUI.BarSound FxBarSound3 in SoundUI",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-23T12:12:10.2467918Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "SoundUI.BarSound FxBarSound2 in SoundUI",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-23T12:12:10.2487933Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "SoundUI.BarSound FxBarSound1 in SoundUI",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-23T12:12:10.2587924Z"
+      },
+      {
+        "NewName": "SoundUI.MusicBarSound2",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-23T12:16:11.7013677Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "SoundUI.BarSound MusicBarSound2 in SoundUI",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-23T12:16:21.3837253Z"
+      },
+      {
+        "NewName": "SoundUI1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 0,
+        "TimestampUtc": "2024-10-23T12:16:24.2114035Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "SoundUI1",
+        "ElementType": "Screens",
+        "EventType": 1,
+        "TimestampUtc": "2024-10-23T12:16:30.1625679Z"
+      },
+      {
+        "NewName": "SoundUI.MusicBarSound2",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-23T12:16:32.0430534Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "SoundUI.BarSound MusicBarSound2 in SoundUI",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-23T12:17:03.0885839Z"
+      },
+      {
+        "NewName": "SoundUI.MusicBarSound2",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-23T12:17:07.610276Z"
+      },
+      {
+        "NewName": "SoundUI.MusicBarSound3",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-23T12:17:10.9777114Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "SoundUI.Sprite FxMinusButton in SoundUI",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-23T12:19:48.1033745Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "SoundUI.Sprite FxPlusButton in SoundUI",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-23T12:19:48.1054226Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "SoundUI.Sprite FxMuteButton in SoundUI",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-23T12:19:48.1134123Z"
+      },
+      {
+        "NewName": "SoundUI.MusicMuteButton1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-23T12:19:51.461121Z"
+      },
+      {
+        "NewName": "SoundUI.MusicPlusButton1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-23T12:19:51.4640975Z"
+      },
+      {
+        "NewName": "SoundUI.MusicMinusButton1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-23T12:19:51.4720789Z"
+      },
+      {
+        "NewName": "SoundUI.MusicBarSound4",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-23T12:19:51.4810801Z"
+      },
+      {
+        "NewName": "SoundUI.MusicBarSound5",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-23T12:19:51.4920794Z"
+      },
+      {
+        "NewName": "SoundUI.MusicBarSound6",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-23T12:19:51.4960794Z"
+      },
+      {
+        "NewName": "SoundUI.MusicContainer1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-23T12:19:51.5030802Z"
+      },
+      {
+        "NewName": "SoundUI.FxContainer",
+        "OldName": "SoundUI.MusicContainer1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-23T12:19:59.4893408Z"
+      },
+      {
+        "NewName": "SoundUI.FxMuteButton1",
+        "OldName": "SoundUI.MusicMuteButton1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-23T12:20:09.9664675Z"
+      },
+      {
+        "NewName": "SoundUI.FxPlusButton1",
+        "OldName": "SoundUI.MusicPlusButton1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-23T12:20:19.4194907Z"
+      },
+      {
+        "NewName": "SoundUI.FxMinusButton1",
+        "OldName": "SoundUI.MusicMinusButton1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-23T12:20:23.263471Z"
+      },
+      {
+        "NewName": "SoundUI.FxBarSound4",
+        "OldName": "SoundUI.MusicBarSound4",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-23T12:20:28.1504158Z"
+      },
+      {
+        "NewName": "SoundUI.FxBarSound1",
+        "OldName": "SoundUI.FxBarSound4",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-23T12:20:33.5771857Z"
+      },
+      {
+        "NewName": "SoundUI.FxBarSound2",
+        "OldName": "SoundUI.MusicBarSound5",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-23T12:20:41.4985876Z"
+      },
+      {
+        "NewName": "SoundUI.FxBarSound3",
+        "OldName": "SoundUI.MusicBarSound6",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-23T12:20:54.2873612Z"
+      },
+      {
+        "NewName": "SoundUI.FxMinusButton",
+        "OldName": "SoundUI.FxMinusButton1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-23T12:21:00.0553338Z"
+      },
+      {
+        "NewName": "SoundUI.FxPlusButton",
+        "OldName": "SoundUI.FxPlusButton1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-23T12:21:09.5967937Z"
+      },
+      {
+        "NewName": "SoundUI.FxMuteButton",
+        "OldName": "SoundUI.FxMuteButton1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-23T12:21:13.6909819Z"
+      },
+      {
+        "NewName": "SoundUI.MusicMuteButton1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-23T12:50:18.4703927Z"
+      },
+      {
+        "NewName": "SoundUI.OkButton",
+        "OldName": "SoundUI.MusicMuteButton1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-23T12:52:54.5523505Z"
+      },
+      {
+        "NewName": "SoundUI.OkButton1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-23T12:52:57.5031845Z"
+      },
+      {
+        "NewName": "SoundUI.MenuButton",
+        "OldName": "SoundUI.OkButton1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-23T12:53:03.6198489Z"
       }
     ]
   }

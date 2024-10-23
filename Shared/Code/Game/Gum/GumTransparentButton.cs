@@ -19,7 +19,17 @@ namespace GumFormsSample
             button.Push += onPushAction;
             component.Children.Add(button);
         }
+
+        public static void AttachButton(GraphicalUiElement component, Action onPushAction)
+        {
+            var button = new GumTransparentButton();
+            button.Push += (o, e) => onPushAction();
+            component.Children.Add(button);
+        }
+
+        public readonly static Color TransparentRed = new Color(255, 0, 0, 123);
         public GumTransparentButton(bool fullInstantiation = true, bool tryCreateFormsObject = true) : base(new InvisibleRenderable()) {
+            Color color = GizmosRegistry.Instance.IsDebugging ? TransparentRed : Color.Transparent;
             if (fullInstantiation)
             {
                 this.Width = 100f;
@@ -33,7 +43,7 @@ namespace GumFormsSample
                     WidthUnits = DimensionUnitType.Percentage,
                     HeightUnits = DimensionUnitType.Percentage,
                     Name = "ButtonBackground",
-                    Color = Color.Transparent,
+                    Color = color,
                 };
                 this.Children.Add(item);
                 AddCategory(new StateSaveCategory
@@ -49,7 +59,7 @@ namespace GumFormsSample
                             new VariableSave
                             {
                                 Name = "ButtonBackground.Color",
-                                Value = Color.Transparent,
+                                Value = color,
                             }
                         }
                     },
@@ -73,7 +83,7 @@ namespace GumFormsSample
                             new VariableSave
                             {
                                 Name = "ButtonBackground.Color",
-                                Value = Color.Transparent,
+                                Value = color,
                             }
                         }
                     },

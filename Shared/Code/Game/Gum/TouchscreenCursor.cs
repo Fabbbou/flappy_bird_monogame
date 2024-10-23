@@ -36,7 +36,7 @@ public class TouchscreenCursor : ICursor
     {
         if (PrimaryClick && button.HasCursorOver(this))
         {
-            button.PushBtn?.Invoke();
+            //button.PushBtn?.Invoke();
         }
     }
 

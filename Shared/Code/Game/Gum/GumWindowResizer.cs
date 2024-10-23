@@ -4,7 +4,7 @@ using System;
 
 public class GumWindowResizer(GraphicsDevice _graphicsDevice, GraphicalUiElement screen)
 {
-    public void Resize()
+    public void Resize(object not = null, EventArgs used = null)
     {
         GraphicalUiElement.CanvasWidth = _graphicsDevice.Viewport.Width;
         GraphicalUiElement.CanvasHeight = _graphicsDevice.Viewport.Height;
