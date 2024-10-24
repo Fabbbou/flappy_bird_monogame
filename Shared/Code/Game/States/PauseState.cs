@@ -9,7 +9,7 @@ public class PauseState(MainGameScreen mainGameScreen) : MainGameState(mainGameS
         MainGameScreen.SoundUI.Activate();
         //MainGameScreen.GrayUIBackground.IsActive = true;
         //MainGameScreen.SoundUI.IsActive = true;
-        MainGameScreen.PauseButton.IsActive = false;
+        MainGameScreen.PauseButton.Visible = false;
         MainGameScreen.EntityJumpClickRegion.IsActive = false;
 
         MainGameScreen.Bird.IsPaused = true;
@@ -29,7 +29,7 @@ public class PauseState(MainGameScreen mainGameScreen) : MainGameState(mainGameS
 
         //MainGameScreen.GrayUIBackground.IsActive = false;
         //MainGameScreen.SoundUI.IsActive = false;
-        MainGameScreen.PauseButton.IsActive = true;
+        MainGameScreen.PauseButton.Visible = true;
         MainGameScreen.EntityJumpClickRegion.IsActive = true;
 
         MainGameScreen.Bird.IsPaused = false;

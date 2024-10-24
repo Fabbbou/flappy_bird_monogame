@@ -18,8 +18,7 @@ public class BackgroundGumWindowResizer(GameWindow gameWindow, GraphicsDevice gr
     public void InitAndResizeOnce()
     {
         _portaitMarginColorsInstance = _gumScreen.GetGraphicalUiElementByName("PortaitMarginColorsInstance");
-        _bgPicInstance = _gumScreen.GetGraphicalUiElementByName("BGPicInstance");
-        _backgroundPic = _bgPicInstance.GetGraphicalUiElementByName("BackgroundPic");
+        _backgroundPic = _gumScreen.GetGraphicalUiElementByName("BackgroundPic");
         //calling it once to make sure the screen is properly resized on app startup
         Resize();
         gameWindow.ClientSizeChanged += Resize;
@@ -29,20 +28,22 @@ public class BackgroundGumWindowResizer(GameWindow gameWindow, GraphicsDevice gr
         GraphicalUiElement.CanvasWidth = graphicsDevice.Viewport.Width;
         GraphicalUiElement.CanvasHeight = graphicsDevice.Viewport.Height;
         _gumScreen.UpdateLayout();
-        
         float scaleX = (float)graphicsDevice.Viewport.Width / _backgroundPic.TextureWidth;
         float scaleY = (float)graphicsDevice.Viewport.Height / _backgroundPic.TextureHeight;
         float currentScale = Math.Min(scaleX, scaleY);
         bool IsWideScreen = currentScale == scaleY;
         if (IsWideScreen)
         {
-            _portaitMarginColorsInstance.SetProperty("MarginBoxesVisible", "Disabled");
-            _bgPicInstance.SetProperty("ScreenMode", "Landscape");
+            _gumScreen.SetProperty("PortaitMarginColorsInstance.MarginBoxesVisibleState", "Disabled");
+            _backgroundPic.WidthUnits = Gum.DataTypes.DimensionUnitType.MaintainFileAspectRatio;
+            _backgroundPic.HeightUnits = Gum.DataTypes.DimensionUnitType.Percentage;
         }
         else
         {
-            _portaitMarginColorsInstance.SetProperty("MarginBoxesVisible", "Enabled");
-            _bgPicInstance.SetProperty("ScreenMode", "Portrait");
+            _gumScreen.SetProperty("PortaitMarginColorsInstance.MarginBoxesVisibleState", "Enabled");
+            _backgroundPic.WidthUnits = Gum.DataTypes.DimensionUnitType.Percentage;
+            _backgroundPic.HeightUnits = Gum.DataTypes.DimensionUnitType.MaintainFileAspectRatio;
         }
+        //_gumScreen.UpdateLayout();
     }
 }

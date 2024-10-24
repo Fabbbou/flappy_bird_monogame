@@ -21,11 +21,6 @@
     <LinkType>ReferenceOriginal</LinkType>
   </ScreenReference>
   <ScreenReference>
-    <Name>GameScreen</Name>
-    <ElementType>Screen</ElementType>
-    <LinkType>ReferenceOriginal</LinkType>
-  </ScreenReference>
-  <ScreenReference>
     <Name>MainGameScreen</Name>
     <ElementType>Screen</ElementType>
     <LinkType>ReferenceOriginal</LinkType>

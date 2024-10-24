@@ -20,11 +20,11 @@ public class VerticalBoxingViewportAdapter : ScalingViewportAdapter
         _graphicsDevice = graphicsDevice;
         _updateOnResizeWindow = updateOnResizeWindow;
         //WARN: this is messing with Gum rendering
-        if (_updateOnResizeWindow)
-        {
-            _window.ClientSizeChanged += OnClientSizeChanged;
-        }
-        _window.ClientSizeChanged += OnClientSizeChanged;
+        //if (_updateOnResizeWindow)
+        //{
+        //    _window.ClientSizeChanged += OnClientSizeChanged;
+        //}
+        //_window.ClientSizeChanged += OnClientSizeChanged;
     }
 
     public override void Dispose()

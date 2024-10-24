@@ -11,7 +11,10 @@ public class GetReadyUI : DrawableEntity
     private Texture2DRegion _getReadyTitle;
     private Texture2DRegion _tapScreenTitle;
 
-    public GetReadyUI(){}
+    public GetReadyUI()
+    {
+        IsActive = false;
+    }
 
     public override void Draw(SpriteBatch spriteBatch)
     {

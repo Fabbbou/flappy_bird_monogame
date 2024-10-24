@@ -36,7 +36,6 @@ public class PauseButton : GameEntity
 
     public void OnClick()
     {
-        Debug.WriteLine("Pause button clicked");
         if (_mainGameScreen.StateMachine.CurrentState is PlayState)
             _mainGameScreen.StateMachine.ChangeState(new PauseState(_mainGameScreen));
     }

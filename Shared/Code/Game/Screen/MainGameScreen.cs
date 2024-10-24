@@ -8,6 +8,7 @@ using MonoGame.Extended.Screens;
 using MonoGame.Extended.ViewportAdapters;
 using MonoGameGum.Forms;
 using RenderingLibrary;
+using System.Diagnostics;
 using static Constants;
 
 
@@ -19,22 +20,22 @@ namespace flappyrogue_mg.GameSpace
         public GraphicalUiElement SoundUIScreen { get; private set; }
         public SoundUI SoundUI { get; private set; }
         public GraphicalUiElement MainGameScreenGum { get; private set; }
-        public GumWindowResizer Resizer { get; private set; }
+        public GumWindowResizer SoundUIResizer { get; private set; }
+        public BackgroundGumWindowResizer BackgroundGumWindowResizer { get; private set; }
         //end gum
 
+        public static readonly Rectangle JumpRegion = new Rectangle(CLICK_REGION_POSITION_JUMP_REGION.ToPoint(), CLICK_REGION_SIZE_JUMP_REGION.ToPoint());
         public const int ROUNDING = 10;
         private SpriteBatch _spriteBatch;
         private ViewportAdapter _viewportAdapter;
         private OrthographicCamera _camera;
         public StateMachine StateMachine { get; private set; }
         public World World { get; private set; }
-        public FullscreenRectangleEntity SkyBackgroundBox { get; private set; }
-        //public BackgroundPicture Background { get; private set; }
         public GetReadyUI GetReadyUI { get; private set; }
         public Bird Bird { get; private set; }
         public Floor Floor { get; private set; }
         public PipesSpawner PipesSpawner { get; private set; }
-        public PauseButton PauseButton { get; private set; }
+        public GraphicalUiElement PauseButton { get; private set; }
         public CurrentScoreUI CurrentScoreUI { get; private set; }
         public Entity EntityJumpClickRegion { get; set; }
         public ClickableRegionHandler JumpBirdClickableRegionHandler { get; set; }
@@ -52,24 +53,21 @@ namespace flappyrogue_mg.GameSpace
             _camera = factory.BuildCamera();
 
             StateMachine = new StateMachine(new GetReadyState(this));
+            //StateMachine = new StateMachine(new PlayState(this));
             GetReadyUI = new GetReadyUI();
-            SkyBackgroundBox = new FullscreenRectangleEntity(GraphicsDevice, COLOR_SKY);
-            //Background = new BackgroundPicture();
             Floor = new Floor();
             PipesSpawner = new PipesSpawner();
             Bird = new Bird(this);
-            PauseButton = new PauseButton(this);
             CurrentScoreUI = new();
 
             World = new World(GraphicsDevice);
-            World.AddBackgroundUIEntity(SkyBackgroundBox);
             // because the UI is drawn on top of the ingame entities, could not do this for background pic as its a pic sized for ingame
             //World.AddIngameEntity(Background); 
             World.AddIngameEntity(PipesSpawner);
             World.AddIngameEntity(Floor);
             World.AddIngameEntity(Bird);
            
-            World.AddIngameEntity(PauseButton); //should be UI
+            //World.AddIngameEntity(PauseButton); //should be UI
             World.AddIngameEntity(GetReadyUI); //should be UI
             //CurrentScoreUI Font is scaling from transformation matrix
             //this is working because we are using the same matrix for the UI
@@ -78,19 +76,30 @@ namespace flappyrogue_mg.GameSpace
 
             //gum
             FormsUtilities.InitializeDefaults();
-            SoundUIScreen = MainRegistry.I.LoadGumScreen("SoundUI", andLoadTheScreen:false);
-            SoundUI = new(this, SoundUIScreen);
-            MainGameScreenGum = MainRegistry.I.LoadGumScreen("MainGameScreen", andLoadTheScreen: true);
-            Resizer = new GumWindowResizer(GraphicsDevice, MainGameScreenGum);
-            Resizer.Resize();
-            Game.Window.ClientSizeChanged += Resizer.Resize;
+            InitializeGumComponents();
             //end gum
+        }
+
+        private void InitializeGumComponents()
+        {
+            SoundUIScreen = MainRegistry.I.LoadGumScreen("SoundUI", andLoadTheScreen: false);
+            SoundUI = new(this, SoundUIScreen);
+            SoundUIResizer = new GumWindowResizer(GraphicsDevice, SoundUIScreen);
+            SoundUIResizer.Resize();
+            Game.Window.ClientSizeChanged += SoundUIResizer.Resize;
+
+            MainGameScreenGum = MainRegistry.I.LoadGumScreen("MainGameScreen", andLoadTheScreen: true);
+            PauseButton = GumTransparentButton.FindAndAttachButton("PauseButton", MainGameScreenGum, OnClickPause);
+            BackgroundGumWindowResizer = new BackgroundGumWindowResizer(Game.Window, GraphicsDevice, MainGameScreenGum);
+            BackgroundGumWindowResizer.InitAndResizeOnce();
+            Debug.WriteLine("MainGameScreen Initialize");
         }
 
         public override void LoadContent()
         {
             World.LoadContent(Content);
             SoundUI.Load();
+            Debug.WriteLine("MainGameScreen LoadContent");
         }
 
         public override void UnloadContent()
@@ -98,6 +107,8 @@ namespace flappyrogue_mg.GameSpace
             World.UnloadContent();
             GizmosRegistry.Instance.Clear();
             SoundUIScreen.RemoveFromManagers();
+            BackgroundGumWindowResizer.Dispose();
+            Game.Window.ClientSizeChanged -= SoundUIResizer.Resize;
             //_viewportAdapter.Dispose();
         }
 
@@ -107,7 +118,14 @@ namespace flappyrogue_mg.GameSpace
                 Game.Exit();
             StateMachine.Update(gameTime);
             World.Update(gameTime);
-            if (SoundUI.IsActive) FormsUtilities.Update(gameTime, SoundUIScreen);
+            if (SoundUI.IsActive)
+            {
+                FormsUtilities.Update(gameTime, SoundUIScreen);
+            }
+            else
+            {
+                FormsUtilities.Update(gameTime, MainGameScreenGum);
+            }
             SystemManagers.Default.Activity(gameTime.TotalGameTime.TotalSeconds);
         }
 
@@ -118,9 +136,7 @@ namespace flappyrogue_mg.GameSpace
             var startScreen = MainRegistry.I.PointToScreen(0, 0);
             var endScreen = _camera.ScreenToWorld(new(_viewportAdapter.ViewportWidth, _viewportAdapter.ViewportHeight)).ToPoint();
 
-            World.Draw(ingameMatrix);
 
-            GizmosRegistry.Instance.Draw();
 
             //draw the ingame world boundaries if debugging
             if (GizmosRegistry.Instance.IsDebugging)
@@ -134,6 +150,17 @@ namespace flappyrogue_mg.GameSpace
                 _spriteBatch.End();
             }
             SystemManagers.Default.Draw();
+            GizmosRegistry.Instance.Draw();
+            //World.Draw(ingameMatrix);
+        }
+
+        public void OnClickPause()
+        {
+            Debug.WriteLine("Pause button clicked");
+            if (StateMachine.CurrentState is PlayState)
+            {
+                StateMachine.ChangeState(new PauseState(this));
+            }
         }
     }
 }

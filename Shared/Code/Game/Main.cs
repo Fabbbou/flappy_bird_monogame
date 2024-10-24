@@ -55,6 +55,7 @@ namespace flappyrogue_mg.GameSpace
             screenRegistry.AddScreen(ScreenName.GameOverScreen, new GameOverScreen(this));
             ViewportAdapterFactory factory = new VerticalViewportAdapterFactory(this, GraphicsDevice, WORLD_WIDTH, WORLD_HEIGHT, false);
             MainRegistry.I.Initialize(this, GraphicsDevice, screenRegistry, factory, "proj.gumx");
+            MainRegistry.I.ScreenRegistry.LoadScreen(ScreenName.MenuScreen);
 
             SetStartupWindowSize();
 
@@ -78,7 +79,6 @@ namespace flappyrogue_mg.GameSpace
         protected override void LoadContent()
         {
             AssetsLoader.Instance.LoadContent(Content);
-            MainRegistry.I.ScreenRegistry.LoadScreen(ScreenName.MenuScreen);
         }
 
         protected override void Update(GameTime gameTime)

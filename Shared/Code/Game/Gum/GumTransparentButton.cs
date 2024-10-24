@@ -13,18 +13,28 @@ namespace GumFormsSample
 {
     public class GumTransparentButton : InteractiveGue
     {
-        public static void AttachButton(GraphicalUiElement component, EventHandler onPushAction)
+
+
+        public static GraphicalUiElement FindAndAttachButton(string name, GraphicalUiElement parentToExplore, Action actionToAttach)
+        {
+            var component = parentToExplore.GetGraphicalUiElementByName(name);
+            var button = new GumTransparentButton();
+            button.Push += (o, e) => actionToAttach();
+            component.Children.Add(button);
+            return component;
+        }
+
+        public static GraphicalUiElement AttachButton(GraphicalUiElement component, EventHandler onPushAction)
         {
             var button = new GumTransparentButton();
             button.Push += onPushAction;
             component.Children.Add(button);
+            return component;
         }
 
-        public static void AttachButton(GraphicalUiElement component, Action onPushAction)
+        public static GraphicalUiElement AttachButton(GraphicalUiElement component, Action onPushAction)
         {
-            var button = new GumTransparentButton();
-            button.Push += (o, e) => onPushAction();
-            component.Children.Add(button);
+            return AttachButton(component, (o, e) => onPushAction());
         }
 
         public readonly static Color TransparentRed = new Color(255, 0, 0, 123);

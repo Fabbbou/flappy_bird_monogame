@@ -1477,6 +1477,272 @@
         "ElementType": "Screens",
         "EventType": 7,
         "TimestampUtc": "2024-10-24T14:35:19.3047666Z"
+      },
+      {
+        "NewName": "BGPic (Container).ContainerInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-24T16:47:38.7567329Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "BGPic (Container).Container ContainerInstance in BGPic (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-24T16:47:48.8200108Z"
+      },
+      {
+        "NewName": "MenuScreen.ContainerInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-24T16:48:27.7347786Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MenuScreen.Container ContainerInstance in MenuScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-24T16:49:10.5475809Z"
+      },
+      {
+        "NewName": "MenuScreen.ContainerInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-24T16:49:40.946843Z"
+      },
+      {
+        "NewName": "MenuScreen.BackgroundPic",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-24T16:53:09.896345Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MenuScreen.BGPic BGPicInstance in MenuScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-24T16:53:26.6308126Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MenuScreen.Container ContainerInstance in MenuScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-24T16:53:26.6574174Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MenuScreen.Sprite BackgroundPic in MenuScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-24T16:59:17.1388933Z"
+      },
+      {
+        "NewName": "MenuScreen.BGPicInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-24T16:59:19.3760412Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MenuScreen.BGPic BGPicInstance in MenuScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-24T17:01:05.4394164Z"
+      },
+      {
+        "NewName": "MenuScreen.BackgroundPic",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-24T17:01:08.7524295Z"
+      },
+      {
+        "NewName": "GameScreen.BackgroundPi",
+        "OldName": "GameScreen.BackgroundPic",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-24T17:13:07.2293108Z"
+      },
+      {
+        "NewName": "GameScreen.BackgroundPi",
+        "OldName": "GameScreen.BackgroundPic",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-24T17:13:07.2312848Z"
+      },
+      {
+        "NewName": "GameScreen.BackgroundPi",
+        "OldName": "GameScreen.BackgroundPic",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-24T17:13:07.2393036Z"
+      },
+      {
+        "NewName": "GameScreen.BackgroundPic",
+        "OldName": "GameScreen.BackgroundPi",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-24T17:13:10.7360375Z"
+      },
+      {
+        "NewName": "GameScreen.BackgroundPic",
+        "OldName": "GameScreen.BackgroundPi",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-24T17:13:10.7370449Z"
+      },
+      {
+        "NewName": "GameScreen.BackgroundPic",
+        "OldName": "GameScreen.BackgroundPi",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-24T17:13:10.7490407Z"
+      },
+      {
+        "NewName": "GameScreen.BGPic",
+        "OldName": "GameScreen.BackgroundPi",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-24T17:13:48.5131027Z"
+      },
+      {
+        "NewName": "GameScreen.BGPic",
+        "OldName": "GameScreen.BackgroundPi",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-24T17:13:48.5150741Z"
+      },
+      {
+        "NewName": "GameScreen.BGPic",
+        "OldName": "GameScreen.BackgroundPi",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-24T17:13:48.5240875Z"
+      },
+      {
+        "NewName": "GameOverScreen.BackgroundPic",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-24T17:13:57.5050026Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameOverScreen.BGPic BGPicInstance in GameOverScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-24T17:14:10.1942925Z"
+      },
+      {
+        "NewName": "GameScreen.BackgroundPic",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-24T17:14:45.2841505Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameScreen.Sprite BGPic in GameScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-24T17:14:54.3515872Z"
+      },
+      {
+        "NewName": "GameScreen.PortaitMarginColorsInstance1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-24T17:16:35.1378807Z"
+      },
+      {
+        "NewName": "GameScreen.PortaitMarginColorsInstanc2",
+        "OldName": "GameScreen.PortaitMarginColorsInstance1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-24T17:17:06.2408635Z"
+      },
+      {
+        "NewName": "GameScreen.PortaitMarginColorsInstanc2",
+        "OldName": "GameScreen.PortaitMarginColorsInstance1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-24T17:17:06.2508631Z"
+      },
+      {
+        "NewName": "GameScreen.PortaitMarginColorsInstanc2",
+        "OldName": "GameScreen.PortaitMarginColorsInstance1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-24T17:17:06.2598792Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameScreen.PortaitMarginColors PortaitMarginColorsInstance in GameScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-24T17:17:10.0397845Z"
+      },
+      {
+        "NewName": "GameScreen.PortaitMarginColorsInstance",
+        "OldName": "GameScreen.PortaitMarginColorsInstanc2",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-24T17:17:14.5862793Z"
+      },
+      {
+        "NewName": "GameScreen.PortaitMarginColorsInstance",
+        "OldName": "GameScreen.PortaitMarginColorsInstanc2",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-24T17:17:14.5877903Z"
+      },
+      {
+        "NewName": "GameScreen.PortaitMarginColorsInstance",
+        "OldName": "GameScreen.PortaitMarginColorsInstanc2",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-24T17:17:14.5947902Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameScreen.Sprite BackgroundPic in GameScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-24T17:20:28.4847379Z"
+      },
+      {
+        "NewName": "GameScreen.BackgroundPic",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-24T17:20:32.9109143Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameScreen",
+        "ElementType": "Screens",
+        "EventType": 1,
+        "TimestampUtc": "2024-10-24T17:21:22.26427Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MainGameScreen.BGPic BGPicInstance in MainGameScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-24T17:21:33.3168141Z"
+      },
+      {
+        "NewName": "MainGameScreen.BackgroundPic",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-24T17:21:35.4028445Z"
       }
     ]
   }
