@@ -18,6 +18,7 @@ namespace flappyrogue_mg.GameSpace
         //gum
         public GraphicalUiElement SoundUIScreen { get; private set; }
         public SoundUI SoundUI { get; private set; }
+        public GraphicalUiElement MainGameScreenGum { get; private set; }
         public GumWindowResizer Resizer { get; private set; }
         //end gum
 
@@ -28,7 +29,7 @@ namespace flappyrogue_mg.GameSpace
         public StateMachine StateMachine { get; private set; }
         public World World { get; private set; }
         public FullscreenRectangleEntity SkyBackgroundBox { get; private set; }
-        public BackgroundPicture Background { get; private set; }
+        //public BackgroundPicture Background { get; private set; }
         public GetReadyUI GetReadyUI { get; private set; }
         public Bird Bird { get; private set; }
         public Floor Floor { get; private set; }
@@ -53,7 +54,7 @@ namespace flappyrogue_mg.GameSpace
             StateMachine = new StateMachine(new GetReadyState(this));
             GetReadyUI = new GetReadyUI();
             SkyBackgroundBox = new FullscreenRectangleEntity(GraphicsDevice, COLOR_SKY);
-            Background = new BackgroundPicture();
+            //Background = new BackgroundPicture();
             Floor = new Floor();
             PipesSpawner = new PipesSpawner();
             Bird = new Bird(this);
@@ -63,7 +64,7 @@ namespace flappyrogue_mg.GameSpace
             World = new World(GraphicsDevice);
             World.AddBackgroundUIEntity(SkyBackgroundBox);
             // because the UI is drawn on top of the ingame entities, could not do this for background pic as its a pic sized for ingame
-            World.AddIngameEntity(Background); 
+            //World.AddIngameEntity(Background); 
             World.AddIngameEntity(PipesSpawner);
             World.AddIngameEntity(Floor);
             World.AddIngameEntity(Bird);
@@ -76,12 +77,13 @@ namespace flappyrogue_mg.GameSpace
             //_viewportAdapter.Reset();
 
             //gum
+            FormsUtilities.InitializeDefaults();
             SoundUIScreen = MainRegistry.I.LoadGumScreen("SoundUI", andLoadTheScreen:false);
             SoundUI = new(this, SoundUIScreen);
-            Resizer = new GumWindowResizer(GraphicsDevice, SoundUIScreen);
+            MainGameScreenGum = MainRegistry.I.LoadGumScreen("MainGameScreen", andLoadTheScreen: true);
+            Resizer = new GumWindowResizer(GraphicsDevice, MainGameScreenGum);
             Resizer.Resize();
             Game.Window.ClientSizeChanged += Resizer.Resize;
-            FormsUtilities.InitializeDefaults();
             //end gum
         }
 

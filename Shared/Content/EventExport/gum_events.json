@@ -1442,6 +1442,41 @@
         "ElementType": "Screens",
         "EventType": 7,
         "TimestampUtc": "2024-10-23T12:53:03.6198489Z"
+      },
+      {
+        "NewName": "MainGameScreen",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 0,
+        "TimestampUtc": "2024-10-24T14:31:46.4069414Z"
+      },
+      {
+        "NewName": "MainGameScreen.PortaitMarginColorsInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-24T14:32:06.1375778Z"
+      },
+      {
+        "NewName": "MainGameScreen.BGPicInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-24T14:32:09.1367803Z"
+      },
+      {
+        "NewName": "MainGameScreen.SpriteInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-24T14:35:01.1019234Z"
+      },
+      {
+        "NewName": "MainGameScreen.PauseButton",
+        "OldName": "MainGameScreen.SpriteInstance",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-24T14:35:19.3047666Z"
       }
     ]
   }
