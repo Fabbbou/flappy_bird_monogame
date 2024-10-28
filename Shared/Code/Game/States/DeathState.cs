@@ -14,7 +14,7 @@ public class DeathState : GameState
     }
     public void Enter()
     {
-        _mainGameScreen.PauseButton.Visible = false;
+        _mainGameScreen.PauseButtonMobile.Visible = false;
         _mainGameScreen.Bird.IsPaused = true;
         _mainGameScreen.PipesSpawner.IsPaused = true;
         _mainGameScreen.Floor.IsPaused = true;

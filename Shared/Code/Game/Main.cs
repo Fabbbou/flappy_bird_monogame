@@ -54,11 +54,10 @@ namespace flappyrogue_mg.GameSpace
             screenRegistry.AddScreen(ScreenName.MainGameScreen, new MainGameScreen(this));
             screenRegistry.AddScreen(ScreenName.GameOverScreen, new GameOverScreen(this));
             ViewportAdapterFactory factory = new VerticalViewportAdapterFactory(this, GraphicsDevice, WORLD_WIDTH, WORLD_HEIGHT, false);
-            MainRegistry.I.Initialize(this, GraphicsDevice, screenRegistry, factory, "proj.gumx");
+            MainRegistry.I.Initialize(this, GraphicsDevice, screenRegistry, factory, WORLD_WIDTH, WORLD_HEIGHT, gumProjectPath: "proj.gumx");
             MainRegistry.I.ScreenRegistry.LoadScreen(ScreenName.MenuScreen);
 
             SetStartupWindowSize();
-
             base.Initialize();
         }
 
@@ -74,6 +73,7 @@ namespace flappyrogue_mg.GameSpace
             _graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
 #endif
             _graphics.ApplyChanges();
+            MainRegistry.I.RefreshScale();
         }
 
         protected override void LoadContent()
@@ -92,6 +92,12 @@ namespace flappyrogue_mg.GameSpace
             _fpsCounter.Draw(gameTime);
             Window.Title = $"FPS: {_fpsCounter.FramesPerSecond}";
             base.Draw(gameTime);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            MainRegistry.I.Dispose();
+            base.Dispose(disposing);
         }
     }
 

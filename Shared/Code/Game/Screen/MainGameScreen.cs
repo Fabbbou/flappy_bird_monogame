@@ -22,6 +22,11 @@ namespace flappyrogue_mg.GameSpace
         public GraphicalUiElement MainGameScreenGum { get; private set; }
         public GumWindowResizer SoundUIResizer { get; private set; }
         public BackgroundGumWindowResizer BackgroundGumWindowResizer { get; private set; }
+        public GraphicalUiElement FloorExtension { get; private set; }
+        public GraphicalUiElement PauseButtonMobile { get; private set; }
+        public GraphicalUiElement PauseButtonWidescreen { get; private set; }
+        public GraphicalUiElement CurrentPauseButton { get; private set; }
+
         //end gum
 
         public static readonly Rectangle JumpRegion = new Rectangle(CLICK_REGION_POSITION_JUMP_REGION.ToPoint(), CLICK_REGION_SIZE_JUMP_REGION.ToPoint());
@@ -35,7 +40,6 @@ namespace flappyrogue_mg.GameSpace
         public Bird Bird { get; private set; }
         public Floor Floor { get; private set; }
         public PipesSpawner PipesSpawner { get; private set; }
-        public GraphicalUiElement PauseButton { get; private set; }
         public CurrentScoreUI CurrentScoreUI { get; private set; }
         public Entity EntityJumpClickRegion { get; set; }
         public ClickableRegionHandler JumpBirdClickableRegionHandler { get; set; }
@@ -52,10 +56,8 @@ namespace flappyrogue_mg.GameSpace
             _viewportAdapter = factory.BuildViewport();
             _camera = factory.BuildCamera();
 
-            StateMachine = new StateMachine(new GetReadyState(this));
             //StateMachine = new StateMachine(new PlayState(this));
             GetReadyUI = new GetReadyUI();
-            Floor = new Floor();
             PipesSpawner = new PipesSpawner();
             Bird = new Bird(this);
             CurrentScoreUI = new();
@@ -64,7 +66,6 @@ namespace flappyrogue_mg.GameSpace
             // because the UI is drawn on top of the ingame entities, could not do this for background pic as its a pic sized for ingame
             //World.AddIngameEntity(Background); 
             World.AddIngameEntity(PipesSpawner);
-            World.AddIngameEntity(Floor);
             World.AddIngameEntity(Bird);
            
             //World.AddIngameEntity(PauseButton); //should be UI
@@ -78,6 +79,11 @@ namespace flappyrogue_mg.GameSpace
             FormsUtilities.InitializeDefaults();
             InitializeGumComponents();
             //end gum
+
+            //has to be setup at the end because of PauseButtonMobile and PauseButtonWidescreen initialization
+            Floor = new Floor(MainGameScreenGum);
+            World.AddIngameEntity(Floor);
+            StateMachine = new StateMachine(new GetReadyState(this));
         }
 
         private void InitializeGumComponents()
@@ -89,10 +95,30 @@ namespace flappyrogue_mg.GameSpace
             Game.Window.ClientSizeChanged += SoundUIResizer.Resize;
 
             MainGameScreenGum = MainRegistry.I.LoadGumScreen("MainGameScreen", andLoadTheScreen: true);
-            PauseButton = GumTransparentButton.FindAndAttachButton("PauseButton", MainGameScreenGum, OnClickPause);
-            BackgroundGumWindowResizer = new BackgroundGumWindowResizer(Game.Window, GraphicsDevice, MainGameScreenGum);
+            PauseButtonMobile = GumTransparentButton.FindAndAttachButton("PauseButtonMobile", MainGameScreenGum, OnClickPause);
+            PauseButtonWidescreen = GumTransparentButton.FindAndAttachButton("PauseButtonWidescreen", MainGameScreenGum, OnClickPause);
+            FloorExtension = MainGameScreenGum.GetGraphicalUiElementByName("FloorExtension");
+            BackgroundGumWindowResizer = new BackgroundGumWindowResizer(Game.Window, GraphicsDevice, MainGameScreenGum, OnWindowResize);
             BackgroundGumWindowResizer.InitAndResizeOnce();
             Debug.WriteLine("MainGameScreen Initialize");
+        }
+
+        public void OnWindowResize(float screenScale, bool isWideScreen)
+        {
+            if (isWideScreen)
+            {
+                FloorExtension.Visible = false;
+                PauseButtonMobile.Visible = false;
+                PauseButtonWidescreen.Visible = true;
+                CurrentPauseButton = PauseButtonWidescreen;
+            }
+            else
+            {
+                FloorExtension.Visible = true;
+                PauseButtonMobile.Visible = true;
+                PauseButtonWidescreen.Visible = false;
+                CurrentPauseButton = PauseButtonMobile;
+            }
         }
 
         public override void LoadContent()
@@ -107,6 +133,7 @@ namespace flappyrogue_mg.GameSpace
             World.UnloadContent();
             GizmosRegistry.Instance.Clear();
             SoundUIScreen.RemoveFromManagers();
+            MainGameScreenGum.RemoveFromManagers();
             BackgroundGumWindowResizer.Dispose();
             Game.Window.ClientSizeChanged -= SoundUIResizer.Resize;
             //_viewportAdapter.Dispose();

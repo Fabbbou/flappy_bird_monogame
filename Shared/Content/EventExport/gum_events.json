@@ -1743,6 +1743,230 @@
         "ElementType": "Screens",
         "EventType": 5,
         "TimestampUtc": "2024-10-24T17:21:35.4028445Z"
+      },
+      {
+        "NewName": "MainGameScreen.SpriteInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-28T13:57:56.3110658Z"
+      },
+      {
+        "NewName": "MainGameScreen.Floor",
+        "OldName": "MainGameScreen.SpriteInstance",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-28T13:58:04.845288Z"
+      },
+      {
+        "NewName": "MainGameScreen.Floor1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-28T14:00:21.6019262Z"
+      },
+      {
+        "NewName": "MainGameScreen.NextFloor",
+        "OldName": "MainGameScreen.Floor1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-28T14:00:29.4799487Z"
+      },
+      {
+        "NewName": "MainGameScreen.ContainerInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-28T14:00:44.8382988Z"
+      },
+      {
+        "NewName": "MainGameScreen.FloorsContainer",
+        "OldName": "MainGameScreen.ContainerInstance",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-28T14:00:53.926347Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MainGameScreen.Container FloorsContainer in MainGameScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-28T14:21:31.7337318Z"
+      },
+      {
+        "NewName": "MainGameScreen.ColoredRectangleInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-28T14:23:46.0219338Z"
+      },
+      {
+        "NewName": "MainGameScreen.FloorExtension",
+        "OldName": "MainGameScreen.ColoredRectangleInstance",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-28T14:25:20.5676353Z"
+      },
+      {
+        "NewName": "MainGameScreen.PortaitMarginColorsInstance1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-28T14:26:42.3757679Z"
+      },
+      {
+        "NewName": "MainGameScreen.FloorExtension1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-28T14:26:42.3787421Z"
+      },
+      {
+        "NewName": "MainGameScreen.BackgroundPic1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-28T14:26:42.3972536Z"
+      },
+      {
+        "NewName": "MainGameScreen.PauseButton1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-28T14:26:42.4002949Z"
+      },
+      {
+        "NewName": "MainGameScreen.Floor1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-28T14:26:42.4082614Z"
+      },
+      {
+        "NewName": "MainGameScreen.NextFloor1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-28T14:26:42.4152523Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MainGameScreen.PortaitMarginColors PortaitMarginColorsInstance1 in MainGameScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-28T14:26:54.9308432Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MainGameScreen.Sprite BackgroundPic1 in MainGameScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-28T14:27:02.1500337Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MainGameScreen.ColoredRectangle FloorExtension1 in MainGameScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-28T14:27:07.1972608Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MainGameScreen.Sprite PauseButton1 in MainGameScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-28T14:27:07.1992453Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MainGameScreen.Sprite Floor1 in MainGameScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-28T14:27:07.2073268Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MainGameScreen.Sprite NextFloor1 in MainGameScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-28T14:27:07.2153254Z"
+      },
+      {
+        "NewName": "MainGameScreen.FloorExtension1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-28T14:27:16.209983Z"
+      },
+      {
+        "NewName": "MainGameScreen.FloorExtension2",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-28T14:28:37.1689587Z"
+      },
+      {
+        "NewName": "MainGameScreen.LeftBlackWall",
+        "OldName": "MainGameScreen.FloorExtension1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-28T14:28:51.2158842Z"
+      },
+      {
+        "NewName": "MainGameScreen.RightBlackWall",
+        "OldName": "MainGameScreen.FloorExtension2",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-28T14:29:03.4484777Z"
+      },
+      {
+        "NewName": "MainGameScreen.LBlackWall",
+        "OldName": "MainGameScreen.RightBlackWall",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-28T14:29:38.6418965Z"
+      },
+      {
+        "NewName": "MainGameScreen.RBlackWall",
+        "OldName": "MainGameScreen.LeftBlackWall",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-28T14:29:44.5522661Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MainGameScreen.ColoredRectangle LBlackWall in MainGameScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-28T14:38:15.8500542Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MainGameScreen.ColoredRectangle RBlackWall in MainGameScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-28T14:38:15.8520537Z"
+      },
+      {
+        "NewName": "MainGameScreen.PauseButtonMobile",
+        "OldName": "MainGameScreen.PauseButton",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-28T14:53:32.1114354Z"
+      },
+      {
+        "NewName": "MainGameScreen.PauseButtonMobile1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-28T14:54:43.9781596Z"
+      },
+      {
+        "NewName": "MainGameScreen.PauseButtonWidescreen",
+        "OldName": "MainGameScreen.PauseButtonMobile1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-28T14:54:52.4894126Z"
       }
     ]
   }

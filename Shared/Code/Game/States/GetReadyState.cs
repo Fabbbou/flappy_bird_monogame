@@ -11,7 +11,7 @@ public class GetReadyState : MainGameState
         MainGameScreen.GetReadyUI.IsActive = true;
         MainGameScreen.Bird.IsActive = false;
         MainGameScreen.PipesSpawner.IsPaused = true;
-        MainGameScreen.PauseButton.Visible = false;
+        MainGameScreen.CurrentPauseButton.Visible = false;
 
         MainGameScreen.EntityJumpClickRegion = new Entity();
         MainGameScreen.JumpBirdClickableRegionHandler = new ClickableRegionHandler(
@@ -22,9 +22,7 @@ public class GetReadyState : MainGameState
 
     public override void Exit()
     {
-        MainGameScreen.Bird.IsActive = true;
-        MainGameScreen.PipesSpawner.IsPaused = false;
-        MainGameScreen.PauseButton.Visible = true;
+
         MainGameScreen.GetReadyUI.IsActive = false;
     }
 
