@@ -40,7 +40,7 @@ public class PhysicsObject : Gizmo
         set
         {
             _position = value;
-            if (GraphicalUiElement != null)
+            if (GraphicalUiElement != null && Collider.CollisionType != ColliderType.Static)
             {
                 GraphicalUiElement.X = value.X;
                 GraphicalUiElement.Y = value.Y;
@@ -92,21 +92,22 @@ public class PhysicsObject : Gizmo
 
     public void Update(GameTime gameTime)
     {
-        if (ColliderType.Static == Collider.CollisionType) return;
-        float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+        if (ColliderType.Static != Collider.CollisionType)
+        {
+            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-        // Apply gravity
-        ApplyForce(Gravity);
-        // Apply friction
-        Vector2 friction = -Friction * Velocity;
-        ApplyForce(friction);
-        // Update velocity
-        Velocity += Acceleration * deltaTime;
-        // Update position
-        Position += Velocity * deltaTime + 0.5f * Acceleration * deltaTime * deltaTime;
-        // Reset acceleration for the next frame
-        Acceleration = Vector2.Zero;
-
+            // Apply gravity
+            ApplyForce(Gravity);
+            // Apply friction
+            Vector2 friction = -Friction * Velocity;
+            ApplyForce(friction);
+            // Update velocity
+            Velocity += Acceleration * deltaTime;
+            // Update position
+            Position += Velocity * deltaTime + 0.5f * Acceleration * deltaTime * deltaTime;
+            // Reset acceleration for the next frame
+            Acceleration = Vector2.Zero;
+        }
         _gumGizmo?.Update();
     }
 

@@ -2149,6 +2149,34 @@
         "ElementType": "Screens",
         "EventType": 7,
         "TimestampUtc": "2024-10-30T16:02:48.4542309Z"
+      },
+      {
+        "NewName": "GameOverScreen.PortraitSkyAndTrees",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-30T21:10:06.5546436Z"
+      },
+      {
+        "NewName": "GameOverScreen.MobileTopSkyRectangle",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-30T21:10:06.5651615Z"
+      },
+      {
+        "NewName": "GameOverScreen.MobileBottomTreesRectangle",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-30T21:10:06.5943239Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameOverScreen.PortaitMarginColors PortaitMarginColorsInstance in GameOverScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-30T21:10:23.4473732Z"
       }
     ]
   }

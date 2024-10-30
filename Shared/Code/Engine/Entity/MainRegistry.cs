@@ -24,7 +24,6 @@ public class MainRegistry : IDisposable
         }
     }
     public Game Game { get; private set; }
-    public TouchscreenCursor TouchscreenCursor = new TouchscreenCursor();
     public GraphicsDevice GraphicsDevice { get; private set; }
     public ScreenRegistry ScreenRegistry { get; private set; }
     public GumProjectSave GumProject;

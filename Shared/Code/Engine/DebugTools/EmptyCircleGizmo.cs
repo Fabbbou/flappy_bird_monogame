@@ -24,12 +24,11 @@ public class EmptyCircleGizmo : GumGizmo
 
     public void Display()
     {
-        //_parentGraphicalUiElement.Children.Add(_lineCircle);
         SystemManagers.Default.ShapeManager.Add(_lineCircle);
     }
 
     public void Kill()
     {
-        _parentGraphicalUiElement?.Children.Remove(_lineCircle);
+        SystemManagers.Default.ShapeManager.Remove(_lineCircle);
     }
 }

@@ -22,7 +22,7 @@ namespace flappyrogue_mg.GameSpace
             _mainGameScreenGum = mainGameScreenGum;
             _floor = _mainGameScreenGum.GetGraphicalUiElementByName("Floor");
             _nextFloor = _mainGameScreenGum.GetGraphicalUiElementByName("NextFloor");
-            physicsObject = PhysicsObjectFactory.Rect("floor", SPRITE_POSITION_FLOOR.X, SPRITE_POSITION_FLOOR.Y, ColliderType.Static, ATLAS_SIZE_FLOOR.X, ATLAS_SIZE_FLOOR.Y);
+            physicsObject = PhysicsObjectFactory.Rect("floor", SPRITE_POSITION_FLOOR.X, SPRITE_POSITION_FLOOR.Y, ColliderType.Static, ATLAS_SIZE_FLOOR.X, ATLAS_SIZE_FLOOR.Y, _floor);
         }
 
         public override void LoadContent(ContentManager content)
