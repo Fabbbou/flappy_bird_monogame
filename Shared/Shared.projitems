@@ -11,6 +11,8 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\DebugTools\Gizmo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\DebugTools\GizmosRegistry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)code\engine\debugtools\MousePositionPrinter.cs" />
+    <Compile Include="..\Shared\code\engine\debugtools\MoveCamera.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\entity\FrameScaler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\helpers\Memoizer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Screen\ScreenRegistry.cs" />

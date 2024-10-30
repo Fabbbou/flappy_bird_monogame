@@ -52,6 +52,8 @@ public class MenuScreen : GameScreen
 
     public override void UnloadContent()
     {
+        //_gumScreen.SuspendLayout();
+        _gumScreen.Visible = false;
         _gumScreen.RemoveFromManagers();
     }
 }

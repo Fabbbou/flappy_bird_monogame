@@ -26,22 +26,23 @@ public class MainRegistry : IDisposable
     public Game Game { get; private set; }
     public TouchscreenCursor TouchscreenCursor = new TouchscreenCursor();
     public GraphicsDevice GraphicsDevice { get; private set; }
-    private ViewportAdapterFactory ViewportAdapterFactory;
-    private ViewportAdapter _viewportAdapter;
     public ScreenRegistry ScreenRegistry { get; private set; }
-    public OrthographicCamera Camera { get; private set; }
     public GumProjectSave GumProject;
     private FrameScaler _frameScaler;
     public FrameScaler.FrameScale CurrentFrameScale => _frameScaler.CurrentFrameScale;
     public void RefreshScale() => _frameScaler.RefreshCurrentScale();
-    public void Initialize(Game game, GraphicsDevice graphicsDevice, ScreenRegistry screenRegistry, ViewportAdapterFactory viewportAdapterFactory, float virtualWidth, float virtualHeight, string gumProjectPath = null)
+
+    public void RefreshCenterScreen()
+    {
+        GraphicalUiElement.CanvasWidth = GraphicsDevice.Viewport.Width / CurrentFrameScale.Scale;
+        GraphicalUiElement.CanvasHeight = GraphicsDevice.Viewport.Height / CurrentFrameScale.Scale;
+        SystemManagers.Default.Renderer.Camera.Zoom = CurrentFrameScale.Scale;
+    }
+    public void Initialize(Game game, GraphicsDevice graphicsDevice, ScreenRegistry screenRegistry, float virtualWidth, float virtualHeight, string gumProjectPath = null)
     {
         Game = game;
         GraphicsDevice = graphicsDevice;
         ScreenRegistry = screenRegistry;
-        ViewportAdapterFactory = viewportAdapterFactory;
-        _viewportAdapter = viewportAdapterFactory.BuildViewport();
-        Camera = viewportAdapterFactory.BuildCamera();
         _frameScaler = new FrameScaler(graphicsDevice, Game.Window, virtualWidth, virtualHeight);
         if (gumProjectPath != null)
         {
@@ -60,8 +61,7 @@ public class MainRegistry : IDisposable
 
     public Matrix GetScaleMatrix()
     {
-        return SystemManagers.Default.Renderer.Camera.GetTransformationMatrix() *
-            Matrix.CreateScale(CurrentFrameScale.Scale, CurrentFrameScale.Scale, 1);
+        return SystemManagers.Default.Renderer.Camera.GetTransformationMatrix();
     }
 
     public Point PointToScreen(int x, int y)

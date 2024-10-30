@@ -7,10 +7,7 @@ public class GumWindowResizer(GraphicsDevice _graphicsDevice, GraphicalUiElement
 {
     public void Resize(object not = null, EventArgs used = null)
     {
-        GraphicalUiElement.CanvasWidth = _graphicsDevice.Viewport.Width;
-        GraphicalUiElement.CanvasHeight = _graphicsDevice.Viewport.Height;
-
-        // Grab the rootmost object and tell it to resize:
+        MainRegistry.I.RefreshCenterScreen();
         screen.UpdateLayout();
     }
 }

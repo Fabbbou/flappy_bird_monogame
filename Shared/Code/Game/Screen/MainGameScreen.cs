@@ -32,8 +32,8 @@ namespace flappyrogue_mg.GameSpace
         public static readonly Rectangle JumpRegion = new Rectangle(CLICK_REGION_POSITION_JUMP_REGION.ToPoint(), CLICK_REGION_SIZE_JUMP_REGION.ToPoint());
         public const int ROUNDING = 10;
         private SpriteBatch _spriteBatch;
-        private ViewportAdapter _viewportAdapter;
-        private OrthographicCamera _camera;
+        //private ViewportAdapter _viewportAdapter;
+        //private OrthographicCamera _camera;
         public StateMachine StateMachine { get; private set; }
         public World World { get; private set; }
         public GetReadyUI GetReadyUI { get; private set; }
@@ -47,16 +47,21 @@ namespace flappyrogue_mg.GameSpace
 
         public override void Initialize()
         { 
+            StateMachine = new StateMachine(new GetReadyState(this));
+            //gum
+            FormsUtilities.InitializeDefaults();
+            InitializeGumComponents();
+            //end gum
+
             // setting the viewport dimensions to be the same as the background (bg) image
             // as the bg is portrait, the game will be portrait to
             // for a pixel perfect game, the viewport has to be the exact size of the background img
             Game.IsMouseVisible = true;
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            ViewportAdapterFactory factory = new VerticalViewportAdapterFactory(Game, GraphicsDevice, WORLD_WIDTH, WORLD_HEIGHT, true);
-            _viewportAdapter = factory.BuildViewport();
-            _camera = factory.BuildCamera();
+            //ViewportAdapterFactory factory = new VerticalViewportAdapterFactory(Game, GraphicsDevice, WORLD_WIDTH, WORLD_HEIGHT, true);
+            //_viewportAdapter = factory.BuildViewport();
+            //_camera = factory.BuildCamera();
 
-            //StateMachine = new StateMachine(new PlayState(this));
             GetReadyUI = new GetReadyUI();
             PipesSpawner = new PipesSpawner();
             Bird = new Bird(this);
@@ -75,15 +80,9 @@ namespace flappyrogue_mg.GameSpace
             World.AddUIEntity(CurrentScoreUI);
             //_viewportAdapter.Reset();
 
-            //gum
-            FormsUtilities.InitializeDefaults();
-            InitializeGumComponents();
-            //end gum
-
             //has to be setup at the end because of PauseButtonMobile and PauseButtonWidescreen initialization
             Floor = new Floor(MainGameScreenGum);
             World.AddIngameEntity(Floor);
-            StateMachine = new StateMachine(new GetReadyState(this));
         }
 
         private void InitializeGumComponents()
@@ -103,9 +102,9 @@ namespace flappyrogue_mg.GameSpace
             Debug.WriteLine("MainGameScreen Initialize");
         }
 
-        public void OnWindowResize(float screenScale, bool isWideScreen)
+        public void OnWindowResize()
         {
-            if (isWideScreen)
+            if (MainRegistry.I.CurrentFrameScale.IsWideScreen)
             {
                 FloorExtension.Visible = false;
                 PauseButtonMobile.Visible = false;
@@ -118,6 +117,10 @@ namespace flappyrogue_mg.GameSpace
                 PauseButtonMobile.Visible = true;
                 PauseButtonWidescreen.Visible = false;
                 CurrentPauseButton = PauseButtonMobile;
+            }
+            if (StateMachine.CurrentState is GetReadyState)
+            {
+                CurrentPauseButton.Visible = false;
             }
         }
 
@@ -159,23 +162,23 @@ namespace flappyrogue_mg.GameSpace
         public override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-            var ingameMatrix = _camera.GetViewMatrix();
-            var startScreen = MainRegistry.I.PointToScreen(0, 0);
-            var endScreen = _camera.ScreenToWorld(new(_viewportAdapter.ViewportWidth, _viewportAdapter.ViewportHeight)).ToPoint();
+            //var ingameMatrix = _camera.GetViewMatrix();
+            //var startScreen = MainRegistry.I.PointToScreen(0, 0);
+            //var endScreen = _camera.ScreenToWorld(new(_viewportAdapter.ViewportWidth, _viewportAdapter.ViewportHeight)).ToPoint();
 
 
 
-            //draw the ingame world boundaries if debugging
-            if (GizmosRegistry.Instance.IsDebugging)
-            {
-                _spriteBatch.Begin(transformMatrix: ingameMatrix, samplerState: SamplerState.PointClamp);
-                _spriteBatch.DrawRectangle(new Rectangle(0, 0, WORLD_WIDTH, WORLD_HEIGHT), Color.Blue);
-                _spriteBatch.End();
+            ////draw the ingame world boundaries if debugging
+            //if (GizmosRegistry.Instance.IsDebugging)
+            //{
+            //    _spriteBatch.Begin(transformMatrix: ingameMatrix, samplerState: SamplerState.PointClamp);
+            //    _spriteBatch.DrawRectangle(new Rectangle(0, 0, WORLD_WIDTH, WORLD_HEIGHT), Color.Blue);
+            //    _spriteBatch.End();
 
-                _spriteBatch.Begin( samplerState: SamplerState.PointClamp);
-                _spriteBatch.DrawRectangle(new Rectangle(0, 0, _viewportAdapter.ViewportWidth, _viewportAdapter.ViewportHeight), Color.Green, thickness: 2);
-                _spriteBatch.End();
-            }
+            //    _spriteBatch.Begin( samplerState: SamplerState.PointClamp);
+            //    _spriteBatch.DrawRectangle(new Rectangle(0, 0, _viewportAdapter.ViewportWidth, _viewportAdapter.ViewportHeight), Color.Green, thickness: 2);
+            //    _spriteBatch.End();
+            //}
             SystemManagers.Default.Draw();
             GizmosRegistry.Instance.Draw();
             //World.Draw(ingameMatrix);

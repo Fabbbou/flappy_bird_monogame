@@ -1967,6 +1967,132 @@
         "ElementType": "Screens",
         "EventType": 7,
         "TimestampUtc": "2024-10-28T14:54:52.4894126Z"
+      },
+      {
+        "NewName": "MenuScreen.ColoredRectangleInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-29T17:31:37.4996496Z"
+      },
+      {
+        "NewName": "MenuScreen.ColoredRectangleInstance1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-29T17:32:14.540718Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MenuScreen.ColoredRectangle ColoredRectangleInstance in MenuScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-29T17:32:59.9170426Z"
+      },
+      {
+        "NewName": "MenuScreen.ColoredRectangleInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-29T17:33:03.0179881Z"
+      },
+      {
+        "NewName": "MenuScreen.ColoredRectangleInstance2",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-29T17:33:04.0375461Z"
+      },
+      {
+        "NewName": "MenuScreen.ColoredRectangleInstance3",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-29T17:33:04.8109892Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MenuScreen.PortaitMarginColors PortaitMarginColorsInstance in MenuScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-30T00:20:02.8680223Z"
+      },
+      {
+        "NewName": "MenuScreen.MobileTopSkyRectangle",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-30T00:22:12.8511246Z"
+      },
+      {
+        "NewName": "MenuScreen.MobileBottomTreesRectangle",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-30T00:22:21.6261108Z"
+      },
+      {
+        "NewName": "MenuScreen.ContainerInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-30T00:25:07.0950162Z"
+      },
+      {
+        "NewName": "MenuScreen.PortraitBG",
+        "OldName": "MenuScreen.ContainerInstance",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-30T00:26:33.4086061Z"
+      },
+      {
+        "NewName": "MenuScreen.PortraitSkyTrees",
+        "OldName": "MenuScreen.PortraitBG",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-30T00:27:43.3110624Z"
+      },
+      {
+        "NewName": "MenuScreen.PortraitSkyAndTrees",
+        "OldName": "MenuScreen.PortraitSkyTrees",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-30T00:31:38.7508873Z"
+      },
+      {
+        "NewName": "MenuScreen.ContainerInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-30T00:35:36.3389839Z"
+      },
+      {
+        "NewName": "MenuScreen.WorldBorders",
+        "OldName": "MenuScreen.ContainerInstance",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-30T00:35:49.4561677Z"
+      },
+      {
+        "NewName": "MenuScreen.WorldBordersDebug",
+        "OldName": "MenuScreen.WorldBorders",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-30T00:36:56.7513147Z"
+      },
+      {
+        "NewName": "MainGameScreen.PortraitSkyAndTrees",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-30T00:37:09.1590295Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MainGameScreen.PortaitMarginColors PortaitMarginColorsInstance in MainGameScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-30T00:37:40.9461944Z"
       }
     ]
   }

@@ -6,13 +6,12 @@
     <Variable>
       <Type>DimensionUnitType</Type>
       <Name>BackgroundPic.Height Units</Name>
-      <Value xsi:type="xsd:int">6</Value>
+      <Value xsi:type="xsd:int">3</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>string</Type>
       <Name>BackgroundPic.Parent</Name>
-      <Value xsi:type="xsd:string">PortaitMarginColorsInstance</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -61,7 +60,7 @@
     <Variable>
       <Type>DimensionUnitType</Type>
       <Name>BackgroundPic.Width Units</Name>
-      <Value xsi:type="xsd:int">1</Value>
+      <Value xsi:type="xsd:int">3</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -113,9 +112,15 @@
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
+      <Type>float</Type>
+      <Name>Floor.Height</Name>
+      <Value xsi:type="xsd:float">100</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
       <Type>DimensionUnitType</Type>
       <Name>Floor.Height Units</Name>
-      <Value xsi:type="xsd:int">6</Value>
+      <Value xsi:type="xsd:int">3</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -176,7 +181,7 @@
     <Variable>
       <Type>DimensionUnitType</Type>
       <Name>Floor.Width Units</Name>
-      <Value xsi:type="xsd:int">1</Value>
+      <Value xsi:type="xsd:int">3</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -200,19 +205,19 @@
     <Variable>
       <Type>float</Type>
       <Name>Floor.Y</Name>
-      <Value xsi:type="xsd:float">100</Value>
+      <Value xsi:type="xsd:float">200</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>VerticalAlignment</Type>
       <Name>Floor.Y Origin</Name>
-      <Value xsi:type="xsd:int">2</Value>
+      <Value xsi:type="xsd:int">0</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
       <Name>Floor.Y Units</Name>
-      <Value xsi:type="xsd:int">3</Value>
+      <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -242,7 +247,6 @@
     <Variable>
       <Type>string</Type>
       <Name>FloorExtension.Parent</Name>
-      <Value xsi:type="xsd:string">PortaitMarginColorsInstance</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -320,7 +324,7 @@
     <Variable>
       <Type>DimensionUnitType</Type>
       <Name>NextFloor.Height Units</Name>
-      <Value xsi:type="xsd:int">6</Value>
+      <Value xsi:type="xsd:int">3</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -381,13 +385,13 @@
     <Variable>
       <Type>DimensionUnitType</Type>
       <Name>NextFloor.Width Units</Name>
-      <Value xsi:type="xsd:int">1</Value>
+      <Value xsi:type="xsd:int">3</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>
       <Name>NextFloor.X</Name>
-      <Value xsi:type="xsd:float">0</Value>
+      <Value xsi:type="xsd:float">24</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -405,19 +409,19 @@
     <Variable>
       <Type>float</Type>
       <Name>NextFloor.Y</Name>
-      <Value xsi:type="xsd:float">0</Value>
+      <Value xsi:type="xsd:float">200</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>VerticalAlignment</Type>
       <Name>NextFloor.Y Origin</Name>
-      <Value xsi:type="xsd:int">2</Value>
+      <Value xsi:type="xsd:int">0</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
       <Name>NextFloor.Y Units</Name>
-      <Value xsi:type="xsd:int">5</Value>
+      <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -429,7 +433,6 @@
     <Variable>
       <Type>string</Type>
       <Name>PauseButtonMobile.Parent</Name>
-      <Value xsi:type="xsd:string">PortaitMarginColorsInstance</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -621,45 +624,68 @@
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
-      <Type>ChildrenLayout</Type>
-      <Name>PortaitMarginColorsInstance.Children Layout</Name>
+      <Type>float</Type>
+      <Name>PortraitSkyAndTrees.Height</Name>
+      <Value xsi:type="xsd:float">256</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>DimensionUnitType</Type>
+      <Name>PortraitSkyAndTrees.Height Units</Name>
+      <Value xsi:type="xsd:int">0</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>string</Type>
+      <Name>PortraitSkyAndTrees.Parent</Name>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>PortraitSkyAndTrees.Width</Name>
+      <Value xsi:type="xsd:float">144</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>DimensionUnitType</Type>
+      <Name>PortraitSkyAndTrees.Width Units</Name>
       <Value xsi:type="xsd:int">0</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>
-      <Name>PortaitMarginColorsInstance.Height</Name>
-      <Value xsi:type="xsd:float">100</Value>
+      <Name>PortraitSkyAndTrees.X</Name>
+      <Value xsi:type="xsd:float">0</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
-      <Type>MarginBoxesVisible</Type>
-      <Name>PortaitMarginColorsInstance.MarginBoxesVisibleState</Name>
-      <Value xsi:type="xsd:string">Enabled</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>PortaitMarginColorsInstance.Width</Name>
-      <Value xsi:type="xsd:float">100</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>PortaitMarginColorsInstance.X</Name>
-      <Value xsi:type="xsd:float">1.00998472E-15</Value>
+      <Type>HorizontalAlignment</Type>
+      <Name>PortraitSkyAndTrees.X Origin</Name>
+      <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>PortaitMarginColorsInstance.X Units</Name>
-      <Value xsi:type="xsd:int">2</Value>
+      <Name>PortraitSkyAndTrees.X Units</Name>
+      <Value xsi:type="xsd:int">6</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>
-      <Name>PortaitMarginColorsInstance.Y</Name>
-      <Value xsi:type="xsd:float">28</Value>
+      <Name>PortraitSkyAndTrees.Y</Name>
+      <Value xsi:type="xsd:float">0</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>VerticalAlignment</Type>
+      <Name>PortraitSkyAndTrees.Y Origin</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>PositionUnitType</Type>
+      <Name>PortraitSkyAndTrees.Y Units</Name>
+      <Value xsi:type="xsd:int">7</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <VariableList xsi:type="VariableListSaveOfString">
@@ -699,13 +725,13 @@
     </VariableList>
   </State>
   <Instance>
-    <Name>FloorExtension</Name>
-    <BaseType>ColoredRectangle</BaseType>
+    <Name>PortraitSkyAndTrees</Name>
+    <BaseType>Container</BaseType>
     <DefinedByBase>false</DefinedByBase>
   </Instance>
   <Instance>
-    <Name>PortaitMarginColorsInstance</Name>
-    <BaseType>PortaitMarginColors</BaseType>
+    <Name>FloorExtension</Name>
+    <BaseType>ColoredRectangle</BaseType>
     <DefinedByBase>false</DefinedByBase>
   </Instance>
   <Instance>

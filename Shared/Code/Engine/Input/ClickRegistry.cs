@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.ViewportAdapters;
 using flappyrogue_mg.GameSpace;
 using MonoGame.Extended;
+using RenderingLibrary;
 public class ClickRegistry
 {
     private static ClickRegistry _instance;
@@ -48,7 +49,9 @@ public class ClickRegistry
             var mouseState = Mouse.GetState();
             if (mouseState.LeftButton == ButtonState.Pressed)
             {
-                Vector2 worldPosition = MainRegistry.I.Camera.ScreenToWorld(new Vector2(mouseState.X, mouseState.Y));
+                Vector2 worldPosition = new();
+                SystemManagers.Default.Renderer.Camera.ScreenToWorld(mouseState.X, mouseState.Y, out worldPosition.X, out worldPosition.Y);
+                //Vector2 worldPosition = MainRegistry.I.Camera.ScreenToWorld(new Vector2(mouseState.X, mouseState.Y));
                 if (!_hasClicked && clickableRegionHandler.Contains(worldPosition))
                 {
                     clickableRegionHandler.Click(gametime);
@@ -63,7 +66,9 @@ public class ClickRegistry
             TouchCollection touchCollection = TouchPanel.GetState();
             foreach (TouchLocation touch in touchCollection)
             {
-                var worldPosition = MainRegistry.I.Camera.ScreenToWorld(touch.Position);
+                Vector2 worldPosition = new();
+                SystemManagers.Default.Renderer.Camera.ScreenToWorld(touch.Position.X, touch.Position.Y, out worldPosition.X, out worldPosition.Y);
+                //var worldPosition = MainRegistry.I.Camera.ScreenToWorld(touch.Position);
                 if (touch.State == TouchLocationState.Pressed || touch.State == TouchLocationState.Moved)
                 {
                     if(!_hasClicked && clickableRegionHandler.Contains(worldPosition))
