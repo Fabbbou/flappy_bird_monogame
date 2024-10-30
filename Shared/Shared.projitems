@@ -9,8 +9,11 @@
     <Import_RootNamespace>Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)code\engine\debugtools\EmptyCircleGizmo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\debugtools\EmptyRectGumGizmo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\DebugTools\Gizmo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\DebugTools\GizmosRegistry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)code\engine\debugtools\GumGizmo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\debugtools\MousePositionPrinter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\game\gum\AnimatedSpriteIpso.cs" />
     <Compile Include="..\Shared\code\engine\debugtools\MoveCamera.cs" />

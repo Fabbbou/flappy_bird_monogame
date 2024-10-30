@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Gum.Wireframe;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using System;
@@ -13,6 +14,8 @@ public class PhysicsObject : Gizmo
 {
     public const float GRAVITY = 9.8f;
     public const float FRICTION = 0f;
+    public readonly GraphicalUiElement GraphicalUiElement; //nullable
+    private readonly GumGizmo _gumGizmo;
     private Collider _collider;
     public Collider Collider
     {
@@ -30,7 +33,20 @@ public class PhysicsObject : Gizmo
         }
     }
     public Vector2 Gravity;
-    public Vector2 Position;
+    private Vector2 _position;
+    public Vector2 Position
+    {
+        get => _position;
+        set
+        {
+            _position = value;
+            if (GraphicalUiElement != null)
+            {
+                GraphicalUiElement.X = value.X;
+                GraphicalUiElement.Y = value.Y;
+            }
+        }
+    }
     public Vector2 Velocity;
     public Vector2 Acceleration;
     public Vector2 Friction;
@@ -39,7 +55,7 @@ public class PhysicsObject : Gizmo
     private string _label;
     public string Label => _label;
 
-    public PhysicsObject(string label, float x, float y, ColliderType colliderType)
+    public PhysicsObject(string label, float x, float y, ColliderType colliderType, GraphicalUiElement graphicalUiElement = null, GumGizmo gumGizmo = null)
     {
         _label = label;
         Position = new(x, y);
@@ -47,6 +63,8 @@ public class PhysicsObject : Gizmo
         Acceleration = Vector2.Zero;
         Gravity = new Vector2(0, GRAVITY);
         Friction = new Vector2(FRICTION, FRICTION);
+        GraphicalUiElement = graphicalUiElement;
+        _gumGizmo = gumGizmo;
     }
 
     ~PhysicsObject()
@@ -88,21 +106,38 @@ public class PhysicsObject : Gizmo
         Position += Velocity * deltaTime + 0.5f * Acceleration * deltaTime * deltaTime;
         // Reset acceleration for the next frame
         Acceleration = Vector2.Zero;
+
+        _gumGizmo?.Update();
     }
 
     public void DrawGizmo(SpriteBatch spriteBatch)
     {
-        if(Collider is RectCollider rect)
+        if(_gumGizmo != null)
         {
-            spriteBatch.DrawRectangle(rect.Position, rect.Size, Constants.COLOR_DEFAULT_DEBUG_GIZMOS, layerDepth: Constants.LAYER_DEPTH_DEBUG);
-        }else if (Collider is CirclCollider circl)
-        {
-            spriteBatch.DrawCircle(circl.Position, circl.Radius, 16, Constants.COLOR_DEFAULT_DEBUG_GIZMOS, layerDepth: Constants.LAYER_DEPTH_DEBUG);
+            DrawGizmoGum();
         }
+        else
+        {
+            if (Collider is RectCollider rect)
+            {
+                spriteBatch.DrawRectangle(rect.Position, rect.Size, Constants.COLOR_DEFAULT_DEBUG_GIZMOS, layerDepth: Constants.LAYER_DEPTH_DEBUG);
+            }else if (Collider is CirclCollider circl)
+            {
+                spriteBatch.DrawCircle(circl.Position, circl.Radius, 16, Constants.COLOR_DEFAULT_DEBUG_GIZMOS, layerDepth: Constants.LAYER_DEPTH_DEBUG);
+            }
+        }
+
+    }
+
+    private void DrawGizmoGum()
+    {
+        if (GraphicalUiElement == null) return;
+        _gumGizmo?.Display();
     }
 
     public void Kill()
     {
+        _gumGizmo?.Kill();
         GizmosRegistry.Instance.RemoveObject(this);
         PhysicsEngine.Instance.RemoveCollider(this);
     }
