@@ -12,6 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\DebugTools\Gizmo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\DebugTools\GizmosRegistry.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\debugtools\MousePositionPrinter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)code\game\gum\AnimatedSpriteIpso.cs" />
     <Compile Include="..\Shared\code\engine\debugtools\MoveCamera.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\entity\FrameScaler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\helpers\Memoizer.cs" />
@@ -80,6 +81,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Content\Components\BGPic.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\Components\Bird.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\Components\BirdAnimations.ganx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Content\Components\PortaitMarginColors.gucx">

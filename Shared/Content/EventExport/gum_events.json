@@ -2093,6 +2093,62 @@
         "ElementType": "Screens",
         "EventType": 6,
         "TimestampUtc": "2024-10-30T00:37:40.9461944Z"
+      },
+      {
+        "NewName": "MainGameScreen.SpriteInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-30T14:53:10.6123475Z"
+      },
+      {
+        "NewName": "MainGameScreen.Bird",
+        "OldName": "MainGameScreen.SpriteInstance",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-30T14:56:56.9441823Z"
+      },
+      {
+        "NewName": "Bird",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-10-30T15:39:10.8953191Z"
+      },
+      {
+        "NewName": "Bird (Container).SpriteInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-30T15:39:22.8171128Z"
+      },
+      {
+        "NewName": "Frame3",
+        "OldName": "Framew3",
+        "ElementType": "Components",
+        "EventType": 3,
+        "TimestampUtc": "2024-10-30T15:42:36.1754811Z"
+      },
+      {
+        "NewName": "MainGameScreen.BirdInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-30T16:01:48.9950757Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MainGameScreen.Sprite Bird in MainGameScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-30T16:02:39.2074279Z"
+      },
+      {
+        "NewName": "MainGameScreen.Bird",
+        "OldName": "MainGameScreen.BirdInstance",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-30T16:02:48.4542309Z"
       }
     ]
   }

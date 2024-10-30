@@ -46,6 +46,11 @@
     <LinkType>ReferenceOriginal</LinkType>
   </ComponentReference>
   <ComponentReference>
+    <Name>Bird</Name>
+    <ElementType>Component</ElementType>
+    <LinkType>ReferenceOriginal</LinkType>
+  </ComponentReference>
+  <ComponentReference>
     <Name>PortaitMarginColors</Name>
     <ElementType>Component</ElementType>
     <LinkType>ReferenceOriginal</LinkType>

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ElementAnimationsSave xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Animations>
+    <AnimationSave>
+      <Loops>true</Loops>
+      <Name>Play</Name>
+      <States>
+        <AnimatedStateSave>
+          <StateName>Play/Frame1</StateName>
+          <Time>0</Time>
+          <InterpolationType>Instant</InterpolationType>
+          <Easing>Out</Easing>
+        </AnimatedStateSave>
+        <AnimatedStateSave>
+          <StateName>Play/Frame2</StateName>
+          <Time>0.15</Time>
+          <InterpolationType>Instant</InterpolationType>
+          <Easing>Out</Easing>
+        </AnimatedStateSave>
+        <AnimatedStateSave>
+          <StateName>Play/Frame3</StateName>
+          <Time>0.3</Time>
+          <InterpolationType>Instant</InterpolationType>
+          <Easing>Out</Easing>
+        </AnimatedStateSave>
+        <AnimatedStateSave>
+          <StateName>Play/Frame2</StateName>
+          <Time>0.45</Time>
+          <InterpolationType>Instant</InterpolationType>
+          <Easing>Out</Easing>
+        </AnimatedStateSave>
+        <AnimatedStateSave>
+          <StateName>Play/Frame1</StateName>
+          <Time>0.6</Time>
+          <InterpolationType>Instant</InterpolationType>
+          <Easing>Out</Easing>
+        </AnimatedStateSave>
+      </States>
+      <Animations />
+      <Events />
+    </AnimationSave>
+  </Animations>
+</ElementAnimationsSave>

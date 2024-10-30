@@ -146,6 +146,7 @@ namespace flappyrogue_mg.GameSpace
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Game.Exit();
+            MainGameScreenGum.AnimateSelf(gameTime.ElapsedGameTime.TotalSeconds);
             StateMachine.Update(gameTime);
             World.Update(gameTime);
             if (SoundUI.IsActive)
