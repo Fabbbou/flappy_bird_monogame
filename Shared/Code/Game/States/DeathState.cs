@@ -32,7 +32,7 @@ public class DeathState : GameState
         _deathTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
         if (_deathTimer >= DEATH_TIME)
         {
-            MainRegistry.I.ScreenRegistry.LoadScreen(ScreenName.GameOverScreen, new FadeTransition(_mainGameScreen.Game.GraphicsDevice, Color.Black));
+            MainRegistry.I.SceneRegistry.LoadScene(SceneName.GameOverScreen, new FadeTransition(_mainGameScreen.Game.GraphicsDevice, Color.Black));
         }
     }
 }

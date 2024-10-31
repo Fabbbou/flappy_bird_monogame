@@ -82,7 +82,7 @@ public class SoundUI
     }
     public void OnClickMenu()
     {
-        MainRegistry.I.ScreenRegistry.LoadScreen(ScreenName.MenuScreen);
+        MainRegistry.I.SceneRegistry.LoadScene(SceneName.MenuScreen);
     }
     public void OnClickFxMinus()
     {

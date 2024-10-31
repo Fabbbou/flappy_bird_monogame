@@ -26,6 +26,7 @@ namespace flappyrogue_mg.GameSpace
         public GraphicalUiElement PauseButtonMobile { get; private set; }
         public GraphicalUiElement PauseButtonWidescreen { get; private set; }
         public GraphicalUiElement CurrentPauseButton { get; private set; }
+        public GraphicalUiElement BackgroundPic { get; private set; }
 
         //end gum
 
@@ -87,19 +88,20 @@ namespace flappyrogue_mg.GameSpace
 
         private void InitializeGumComponents()
         {
-            SoundUIScreen = MainRegistry.I.LoadGumScreen("SoundUI", andLoadTheScreen: false);
+            //SoundUIScreen = MainRegistry.I.LoadGumScreen("SoundUI", andLoadTheScreen: false);
+            SoundUIScreen = MainRegistry.I.GetScreenButDontShow("SoundUI");
             SoundUI = new(this, SoundUIScreen);
             SoundUIResizer = new GumWindowResizer(GraphicsDevice, SoundUIScreen);
             SoundUIResizer.Resize();
             Game.Window.ClientSizeChanged += SoundUIResizer.Resize;
 
-            MainGameScreenGum = MainRegistry.I.LoadGumScreen("MainGameScreen", andLoadTheScreen: true);
+            MainGameScreenGum = MainRegistry.I.ChangeScreen("MainGameScreen");
             PauseButtonMobile = GumTransparentButton.FindAndAttachButton("PauseButtonMobile", MainGameScreenGum, OnClickPause);
             PauseButtonWidescreen = GumTransparentButton.FindAndAttachButton("PauseButtonWidescreen", MainGameScreenGum, OnClickPause);
             FloorExtension = MainGameScreenGum.GetGraphicalUiElementByName("FloorExtension");
             BackgroundGumWindowResizer = new BackgroundGumWindowResizer(Game.Window, GraphicsDevice, MainGameScreenGum, OnWindowResize);
             BackgroundGumWindowResizer.InitAndResizeOnce();
-            Debug.WriteLine("MainGameScreen Initialize");
+            BackgroundPic = MainGameScreenGum.GetGraphicalUiElementByName("BackgroundPic");
         }
 
         public void OnWindowResize()
@@ -133,7 +135,7 @@ namespace flappyrogue_mg.GameSpace
 
         public override void UnloadContent()
         {
-            Bird.UnloadContent();
+            //Bird.UnloadContent();
             World.UnloadContent();
             GizmosRegistry.Instance.Clear();
             SoundUIScreen.RemoveFromManagers();
@@ -164,26 +166,9 @@ namespace flappyrogue_mg.GameSpace
         public override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-            //var ingameMatrix = _camera.GetViewMatrix();
-            //var startScreen = MainRegistry.I.PointToScreen(0, 0);
-            //var endScreen = _camera.ScreenToWorld(new(_viewportAdapter.ViewportWidth, _viewportAdapter.ViewportHeight)).ToPoint();
 
-
-
-            ////draw the ingame world boundaries if debugging
-            //if (GizmosRegistry.Instance.IsDebugging)
-            //{
-            //    _spriteBatch.Begin(transformMatrix: ingameMatrix, samplerState: SamplerState.PointClamp);
-            //    _spriteBatch.DrawRectangle(new Rectangle(0, 0, WORLD_WIDTH, WORLD_HEIGHT), Color.Blue);
-            //    _spriteBatch.End();
-
-            //    _spriteBatch.Begin( samplerState: SamplerState.PointClamp);
-            //    _spriteBatch.DrawRectangle(new Rectangle(0, 0, _viewportAdapter.ViewportWidth, _viewportAdapter.ViewportHeight), Color.Green, thickness: 2);
-            //    _spriteBatch.End();
-            //}
             SystemManagers.Default.Draw();
             GizmosRegistry.Instance.Draw();
-            //World.Draw(ingameMatrix);
         }
 
         public void OnClickPause()

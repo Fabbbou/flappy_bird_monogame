@@ -17,6 +17,9 @@ using MonoGameGum.GueDeriving;
 using RenderingLibrary;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using ToolsUtilities;
 using static Constants;
 
 
@@ -49,13 +52,13 @@ namespace flappyrogue_mg.GameSpace
             //uncomment to see the Gizmos to debug
             GizmosRegistry.Instance.Start(_graphics.GraphicsDevice, true);
 
-            var screenRegistry = new ScreenRegistry(this);
-            screenRegistry.AddScreen(ScreenName.MenuScreen, new MenuScreen(this));
-            screenRegistry.AddScreen(ScreenName.MainGameScreen, new MainGameScreen(this));
-            screenRegistry.AddScreen(ScreenName.GameOverScreen, new GameOverScreen(this));
+            var sceneRegistry = new SceneRegistry(this);
+            sceneRegistry.AddScene(SceneName.MenuScreen, new MenuScreen(this));
+            sceneRegistry.AddScene(SceneName.MainGameScreen, new MainGameScreen(this));
+            sceneRegistry.AddScene(SceneName.GameOverScreen, new GameOverScreen(this));
             //ViewportAdapterFactory factory = new VerticalViewportAdapterFactory(this, GraphicsDevice, WORLD_WIDTH, WORLD_HEIGHT, false);
-            MainRegistry.I.Initialize(this, GraphicsDevice, screenRegistry, WORLD_WIDTH, WORLD_HEIGHT, gumProjectPath: "proj.gumx");
-            MainRegistry.I.ScreenRegistry.LoadScreen(ScreenName.MenuScreen);
+            MainRegistry.I.Initialize(this, GraphicsDevice, sceneRegistry, WORLD_WIDTH, WORLD_HEIGHT, gumProjectPath: "proj.gumx");
+            MainRegistry.I.SceneRegistry.LoadScene(SceneName.MenuScreen);
 
             SetStartupWindowSize();
             base.Initialize();
@@ -85,6 +88,7 @@ namespace flappyrogue_mg.GameSpace
         {
             _fpsCounter.Update(gameTime);
             base.Update(gameTime);
+            MousePrinter.PrintOnLeftPressed(GraphicsDevice);
         }
 
         protected override void Draw(GameTime gameTime)

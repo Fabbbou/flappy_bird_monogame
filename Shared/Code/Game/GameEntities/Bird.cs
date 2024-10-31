@@ -34,6 +34,7 @@ namespace flappyrogue_mg.GameSpace
         private Vector2 _jumpForce = new Vector2(0, -BIRD_SPEED);
         private Sprite Sprite;
         private GraphicalUiElement birdGraphicalUiElement;
+
         public Bird(MainGameScreen mainGameScreen)
         {
             _screen = mainGameScreen;
@@ -47,8 +48,8 @@ namespace flappyrogue_mg.GameSpace
             birdGraphicalUiElement = _screen.MainGameScreenGum.GetGraphicalUiElementByName("Bird");
             var birdSprite = birdGraphicalUiElement.GetGraphicalUiElementByName("SpriteInstance");
             Sprite = birdSprite.RenderableComponent as Sprite;
-
-            PhysicsObject = PhysicsObjectFactory.Circl("bird", STARTING_POSITION_X, STARTING_POSITION_Y, ColliderType.Moving, COLLIDER_RADIUS, birdGraphicalUiElement);
+            var BackgroundPic = _screen.MainGameScreenGum.GetGraphicalUiElementByName("BackgroundPic");
+            PhysicsObject = PhysicsObjectFactory.Circl("bird", STARTING_POSITION_X, STARTING_POSITION_Y, ColliderType.Moving, COLLIDER_RADIUS, rootGraphicalUiElement: BackgroundPic, graphicalUiElement: birdGraphicalUiElement);
             PhysicsObject.Gravity = new Vector2(0, BIRD_GRAVITY);
         }
 

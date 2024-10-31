@@ -18,7 +18,7 @@
     <Compile Include="..\Shared\code\engine\debugtools\MoveCamera.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\entity\FrameScaler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\helpers\Memoizer.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Screen\ScreenRegistry.cs" />
+    <Compile Include="..\Shared\Code\Engine\Screen\SceneRegistry.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Screen\VerticalBoxingViewportAdapter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Entity\GameEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\entity\MainRegistry.cs" />
@@ -44,8 +44,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Entity\World.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\GameEntities\PauseButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Manager\ScoreManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)code\game\screen\GameOverScreen.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)code\game\screen\MenuScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Game\scene\GameOverScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Game\scene\MenuScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Manager\SoundManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\ui\SoundUI.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Helpers\SpriteBatchExtensions.cs" />
@@ -67,8 +67,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\GameEntities\Bird.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\GameEntities\Floor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\GameEntities\PipesSpawner.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Screen\ScreenName.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Screen\MainGameScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Game\scene\SceneName.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Code\Game\scene\MainGameScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\GameEntities\Pipes.cs" />
   </ItemGroup>
   <ItemGroup>

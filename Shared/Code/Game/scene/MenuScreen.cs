@@ -24,14 +24,14 @@ public class MenuScreen : GameScreen
 
     public override void Initialize()
     {
-        _gumScreen = MainRegistry.I.LoadGumScreen("MenuScreen");
+        _gumScreen = MainRegistry.I.ChangeScreen("MenuScreen");
         _gumWindowResizer = new BackgroundGumWindowResizer(Game.Window, GraphicsDevice, _gumScreen);
 
         PlayButton = _gumScreen.GetGraphicalUiElementByName("PlayButton");
         GumTransparentButton.AttachButton(_gumScreen.GetGraphicalUiElementByName("PlayButton"), OnClickPlayButton);
         _gumWindowResizer.InitAndResizeOnce();
     }
-    private void OnClickPlayButton(object not, EventArgs used) => MainRegistry.I.ScreenRegistry.LoadScreen(ScreenName.MainGameScreen);
+    private void OnClickPlayButton(object not, EventArgs used) => MainRegistry.I.SceneRegistry.LoadScene(SceneName.MainGameScreen);
 
     public override void Update(GameTime gameTime)
     {
@@ -52,8 +52,7 @@ public class MenuScreen : GameScreen
 
     public override void UnloadContent()
     {
-        //_gumScreen.SuspendLayout();
-        _gumScreen.Visible = false;
-        _gumScreen.RemoveFromManagers();
+        //_gumScreen.Visible = false;
+        //_gumScreen.RemoveFromManagers();
     }
 }

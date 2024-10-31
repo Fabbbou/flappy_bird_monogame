@@ -108,7 +108,6 @@ public class PhysicsObject : Gizmo
             // Reset acceleration for the next frame
             Acceleration = Vector2.Zero;
         }
-        _gumGizmo?.Update();
     }
 
     public void DrawGizmo(SpriteBatch spriteBatch)
@@ -133,12 +132,12 @@ public class PhysicsObject : Gizmo
     private void DrawGizmoGum()
     {
         if (GraphicalUiElement == null) return;
-        _gumGizmo?.Display();
+        _gumGizmo?.Draw();
     }
 
     public void Kill()
     {
-        _gumGizmo?.Kill();
+        _gumGizmo?.Deactivate();
         GizmosRegistry.Instance.RemoveObject(this);
         PhysicsEngine.Instance.RemoveCollider(this);
     }

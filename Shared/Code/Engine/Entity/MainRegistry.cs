@@ -25,7 +25,7 @@ public class MainRegistry : IDisposable
     }
     public Game Game { get; private set; }
     public GraphicsDevice GraphicsDevice { get; private set; }
-    public ScreenRegistry ScreenRegistry { get; private set; }
+    public SceneRegistry SceneRegistry { get; private set; }
     public GumProjectSave GumProject;
     private FrameScaler _frameScaler;
     public FrameScaler.FrameScale CurrentFrameScale => _frameScaler.CurrentFrameScale;
@@ -37,11 +37,11 @@ public class MainRegistry : IDisposable
         GraphicalUiElement.CanvasHeight = GraphicsDevice.Viewport.Height / CurrentFrameScale.Scale;
         SystemManagers.Default.Renderer.Camera.Zoom = CurrentFrameScale.Scale;
     }
-    public void Initialize(Game game, GraphicsDevice graphicsDevice, ScreenRegistry screenRegistry, float virtualWidth, float virtualHeight, string gumProjectPath = null)
+    public void Initialize(Game game, GraphicsDevice graphicsDevice, SceneRegistry sceneRegistry, float virtualWidth, float virtualHeight, string gumProjectPath = null)
     {
         Game = game;
         GraphicsDevice = graphicsDevice;
-        ScreenRegistry = screenRegistry;
+        SceneRegistry = sceneRegistry;
         _frameScaler = new FrameScaler(graphicsDevice, Game.Window, virtualWidth, virtualHeight);
         if (gumProjectPath != null)
         {
@@ -53,9 +53,15 @@ public class MainRegistry : IDisposable
         }
     }
 
-    public GraphicalUiElement LoadGumScreen(string screenName, bool andLoadTheScreen = true)
+    public GraphicalUiElement GetScreenButDontShow(string screenName)
     {
-        return GumProject.Screens.Find(item => item.Name == screenName).ToGraphicalUiElement(SystemManagers.Default, addToManagers: andLoadTheScreen);
+        return GumProject.Screens.Find(item => item.Name == screenName).ToGraphicalUiElement(SystemManagers.Default, addToManagers: false);
+    }
+
+    public GraphicalUiElement ChangeScreen(string screenName)
+    {
+        return SceneRegistry.ShowScreen(screenName);
+        //return GumProject.Screens.Find(item => item.Name == screenName).ToGraphicalUiElement(SystemManagers.Default, addToManagers: andLoadTheScreen);
     }
 
     public Matrix GetScaleMatrix()

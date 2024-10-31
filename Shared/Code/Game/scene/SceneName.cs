@@ -1,4 +1,4 @@
-public enum ScreenName
+public enum SceneName
 {
     None,
     MenuScreen,

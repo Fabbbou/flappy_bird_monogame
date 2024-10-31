@@ -23,7 +23,7 @@ public class GameOverScreen : GameScreen
     public override void Initialize()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-        _gumScreen = MainRegistry.I.LoadGumScreen("GameOverScreen");
+        _gumScreen = MainRegistry.I.ChangeScreen("GameOverScreen");
         _gumWindowResizer = new BackgroundGumWindowResizer(Game.Window, GraphicsDevice, _gumScreen);
 
         GumTransparentButton.AttachButton(_gumScreen.GetGraphicalUiElementByName("MenuButton"), OnClickMenu);
@@ -57,11 +57,11 @@ public class GameOverScreen : GameScreen
 
     private void OnClickPlay(object not = null, EventArgs used = null)
     {
-        MainRegistry.I.ScreenRegistry.LoadScreen(ScreenName.MainGameScreen);
+        MainRegistry.I.SceneRegistry.LoadScene(SceneName.MainGameScreen);
     }
 
     private void OnClickMenu(object not = null, EventArgs used = null)
     {
-        MainRegistry.I.ScreenRegistry.LoadScreen(ScreenName.MenuScreen);
+        MainRegistry.I.SceneRegistry.LoadScene(SceneName.MenuScreen);
     }
 }

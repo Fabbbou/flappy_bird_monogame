@@ -9,32 +9,37 @@ public class EmptyRectGumGizmo : GumGizmo
 {
     public const int BORDER_SIZE = 1;
     public static readonly Color DebugColor = Color.Pink;
-    private readonly GraphicalUiElement _parentGraphicalUiElement;
-    private readonly ColoredRectangleRuntime _top;
-    private readonly ColoredRectangleRuntime _bottom;
-    private readonly ColoredRectangleRuntime _left;
-    private readonly ColoredRectangleRuntime _right;
-
-    public EmptyRectGumGizmo(GraphicalUiElement graphicalUiElement)
+    private readonly GraphicalUiElement _rootIngameWorld;
+    private ColoredRectangleRuntime _top;
+    private ColoredRectangleRuntime _bottom;
+    private ColoredRectangleRuntime _left;
+    private ColoredRectangleRuntime _right;
+    public PhysicsObject _physicsObject { get; private set; }
+    private RectCollider rect => _physicsObject.Collider as RectCollider;
+    public EmptyRectGumGizmo(GraphicalUiElement rootIngameWorld)
     {   
-        _parentGraphicalUiElement = graphicalUiElement;
-        _top = new();
-        SetColoredRectangleRuntime(_top, 0, 0, graphicalUiElement.Width, BORDER_SIZE);
-
-        _bottom = new();
-        SetColoredRectangleRuntime(_bottom, 0, graphicalUiElement.Height - BORDER_SIZE, graphicalUiElement.Width, BORDER_SIZE);
-
-        _left = new ColoredRectangleRuntime();
-        SetColoredRectangleRuntime(_left, 0, 0, BORDER_SIZE, graphicalUiElement.Height);
-
-        _right = new ColoredRectangleRuntime();
-        SetColoredRectangleRuntime(_right, graphicalUiElement.Width - BORDER_SIZE, 0, BORDER_SIZE, graphicalUiElement.Height);
+        _rootIngameWorld = rootIngameWorld;
     }
 
-    private static void SetColoredRectangleRuntime(ColoredRectangleRuntime coloredRectangleRuntime, float x, float y, float width, float height)
+    public void AttachToPhysicsObject(PhysicsObject physicsObject)
     {
-        coloredRectangleRuntime.X = x;
-        coloredRectangleRuntime.Y = y;
+        _physicsObject = physicsObject;
+        _top = new();
+        SetColoredRectangleRuntime(_top, rect.Width, BORDER_SIZE);
+
+        _bottom = new();
+        SetColoredRectangleRuntime(_bottom, rect.Width, BORDER_SIZE);
+
+        _left = new ColoredRectangleRuntime();
+        SetColoredRectangleRuntime(_left, BORDER_SIZE, rect.Height);
+
+        _right = new ColoredRectangleRuntime();
+        SetColoredRectangleRuntime(_right, BORDER_SIZE, rect.Height);
+        SetPositions();
+    }
+
+    private void SetColoredRectangleRuntime(ColoredRectangleRuntime coloredRectangleRuntime, float width, float height)
+    {
         coloredRectangleRuntime.Width = width;
         coloredRectangleRuntime.Height = height;
         coloredRectangleRuntime.WidthUnits = Gum.DataTypes.DimensionUnitType.Absolute;
@@ -45,21 +50,44 @@ public class EmptyRectGumGizmo : GumGizmo
         coloredRectangleRuntime.YOrigin = VerticalAlignment.Top;
     }
 
-    public void Update() { }
-
-    public void Display()
+    bool _isActivated = false;
+    public void Draw() 
     {
-        _parentGraphicalUiElement.Children.Add(_top);
-        _parentGraphicalUiElement.Children.Add(_bottom);
-        _parentGraphicalUiElement.Children.Add(_left);
-        _parentGraphicalUiElement.Children.Add(_right);
+        if (!_isActivated)
+        {
+            Activate();
+            _isActivated = true;
+        }
+        SetPositions();
     }
 
-    public void Kill()
+    private void SetPositions()
     {
-        _parentGraphicalUiElement?.Children.Remove(_top);
-        _parentGraphicalUiElement?.Children.Remove(_bottom);
-        _parentGraphicalUiElement?.Children.Remove(_left);
-        _parentGraphicalUiElement?.Children.Remove(_right);
+        SetPosition(_top, 0, 0);
+        SetPosition(_bottom, 0, rect.Height - BORDER_SIZE);
+        SetPosition(_left, 0, 0);
+        SetPosition(_right, rect.Width - BORDER_SIZE, 0);
+    }
+
+    private void SetPosition(ColoredRectangleRuntime coloredRectangleRuntime, float x, float y)
+    {
+        coloredRectangleRuntime.X = _rootIngameWorld.AbsoluteTop + _physicsObject.Position.X + x;
+        coloredRectangleRuntime.Y = _rootIngameWorld.AbsoluteTop + _physicsObject.Position.Y + y;
+    }
+
+    public void Activate()
+    {
+        _rootIngameWorld.Children.Add(_top);
+        _rootIngameWorld.Children.Add(_bottom);
+        _rootIngameWorld.Children.Add(_left);
+        _rootIngameWorld.Children.Add(_right);
+    }
+
+    public void Deactivate()
+    {
+        _rootIngameWorld?.Children.Remove(_top);
+        _rootIngameWorld?.Children.Remove(_bottom);
+        _rootIngameWorld?.Children.Remove(_left);
+        _rootIngameWorld?.Children.Remove(_right);
     }
 }

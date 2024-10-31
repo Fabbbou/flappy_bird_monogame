@@ -1,6 +1,6 @@
 public interface GumGizmo
 {
-    void Update();
-    void Display();
-    void Kill();
+    void Draw();
+    void Activate();
+    void Deactivate();
 }
