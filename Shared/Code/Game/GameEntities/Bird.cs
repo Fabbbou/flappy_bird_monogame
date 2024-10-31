@@ -78,5 +78,10 @@ namespace flappyrogue_mg.GameSpace
         {
             spriteBatch.Draw(_idleCycle, PhysicsObject.Position);
         }
+
+        public void UnloadContent()
+        {
+            birdGraphicalUiElement.RemoveFromManagers();
+        }
     }
 }

@@ -28,12 +28,6 @@
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
-      <Type>string</Type>
-      <Name>SpriteInstance.CurrentChainName</Name>
-      <Value xsi:type="xsd:string">Play</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
       <Type>float</Type>
       <Name>SpriteInstance.Height</Name>
       <Value xsi:type="xsd:float">12</Value>
@@ -49,37 +43,13 @@
       <IsFile>true</IsFile>
       <Type>string</Type>
       <Name>SpriteInstance.SourceFile</Name>
-      <Value xsi:type="xsd:string">sprites\atlas.png</Value>
+      <Value xsi:type="xsd:string">Animations\BirdIdle.achx</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
-      <Type>TextureAddress</Type>
+      <Type>Gum.Managers.TextureAddress</Type>
       <Name>SpriteInstance.Texture Address</Name>
       <Value xsi:type="xsd:int">1</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>SpriteInstance.Texture Height</Name>
-      <Value xsi:type="xsd:int">12</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>SpriteInstance.Texture Left</Name>
-      <Value xsi:type="xsd:int">3</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>SpriteInstance.Texture Top</Name>
-      <Value xsi:type="xsd:int">491</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>SpriteInstance.Texture Width</Name>
-      <Value xsi:type="xsd:int">17</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -173,84 +143,12 @@
     <IsSetRecursively>false</IsSetRecursively>
     <State>
       <Name>Frame1</Name>
-      <Variable>
-        <Type>int</Type>
-        <Name>SpriteInstance.Texture Height</Name>
-        <Value xsi:type="xsd:int">12</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>int</Type>
-        <Name>SpriteInstance.Texture Left</Name>
-        <Value xsi:type="xsd:int">3</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>int</Type>
-        <Name>SpriteInstance.Texture Top</Name>
-        <Value xsi:type="xsd:int">491</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>int</Type>
-        <Name>SpriteInstance.Texture Width</Name>
-        <Value xsi:type="xsd:int">17</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
     </State>
     <State>
       <Name>Frame2</Name>
-      <Variable>
-        <Type>int</Type>
-        <Name>SpriteInstance.Texture Height</Name>
-        <Value xsi:type="xsd:int">12</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>int</Type>
-        <Name>SpriteInstance.Texture Left</Name>
-        <Value xsi:type="xsd:int">31</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>int</Type>
-        <Name>SpriteInstance.Texture Top</Name>
-        <Value xsi:type="xsd:int">491</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>int</Type>
-        <Name>SpriteInstance.Texture Width</Name>
-        <Value xsi:type="xsd:int">17</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
     </State>
     <State>
       <Name>Frame3</Name>
-      <Variable>
-        <Type>int</Type>
-        <Name>SpriteInstance.Texture Height</Name>
-        <Value xsi:type="xsd:int">12</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>int</Type>
-        <Name>SpriteInstance.Texture Left</Name>
-        <Value xsi:type="xsd:int">59</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>int</Type>
-        <Name>SpriteInstance.Texture Top</Name>
-        <Value xsi:type="xsd:int">491</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
-      <Variable>
-        <Type>int</Type>
-        <Name>SpriteInstance.Texture Width</Name>
-        <Value xsi:type="xsd:int">17</Value>
-        <SetsValue>true</SetsValue>
-      </Variable>
     </State>
   </Category>
   <Instance>

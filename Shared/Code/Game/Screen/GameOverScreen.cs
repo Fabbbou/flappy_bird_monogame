@@ -34,7 +34,7 @@ public class GameOverScreen : GameScreen
 
     public override void UnloadContent()
     {
-        _gumScreen.RemoveFromManagers();
+        //_gumScreen.RemoveFromManagers();
     }
 
     public override void Dispose()

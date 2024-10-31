@@ -75,6 +75,12 @@
     <MonoGameContentReference Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
     <None Include="$(MSBuildThisFileDirectory).gitignore" />
     <None Include="$(MSBuildThisFileDirectory)Code\Engine\DebugTools\.gitkeep" />
+    <None Include="$(MSBuildThisFileDirectory)Content\Animations\BirdIdle.achx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\Animations\BirdIdle.aeproperties">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="$(MSBuildThisFileDirectory)Content\Components\BarSound.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

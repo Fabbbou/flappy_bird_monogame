@@ -133,10 +133,11 @@ namespace flappyrogue_mg.GameSpace
 
         public override void UnloadContent()
         {
+            Bird.UnloadContent();
             World.UnloadContent();
             GizmosRegistry.Instance.Clear();
             SoundUIScreen.RemoveFromManagers();
-            MainGameScreenGum.RemoveFromManagers();
+            //MainGameScreenGum.RemoveFromManagers();
             BackgroundGumWindowResizer.Dispose();
             Game.Window.ClientSizeChanged -= SoundUIResizer.Resize;
             //_viewportAdapter.Dispose();

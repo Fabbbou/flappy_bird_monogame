@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AnimationChainArraySave xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <FileRelativeTextures>true</FileRelativeTextures>
+  <TimeMeasurementUnit>Undefined</TimeMeasurementUnit>
+  <CoordinateType>Pixel</CoordinateType>
+  <AnimationChain>
+    <Name>BirdIdle</Name>
+    <Frame>
+      <TextureName>../sprites/atlas.png</TextureName>
+      <FrameLength>0.1875</FrameLength>
+      <LeftCoordinate>3</LeftCoordinate>
+      <RightCoordinate>20</RightCoordinate>
+      <TopCoordinate>491</TopCoordinate>
+      <BottomCoordinate>503</BottomCoordinate>
+      <ShapeCollectionSave>
+        <AxisAlignedRectangleSaves />
+        <AxisAlignedCubeSaves />
+        <PolygonSaves />
+        <CircleSaves />
+        <SphereSaves />
+      </ShapeCollectionSave>
+    </Frame>
+    <Frame>
+      <TextureName>../sprites/atlas.png</TextureName>
+      <FrameLength>0.1875</FrameLength>
+      <LeftCoordinate>31</LeftCoordinate>
+      <RightCoordinate>48</RightCoordinate>
+      <TopCoordinate>491</TopCoordinate>
+      <BottomCoordinate>503</BottomCoordinate>
+      <ShapeCollectionSave>
+        <AxisAlignedRectangleSaves />
+        <AxisAlignedCubeSaves />
+        <PolygonSaves />
+        <CircleSaves />
+        <SphereSaves />
+      </ShapeCollectionSave>
+    </Frame>
+    <Frame>
+      <TextureName>../sprites/atlas.png</TextureName>
+      <FrameLength>0.1875</FrameLength>
+      <LeftCoordinate>59</LeftCoordinate>
+      <RightCoordinate>76</RightCoordinate>
+      <TopCoordinate>491</TopCoordinate>
+      <BottomCoordinate>503</BottomCoordinate>
+      <ShapeCollectionSave>
+        <AxisAlignedRectangleSaves />
+        <AxisAlignedCubeSaves />
+        <PolygonSaves />
+        <CircleSaves />
+        <SphereSaves />
+      </ShapeCollectionSave>
+    </Frame>
+    <Frame>
+      <TextureName>../sprites/atlas.png</TextureName>
+      <FrameLength>0.1875</FrameLength>
+      <LeftCoordinate>31</LeftCoordinate>
+      <RightCoordinate>48</RightCoordinate>
+      <TopCoordinate>491</TopCoordinate>
+      <BottomCoordinate>503</BottomCoordinate>
+      <ShapeCollectionSave>
+        <AxisAlignedRectangleSaves />
+        <AxisAlignedCubeSaves />
+        <PolygonSaves />
+        <CircleSaves />
+        <SphereSaves />
+      </ShapeCollectionSave>
+    </Frame>
+  </AnimationChain>
+</AnimationChainArraySave>

@@ -2177,6 +2177,48 @@
         "ElementType": "Screens",
         "EventType": 6,
         "TimestampUtc": "2024-10-30T21:10:23.4473732Z"
+      },
+      {
+        "NewName": "Bird (Container).SpriteInstance1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-10-31T01:47:57.051757Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "Bird (Container).Sprite SpriteInstance in Bird (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-10-31T01:48:12.5962319Z"
+      },
+      {
+        "NewName": "Bird (Container).SpriteInstance",
+        "OldName": "Bird (Container).SpriteInstance1",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-31T01:48:15.4156166Z"
+      },
+      {
+        "NewName": "Bird (Container).SpriteInstance",
+        "OldName": "Bird (Container).SpriteInstance1",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-31T01:48:15.4186319Z"
+      },
+      {
+        "NewName": "Bird (Container).SpriteInstance",
+        "OldName": "Bird (Container).SpriteInstance1",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-31T01:48:15.425697Z"
+      },
+      {
+        "NewName": "Bird (Container).SpriteInstance",
+        "OldName": "Bird (Container).SpriteInstance1",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-10-31T01:48:15.4385516Z"
       }
     ]
   }
