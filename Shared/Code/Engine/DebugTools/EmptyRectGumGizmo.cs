@@ -1,5 +1,6 @@
 using Gum.Wireframe;
 using MonoGameGum.GueDeriving;
+using RenderingLibrary;
 using RenderingLibrary.Graphics;
 using RenderingLibrary.Math.Geometry;
 using System;
@@ -71,23 +72,23 @@ public class EmptyRectGumGizmo : GumGizmo
 
     private void SetPosition(ColoredRectangleRuntime coloredRectangleRuntime, float x, float y)
     {
-        coloredRectangleRuntime.X = _rootIngameWorld.AbsoluteTop + _physicsObject.Position.X + x;
+        coloredRectangleRuntime.X = _rootIngameWorld.AbsoluteLeft + _physicsObject.Position.X + x;
         coloredRectangleRuntime.Y = _rootIngameWorld.AbsoluteTop + _physicsObject.Position.Y + y;
     }
 
     public void Activate()
     {
-        _rootIngameWorld.Children.Add(_top);
-        _rootIngameWorld.Children.Add(_bottom);
-        _rootIngameWorld.Children.Add(_left);
-        _rootIngameWorld.Children.Add(_right);
+        _top.AddToManagers();
+        _bottom.AddToManagers();
+        _left.AddToManagers();
+        _right.AddToManagers();
     }
 
     public void Deactivate()
     {
-        _rootIngameWorld?.Children.Remove(_top);
-        _rootIngameWorld?.Children.Remove(_bottom);
-        _rootIngameWorld?.Children.Remove(_left);
-        _rootIngameWorld?.Children.Remove(_right);
+        _top.RemoveFromManagers();
+        _bottom.RemoveFromManagers();
+        _left.RemoveFromManagers();
+        _right.RemoveFromManagers();
     }
 }

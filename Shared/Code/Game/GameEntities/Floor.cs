@@ -2,12 +2,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended.Graphics;
 using static Constants;
-using Extensions;
-using MonoGame.Extended;
 using Gum.Wireframe;
-using RenderingLibrary;
 
 namespace flappyrogue_mg.GameSpace
 {

@@ -2219,6 +2219,55 @@
         "ElementType": "Components",
         "EventType": 7,
         "TimestampUtc": "2024-10-31T01:48:15.4385516Z"
+      },
+      {
+        "NewName": "MainGameScreen.MobileTopSkyRectangle",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-01T16:49:54.4878945Z"
+      },
+      {
+        "NewName": "MainGameScreen.MobileBottomTreesRectangle",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-01T16:49:54.5307907Z"
+      },
+      {
+        "NewName": "MainGameScreen.ContainerInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-01T16:52:21.3874394Z"
+      },
+      {
+        "NewName": "MainGameScreen.Floors",
+        "OldName": "MainGameScreen.ContainerInstance",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-11-01T16:56:00.5500798Z"
+      },
+      {
+        "NewName": "MainGameScreen.ContainerInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-01T17:11:58.183633Z"
+      },
+      {
+        "NewName": "MainGameScreen.WorldContainerCliper",
+        "OldName": "MainGameScreen.ContainerInstance",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-11-01T17:12:22.0816465Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MainGameScreen.Container Floors in MainGameScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-11-01T17:17:20.6211217Z"
       }
     ]
   }
