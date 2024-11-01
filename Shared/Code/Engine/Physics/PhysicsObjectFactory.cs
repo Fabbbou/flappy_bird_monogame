@@ -29,9 +29,9 @@ public class PhysicsObjectFactory
             emptyCircleGizmo = new EmptyCircleGizmo(rootGraphicalUiElement, radius);
         }
         var physicsObject = new PhysicsObject(label, x, y, collisionType, graphicalUiElement, emptyCircleGizmo);
-        emptyCircleGizmo?.AttachToPhysicsObject(physicsObject);
         var circl = new CirclCollider(physicsObject, collisionType, radius);
         physicsObject.Collider = circl;
+        emptyCircleGizmo?.AttachToPhysicsObject(physicsObject);
         return physicsObject;
     }
 

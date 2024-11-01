@@ -37,6 +37,10 @@ public class EmptyRectGumGizmo : GumGizmo
         _right = new ColoredRectangleRuntime();
         SetColoredRectangleRuntime(_right, BORDER_SIZE, rect.Height);
         SetPositions();
+        if (GizmosRegistry.Instance.IsDebugging)
+        {
+            Activate();
+        }
     }
 
     private void SetColoredRectangleRuntime(ColoredRectangleRuntime coloredRectangleRuntime, float width, float height)
@@ -51,14 +55,8 @@ public class EmptyRectGumGizmo : GumGizmo
         coloredRectangleRuntime.YOrigin = VerticalAlignment.Top;
     }
 
-    bool _isActivated = false;
-    public void Draw() 
+    public void Update() 
     {
-        if (!_isActivated)
-        {
-            Activate();
-            _isActivated = true;
-        }
         SetPositions();
     }
 
@@ -77,7 +75,7 @@ public class EmptyRectGumGizmo : GumGizmo
     }
 
     public void Activate()
-    {
+    { 
         _top.AddToManagers();
         _bottom.AddToManagers();
         _left.AddToManagers();

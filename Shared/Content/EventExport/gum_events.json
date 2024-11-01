@@ -2268,6 +2268,34 @@
         "ElementType": "Screens",
         "EventType": 6,
         "TimestampUtc": "2024-11-01T17:17:20.6211217Z"
+      },
+      {
+        "NewName": "MainGameScreen.TextInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-01T17:30:06.8395735Z"
+      },
+      {
+        "NewName": "MainGameScreen.ScoreText",
+        "OldName": "MainGameScreen.TextInstance",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-11-01T17:34:14.3628105Z"
+      },
+      {
+        "NewName": "MainGameScreen.ScoreTextWideScreen",
+        "OldName": "MainGameScreen.ScoreText",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-11-01T17:34:22.9149071Z"
+      },
+      {
+        "NewName": "MainGameScreen.ScoreText",
+        "OldName": "MainGameScreen.ScoreTextWideScreen",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-11-01T17:34:48.6674778Z"
       }
     ]
   }

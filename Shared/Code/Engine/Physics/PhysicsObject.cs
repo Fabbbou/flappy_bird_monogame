@@ -47,6 +47,7 @@ public class PhysicsObject : Gizmo
             }
         }
     }
+
     public Vector2 Velocity;
     public Vector2 Acceleration;
     public Vector2 Friction;
@@ -108,15 +109,12 @@ public class PhysicsObject : Gizmo
             // Reset acceleration for the next frame
             Acceleration = Vector2.Zero;
         }
+        _gumGizmo?.Update();
     }
 
     public void DrawGizmo(SpriteBatch spriteBatch)
     {
-        if(_gumGizmo != null)
-        {
-            DrawGizmoGum();
-        }
-        else
+        if(_gumGizmo == null)
         {
             if (Collider is RectCollider rect)
             {
@@ -126,13 +124,6 @@ public class PhysicsObject : Gizmo
                 spriteBatch.DrawCircle(circl.Position, circl.Radius, 16, Constants.COLOR_DEFAULT_DEBUG_GIZMOS, layerDepth: Constants.LAYER_DEPTH_DEBUG);
             }
         }
-
-    }
-
-    private void DrawGizmoGum()
-    {
-        if (GraphicalUiElement == null) return;
-        _gumGizmo?.Draw();
     }
 
     public void Kill()

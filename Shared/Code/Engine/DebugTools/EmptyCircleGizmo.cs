@@ -20,22 +20,19 @@ public class EmptyCircleGizmo : GumGizmo
     {
         _physicsObject = physicsObject;
         SetPosition();
-    }
-
-    bool _isActivated = false;
-    public void Draw()
-    {
-        if (!_isActivated)
+        if (GizmosRegistry.Instance.IsDebugging)
         {
             Activate();
-            _isActivated = true;
         }
+    }
+
+    public void Update()
+    {
         SetPosition();
     }
 
     public void Activate()
     {
-        
         SystemManagers.Default.ShapeManager.Add(_lineCircle);
     }
 

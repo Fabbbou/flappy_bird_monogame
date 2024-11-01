@@ -1,4 +1,5 @@
 using flappyrogue_mg.Core;
+using Gum.Wireframe;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -22,9 +23,23 @@ public class ScoreManager
 
     private ScoreManager() {}
 
+    private GraphicalUiElement _mainGameScreenGum;
+    public void AttachScoreText(GraphicalUiElement mainGameScreenGum)
+    {
+        _mainGameScreenGum = mainGameScreenGum;
+        _mainGameScreenGum?.SetProperty("ScoreText.Text", CurrentScore.ToString());
+    }
+
+    public void ResetScore()
+    {
+        CurrentScore = 0;
+        _mainGameScreenGum?.SetProperty("ScoreText.Text", CurrentScore.ToString());
+    }
+
     public void IncreaseScore()
     {
         CurrentScore++;
+        _mainGameScreenGum?.SetProperty("ScoreText.Text", CurrentScore.ToString());
         SoundManager.Instance.PlayScoreSound();
     }
 

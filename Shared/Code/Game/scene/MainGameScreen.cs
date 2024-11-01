@@ -27,6 +27,7 @@ namespace flappyrogue_mg.GameSpace
         public GraphicalUiElement PauseButtonWidescreen { get; private set; }
         public GraphicalUiElement CurrentPauseButton { get; private set; }
         public GraphicalUiElement BackgroundPic { get; private set; }
+        public GraphicalUiElement ScoreText { get; private set; }
 
         //end gum
 
@@ -102,6 +103,8 @@ namespace flappyrogue_mg.GameSpace
             BackgroundGumWindowResizer = new BackgroundGumWindowResizer(Game.Window, GraphicsDevice, MainGameScreenGum, OnWindowResize);
             BackgroundGumWindowResizer.InitAndResizeOnce();
             BackgroundPic = MainGameScreenGum.GetGraphicalUiElementByName("BackgroundPic");
+            ScoreManager.Instance.AttachScoreText(MainGameScreenGum);
+            ScoreManager.Instance.ResetScore();
         }
 
         public void OnWindowResize()
