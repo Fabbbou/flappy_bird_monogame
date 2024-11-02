@@ -14,6 +14,7 @@ public class PauseState(MainGameScreen mainGameScreen) : MainGameState(mainGameS
 
         MainGameScreen.Bird.IsPaused = true;
         MainGameScreen.PipesSpawner.IsPaused = true;
+        MainGameScreen.APipe.IsPaused = true;
         MainGameScreen.Floor.IsPaused = true;
     }
 
@@ -34,6 +35,7 @@ public class PauseState(MainGameScreen mainGameScreen) : MainGameState(mainGameS
 
         MainGameScreen.Bird.IsPaused = false;
         MainGameScreen.PipesSpawner.IsPaused = false;
+        MainGameScreen.APipe.IsPaused = false;
         MainGameScreen.Floor.IsPaused = false;
 
         SoundManager.Instance.Save(MainGameScreen.SoundUI.FxVolume*0.1f, MainGameScreen.SoundUI.MusicVolume*0.1f);

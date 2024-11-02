@@ -26,9 +26,11 @@ namespace flappyrogue_mg.GameSpace
         public GraphicalUiElement PauseButtonMobile { get; private set; }
         public GraphicalUiElement PauseButtonWidescreen { get; private set; }
         public GraphicalUiElement CurrentPauseButton { get; private set; }
-        public GraphicalUiElement BackgroundPic { get; private set; }
+        public GraphicalUiElement RootIngameWorld { get; private set; }
         public GraphicalUiElement ScoreText { get; private set; }
 
+        public GraphicalUiElement APipeContainer { get; private set; }
+        public Pipes APipe { get; private set; }
         //end gum
 
         public static readonly Rectangle JumpRegion = new Rectangle(CLICK_REGION_POSITION_JUMP_REGION.ToPoint(), CLICK_REGION_SIZE_JUMP_REGION.ToPoint());
@@ -72,7 +74,8 @@ namespace flappyrogue_mg.GameSpace
             World = new World(GraphicsDevice);
             // because the UI is drawn on top of the ingame entities, could not do this for background pic as its a pic sized for ingame
             //World.AddIngameEntity(Background); 
-            World.AddIngameEntity(PipesSpawner);
+            //World.AddIngameEntity(PipesSpawner);
+            World.AddIngameEntity(APipe);
             World.AddIngameEntity(Bird);
            
             //World.AddIngameEntity(PauseButton); //should be UI
@@ -89,36 +92,41 @@ namespace flappyrogue_mg.GameSpace
 
         private void InitializeGumComponents()
         {
-            //SoundUIScreen = MainRegistry.I.LoadGumScreen("SoundUI", andLoadTheScreen: false);
-            SoundUIScreen = MainRegistry.I.GetScreenButDontShow("SoundUI");
-            SoundUI = new(this, SoundUIScreen);
-            SoundUIResizer = new GumWindowResizer(GraphicsDevice, SoundUIScreen);
-            SoundUIResizer.Resize();
-            Game.Window.ClientSizeChanged += SoundUIResizer.Resize;
-
             MainGameScreenGum = MainRegistry.I.ChangeScreen("MainGameScreen");
             PauseButtonMobile = GumTransparentButton.FindAndAttachButton("PauseButtonMobile", MainGameScreenGum, OnClickPause);
             PauseButtonWidescreen = GumTransparentButton.FindAndAttachButton("PauseButtonWidescreen", MainGameScreenGum, OnClickPause);
             FloorExtension = MainGameScreenGum.GetGraphicalUiElementByName("FloorExtension");
             BackgroundGumWindowResizer = new BackgroundGumWindowResizer(Game.Window, GraphicsDevice, MainGameScreenGum, OnWindowResize);
             BackgroundGumWindowResizer.InitAndResizeOnce();
-            BackgroundPic = MainGameScreenGum.GetGraphicalUiElementByName("BackgroundPic");
+
+            RootIngameWorld = MainGameScreenGum.GetGraphicalUiElementByName("BackgroundPic");
+
+            SoundUIScreen = MainRegistry.I.GetScreenButDontShow("SoundUI");
+            SoundUI = new(this, SoundUIScreen);
+            SoundUIResizer = new GumWindowResizer(GraphicsDevice, SoundUIScreen);
+            SoundUIResizer.Resize();
+            Game.Window.ClientSizeChanged += SoundUIResizer.Resize;
+
+            
             ScoreManager.Instance.AttachScoreText(MainGameScreenGum);
             ScoreManager.Instance.ResetScore();
+
+            APipeContainer = MainGameScreenGum.GetGraphicalUiElementByName("APipeContainer");
+            APipe = new(RootIngameWorld, APipeContainer, 60);
         }
 
         public void OnWindowResize()
         {
             if (MainRegistry.I.CurrentFrameScale.IsWideScreen)
             {
-                FloorExtension.Visible = false;
+                //FloorExtension.Visible = false;
                 PauseButtonMobile.Visible = false;
                 PauseButtonWidescreen.Visible = true;
                 CurrentPauseButton = PauseButtonWidescreen;
             }
             else
             {
-                FloorExtension.Visible = true;
+                //FloorExtension.Visible = true;
                 PauseButtonMobile.Visible = true;
                 PauseButtonWidescreen.Visible = false;
                 CurrentPauseButton = PauseButtonMobile;

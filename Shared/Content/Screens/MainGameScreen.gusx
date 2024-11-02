@@ -4,6 +4,48 @@
   <State>
     <Name>Default</Name>
     <Variable>
+      <Type>float</Type>
+      <Name>APipeContainer.Height</Name>
+      <Value xsi:type="xsd:float">380</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>DimensionUnitType</Type>
+      <Name>APipeContainer.Height Units</Name>
+      <Value xsi:type="xsd:int">0</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>string</Type>
+      <Name>APipeContainer.Parent</Name>
+      <Value xsi:type="xsd:string">BackgroundPic</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>APipeContainer.Width</Name>
+      <Value xsi:type="xsd:float">26</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>DimensionUnitType</Type>
+      <Name>APipeContainer.Width Units</Name>
+      <Value xsi:type="xsd:int">0</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>APipeContainer.X</Name>
+      <Value xsi:type="xsd:float">209</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>APipeContainer.Y</Name>
+      <Value xsi:type="xsd:float">108</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
       <Type>bool</Type>
       <Name>BackgroundPic.Animate</Name>
       <Value xsi:type="xsd:boolean">false</Value>
@@ -320,7 +362,6 @@
     <Variable>
       <Type>string</Type>
       <Name>FloorExtension.Parent</Name>
-      <Value xsi:type="xsd:string">PortraitSkyAndTrees</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -368,7 +409,7 @@
     <Variable>
       <Type>float</Type>
       <Name>FloorExtension.Y</Name>
-      <Value xsi:type="xsd:float">200</Value>
+      <Value xsi:type="xsd:float">211</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -1077,7 +1118,7 @@
     <Variable>
       <Type>bool</Type>
       <Name>WorldContainerCliper.Clips Children</Name>
-      <Value xsi:type="xsd:boolean">true</Value>
+      <Value xsi:type="xsd:boolean">false</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -1175,18 +1216,13 @@
     <DefinedByBase>false</DefinedByBase>
   </Instance>
   <Instance>
-    <Name>FloorExtension</Name>
-    <BaseType>ColoredRectangle</BaseType>
-    <DefinedByBase>false</DefinedByBase>
-  </Instance>
-  <Instance>
     <Name>BackgroundPic</Name>
     <BaseType>Sprite</BaseType>
     <DefinedByBase>false</DefinedByBase>
   </Instance>
   <Instance>
-    <Name>PauseButtonWidescreen</Name>
-    <BaseType>Sprite</BaseType>
+    <Name>APipeContainer</Name>
+    <BaseType>Pipes</BaseType>
     <DefinedByBase>false</DefinedByBase>
   </Instance>
   <Instance>
@@ -1202,6 +1238,11 @@
   <Instance>
     <Name>WorldContainerCliper</Name>
     <BaseType>Container</BaseType>
+    <DefinedByBase>false</DefinedByBase>
+  </Instance>
+  <Instance>
+    <Name>FloorExtension</Name>
+    <BaseType>ColoredRectangle</BaseType>
     <DefinedByBase>false</DefinedByBase>
   </Instance>
   <Instance>
@@ -1222,6 +1263,11 @@
   <Instance>
     <Name>Bird</Name>
     <BaseType>Bird</BaseType>
+    <DefinedByBase>false</DefinedByBase>
+  </Instance>
+  <Instance>
+    <Name>PauseButtonWidescreen</Name>
+    <BaseType>Sprite</BaseType>
     <DefinedByBase>false</DefinedByBase>
   </Instance>
   <Behaviors />

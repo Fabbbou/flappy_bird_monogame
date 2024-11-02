@@ -8,6 +8,7 @@ public class PlayState : MainGameState
     public override void Enter()
     {
         MainGameScreen.PipesSpawner.IsPaused = false;
+        MainGameScreen.APipe.IsPaused = false;
         MainGameScreen.Bird.IsActive = true;
         MainGameScreen.CurrentPauseButton.Visible = true;
 

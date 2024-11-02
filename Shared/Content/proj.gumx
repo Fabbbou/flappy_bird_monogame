@@ -51,6 +51,11 @@
     <LinkType>ReferenceOriginal</LinkType>
   </ComponentReference>
   <ComponentReference>
+    <Name>Pipes</Name>
+    <ElementType>Component</ElementType>
+    <LinkType>ReferenceOriginal</LinkType>
+  </ComponentReference>
+  <ComponentReference>
     <Name>PortaitMarginColors</Name>
     <ElementType>Component</ElementType>
     <LinkType>ReferenceOriginal</LinkType>

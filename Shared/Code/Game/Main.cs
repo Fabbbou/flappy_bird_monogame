@@ -50,7 +50,7 @@ namespace flappyrogue_mg.GameSpace
             ElementSaveExtensions.RegisterGueInstantiationType("Buttons/GumTransparentButton", typeof(GumTransparentButton));
 
             //uncomment to see the Gizmos to debug
-            //GizmosRegistry.Instance.Start(_graphics.GraphicsDevice, true);
+            GizmosRegistry.Instance.Start(_graphics.GraphicsDevice, true);
 
             var sceneRegistry = new SceneRegistry(this);
             sceneRegistry.AddScene(SceneName.MenuScreen, new MenuScreen(this));

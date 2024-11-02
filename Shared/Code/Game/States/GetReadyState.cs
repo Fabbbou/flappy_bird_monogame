@@ -11,6 +11,7 @@ public class GetReadyState : MainGameState
         MainGameScreen.GetReadyUI.IsActive = true;
         MainGameScreen.Bird.IsActive = false;
         MainGameScreen.PipesSpawner.IsPaused = true;
+        MainGameScreen.APipe.IsPaused = true;
         MainGameScreen.CurrentPauseButton.Visible = false;
 
         MainGameScreen.EntityJumpClickRegion = new Entity();

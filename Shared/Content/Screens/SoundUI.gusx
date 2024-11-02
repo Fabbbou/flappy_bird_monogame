@@ -41,6 +41,12 @@
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
+      <Type>bool</Type>
+      <Name>ColoredRectangleInstance.Visible</Name>
+      <Value xsi:type="xsd:boolean">false</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
       <Type>float</Type>
       <Name>ColoredRectangleInstance.Width</Name>
       <Value xsi:type="xsd:float">0</Value>
@@ -1503,7 +1509,6 @@
     <Variable>
       <Type>string</Type>
       <Name>SettingsPanel.Parent</Name>
-      <Value xsi:type="xsd:string">ColoredRectangleInstance</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>

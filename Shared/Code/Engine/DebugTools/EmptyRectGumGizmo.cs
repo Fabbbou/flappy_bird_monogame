@@ -9,17 +9,18 @@ using Color = Microsoft.Xna.Framework.Color;
 public class EmptyRectGumGizmo : GumGizmo
 {
     public const int BORDER_SIZE = 1;
-    public static readonly Color DebugColor = Color.Pink;
     private readonly GraphicalUiElement _rootIngameWorld;
+    private readonly Color _debugColor;
     private ColoredRectangleRuntime _top;
     private ColoredRectangleRuntime _bottom;
     private ColoredRectangleRuntime _left;
     private ColoredRectangleRuntime _right;
     public PhysicsObject _physicsObject { get; private set; }
     private RectCollider rect => _physicsObject.Collider as RectCollider;
-    public EmptyRectGumGizmo(GraphicalUiElement rootIngameWorld)
+    public EmptyRectGumGizmo(GraphicalUiElement rootIngameWorld, Color debugColor)
     {   
         _rootIngameWorld = rootIngameWorld;
+        _debugColor = debugColor;
     }
 
     public void AttachToPhysicsObject(PhysicsObject physicsObject)
@@ -48,7 +49,7 @@ public class EmptyRectGumGizmo : GumGizmo
         coloredRectangleRuntime.Width = width;
         coloredRectangleRuntime.Height = height;
         coloredRectangleRuntime.WidthUnits = Gum.DataTypes.DimensionUnitType.Absolute;
-        coloredRectangleRuntime.Color = DebugColor;
+        coloredRectangleRuntime.Color = _debugColor;
         coloredRectangleRuntime.XUnits = Gum.Converters.GeneralUnitType.PixelsFromSmall;
         coloredRectangleRuntime.YUnits = Gum.Converters.GeneralUnitType.PixelsFromSmall;
         coloredRectangleRuntime.XOrigin = HorizontalAlignment.Left;

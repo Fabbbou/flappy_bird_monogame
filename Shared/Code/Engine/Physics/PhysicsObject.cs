@@ -124,6 +124,7 @@ public class PhysicsObject : Gizmo
                 spriteBatch.DrawCircle(circl.Position, circl.Radius, 16, Constants.COLOR_DEFAULT_DEBUG_GIZMOS, layerDepth: Constants.LAYER_DEPTH_DEBUG);
             }
         }
+        _gumGizmo?.Update();
     }
 
     public void Kill()
