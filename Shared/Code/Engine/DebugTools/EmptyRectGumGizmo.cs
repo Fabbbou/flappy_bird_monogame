@@ -56,7 +56,7 @@ public class EmptyRectGumGizmo : GumGizmo
         coloredRectangleRuntime.YOrigin = VerticalAlignment.Top;
     }
 
-    public void Update() 
+    public void Refresh() 
     {
         SetPositions();
     }

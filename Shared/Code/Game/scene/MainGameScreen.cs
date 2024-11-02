@@ -112,7 +112,7 @@ namespace flappyrogue_mg.GameSpace
             ScoreManager.Instance.ResetScore();
 
             APipeContainer = MainGameScreenGum.GetGraphicalUiElementByName("APipeContainer");
-            APipe = new(RootIngameWorld, APipeContainer, 60);
+            APipe = new(RootIngameWorld, 60);
         }
 
         public void OnWindowResize()

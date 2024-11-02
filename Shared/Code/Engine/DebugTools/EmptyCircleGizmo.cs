@@ -26,7 +26,7 @@ public class EmptyCircleGizmo : GumGizmo
         }
     }
 
-    public void Update()
+    public void Refresh()
     {
         SetPosition();
     }

@@ -1,6 +1,6 @@
 public interface GumGizmo
 {
-    void Update();
+    void Refresh();
     void Activate();
     void Deactivate();
 }

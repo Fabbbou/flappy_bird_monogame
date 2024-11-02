@@ -49,7 +49,7 @@ namespace flappyrogue_mg.GameSpace
             var birdSprite = birdGraphicalUiElement.GetGraphicalUiElementByName("SpriteInstance");
             Sprite = birdSprite.RenderableComponent as Sprite;
             var BackgroundPic = _screen.MainGameScreenGum.GetGraphicalUiElementByName("BackgroundPic");
-            PhysicsObject = PhysicsObjectFactory.Circl("bird", STARTING_POSITION_X, STARTING_POSITION_Y, ColliderType.Moving, COLLIDER_RADIUS, rootGraphicalUiElement: BackgroundPic, graphicalUiElement: birdGraphicalUiElement);
+            PhysicsObject = PhysicsObjectFactory.Circl("bird", STARTING_POSITION_X, STARTING_POSITION_Y, ColliderType.Moving, COLLIDER_RADIUS, rootGraphicalUiElement: BackgroundPic, graphicalUiElement: birdGraphicalUiElement, entity: this);
             PhysicsObject.Gravity = new Vector2(0, BIRD_GRAVITY);
         }
 

@@ -10,9 +10,8 @@ using flappyrogue_mg.Core;
 
 public class PipesSpawner : GameEntity
 {
-    public const int MIN_HEIGHT_PIPES = 43;
-    public const int MAX_HEIGHT_PIPES = 157;
-    public const int INIT_HEIGHT_PIPES = 320;
+    public const int MIN_HEIGHT_PIPES = -33;
+    public const int MAX_HEIGHT_PIPES = -147;
     public const float SPEED = 60f;
 
     //MIN and MAX are height from top to bottom (seems reversed)
@@ -44,7 +43,7 @@ public class PipesSpawner : GameEntity
 
     private static float RandomHeight(int min, int max)
     {
-        return (float)new Random().NextDouble() * (max - min) + min;
+        return (float)new Random().NextDouble() * (max - min) + min; //to be tested with negative positions
     }
 
     private void SpawnPipes(GameTime gameTime)

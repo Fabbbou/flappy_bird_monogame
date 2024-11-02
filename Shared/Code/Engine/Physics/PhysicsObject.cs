@@ -14,8 +14,11 @@ public class PhysicsObject : Gizmo
 {
     public const float GRAVITY = 9.8f;
     public const float FRICTION = 0f;
+    //gum
     public readonly GraphicalUiElement GraphicalUiElement; //nullable
     private readonly GumGizmo _gumGizmo;
+    private readonly Entity _entity;
+    //end gum
     private Collider _collider;
     public Collider Collider
     {
@@ -56,7 +59,7 @@ public class PhysicsObject : Gizmo
     private string _label;
     public string Label => _label;
 
-    public PhysicsObject(string label, float x, float y, ColliderType colliderType, GraphicalUiElement graphicalUiElement = null, GumGizmo gumGizmo = null)
+    public PhysicsObject(string label, float x, float y, ColliderType colliderType, GraphicalUiElement graphicalUiElement = null, GumGizmo gumGizmo = null, Entity entity = null)
     {
         _label = label;
         Position = new(x, y);
@@ -66,6 +69,7 @@ public class PhysicsObject : Gizmo
         Friction = new Vector2(FRICTION, FRICTION);
         GraphicalUiElement = graphicalUiElement;
         _gumGizmo = gumGizmo;
+        _entity = entity;
     }
 
     ~PhysicsObject()
@@ -109,7 +113,10 @@ public class PhysicsObject : Gizmo
             // Reset acceleration for the next frame
             Acceleration = Vector2.Zero;
         }
-        _gumGizmo?.Update();
+        if(_entity != null && !_entity.IsPaused)
+        {
+            _gumGizmo?.Refresh();
+        }
     }
 
     public void DrawGizmo(SpriteBatch spriteBatch)
@@ -124,7 +131,10 @@ public class PhysicsObject : Gizmo
                 spriteBatch.DrawCircle(circl.Position, circl.Radius, 16, Constants.COLOR_DEFAULT_DEBUG_GIZMOS, layerDepth: Constants.LAYER_DEPTH_DEBUG);
             }
         }
-        _gumGizmo?.Update();
+        if(_entity != null && _entity.IsPaused)
+        {
+            _gumGizmo?.Refresh();
+        }
     }
 
     public void Kill()

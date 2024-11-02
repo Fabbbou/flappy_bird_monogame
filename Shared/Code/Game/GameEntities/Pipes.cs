@@ -7,6 +7,7 @@ using System.Diagnostics;
 using static Constants;
 using Extensions;
 using Gum.Wireframe;
+using GumRuntime;
 
 namespace flappyrogue_mg.GameSpace
 {
@@ -14,13 +15,15 @@ namespace flappyrogue_mg.GameSpace
     {
 
         //gum stuff=
-        private const int PIPE_WIDTH = 52;
+        private const int PIPE_WIDTH = 26;
         private const int PIPE_HEIGHT = 160;
         private const int SCORING_ZONE_WIDTH = PIPE_WIDTH - CROP_SCORING_ZONE_WIDTH * 2;
 
         private readonly int _gapBetweenPipes;
         private readonly GraphicalUiElement _rootIngameWorld;
-        private readonly GraphicalUiElement _gumPipesContainer;
+        private readonly GraphicalUiElement _pipeTop;
+        private readonly GraphicalUiElement _pipeBottom;
+        private readonly Vector2 _topLeftPipes;
         //end gum
 
         public const int CROP_SCORING_ZONE_WIDTH = 3;
@@ -51,12 +54,14 @@ namespace flappyrogue_mg.GameSpace
         /// <summary>
         /// gumPipesContainer has aalready been added in the screen, so we can use it to get the pipes if needed
         /// </summary>
-        public Pipes(GraphicalUiElement rootIngameWorld, GraphicalUiElement gumPipesContainer, int gapBetweenPipes)
+        public Pipes(GraphicalUiElement rootIngameWorld, int gapBetweenPipes, Vector2? topleftPipes = null)
         {
             _rootIngameWorld = rootIngameWorld;
-            _gumPipesContainer = gumPipesContainer;
             _gapBetweenPipes = gapBetweenPipes;
             _speedForce = 60f;
+            _topLeftPipes = topleftPipes ?? new Vector2(199, -81);
+            _pipeTop = rootIngameWorld.GetGraphicalUiElementByName("PipeTop");
+            _pipeBottom = rootIngameWorld.GetGraphicalUiElementByName("PipeBottom");
         }
 
         public void onScoringZoneTriggered()
@@ -67,15 +72,15 @@ namespace flappyrogue_mg.GameSpace
 
         public override void LoadContent(ContentManager content)
         {
-            Vector2 topleftPipeTop = new(_gumPipesContainer.X, _gumPipesContainer.Y);
-            Vector2 topleftPipeBottom = new(_gumPipesContainer.X, _gumPipesContainer.Y + PIPE_HEIGHT + _gapBetweenPipes);
-            Vector2 topleftScoringZone = new(_gumPipesContainer.X + CROP_SCORING_ZONE_WIDTH, _gumPipesContainer.Y + PIPE_HEIGHT);
+            Vector2 topleftPipeTop = new(_topLeftPipes.X, _topLeftPipes.Y);
+            Vector2 topleftPipeBottom = new(_topLeftPipes.X, _topLeftPipes.Y + PIPE_HEIGHT + _gapBetweenPipes);
+            Vector2 topleftScoringZone = new(_topLeftPipes.X + CROP_SCORING_ZONE_WIDTH, _topLeftPipes.Y + PIPE_HEIGHT);
 
-            PhysicsObjectPipeTop = PhysicsObjectFactory.Rect("pipe top", topleftPipeTop.X, topleftPipeTop.Y, ColliderType.Moving, PIPE_WIDTH, PIPE_HEIGHT, _rootIngameWorld, _gumPipesContainer, debugColor: Color.Blue);
+            PhysicsObjectPipeTop = PhysicsObjectFactory.Rect("pipe top", topleftPipeTop.X, topleftPipeTop.Y, ColliderType.Moving, PIPE_WIDTH, PIPE_HEIGHT, _rootIngameWorld, _pipeTop, debugColor: Color.Blue, entity: this);
             PhysicsObjectPipeTop.Gravity = Vector2.Zero;
-            PhysicsObjectPipeBottom = PhysicsObjectFactory.Rect("pipe bottom", topleftPipeBottom.X, topleftPipeBottom.Y, ColliderType.Static, PIPE_WIDTH, PIPE_HEIGHT, _rootIngameWorld, _gumPipesContainer);
+            PhysicsObjectPipeBottom = PhysicsObjectFactory.Rect("pipe bottom", topleftPipeBottom.X, topleftPipeBottom.Y, ColliderType.Moving, PIPE_WIDTH, PIPE_HEIGHT, _rootIngameWorld, _pipeBottom, debugColor: Color.DarkCyan, entity: this);
             PhysicsObjectPipeBottom.Gravity = Vector2.Zero;
-            ScoringZoneTriggerOnceCollider = PhysicsObjectFactory.AreaRectTriggerOnce("scoring zone", topleftScoringZone.X, topleftScoringZone.Y, ColliderType.AreaCastTrigger, SCORING_ZONE_WIDTH, _gapBetweenPipes, onScoringZoneTriggered);
+            ScoringZoneTriggerOnceCollider = PhysicsObjectFactory.AreaRectTriggerOnce("scoring zone", topleftScoringZone.X, topleftScoringZone.Y,  SCORING_ZONE_WIDTH, _gapBetweenPipes, onScoringZoneTriggered);
         }
 
         public override void Update(GameTime gameTime)
