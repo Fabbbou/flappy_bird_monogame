@@ -32,16 +32,14 @@ public class GizmosRegistry
         _gizmos.Add(gizmo);
     }
 
-    public void Draw()
+    public void Refresh()
     {
         if (_enabled)
         {
-            _spriteBatch.Begin(transformMatrix: MainRegistry.I.GetScaleMatrix(), samplerState: SamplerState.PointClamp);
             foreach (Gizmo gizmo in _gizmos)
             {
-                gizmo.DrawGizmo(_spriteBatch);
+                gizmo.UpdateGizmo();
             }
-            _spriteBatch.End();
         }
     }
     public void RemoveObject(Gizmo gizmo)

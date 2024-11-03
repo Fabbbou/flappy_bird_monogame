@@ -3,5 +3,5 @@ using Microsoft.Xna.Framework.Graphics;
 
 public interface Gizmo
 {
-    void DrawGizmo(SpriteBatch spriteBatch);
+    void UpdateGizmo();
 }

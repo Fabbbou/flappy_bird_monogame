@@ -49,11 +49,9 @@ public class ClickableRegionHandler : Gizmo
     }
 
 
-    public void DrawGizmo(SpriteBatch spriteBatch)
+    public void UpdateGizmo()
     {
-        if (!IsActive) return;
-        if (IsPaused) return;
-        spriteBatch.DrawRectangle(_clickableRegion, Color.Red, 2, layerDepth: LAYER_DEPTH_DEBUG);
+
     }
 
     public void Kill()

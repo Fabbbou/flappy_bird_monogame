@@ -8,20 +8,9 @@ public class PlayState : MainGameState
     public override void Enter()
     {
         MainGameScreen.PipesSpawner.IsPaused = false;
-        MainGameScreen.APipe.IsPaused = false;
-        MainGameScreen.Bird.IsActive = true;
+        MainGameScreen.Bird.IsPaused = false;
         MainGameScreen.CurrentPauseButton.Visible = true;
-
-        //the jump zone is now used to make the bird jump
-        if (MainGameScreen.EntityJumpClickRegion != null)
-        {
-            MainGameScreen.EntityJumpClickRegion.IsActive = false;
-        }
-        MainGameScreen.EntityJumpClickRegion = new Entity();
-        MainGameScreen.JumpBirdClickableRegionHandler = new ClickableRegionHandler(
-            MainGameScreen.EntityJumpClickRegion,
-            MainGameScreen.Bird.Jump,
-            MainGameScreen.JumpRegion);
+        MainGameScreen.ClickZone.Visible = true;
     }
 
     public override void Update(GameTime gameTime){}

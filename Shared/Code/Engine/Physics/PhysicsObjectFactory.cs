@@ -9,7 +9,7 @@ public class PhysicsObjectFactory
     //pre: toute les positions sont relatives au root topleft
     //si collidertype static, prend la position du root + position du physicsobject
     //sinon, position du physicsobject
-    public static PhysicsObject Rect(string label, float x, float y, ColliderType collisionType, float width, float height, GraphicalUiElement rootGraphicalUiElement = null, GraphicalUiElement graphicalUiElement = null, Color? debugColor = null, Entity entity = null)
+    public static PhysicsObject Rect(Entity entity, string label, float x, float y, ColliderType collisionType, float width, float height, GraphicalUiElement graphicalUiElement = null, GraphicalUiElement rootGraphicalUiElement = null, Color? debugColor = null)
     {
         EmptyRectGumGizmo emptyRectGumGizmo = null;
         if (rootGraphicalUiElement != null)
@@ -37,9 +37,9 @@ public class PhysicsObjectFactory
         return physicsObject;
     }
 
-    public static PhysicsObject AreaRectTriggerOnce(string label, float x, float y, float width, float height, Action onTrigger, GraphicalUiElement rootGraphicalUiElement = null, GraphicalUiElement graphicalUiElement = null, Color? debugColor = null, Entity entity = null)
+    public static PhysicsObject AreaRectTriggerOnce(Entity entity, string label, float x, float y, float width, float height, Action onTrigger, GraphicalUiElement graphicalUiElement = null, GraphicalUiElement rootGraphicalUiElement = null, Color? debugColor = null)
     {
-        var physicsObject = Rect(label, x, y, ColliderType.AreaCastTrigger, width, height, rootGraphicalUiElement, graphicalUiElement, debugColor, entity);
+        var physicsObject = Rect(entity, label, x, y, ColliderType.AreaCastTrigger, width, height, graphicalUiElement, rootGraphicalUiElement, debugColor);
         physicsObject.Collider.OnCollisionAction = onTrigger;
         physicsObject.Gravity = Vector2.Zero;
         return physicsObject;

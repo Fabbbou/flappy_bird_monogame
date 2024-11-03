@@ -5,63 +5,73 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Graphics;
 using System.Diagnostics;
 using static Constants;
-using Extensions;
 using Gum.Wireframe;
-using GumRuntime;
 
 namespace flappyrogue_mg.GameSpace
 {
     public class Pipes : GameEntity
     {
 
-        //gum stuff=
+        //gum stuff
+        public static float GlobalPipesSpeed = DEFAULT_SPEED;
+        //Both const are done using the gum editor to choose a approx centered position for the pipes
+        //Both const are done to have the pipe edges visible on the screen when the DEFAULT_GAP_HEIGHT is used.
+        //Warn: if using a custom gap height, the pipes may be too small and so th player may cheat.
+        public static readonly Vector2 DEFAULT_SPAWN_POSITION = new(199, -81);
+
+        
+        private const float DEFAULT_SPEED = 60f;
+        private float _overrideSpeed;
+        private const float DEFAULT_GAP_HEIGHT = 60f;
         private const int PIPE_WIDTH = 26;
         private const int PIPE_HEIGHT = 160;
+        private const int CROP_SCORING_ZONE_WIDTH = 3;
         private const int SCORING_ZONE_WIDTH = PIPE_WIDTH - CROP_SCORING_ZONE_WIDTH * 2;
-
-        private readonly int _gapBetweenPipes;
+        private readonly float _gapBetweenPipes;
         private readonly GraphicalUiElement _rootIngameWorld;
         private readonly GraphicalUiElement _pipeTop;
         private readonly GraphicalUiElement _pipeBottom;
-        private readonly Vector2 _topLeftPipes;
+        private readonly Vector2 _spawnPosition;
+        private readonly int _instanceNumber;
+        private readonly Entity _entityScoringZone;
         //end gum
 
-        public const int CROP_SCORING_ZONE_WIDTH = 3;
         public PhysicsObject PhysicsObjectPipeTop;
         public PhysicsObject PhysicsObjectPipeBottom;
         public PhysicsObject ScoringZoneTriggerOnceCollider;
 
-        private float _speedForce;
 
         public int Right => (int)PhysicsObjectPipeTop.Position.X + (int)ATLAS_SIZE_PIPE.X;
-        /// <summary>
-        /// The Max height the bottom pipe can have is 40 pixels, or it will be flying out of the floor
-        /// </summary>
-        /// <param name="xOffsetFromRightBorder">x offset to add to the pipes default spawning x position, which is the right border of the screen</param>
-        /// <param name="yOffsetFromTop">y offset to change the position of the pipes. Reduces the height of the pipes by world pixels</param>
-        /// <param name="gapHeight">the gap between the top pipe and the bottom pipe. bottom pipe position is top.y+SPRITE_HEIGHT+gap</param>
-        //public Pipes(string label, float xOffsetFromRightBorder, float yOffsetFromTop, float gapHeight, float speed)
-        //{
-        //    _speedForce = speed;
-        //    float xPosition = WORLD_WIDTH - ATLAS_SIZE_PIPE.X + xOffsetFromRightBorder;
-        //    PhysicsObjectPipeTop = PhysicsObjectFactory.Rect("pipe top" + label, xPosition, -ATLAS_SIZE_PIPE.Y + yOffsetFromTop, ColliderType.Moving, ATLAS_SIZE_PIPE.X, ATLAS_SIZE_PIPE.Y);
-        //    PhysicsObjectPipeTop.Gravity = Vector2.Zero;
-        //    PhysicsObjectPipeBottom = PhysicsObjectFactory.Rect("pipe bottom" + label, xPosition, yOffsetFromTop + gapHeight, ColliderType.Moving, ATLAS_SIZE_PIPE.X, ATLAS_SIZE_PIPE.Y);
-        //    PhysicsObjectPipeBottom.Gravity = Vector2.Zero;
-        //    ScoringZoneTriggerOnceCollider = PhysicsObjectFactory.AreaRectTriggerOnce("scoring zone" + label, xPosition + CROP_SCORING_ZONE_WIDTH, yOffsetFromTop, ColliderType.AreaCastTrigger, ATLAS_SIZE_PIPE.X - CROP_SCORING_ZONE_WIDTH*2, gapHeight, onScoringZoneTriggered);
-        //}
 
         /// <summary>
-        /// gumPipesContainer has aalready been added in the screen, so we can use it to get the pipes if needed
+        /// Create a pair of pipes (top and bottom) with a gap between them.
+        /// The pipes speed is set using the GlobalPipesSpeed static field. It is better to use this field to set the speed of all pipes and keep the player experience uniform.
+        ///
+        /// You can use the overrideSpeed parameter to set a custom speed for this specific pipes instance.
+        /// BUT: by doing this, this may look odd for the player, as the GlobalPipesSpeed is used by the floor animation to define the floor movement, 
+        /// to be synced with the Pipes (so like the bird is going forward and not the pipes are moving to the bird).
+        /// 
+        /// 
+        /// Warn - loophole known: if using a custom gapBetweenPipes, the pipes may be too small and so the player may cheat.
+        /// This is aa loophole known, but we wont fix it yet as it's not a priority.
         /// </summary>
-        public Pipes(GraphicalUiElement rootIngameWorld, int gapBetweenPipes, Vector2? topleftPipes = null)
+        /// <param name="spawnPosition">the position given is the top left corner of the top pipe. Everything is position from there accuratly</param>
+        /// <param name="rootPipeSpawnContainer">A pipe container that should be 100pourcent of the scene root ingame world GraphicalUiElement (the BackgroundPic). It required to use a container to spawn the pipes in the right layer</param>
+        /// <param name="gapBetweenPipes">the space between the two pipes spawned</param>
+        /// <param name="overrideSpeed">the speed of the pipes moving from left to right</param>
+        /// <param name="pipesInstanceNumber">the pipe instance number. Should be used when more than 1 pipe is spawned to label the physicsobject created</param>
+        public Pipes(GraphicalUiElement rootPipeSpawnContainer, Vector2? spawnPosition = null, float gapBetweenPipes = DEFAULT_GAP_HEIGHT, float? overrideSpeed = null,  int pipesInstanceNumber = 0)
         {
-            _rootIngameWorld = rootIngameWorld;
+            _instanceNumber = pipesInstanceNumber;
+            _rootIngameWorld = rootPipeSpawnContainer;
             _gapBetweenPipes = gapBetweenPipes;
-            _speedForce = 60f;
-            _topLeftPipes = topleftPipes ?? new Vector2(199, -81);
-            _pipeTop = rootIngameWorld.GetGraphicalUiElementByName("PipeTop");
-            _pipeBottom = rootIngameWorld.GetGraphicalUiElementByName("PipeBottom");
+            GlobalPipesSpeed = overrideSpeed ?? GlobalPipesSpeed;
+            _spawnPosition = spawnPosition ?? DEFAULT_SPAWN_POSITION;
+            _entityScoringZone = new Entity();
+
+            // the componentRuntime can be modified here
+            _pipeTop = GumHelper.InstanciateComponent("Pipes\\PipeTop", rootPipeSpawnContainer);
+            _pipeBottom = GumHelper.InstanciateComponent("Pipes\\PipeBottom", rootPipeSpawnContainer);
         }
 
         public void onScoringZoneTriggered()
@@ -72,22 +82,22 @@ namespace flappyrogue_mg.GameSpace
 
         public override void LoadContent(ContentManager content)
         {
-            Vector2 topleftPipeTop = new(_topLeftPipes.X, _topLeftPipes.Y);
-            Vector2 topleftPipeBottom = new(_topLeftPipes.X, _topLeftPipes.Y + PIPE_HEIGHT + _gapBetweenPipes);
-            Vector2 topleftScoringZone = new(_topLeftPipes.X + CROP_SCORING_ZONE_WIDTH, _topLeftPipes.Y + PIPE_HEIGHT);
+            Vector2 topleftPipeTop = new(_spawnPosition.X, _spawnPosition.Y);
+            Vector2 topleftPipeBottom = new(_spawnPosition.X, _spawnPosition.Y + PIPE_HEIGHT + _gapBetweenPipes);
+            Vector2 topleftScoringZone = new(_spawnPosition.X + CROP_SCORING_ZONE_WIDTH, _spawnPosition.Y + PIPE_HEIGHT);
 
-            PhysicsObjectPipeTop = PhysicsObjectFactory.Rect("pipe top", topleftPipeTop.X, topleftPipeTop.Y, ColliderType.Moving, PIPE_WIDTH, PIPE_HEIGHT, _rootIngameWorld, _pipeTop, debugColor: Color.Blue, entity: this);
+            PhysicsObjectPipeTop = PhysicsObjectFactory.Rect(entity: this, label: $"{_instanceNumber}/pipe_top", x: topleftPipeTop.X, y: topleftPipeTop.Y, collisionType: ColliderType.Moving, width: PIPE_WIDTH, height: PIPE_HEIGHT, graphicalUiElement: _pipeTop, rootGraphicalUiElement: _rootIngameWorld, debugColor: Color.Blue);
             PhysicsObjectPipeTop.Gravity = Vector2.Zero;
-            PhysicsObjectPipeBottom = PhysicsObjectFactory.Rect("pipe bottom", topleftPipeBottom.X, topleftPipeBottom.Y, ColliderType.Moving, PIPE_WIDTH, PIPE_HEIGHT, _rootIngameWorld, _pipeBottom, debugColor: Color.DarkCyan, entity: this);
+            PhysicsObjectPipeBottom = PhysicsObjectFactory.Rect(entity: this, label: $"{_instanceNumber}/pipe_top", x: topleftPipeBottom.X, y: topleftPipeBottom.Y, collisionType: ColliderType.Moving, width: PIPE_WIDTH, height: PIPE_HEIGHT, graphicalUiElement: _pipeBottom, rootGraphicalUiElement: _rootIngameWorld, debugColor: Color.DarkCyan);
             PhysicsObjectPipeBottom.Gravity = Vector2.Zero;
-            ScoringZoneTriggerOnceCollider = PhysicsObjectFactory.AreaRectTriggerOnce("scoring zone", topleftScoringZone.X, topleftScoringZone.Y,  SCORING_ZONE_WIDTH, _gapBetweenPipes, onScoringZoneTriggered);
+            ScoringZoneTriggerOnceCollider = PhysicsObjectFactory.AreaRectTriggerOnce(entity: _entityScoringZone, label: $"{_instanceNumber}/scoring_zone", x: topleftScoringZone.X, y: topleftScoringZone.Y, width: SCORING_ZONE_WIDTH, height: _gapBetweenPipes, onTrigger: onScoringZoneTriggered, rootGraphicalUiElement: _rootIngameWorld);
         }
 
         public override void Update(GameTime gameTime)
         {
-            PhysicsObjectPipeTop.Velocity = new Vector2(-_speedForce, 0);
-            PhysicsObjectPipeBottom.Velocity = new Vector2(-_speedForce, 0);
-            ScoringZoneTriggerOnceCollider.Velocity = new Vector2(-_speedForce, 0);
+            PhysicsObjectPipeTop.Velocity = new Vector2(-GlobalPipesSpeed, 0);
+            PhysicsObjectPipeBottom.Velocity = new Vector2(-GlobalPipesSpeed, 0);
+            ScoringZoneTriggerOnceCollider.Velocity = new Vector2(-GlobalPipesSpeed, 0);
 
             //this allows to move pipes and ignore any possible collisions
             //means that pipes dont collide to anything, but anything collides to them by using MoveAndCollide

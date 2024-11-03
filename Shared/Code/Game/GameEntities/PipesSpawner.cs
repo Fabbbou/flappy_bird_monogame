@@ -7,20 +7,28 @@ using Microsoft.Xna.Framework.Content;
 using MonoGame.Extended.Graphics;
 using System;
 using flappyrogue_mg.Core;
+using Gum.Wireframe;
 
 public class PipesSpawner : GameEntity
 {
-    public const int MIN_HEIGHT_PIPES = -33;
-    public const int MAX_HEIGHT_PIPES = -147;
-    public const float SPEED = 60f;
+    public float TimeToSpawn;
 
     //MIN and MAX are height from top to bottom (seems reversed)
+    public const int MIN_HEIGHT_PIPES = -33;
+    public const int MAX_HEIGHT_PIPES = -147;
     private List<Pipes> _pipes = new();
-    private int pipesCounter = 0;
-    private float _timeToSpawn = 2f;
+    private int _pipesCounter = 0;
+    private readonly GraphicalUiElement _rootIngameWorld;
+    private readonly GraphicalUiElement _pipeContainer;
     private float _timeToSpawnCounter = 0f;
 
-    private float _xOffsetFromRightBorder = 60f;
+    //constructor with all fields
+    public PipesSpawner(GraphicalUiElement rootIngameWorld, float initialTimeBetween2PipesSpawn = 2f)
+    {
+        TimeToSpawn = initialTimeBetween2PipesSpawn;
+        _rootIngameWorld = rootIngameWorld;
+        _pipeContainer = rootIngameWorld.GetGraphicalUiElementByName("PipeContainer");
+    }
 
     public new bool IsPaused
     {
@@ -49,11 +57,12 @@ public class PipesSpawner : GameEntity
     private void SpawnPipes(GameTime gameTime)
     {
         _timeToSpawnCounter += (float)gameTime.ElapsedGameTime.TotalSeconds;
-        if (_timeToSpawnCounter >= _timeToSpawn)
+        if (_timeToSpawnCounter >= TimeToSpawn)
         {
             _timeToSpawnCounter = 0f;
-            pipesCounter++;
-            //_pipes.Add(CreatePipes(RandomHeight(MIN_HEIGHT_PIPES, MAX_HEIGHT_PIPES)));
+            _pipesCounter++;
+            Pipes newPipe = CreatePipes(Pipes.DEFAULT_SPAWN_POSITION.X, RandomHeight(MIN_HEIGHT_PIPES, MAX_HEIGHT_PIPES));
+            _pipes.Add(newPipe);
         }
     }
 
@@ -72,7 +81,7 @@ public class PipesSpawner : GameEntity
         }
     }
 
-    public override void LoadContent(ContentManager content) {}
+    public override void LoadContent(ContentManager content) { }
     public override void Draw(SpriteBatch spriteBatch)
     {
         foreach (Pipes pipe in _pipes)
@@ -81,9 +90,16 @@ public class PipesSpawner : GameEntity
         }
     }
 
-    //private Pipes CreatePipes(float height)
-    //{
-    //    Pipes pipes = new(" " + pipesCounter, _xOffsetFromRightBorder, height, GAP_HEIGHT, SPEED);
-    //    return pipes;
-    //}
+    /// <summary>
+    /// Creates a new pipe with the given position
+    /// </summary>
+    /// <param name="x">left side</param>
+    /// <param name="y">top side</param>
+    /// <returns></returns>
+    private Pipes CreatePipes(float x, float y)
+    {
+        var pipes = new Pipes(_pipeContainer, spawnPosition: new(x, y), pipesInstanceNumber: _pipesCounter);
+        pipes.LoadContent(null);
+        return pipes;
+    }
 }

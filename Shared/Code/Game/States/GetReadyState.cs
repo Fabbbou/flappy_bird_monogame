@@ -1,36 +1,29 @@
 using flappyrogue_mg.GameSpace;
+using Gum.Wireframe;
 using Microsoft.Xna.Framework;
 using static Constants;
 public class GetReadyState : MainGameState
 {
-    public GetReadyState(MainGameScreen mainGameScreen) : base(mainGameScreen) {}
+    private GraphicalUiElement _getReadyContainerGraphicalUiElement;
+
+    public GetReadyState(MainGameScreen mainGameScreen, GraphicalUiElement getReadyContainerGraphicalUiElement) : base(mainGameScreen) 
+    {
+        _getReadyContainerGraphicalUiElement = getReadyContainerGraphicalUiElement;
+    }
     public override void Update(GameTime gameTime){}
 
     public override void Enter()
     {
-        MainGameScreen.GetReadyUI.IsActive = true;
-        MainGameScreen.Bird.IsActive = false;
+        _getReadyContainerGraphicalUiElement.Visible = true;
+        MainGameScreen.ClickZone.Visible = true;
+        MainGameScreen.Bird.IsPaused = true;
         MainGameScreen.PipesSpawner.IsPaused = true;
-        MainGameScreen.APipe.IsPaused = true;
         MainGameScreen.CurrentPauseButton.Visible = false;
-
-        MainGameScreen.EntityJumpClickRegion = new Entity();
-        MainGameScreen.JumpBirdClickableRegionHandler = new ClickableRegionHandler(
-            MainGameScreen.EntityJumpClickRegion,
-            FirstJump,
-            MainGameScreen.JumpRegion);
     }
 
     public override void Exit()
     {
-
-        MainGameScreen.GetReadyUI.IsActive = false;
-    }
-
-    private void FirstJump()
-    {
+        _getReadyContainerGraphicalUiElement.Visible = false;
         MainGameScreen.Bird.Jump();
-        MainGameScreen.StateMachine.ChangeState(new PlayState(MainGameScreen));
     }
-
 }

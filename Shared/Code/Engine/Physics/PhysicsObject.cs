@@ -113,28 +113,11 @@ public class PhysicsObject : Gizmo
             // Reset acceleration for the next frame
             Acceleration = Vector2.Zero;
         }
-        if(_entity != null && !_entity.IsPaused)
-        {
-            _gumGizmo?.Refresh();
-        }
     }
 
-    public void DrawGizmo(SpriteBatch spriteBatch)
+    public void UpdateGizmo()
     {
-        if(_gumGizmo == null)
-        {
-            if (Collider is RectCollider rect)
-            {
-                spriteBatch.DrawRectangle(rect.Position, rect.Size, Constants.COLOR_DEFAULT_DEBUG_GIZMOS, layerDepth: Constants.LAYER_DEPTH_DEBUG);
-            }else if (Collider is CirclCollider circl)
-            {
-                spriteBatch.DrawCircle(circl.Position, circl.Radius, 16, Constants.COLOR_DEFAULT_DEBUG_GIZMOS, layerDepth: Constants.LAYER_DEPTH_DEBUG);
-            }
-        }
-        if(_entity != null && _entity.IsPaused)
-        {
-            _gumGizmo?.Refresh();
-        }
+        _gumGizmo?.Refresh();
     }
 
     public void Kill()

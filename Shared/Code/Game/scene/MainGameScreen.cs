@@ -28,66 +28,43 @@ namespace flappyrogue_mg.GameSpace
         public GraphicalUiElement CurrentPauseButton { get; private set; }
         public GraphicalUiElement RootIngameWorld { get; private set; }
         public GraphicalUiElement ScoreText { get; private set; }
-
-        public GraphicalUiElement APipeContainer { get; private set; }
-        public Pipes APipe { get; private set; }
+        public GraphicalUiElement ClickZone { get; private set; }
+        public PipesSpawner PipesSpawner { get; private set; }
         //end gum
 
         public static readonly Rectangle JumpRegion = new Rectangle(CLICK_REGION_POSITION_JUMP_REGION.ToPoint(), CLICK_REGION_SIZE_JUMP_REGION.ToPoint());
-        public const int ROUNDING = 10;
-        private SpriteBatch _spriteBatch;
-        //private ViewportAdapter _viewportAdapter;
-        //private OrthographicCamera _camera;
         public StateMachine StateMachine { get; private set; }
         public World World { get; private set; }
-        public GetReadyUI GetReadyUI { get; private set; }
         public Bird Bird { get; private set; }
         public Floor Floor { get; private set; }
-        public PipesSpawner PipesSpawner { get; private set; }
-        public CurrentScoreUI CurrentScoreUI { get; private set; }
-        public Entity EntityJumpClickRegion { get; set; }
-        public ClickableRegionHandler JumpBirdClickableRegionHandler { get; set; }
+        
         public MainGameScreen(Game game) : base(game){}
 
         public override void Initialize()
         { 
-            StateMachine = new StateMachine(new GetReadyState(this));
+            Game.IsMouseVisible = true;
+
             //gum
             FormsUtilities.InitializeDefaults();
             InitializeGumComponents();
+            var getReadyElement = MainGameScreenGum.GetGraphicalUiElementByName("GetReadyFullscreenContainer");
+            
+            StateMachine = new StateMachine(new GetReadyState(this, getReadyElement));
+
             //end gum
 
             // setting the viewport dimensions to be the same as the background (bg) image
             // as the bg is portrait, the game will be portrait to
             // for a pixel perfect game, the viewport has to be the exact size of the background img
-            Game.IsMouseVisible = true;
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
-            //ViewportAdapterFactory factory = new VerticalViewportAdapterFactory(Game, GraphicsDevice, WORLD_WIDTH, WORLD_HEIGHT, true);
-            //_viewportAdapter = factory.BuildViewport();
-            //_camera = factory.BuildCamera();
-
-            GetReadyUI = new GetReadyUI();
-            PipesSpawner = new PipesSpawner();
-            Bird = new Bird(this);
-            CurrentScoreUI = new();
+            Bird = new Bird(this, RootIngameWorld);
 
             World = new World(GraphicsDevice);
-            // because the UI is drawn on top of the ingame entities, could not do this for background pic as its a pic sized for ingame
-            //World.AddIngameEntity(Background); 
-            //World.AddIngameEntity(PipesSpawner);
-            World.AddIngameEntity(APipe);
-            World.AddIngameEntity(Bird);
-           
-            //World.AddIngameEntity(PauseButton); //should be UI
-            World.AddIngameEntity(GetReadyUI); //should be UI
-            //CurrentScoreUI Font is scaling from transformation matrix
-            //this is working because we are using the same matrix for the UI
-            World.AddUIEntity(CurrentScoreUI);
-            //_viewportAdapter.Reset();
+            World.AddEntity(PipesSpawner);
+            World.AddEntity(Bird);
 
             //has to be setup at the end because of PauseButtonMobile and PauseButtonWidescreen initialization
             Floor = new Floor(MainGameScreenGum);
-            World.AddIngameEntity(Floor);
+            World.AddEntity(Floor);
         }
 
         private void InitializeGumComponents()
@@ -111,29 +88,39 @@ namespace flappyrogue_mg.GameSpace
             ScoreManager.Instance.AttachScoreText(MainGameScreenGum);
             ScoreManager.Instance.ResetScore();
 
-            APipeContainer = MainGameScreenGum.GetGraphicalUiElementByName("APipeContainer");
-            APipe = new(RootIngameWorld, 60);
+            PipesSpawner = new PipesSpawner(RootIngameWorld);
+            ClickZone = GumTransparentButton.FindAndAttachButton("ClickZone", RootIngameWorld, actionPushed: OnClickZone);
         }
 
         public void OnWindowResize()
         {
             if (MainRegistry.I.CurrentFrameScale.IsWideScreen)
             {
-                //FloorExtension.Visible = false;
                 PauseButtonMobile.Visible = false;
                 PauseButtonWidescreen.Visible = true;
                 CurrentPauseButton = PauseButtonWidescreen;
             }
             else
             {
-                //FloorExtension.Visible = true;
                 PauseButtonMobile.Visible = true;
                 PauseButtonWidescreen.Visible = false;
                 CurrentPauseButton = PauseButtonMobile;
             }
-            if (StateMachine.CurrentState is GetReadyState)
+            if (StateMachine != null && StateMachine.CurrentState is GetReadyState)
             {
                 CurrentPauseButton.Visible = false;
+            }
+        }
+
+        public void OnClickZone()
+        {
+            if (StateMachine.CurrentState is GetReadyState)
+            {
+                StateMachine.ChangeState(new PlayState(this));
+            }
+            else if (StateMachine.CurrentState is PlayState)
+            {
+                Bird.Jump();
             }
         }
 
@@ -146,14 +133,11 @@ namespace flappyrogue_mg.GameSpace
 
         public override void UnloadContent()
         {
-            //Bird.UnloadContent();
             World.UnloadContent();
             GizmosRegistry.Instance.Clear();
             SoundUIScreen.RemoveFromManagers();
-            //MainGameScreenGum.RemoveFromManagers();
             BackgroundGumWindowResizer.Dispose();
             Game.Window.ClientSizeChanged -= SoundUIResizer.Resize;
-            //_viewportAdapter.Dispose();
         }
 
         public override void Update(GameTime gameTime)
@@ -172,6 +156,7 @@ namespace flappyrogue_mg.GameSpace
                 FormsUtilities.Update(gameTime, MainGameScreenGum);
             }
             SystemManagers.Default.Activity(gameTime.TotalGameTime.TotalSeconds);
+            GizmosRegistry.Instance.Refresh();
         }
 
         public override void Draw(GameTime gameTime)
@@ -179,7 +164,6 @@ namespace flappyrogue_mg.GameSpace
             GraphicsDevice.Clear(Color.Black);
 
             SystemManagers.Default.Draw();
-            GizmosRegistry.Instance.Draw();
         }
 
         public void OnClickPause()

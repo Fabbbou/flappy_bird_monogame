@@ -15,6 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\DebugTools\GizmosRegistry.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\debugtools\GumGizmo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\debugtools\MousePositionPrinter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)code\engine\helpers\GumHelper.cs" />
     <Compile Include="..\Shared\code\engine\debugtools\MoveCamera.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\entity\FrameScaler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\helpers\Memoizer.cs" />
@@ -42,7 +43,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\storage\SettingsManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Storage\UserSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Entity\World.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Code\Game\GameEntities\PauseButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Manager\ScoreManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\scene\GameOverScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\scene\MenuScreen.cs" />
@@ -59,8 +59,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\Collider\Collides.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\PhysicsEngine.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\Collider\RectCollider.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)code\game\ui\GetReadyUI.cs" />
-    <Compile Include="..\Shared\code\game\ui\CurrentScoreUI.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Input\Keyboard.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Physics\PhysicsObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Main.cs" />
@@ -87,16 +85,19 @@
     <None Include="$(MSBuildThisFileDirectory)Content\Components\BarSoundAnimations.ganx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="$(MSBuildThisFileDirectory)Content\Components\BGPic.gucx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="$(MSBuildThisFileDirectory)Content\Components\Bird.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Content\Components\BirdAnimations.ganx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="$(MSBuildThisFileDirectory)Content\Components\Pipes.gucx">
+    <None Include="$(MSBuildThisFileDirectory)Content\Components\Gizmos\RectangleColoredBorder.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\Components\Pipes\PipeBottom.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\Components\Pipes\PipeTop.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Content\Components\PortaitMarginColors.gucx">

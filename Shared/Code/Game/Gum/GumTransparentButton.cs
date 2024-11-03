@@ -15,11 +15,18 @@ namespace GumFormsSample
     {
 
 
-        public static GraphicalUiElement FindAndAttachButton(string name, GraphicalUiElement parentToExplore, Action actionToAttach)
+        public static GraphicalUiElement FindAndAttachButton(string name, GraphicalUiElement parentToExplore, Action actionClicked = null, Action actionPushed = null)
         {
             var component = parentToExplore.GetGraphicalUiElementByName(name);
             var button = new GumTransparentButton();
-            button.Push += (o, e) => actionToAttach();
+            if(actionClicked != null)
+            {
+                button.Click += (o, e) => actionClicked();
+            }
+            if (actionPushed != null)
+            {
+                button.Push += (o, e) => actionPushed();
+            }
             component.Children.Add(button);
             return component;
         }
@@ -73,18 +80,6 @@ namespace GumFormsSample
                             }
                         }
                     },
-                    //new StateSave
-                    //{
-                    //    Name = "Highlighted",
-                    //    Variables = new List<VariableSave>
-                    //    {
-                    //        new VariableSave
-                    //        {
-                    //            Name = "ButtonBackground.Color",
-                    //            Value = new Color(0, 0, 160)
-                    //        }
-                    //    }
-                    //},
                     new StateSave
                     {
                         Name = "Pushed",
@@ -97,18 +92,6 @@ namespace GumFormsSample
                             }
                         }
                     },
-                    //new StateSave
-                    //{
-                    //    Name = "Disabled",
-                    //    Variables = new List<VariableSave>
-                    //    {
-                    //        new VariableSave
-                    //        {
-                    //            Name = "ButtonBackground.Color",
-                    //            Value = new Color(48, 48, 64)
-                    //        }
-                    //    }
-                    //}
                 }
                 });
             }

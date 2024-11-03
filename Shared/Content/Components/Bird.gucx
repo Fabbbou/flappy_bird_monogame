@@ -17,14 +17,10 @@
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
-      <Type>Play</Type>
-      <Name>PlayState</Name>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
       <Type>bool</Type>
       <Name>SpriteInstance.Animate</Name>
       <Value xsi:type="xsd:boolean">true</Value>
+      <ExposedAsName>SpriteInstanceAnimate</ExposedAsName>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -138,19 +134,6 @@
       <Value />
     </VariableList>
   </State>
-  <Category>
-    <Name>Play</Name>
-    <IsSetRecursively>false</IsSetRecursively>
-    <State>
-      <Name>Frame1</Name>
-    </State>
-    <State>
-      <Name>Frame2</Name>
-    </State>
-    <State>
-      <Name>Frame3</Name>
-    </State>
-  </Category>
   <Instance>
     <Name>SpriteInstance</Name>
     <BaseType>Sprite</BaseType>

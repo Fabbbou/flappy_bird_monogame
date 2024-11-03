@@ -18,7 +18,7 @@ public class DeathState : GameState
         _mainGameScreen.Bird.IsPaused = true;
         _mainGameScreen.PipesSpawner.IsPaused = true;
         _mainGameScreen.Floor.IsPaused = true;
-        _mainGameScreen.EntityJumpClickRegion.IsActive = false;
+        _mainGameScreen.ClickZone.Visible = false;
         SoundManager.Instance.PlayHitSound();
     }
 

@@ -19,7 +19,7 @@ namespace flappyrogue_mg.GameSpace
             _floor = _mainGameScreenGum.GetGraphicalUiElementByName("Floor");
             _nextFloor = _mainGameScreenGum.GetGraphicalUiElementByName("NextFloor");
             var backgroundPic = _mainGameScreenGum.GetGraphicalUiElementByName("BackgroundPic");
-            physicsObject = PhysicsObjectFactory.Rect("floor", SPRITE_POSITION_FLOOR.X, SPRITE_POSITION_FLOOR.Y, ColliderType.Static, ATLAS_SIZE_FLOOR.X, ATLAS_SIZE_FLOOR.Y, graphicalUiElement: _floor, rootGraphicalUiElement: backgroundPic, entity: this);
+            physicsObject = PhysicsObjectFactory.Rect(label: "floor", x: SPRITE_POSITION_FLOOR.X, y: SPRITE_POSITION_FLOOR.Y, collisionType: ColliderType.Static, width: ATLAS_SIZE_FLOOR.X, height: ATLAS_SIZE_FLOOR.Y, graphicalUiElement: _floor, rootGraphicalUiElement: backgroundPic, entity: this);
         }
 
         public override void LoadContent(ContentManager content)
@@ -31,8 +31,8 @@ namespace flappyrogue_mg.GameSpace
         {
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             var currentScale = MainRegistry.I.CurrentFrameScale;
-            _floor.X -= PipesSpawner.SPEED * deltaTime;
-            _nextFloor.X -= PipesSpawner.SPEED * deltaTime;
+            _floor.X -= Pipes.GlobalPipesSpeed * deltaTime;
+            _nextFloor.X -= Pipes.GlobalPipesSpeed * deltaTime;
 
             if (_floor.X <= -WORLD_WIDTH)
             {

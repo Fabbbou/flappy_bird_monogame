@@ -3,12 +3,8 @@ using Gum.Wireframe;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Aseprite;
 using System.Collections.Generic;
 using Sprite = RenderingLibrary.Graphics.Sprite;
-using AnimatedSprite = MonoGame.Aseprite.AnimatedSprite;
-using MonoGame.Extended.Graphics;
-using BitmapFont = MonoGame.Extended.BitmapFonts.BitmapFont;
 
 namespace flappyrogue_mg.GameSpace
 {
@@ -29,37 +25,42 @@ namespace flappyrogue_mg.GameSpace
 
         private MainGameScreen _screen;
         public PhysicsObject PhysicsObject;
-        private AnimatedSprite _idleCycle;
-        private BitmapFont _font;
         private Vector2 _jumpForce = new Vector2(0, -BIRD_SPEED);
         private Sprite Sprite;
-        private GraphicalUiElement birdGraphicalUiElement;
+        private readonly GraphicalUiElement _birdGraphicalUiElement;
 
-        public Bird(MainGameScreen mainGameScreen)
+        public Bird(MainGameScreen mainGameScreen, GraphicalUiElement rootIngameWorldContainer)
         {
             _screen = mainGameScreen;
+            _birdGraphicalUiElement = _screen.MainGameScreenGum.GetGraphicalUiElementByName("Bird");
+            PhysicsObject = PhysicsObjectFactory.Circl("bird", _birdGraphicalUiElement.X, _birdGraphicalUiElement.Y, ColliderType.Moving, COLLIDER_RADIUS, rootGraphicalUiElement: rootIngameWorldContainer, graphicalUiElement: _birdGraphicalUiElement, entity: this);
+            PhysicsObject.Gravity = new Vector2(0, BIRD_GRAVITY);
         }
 
         public override void LoadContent(ContentManager content)
         {
-            // Load the font
-            _font = AssetsLoader.Instance.Font;
-            _idleCycle = AssetsLoader.Instance.CreateBirdSprite(_screen.GraphicsDevice);
-            birdGraphicalUiElement = _screen.MainGameScreenGum.GetGraphicalUiElementByName("Bird");
-            var birdSprite = birdGraphicalUiElement.GetGraphicalUiElementByName("SpriteInstance");
-            Sprite = birdSprite.RenderableComponent as Sprite;
-            var BackgroundPic = _screen.MainGameScreenGum.GetGraphicalUiElementByName("BackgroundPic");
-            PhysicsObject = PhysicsObjectFactory.Circl("bird", STARTING_POSITION_X, STARTING_POSITION_Y, ColliderType.Moving, COLLIDER_RADIUS, rootGraphicalUiElement: BackgroundPic, graphicalUiElement: birdGraphicalUiElement, entity: this);
-            PhysicsObject.Gravity = new Vector2(0, BIRD_GRAVITY);
+
         }
 
         public override void Update(GameTime gameTime)
         {
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            birdGraphicalUiElement.Rotation = MathHelper.Clamp(-PhysicsObject.Velocity.Y * BIRD_ROTATION,-90f, 30f);
+            _birdGraphicalUiElement.Rotation = MathHelper.Clamp(-PhysicsObject.Velocity.Y * BIRD_ROTATION,-90f, 30f);
 
             List<Collision> collided = PhysicsEngine.Instance.MoveAndSlide(PhysicsObject, gameTime);
             CheckDeath(collided);
+        }
+
+        public void Pause()
+        {
+            IsPaused = true;
+            _birdGraphicalUiElement.SetProperty("SpriteInstance.Animate", false);
+        }
+
+        public void Resume()
+        {
+            IsPaused = false;
+            _birdGraphicalUiElement.SetProperty("SpriteInstance.Animate", true);
         }
 
         public void Jump()
@@ -77,12 +78,12 @@ namespace flappyrogue_mg.GameSpace
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_idleCycle, PhysicsObject.Position);
+
         }
 
         public void UnloadContent()
         {
-            birdGraphicalUiElement.RemoveFromManagers();
+
         }
     }
 }

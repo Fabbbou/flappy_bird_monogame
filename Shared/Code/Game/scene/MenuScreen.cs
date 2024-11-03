@@ -28,7 +28,7 @@ public class MenuScreen : GameScreen
         _gumWindowResizer = new BackgroundGumWindowResizer(Game.Window, GraphicsDevice, _gumScreen);
 
         PlayButton = _gumScreen.GetGraphicalUiElementByName("PlayButton");
-        GumTransparentButton.AttachButton(_gumScreen.GetGraphicalUiElementByName("PlayButton"), OnClickPlayButton);
+        GumTransparentButton.AttachButton(_gumScreen.GetGraphicalUiElementByName("PlayButton"), onPushAction: OnClickPlayButton);
         _gumWindowResizer.InitAndResizeOnce();
     }
     private void OnClickPlayButton(object not, EventArgs used) => MainRegistry.I.SceneRegistry.LoadScene(SceneName.MainGameScreen);
