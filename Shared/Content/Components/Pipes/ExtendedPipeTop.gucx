@@ -21,7 +21,7 @@
     <Variable>
       <Type>int</Type>
       <Name>Blue</Name>
-      <Value xsi:type="xsd:int">255</Value>
+      <Value xsi:type="xsd:int">0</Value>
       <Category>Rendering</Category>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -55,7 +55,7 @@
     <Variable>
       <Type>int</Type>
       <Name>Green</Name>
-      <Value xsi:type="xsd:int">255</Value>
+      <Value xsi:type="xsd:int">76</Value>
       <Category>Rendering</Category>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -115,7 +115,7 @@
     <Variable>
       <Type>int</Type>
       <Name>Red</Name>
-      <Value xsi:type="xsd:int">255</Value>
+      <Value xsi:type="xsd:int">250</Value>
       <Category>Rendering</Category>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -149,7 +149,7 @@
     <Variable>
       <Type>int</Type>
       <Name>Texture Height</Name>
-      <Value xsi:type="xsd:int">148</Value>
+      <Value xsi:type="xsd:int">147</Value>
       <Category>Source</Category>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -218,7 +218,7 @@
     <Variable>
       <Type>float</Type>
       <Name>X</Name>
-      <Value xsi:type="xsd:float">170</Value>
+      <Value xsi:type="xsd:float">0</Value>
       <Category>Position</Category>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -246,7 +246,7 @@
     <Variable>
       <Type>VerticalAlignment</Type>
       <Name>Y Origin</Name>
-      <Value xsi:type="xsd:int">2</Value>
+      <Value xsi:type="xsd:int">0</Value>
       <Category>Position</Category>
       <SetsValue>true</SetsValue>
     </Variable>

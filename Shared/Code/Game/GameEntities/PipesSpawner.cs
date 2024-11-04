@@ -90,6 +90,14 @@ public class PipesSpawner : GameEntity
         }
     }
 
+    //public void Refresh()
+    //{
+    //    foreach (Pipes pipe in _pipes)
+    //    {
+    //        pipe.Refresh();
+    //    }
+    //}
+
     /// <summary>
     /// Creates a new pipe with the given position
     /// </summary>

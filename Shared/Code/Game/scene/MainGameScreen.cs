@@ -133,6 +133,7 @@ namespace flappyrogue_mg.GameSpace
             World.Update(gameTime);
             GizmosRegistry.Instance.Refresh();
             BackgroundHandler.AnimateParallax(gameTime);
+            //PipesSpawner.Refresh();
         }
 
         public void OnClickPause()
@@ -143,7 +144,10 @@ namespace flappyrogue_mg.GameSpace
                 StateMachine.ChangeState(new PauseState(this));
             }
         }
-        public override void Draw(GameTime gameTime) {}
+        public override void Draw(GameTime gameTime) 
+        {
+            //PipesSpawner.Refresh();
+        }
     }
 }
 

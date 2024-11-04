@@ -33,11 +33,11 @@ namespace flappyrogue_mg.GameSpace
         private readonly GraphicalUiElement _pipeTopContainer;
         private readonly GraphicalUiElement _pipeBottomContainer;
         private readonly GraphicalUiElement _pipeTop;
+        //private readonly GraphicalUiElement _pipeExtendedTop;
         private readonly GraphicalUiElement _pipeBottom;
         private readonly Vector2 _spawnPosition;
         private readonly int _instanceNumber;
         private readonly Entity _entityScoringZone;
-        private readonly Camera _camera;
         //end gum
 
         public PhysicsObject PhysicsObjectPipeTop;
@@ -66,7 +66,6 @@ namespace flappyrogue_mg.GameSpace
         /// <param name="pipesInstanceNumber">the pipe instance number. Should be used when more than 1 pipe is spawned to label the physicsobject created</param>
         public Pipes(GraphicalUiElement screen, GraphicalUiElement rootPipeSpawnContainer, Vector2? spawnPosition = null, float gapBetweenPipes = DEFAULT_GAP_HEIGHT, float? overrideSpeed = null,  int pipesInstanceNumber = 0)
         {
-            _camera = SystemManagers.Default.Renderer.Camera;
             _instanceNumber = pipesInstanceNumber;
             _gapBetweenPipes = gapBetweenPipes;
             GlobalPipesSpeed = overrideSpeed ?? GlobalPipesSpeed;
@@ -77,6 +76,7 @@ namespace flappyrogue_mg.GameSpace
             _pipeTopContainer = rootPipeSpawnContainer.GetGraphicalUiElementByName("PipeTopContainer");
             _pipeBottomContainer = rootPipeSpawnContainer.GetGraphicalUiElementByName("PipeBottomContainer");
             _pipeTop = GumHelper.InstanciateComponent("Pipes\\PipeTop", _pipeTopContainer);
+            //_pipeExtendedTop = GumHelper.InstanciateComponent("Pipes\\ExtendedPipeTop", _pipeTopContainer);
             _pipeBottom = GumHelper.InstanciateComponent("Pipes\\PipeBottom", _pipeBottomContainer);
         }
 
@@ -96,6 +96,7 @@ namespace flappyrogue_mg.GameSpace
             PhysicsObjectPipeBottom = PhysicsObjectFactory.Rect(entity: this, label: $"{_instanceNumber}/pipe_top", x: topleftPipeBottom.X, y: topleftPipeBottom.Y, collisionType: ColliderType.Moving, width: PIPE_WIDTH, height: PIPE_HEIGHT, graphicalUiElement: _pipeBottom, rootGraphicalUiElement: _pipeBottomContainer, debugColor: Color.DarkCyan);
             PhysicsObjectPipeBottom.Gravity = Vector2.Zero;
             ScoringZoneTriggerOnceCollider = PhysicsObjectFactory.AreaRectTriggerOnce(entity: _entityScoringZone, label: $"{_instanceNumber}/scoring_zone", x: topleftScoringZone.X, y: topleftScoringZone.Y, width: SCORING_ZONE_WIDTH, height: _gapBetweenPipes, onTrigger: onScoringZoneTriggered, rootGraphicalUiElement: _rootIngameWorld);
+            //Refresh();
         }
 
         public override void Update(GameTime gameTime)
@@ -123,6 +124,13 @@ namespace flappyrogue_mg.GameSpace
                 GumHelper.RemoveComponent(_pipeBottomContainer, _pipeBottom);
             }
         }
+
+        //public void Refresh()
+        //{
+        //    Vector2 extendedPosition = GumHelper.AddRootPosition(_pipeTopContainer, PhysicsObjectPipeTop.Position.X, PhysicsObjectPipeTop.Position.Y * MainRegistry.I.CurrentFrameScale.Scale);
+        //    _pipeExtendedTop.X = extendedPosition.X;
+        //    _pipeExtendedTop.Y = extendedPosition.Y;
+        //}
 
         public override void Draw(SpriteBatch spriteBatch)
         {

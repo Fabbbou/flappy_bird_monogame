@@ -146,6 +146,12 @@
     <None Include="$(MSBuildThisFileDirectory)Content\FontCache\Font1004b_19_o1_noSmooth.fnt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\FontCache\Font1204b_19_o1_noSmooth.bmfc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\FontCache\Font1204b_19_o1_noSmooth.fnt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="$(MSBuildThisFileDirectory)Content\FontCache\Font1504b_19_o1.bmfc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -239,38 +245,43 @@
     <Folder Include="$(MSBuildThisFileDirectory)Code\Game\States\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)Content\FontCache\Font1004b_19_0.png">
+    <None Include="$(MSBuildThisFileDirectory)Content\FontCache\Font1004b_19_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)Content\FontCache\Font1004b_19_Bold_0.png">
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\FontCache\Font1004b_19_Bold_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)Content\FontCache\Font1004b_19_noSmooth_0.png">
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\FontCache\Font1004b_19_noSmooth_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)Content\FontCache\Font1004b_19_o1_0.png">
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\FontCache\Font1004b_19_o1_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)Content\FontCache\Font1004b_19_o1_Bold_0.png">
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\FontCache\Font1004b_19_o1_Bold_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)Content\FontCache\Font1004b_19_o1_noSmooth_0.png">
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\FontCache\Font1004b_19_o1_noSmooth_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)Content\FontCache\Font1504b_19_o1_0.png">
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\FontCache\Font1504b_19_o1_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)Content\FontCache\Font1504b_19_o1_noSmooth_0.png">
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\FontCache\Font1504b_19_o1_noSmooth_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)Content\FontCache\Font1504b_19_o1_noSmooth_Bold_0.png">
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\FontCache\Font1504b_19_o1_noSmooth_Bold_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)Content\FontCache\Font1804b_19_0.png">
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\FontCache\Font1804b_19_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)Content\FontCache\Font18Arial_0.png">
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\FontCache\Font18Arial_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Content\FontCache\Font1204b_19_o1_noSmooth_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

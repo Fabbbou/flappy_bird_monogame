@@ -1,6 +1,7 @@
 using Gum.Managers;
 using Gum.Wireframe;
 using GumRuntime;
+using Microsoft.Xna.Framework;
 using RenderingLibrary;
 using System.Linq;
 
@@ -24,6 +25,22 @@ public class GumHelper
     public static void RemoveComponent(GraphicalUiElement parentItemTarget, GraphicalUiElement component)
     {
         parentItemTarget.Children.Remove(component);
-        //component.RemoveFromManagers();
+    }
+
+    public static Vector2 AddRootPosition(GraphicalUiElement root, float xScreen, float yScreen)
+    {
+        return new(root.AbsoluteLeft + xScreen, root.AbsoluteTop + yScreen);
+    }
+
+    /// <summary>
+    /// You give the root element of your ingame world, and it will return the position 
+    /// </summary>
+    /// <param name="root"></param>
+    /// <param name="xInRoot"></param>
+    /// <param name="yInRoot"></param>
+    /// <returns></returns>
+    public static Vector2 RemoveRootPosition(GraphicalUiElement root, float xInRoot, float yInRoot)
+    {
+        return new(root.AbsoluteLeft - xInRoot, root.AbsoluteTop - yInRoot);
     }
 }
