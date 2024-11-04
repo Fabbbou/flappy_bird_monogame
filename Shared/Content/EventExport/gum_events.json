@@ -2506,6 +2506,307 @@
         "ElementType": "Screens",
         "EventType": 7,
         "TimestampUtc": "2024-11-03T21:50:38.0628727Z"
+      },
+      {
+        "NewName": "MainGameScreen.ContainerInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-03T22:50:16.5217086Z"
+      },
+      {
+        "NewName": "MainGameScreen.Floors",
+        "OldName": "MainGameScreen.ContainerInstance",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-11-03T22:54:37.9410448Z"
+      },
+      {
+        "NewName": "MainGameScreen.PipeBottomContainer",
+        "OldName": "MainGameScreen.PipeContainer",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-11-03T23:10:30.6453942Z"
+      },
+      {
+        "NewName": "MainGameScreen.PipeBottomContainer1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-03T23:11:33.7136122Z"
+      },
+      {
+        "NewName": "MainGameScreen.PipeTopContainer",
+        "OldName": "MainGameScreen.PipeBottomContainer1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-11-03T23:11:40.7271283Z"
+      },
+      {
+        "NewName": "Pipes\\PipeTop (Sprite).SpriteInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-03T23:17:48.0966673Z"
+      },
+      {
+        "NewName": "Pipes\\PipeTop (Sprite).ExtendedPipeTop",
+        "OldName": "Pipes\\PipeTop (Sprite).SpriteInstance",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-11-03T23:23:50.2317015Z"
+      },
+      {
+        "NewName": "Pipes\\ExtendedPipeTop",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-11-03T23:25:01.4384556Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "Pipes\\PipeTop (Sprite).Sprite ExtendedPipeTop in Pipes\\PipeTop (Sprite)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-11-03T23:25:19.5254488Z"
+      },
+      {
+        "NewName": "MainGameScreen.PipeTopInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-03T23:27:17.156614Z"
+      },
+      {
+        "NewName": "MainGameScreen.ExtendedPipeTopInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-03T23:27:25.2810302Z"
+      },
+      {
+        "NewName": "MainGameScreen.ContainerInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-03T23:28:29.1512794Z"
+      },
+      {
+        "NewName": "MainGameScreen.ExtendedPipeTop",
+        "OldName": "MainGameScreen.ContainerInstance",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-11-03T23:29:08.1601786Z"
+      },
+      {
+        "NewName": "MainGameScreen.ExtendedPipeTopContainer",
+        "OldName": "MainGameScreen.ExtendedPipeTop",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-11-03T23:29:13.7213753Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MainGameScreen.Pipes\\ExtendedPipeTop ExtendedPipeTopInstance in MainGameScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-11-03T23:29:58.1411874Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MainGameScreen.Pipes\\PipeTop PipeTopInstance in MainGameScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-11-03T23:30:02.2781604Z"
+      },
+      {
+        "NewName": "MainGameScreen.ExtendedPipeTopInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-03T23:51:36.7863227Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MainGameScreen.Pipes\\ExtendedPipeTop ExtendedPipeTopInstance in MainGameScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-11-03T23:57:57.3962665Z"
+      },
+      {
+        "NewName": "MainGameScreen.ExtendedPipeTopInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T00:08:26.1505934Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MainGameScreen.Pipes\\ExtendedPipeTop ExtendedPipeTopInstance in MainGameScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-11-04T00:10:19.2809118Z"
+      },
+      {
+        "NewName": "SoundUIComponent",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-11-04T17:16:54.227215Z"
+      },
+      {
+        "NewName": "SoundUIComponent (Container).ColoredRectangleInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T17:16:59.7797968Z"
+      },
+      {
+        "NewName": "SoundUIComponent (Container).SettingsPanel",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T17:17:02.0141558Z"
+      },
+      {
+        "NewName": "SoundUIComponent (Container).OkButton",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T17:17:08.9617622Z"
+      },
+      {
+        "NewName": "SoundUIComponent (Container).MenuButton",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T17:17:08.9817629Z"
+      },
+      {
+        "NewName": "SoundUIComponent (Container).MusicContainer",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T17:17:16.8363946Z"
+      },
+      {
+        "NewName": "SoundUIComponent (Container).FxContainer",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T17:17:16.8564287Z"
+      },
+      {
+        "NewName": "SoundUIComponent (Container).MusicBarSound1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T17:17:33.6331145Z"
+      },
+      {
+        "NewName": "SoundUIComponent (Container).MusicMuteButton",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T17:17:33.6570919Z"
+      },
+      {
+        "NewName": "SoundUIComponent (Container).MusicPlusButton",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T17:17:33.6852357Z"
+      },
+      {
+        "NewName": "SoundUIComponent (Container).MusicMinusButton",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T17:17:33.7094443Z"
+      },
+      {
+        "NewName": "SoundUIComponent (Container).MusicBarSound2",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T17:17:33.7423291Z"
+      },
+      {
+        "NewName": "SoundUIComponent (Container).MusicBarSound3",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T17:17:33.761918Z"
+      },
+      {
+        "NewName": "SoundUIComponent (Container).FxBarSound1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T17:17:38.0623099Z"
+      },
+      {
+        "NewName": "SoundUIComponent (Container).FxMuteButton",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T17:17:38.0916273Z"
+      },
+      {
+        "NewName": "SoundUIComponent (Container).FxPlusButton",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T17:17:38.1183847Z"
+      },
+      {
+        "NewName": "SoundUIComponent (Container).FxMinusButton",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T17:17:38.1475917Z"
+      },
+      {
+        "NewName": "SoundUIComponent (Container).FxBarSound2",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T17:17:38.1702076Z"
+      },
+      {
+        "NewName": "SoundUIComponent (Container).FxBarSound3",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T17:17:38.2615002Z"
+      },
+      {
+        "NewName": "MainGameScreen.ContainerInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T17:26:56.2098775Z"
+      },
+      {
+        "NewName": "MainGameScreen.SoundUIContainer",
+        "OldName": "MainGameScreen.ContainerInstance",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-11-04T17:27:09.4792478Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MainGameScreen.Container SoundUIContainer in MainGameScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-11-04T17:54:33.8298504Z"
+      },
+      {
+        "NewName": "MainGameScreen.SoundUIContainer",
+        "OldName": "MainGameScreen.ExtendedPipeTopContainer",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-11-04T17:54:37.7725525Z"
       }
     ]
   }

@@ -11,6 +11,8 @@ using System.Linq;
 
 public class SceneRegistry
 {
+    private ScreenSave currentGumScreenSave;
+    public GraphicalUiElement CurrentScreen { get; private set; }
     private ScreenManager _screenManager { get; set; } //lets say its a scene manager instead, I just cant rename it.
     private readonly Dictionary<SceneName, GameScreen> _screens = new();
     public SceneName CurrentScene { get; private set; }
@@ -39,16 +41,15 @@ public class SceneRegistry
         CurrentScene = screen;
     }
 
-    private ScreenSave currentGumScreenSave;
-    private GraphicalUiElement currentScreenGue;
+
     private bool IsCurrentlyShown(string screenName)
     {
         ScreenSave newScreenElement = ObjectFinder.Self.GumProjectSave.Screens.FirstOrDefault(item => item.Name == screenName);
 
         bool isAlreadyShown = false;
-        if (currentScreenGue != null)
+        if (CurrentScreen != null)
         {
-            isAlreadyShown = currentScreenGue.Tag == newScreenElement;
+            isAlreadyShown = CurrentScreen.Tag == newScreenElement;
         }
 
         return isAlreadyShown;
@@ -60,15 +61,15 @@ public class SceneRegistry
         {
             ScreenSave newScreenElement = ObjectFinder.Self.GumProjectSave.Screens.FirstOrDefault(item => item.Name == screenName);
             currentGumScreenSave = newScreenElement;
-            currentScreenGue?.RemoveFromManagers();
+            CurrentScreen?.RemoveFromManagers();
             var layers = SystemManagers.Default.Renderer.Layers;
             while (layers.Count > 1)
             {
                 SystemManagers.Default.Renderer.RemoveLayer(SystemManagers.Default.Renderer.Layers.LastOrDefault());
             }
 
-            currentScreenGue = currentGumScreenSave.ToGraphicalUiElement(SystemManagers.Default, addToManagers: true);
+            CurrentScreen = currentGumScreenSave.ToGraphicalUiElement(SystemManagers.Default, addToManagers: true);
         }
-        return currentScreenGue;
+        return CurrentScreen;
     }
 }

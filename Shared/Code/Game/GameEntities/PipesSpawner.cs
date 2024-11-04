@@ -18,16 +18,16 @@ public class PipesSpawner : GameEntity
     public const int MAX_HEIGHT_PIPES = -147;
     private List<Pipes> _pipes = new();
     private int _pipesCounter = 0;
+    private readonly GraphicalUiElement _screen;
     private readonly GraphicalUiElement _rootIngameWorld;
-    private readonly GraphicalUiElement _pipeContainer;
     private float _timeToSpawnCounter = 0f;
 
     //constructor with all fields
-    public PipesSpawner(GraphicalUiElement rootIngameWorld, float initialTimeBetween2PipesSpawn = 2f)
+    public PipesSpawner(GraphicalUiElement screen, GraphicalUiElement rootIngameWorld, float initialTimeBetween2PipesSpawn = 2f)
     {
         TimeToSpawn = initialTimeBetween2PipesSpawn;
+        _screen = screen;
         _rootIngameWorld = rootIngameWorld;
-        _pipeContainer = rootIngameWorld.GetGraphicalUiElementByName("PipeContainer");
     }
 
     public new bool IsPaused
@@ -98,8 +98,19 @@ public class PipesSpawner : GameEntity
     /// <returns></returns>
     private Pipes CreatePipes(float x, float y)
     {
-        var pipes = new Pipes(_pipeContainer, spawnPosition: new(x, y), pipesInstanceNumber: _pipesCounter);
+        var pipes = new Pipes(_screen, _rootIngameWorld, spawnPosition: new(x, y), pipesInstanceNumber: _pipesCounter);
         pipes.LoadContent(null);
         return pipes;
+    }
+
+    public void Reset()
+    {
+        foreach (Pipes pipe in _pipes)
+        {
+            pipe.Kill(isEndOfGame: true);
+        }
+        _pipes.Clear();
+        _timeToSpawnCounter = 0f;
+        _pipesCounter = 0;
     }
 }

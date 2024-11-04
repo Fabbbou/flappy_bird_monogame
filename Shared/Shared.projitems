@@ -20,12 +20,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\entity\FrameScaler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\helpers\Memoizer.cs" />
     <Compile Include="..\Shared\Code\Engine\Screen\SceneRegistry.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Screen\VerticalBoxingViewportAdapter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Entity\GameEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\entity\MainRegistry.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Helpers\ColorHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\physics\collider\Collision.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)code\engine\screen\ViewportAdapterFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\game\assets\AssetsLoader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Constants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Entity\Entity.cs" />
@@ -94,6 +92,9 @@
     <None Include="$(MSBuildThisFileDirectory)Content\Components\Gizmos\RectangleColoredBorder.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\Components\Pipes\ExtendedPipeTop.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="$(MSBuildThisFileDirectory)Content\Components\Pipes\PipeBottom.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -104,6 +105,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Content\Components\PortaitMarginColorsAnimations.ganx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\Components\SoundUIComponent.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />

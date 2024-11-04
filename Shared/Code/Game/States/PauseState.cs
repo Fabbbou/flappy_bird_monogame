@@ -14,12 +14,10 @@ public class PauseState(MainGameScreen mainGameScreen) : MainGameState(mainGameS
         MainGameScreen.PipesSpawner.IsPaused = true;
         MainGameScreen.Floor.IsPaused = true;
         MainGameScreen.ClickZone.Visible = false;
+        MainGameScreen.ScoreText.Visible = false;
     }
 
-    public override void Update(GameTime gameTime)
-    {
-
-    }
+    public override void Update(GameTime gameTime) {}
 
     public override void Exit()
     {
@@ -29,7 +27,6 @@ public class PauseState(MainGameScreen mainGameScreen) : MainGameState(mainGameS
         MainGameScreen.Bird.Resume();
         MainGameScreen.PipesSpawner.IsPaused = false;
         MainGameScreen.Floor.IsPaused = false;
-
-        SoundManager.Instance.Save(MainGameScreen.SoundUI.FxVolume*0.1f, MainGameScreen.SoundUI.MusicVolume*0.1f);
+        MainGameScreen.ScoreText.Visible = true;
     }
 }

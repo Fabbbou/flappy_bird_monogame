@@ -115,7 +115,7 @@
     <Variable>
       <Type>string</Type>
       <Name>Bird.Parent</Name>
-      <Value xsi:type="xsd:string">BackgroundPic</Value>
+      <Value xsi:type="xsd:string">WorldContainerCliper</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -181,7 +181,7 @@
     <Variable>
       <Type>string</Type>
       <Name>ClickZone.Parent</Name>
-      <Value xsi:type="xsd:string">BackgroundPic</Value>
+      <Value xsi:type="xsd:string">WorldContainerCliper</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -259,7 +259,7 @@
     <Variable>
       <Type>string</Type>
       <Name>Floor.Parent</Name>
-      <Value xsi:type="xsd:string">BackgroundPic</Value>
+      <Value xsi:type="xsd:string">Floors</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -450,6 +450,42 @@
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
+      <Type>bool</Type>
+      <Name>Floors.Clips Children</Name>
+      <Value xsi:type="xsd:boolean">true</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Floors.Height</Name>
+      <Value xsi:type="xsd:float">100</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>DimensionUnitType</Type>
+      <Name>Floors.Height Units</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>string</Type>
+      <Name>Floors.Parent</Name>
+      <Value xsi:type="xsd:string">WorldContainerCliper</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>Floors.Width</Name>
+      <Value xsi:type="xsd:float">100</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>DimensionUnitType</Type>
+      <Name>Floors.Width Units</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
       <Type>string</Type>
       <Name>GetReady.Parent</Name>
       <Value xsi:type="xsd:string">GetReadyFullscreenContainer</Value>
@@ -543,7 +579,7 @@
     <Variable>
       <Type>string</Type>
       <Name>GetReadyFullscreenContainer.Parent</Name>
-      <Value xsi:type="xsd:string">BackgroundPic</Value>
+      <Value xsi:type="xsd:string">WorldContainerCliper</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -820,7 +856,7 @@
     <Variable>
       <Type>string</Type>
       <Name>NextFloor.Parent</Name>
-      <Value xsi:type="xsd:string">BackgroundPic</Value>
+      <Value xsi:type="xsd:string">Floors</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -1025,7 +1061,7 @@
     <Variable>
       <Type>string</Type>
       <Name>PauseButtonWidescreen.Parent</Name>
-      <Value xsi:type="xsd:string">BackgroundPic</Value>
+      <Value xsi:type="xsd:string">WorldContainerCliper</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -1114,50 +1150,110 @@
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
+      <Type>bool</Type>
+      <Name>PipeBottomContainer.Clips Children</Name>
+      <Value xsi:type="xsd:boolean">true</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
       <Type>float</Type>
-      <Name>PipeContainer.Height</Name>
+      <Name>PipeBottomContainer.Height</Name>
       <Value xsi:type="xsd:float">100</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>PipeContainer.Height Units</Name>
+      <Name>PipeBottomContainer.Height Units</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>string</Type>
-      <Name>PipeContainer.Parent</Name>
-      <Value xsi:type="xsd:string">BackgroundPic</Value>
+      <Name>PipeBottomContainer.Parent</Name>
+      <Value xsi:type="xsd:string">WorldContainerCliper</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>
-      <Name>PipeContainer.Width</Name>
+      <Name>PipeBottomContainer.Width</Name>
       <Value xsi:type="xsd:float">100</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
-      <Name>PipeContainer.Width Units</Name>
+      <Name>PipeBottomContainer.Width Units</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>HorizontalAlignment</Type>
-      <Name>PipeContainer.X Origin</Name>
+      <Name>PipeBottomContainer.X Origin</Name>
       <Value xsi:type="xsd:int">0</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>VerticalAlignment</Type>
-      <Name>PipeContainer.Y Origin</Name>
+      <Name>PipeBottomContainer.Y Origin</Name>
       <Value xsi:type="xsd:int">0</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>PositionUnitType</Type>
-      <Name>PipeContainer.Y Units</Name>
+      <Name>PipeBottomContainer.Y Units</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>bool</Type>
+      <Name>PipeTopContainer.Clips Children</Name>
+      <Value xsi:type="xsd:boolean">false</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>PipeTopContainer.Height</Name>
+      <Value xsi:type="xsd:float">100</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>DimensionUnitType</Type>
+      <Name>PipeTopContainer.Height Units</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>string</Type>
+      <Name>PipeTopContainer.Parent</Name>
+      <Value xsi:type="xsd:string">WorldContainerCliper</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>PipeTopContainer.Width</Name>
+      <Value xsi:type="xsd:float">100</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>DimensionUnitType</Type>
+      <Name>PipeTopContainer.Width Units</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>HorizontalAlignment</Type>
+      <Name>PipeTopContainer.X Origin</Name>
+      <Value xsi:type="xsd:int">0</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>VerticalAlignment</Type>
+      <Name>PipeTopContainer.Y Origin</Name>
+      <Value xsi:type="xsd:int">0</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>PositionUnitType</Type>
+      <Name>PipeTopContainer.Y Units</Name>
       <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
@@ -1328,6 +1424,30 @@
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
+      <Type>float</Type>
+      <Name>SoundUIContainer.Height</Name>
+      <Value xsi:type="xsd:float">100</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>DimensionUnitType</Type>
+      <Name>SoundUIContainer.Height Units</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>float</Type>
+      <Name>SoundUIContainer.Width</Name>
+      <Value xsi:type="xsd:float">100</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>DimensionUnitType</Type>
+      <Name>SoundUIContainer.Width Units</Name>
+      <Value xsi:type="xsd:int">1</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
       <Type>string</Type>
       <Name>TapScreenToStart.Parent</Name>
       <Value xsi:type="xsd:string">GetReadyFullscreenContainer</Value>
@@ -1397,7 +1517,7 @@
     <Variable>
       <Type>bool</Type>
       <Name>WorldContainerCliper.Clips Children</Name>
-      <Value xsi:type="xsd:boolean">true</Value>
+      <Value xsi:type="xsd:boolean">false</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -1499,7 +1619,22 @@
     </VariableList>
   </State>
   <Instance>
-    <Name>PipeContainer</Name>
+    <Name>BackgroundPic</Name>
+    <BaseType>Sprite</BaseType>
+    <DefinedByBase>false</DefinedByBase>
+  </Instance>
+  <Instance>
+    <Name>PipeTopContainer</Name>
+    <BaseType>Container</BaseType>
+    <DefinedByBase>false</DefinedByBase>
+  </Instance>
+  <Instance>
+    <Name>PipeBottomContainer</Name>
+    <BaseType>Container</BaseType>
+    <DefinedByBase>false</DefinedByBase>
+  </Instance>
+  <Instance>
+    <Name>Floors</Name>
     <BaseType>Container</BaseType>
     <DefinedByBase>false</DefinedByBase>
   </Instance>
@@ -1511,11 +1646,6 @@
   <Instance>
     <Name>MobileBottomTreesRectangle</Name>
     <BaseType>ColoredRectangle</BaseType>
-    <DefinedByBase>false</DefinedByBase>
-  </Instance>
-  <Instance>
-    <Name>BackgroundPic</Name>
-    <BaseType>Sprite</BaseType>
     <DefinedByBase>false</DefinedByBase>
   </Instance>
   <Instance>
@@ -1539,6 +1669,12 @@
     <DefinedByBase>false</DefinedByBase>
   </Instance>
   <Instance>
+    <Name>SoundUIContainer</Name>
+    <BaseType>Container</BaseType>
+    <DefinedByBase>false</DefinedByBase>
+    <Locked>true</Locked>
+  </Instance>
+  <Instance>
     <Name>PauseButtonMobile</Name>
     <BaseType>Sprite</BaseType>
     <DefinedByBase>false</DefinedByBase>
@@ -1554,11 +1690,6 @@
     <DefinedByBase>false</DefinedByBase>
   </Instance>
   <Instance>
-    <Name>Bird</Name>
-    <BaseType>Bird</BaseType>
-    <DefinedByBase>false</DefinedByBase>
-  </Instance>
-  <Instance>
     <Name>GetReady</Name>
     <BaseType>Sprite</BaseType>
     <DefinedByBase>false</DefinedByBase>
@@ -1566,6 +1697,11 @@
   <Instance>
     <Name>GetReadyFullscreenContainer</Name>
     <BaseType>Container</BaseType>
+    <DefinedByBase>false</DefinedByBase>
+  </Instance>
+  <Instance>
+    <Name>Bird</Name>
+    <BaseType>Bird</BaseType>
     <DefinedByBase>false</DefinedByBase>
   </Instance>
   <Instance>

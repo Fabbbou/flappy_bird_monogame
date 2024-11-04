@@ -10,16 +10,13 @@ namespace flappyrogue_mg.GameSpace
     public class Floor : GameEntity
     {
         public readonly PhysicsObject physicsObject;
-        private readonly GraphicalUiElement _mainGameScreenGum;
         private readonly GraphicalUiElement _floor;
         private readonly GraphicalUiElement _nextFloor;
-        public Floor(GraphicalUiElement mainGameScreenGum)
+        public Floor(GraphicalUiElement rootIngameWorld)
         {
-            _mainGameScreenGum = mainGameScreenGum;
-            _floor = _mainGameScreenGum.GetGraphicalUiElementByName("Floor");
-            _nextFloor = _mainGameScreenGum.GetGraphicalUiElementByName("NextFloor");
-            var backgroundPic = _mainGameScreenGum.GetGraphicalUiElementByName("BackgroundPic");
-            physicsObject = PhysicsObjectFactory.Rect(label: "floor", x: SPRITE_POSITION_FLOOR.X, y: SPRITE_POSITION_FLOOR.Y, collisionType: ColliderType.Static, width: ATLAS_SIZE_FLOOR.X, height: ATLAS_SIZE_FLOOR.Y, graphicalUiElement: _floor, rootGraphicalUiElement: backgroundPic, entity: this);
+            _floor = rootIngameWorld.GetGraphicalUiElementByName("Floor");
+            _nextFloor = rootIngameWorld.GetGraphicalUiElementByName("NextFloor");
+            physicsObject = PhysicsObjectFactory.Rect(label: "floor", x: _floor.X, y: _floor.Y, collisionType: ColliderType.Static, width: ATLAS_SIZE_FLOOR.X, height: ATLAS_SIZE_FLOOR.Y, graphicalUiElement: _floor, rootGraphicalUiElement: rootIngameWorld, entity: this);
         }
 
         public override void LoadContent(ContentManager content)

@@ -1,17 +1,7 @@
-using flappyrogue_mg.GameSpace;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended.Graphics;
 using MonoGame.Extended.Screens;
-using MonoGame.Extended.ViewportAdapters;
-using static Constants;
-using Extensions;
-using MonoGame.Extended;
 using GumFormsSample;
 using Gum.Wireframe;
-using MonoGameGum.Forms;
-using RenderingLibrary;
-using System;
 
 public class MenuScreen : GameScreen
 {
@@ -25,34 +15,19 @@ public class MenuScreen : GameScreen
     public override void Initialize()
     {
         _gumScreen = MainRegistry.I.ChangeScreen("MenuScreen");
-        _gumWindowResizer = new BackgroundGumWindowResizer(Game.Window, GraphicsDevice, _gumScreen);
-
-        PlayButton = _gumScreen.GetGraphicalUiElementByName("PlayButton");
-        GumTransparentButton.AttachButton(_gumScreen.GetGraphicalUiElementByName("PlayButton"), onPushAction: OnClickPlayButton);
+        _gumWindowResizer = new BackgroundGumWindowResizer(Game.Window, _gumScreen);
         _gumWindowResizer.InitAndResizeOnce();
+        GumTransparentButton.AttachButton("PlayButton", _gumScreen, actionClicked: OnClickPlayButton);
     }
-    private void OnClickPlayButton(object not, EventArgs used) => MainRegistry.I.SceneRegistry.LoadScene(SceneName.MainGameScreen);
+    private void OnClickPlayButton() => MainRegistry.I.SceneRegistry.LoadScene(SceneName.MainGameScreen);
 
-    public override void Update(GameTime gameTime)
-    {
-        //gum update
-        if (Game.IsActive) FormsUtilities.Update(gameTime, _gumScreen);
-        SystemManagers.Default.Activity(gameTime.TotalGameTime.TotalSeconds);
-    }
-    public override void Draw(GameTime gameTime)
-    {
-        GraphicsDevice.Clear(Color.Black);
-        SystemManagers.Default.Draw();
-    }
+    public override void Update(GameTime gameTime){}
+    public override void Draw(GameTime gameTime){}
 
     public override void Dispose()
     {
         _gumWindowResizer.Dispose();
     }
 
-    public override void UnloadContent()
-    {
-        //_gumScreen.Visible = false;
-        //_gumScreen.RemoveFromManagers();
-    }
+    public override void UnloadContent(){}
 }

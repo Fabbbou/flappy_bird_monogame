@@ -85,9 +85,9 @@ public class EmptyRectGumGizmo : GumGizmo
 
     public void Deactivate()
     {
-        _top.RemoveFromManagers();
-        _bottom.RemoveFromManagers();
-        _left.RemoveFromManagers();
-        _right.RemoveFromManagers();
+        //_top.RemoveFromManagers();
+        //_bottom.RemoveFromManagers();
+        //_left.RemoveFromManagers();
+        //_right.RemoveFromManagers();
     }
 }

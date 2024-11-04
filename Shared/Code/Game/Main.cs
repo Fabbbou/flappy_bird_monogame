@@ -1,25 +1,11 @@
-using Gum.DataTypes;
-using Gum.Managers;
-using Gum.Wireframe;
 using GumFormsSample;
 using GumRuntime;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
-using MonoGame.Extended.ECS;
-using MonoGame.Extended.Screens;
-using MonoGame.Extended.Screens.Transitions;
-using MonoGame.Extended.ViewportAdapters;
 using MonoGameGum.Forms;
-using MonoGameGum.Forms.Controls;
-using MonoGameGum.Forms.Controls.Primitives;
-using MonoGameGum.GueDeriving;
 using RenderingLibrary;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using ToolsUtilities;
 using static Constants;
 
 
@@ -50,7 +36,7 @@ namespace flappyrogue_mg.GameSpace
             ElementSaveExtensions.RegisterGueInstantiationType("Buttons/GumTransparentButton", typeof(GumTransparentButton));
 
             //uncomment to see the Gizmos to debug
-            //GizmosRegistry.Instance.Start(_graphics.GraphicsDevice, true);
+            GizmosRegistry.Instance.Start(_graphics.GraphicsDevice, true);
 
             var sceneRegistry = new SceneRegistry(this);
             sceneRegistry.AddScene(SceneName.MenuScreen, new MenuScreen(this));
@@ -86,16 +72,24 @@ namespace flappyrogue_mg.GameSpace
 
         protected override void Update(GameTime gameTime)
         {
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                Exit();
+
             _fpsCounter.Update(gameTime);
             base.Update(gameTime);
+            MainRegistry.I.SceneRegistry?.CurrentScreen?.AnimateSelf(gameTime.ElapsedGameTime.TotalSeconds);
+            if (IsActive) FormsUtilities.Update(gameTime, MainRegistry.I.SceneRegistry.CurrentScreen);
+            SystemManagers.Default.Activity(gameTime.TotalGameTime.TotalSeconds);
             MousePrinter.PrintOnLeftPressed(GraphicsDevice);
         }
 
         protected override void Draw(GameTime gameTime)
         {
+            GraphicsDevice.Clear(Color.Black);
             _fpsCounter.Draw(gameTime);
             Window.Title = $"FPS: {_fpsCounter.FramesPerSecond}";
             base.Draw(gameTime);
+            SystemManagers.Default.Draw();
         }
 
         protected override void Dispose(bool disposing)

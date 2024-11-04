@@ -6,7 +6,7 @@ using RenderingLibrary;
 using System;
 using System.Diagnostics;
 
-public class BackgroundGumWindowResizer(GameWindow gameWindow, GraphicsDevice graphicsDevice, GraphicalUiElement _gumScreen, Action onClientChanged = null) : IDisposable
+public class BackgroundGumWindowResizer(GameWindow gameWindow, GraphicalUiElement _gumScreen, Action onClientChanged = null) : IDisposable
 {
     public void InitAndResizeOnce()
     {
@@ -18,7 +18,7 @@ public class BackgroundGumWindowResizer(GameWindow gameWindow, GraphicsDevice gr
     {
         MainRegistry.I.RefreshCenterScreen();
         var bg = _gumScreen.GetGraphicalUiElementByName("PortraitSkyAndTrees");
-        if(bg != null)
+        if (bg != null)
         {
             if (MainRegistry.I.CurrentFrameScale.IsWideScreen)
             {

@@ -2,10 +2,10 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended.Graphics;
 using System.Diagnostics;
 using static Constants;
 using Gum.Wireframe;
+using RenderingLibrary;
 
 namespace flappyrogue_mg.GameSpace
 {
@@ -28,12 +28,16 @@ namespace flappyrogue_mg.GameSpace
         private const int CROP_SCORING_ZONE_WIDTH = 3;
         private const int SCORING_ZONE_WIDTH = PIPE_WIDTH - CROP_SCORING_ZONE_WIDTH * 2;
         private readonly float _gapBetweenPipes;
+        private readonly GraphicalUiElement _screen;
         private readonly GraphicalUiElement _rootIngameWorld;
+        private readonly GraphicalUiElement _pipeTopContainer;
+        private readonly GraphicalUiElement _pipeBottomContainer;
         private readonly GraphicalUiElement _pipeTop;
         private readonly GraphicalUiElement _pipeBottom;
         private readonly Vector2 _spawnPosition;
         private readonly int _instanceNumber;
         private readonly Entity _entityScoringZone;
+        private readonly Camera _camera;
         //end gum
 
         public PhysicsObject PhysicsObjectPipeTop;
@@ -60,18 +64,20 @@ namespace flappyrogue_mg.GameSpace
         /// <param name="gapBetweenPipes">the space between the two pipes spawned</param>
         /// <param name="overrideSpeed">the speed of the pipes moving from left to right</param>
         /// <param name="pipesInstanceNumber">the pipe instance number. Should be used when more than 1 pipe is spawned to label the physicsobject created</param>
-        public Pipes(GraphicalUiElement rootPipeSpawnContainer, Vector2? spawnPosition = null, float gapBetweenPipes = DEFAULT_GAP_HEIGHT, float? overrideSpeed = null,  int pipesInstanceNumber = 0)
+        public Pipes(GraphicalUiElement screen, GraphicalUiElement rootPipeSpawnContainer, Vector2? spawnPosition = null, float gapBetweenPipes = DEFAULT_GAP_HEIGHT, float? overrideSpeed = null,  int pipesInstanceNumber = 0)
         {
+            _camera = SystemManagers.Default.Renderer.Camera;
             _instanceNumber = pipesInstanceNumber;
-            _rootIngameWorld = rootPipeSpawnContainer;
             _gapBetweenPipes = gapBetweenPipes;
             GlobalPipesSpeed = overrideSpeed ?? GlobalPipesSpeed;
             _spawnPosition = spawnPosition ?? DEFAULT_SPAWN_POSITION;
             _entityScoringZone = new Entity();
+            _screen = screen;
 
-            // the componentRuntime can be modified here
-            _pipeTop = GumHelper.InstanciateComponent("Pipes\\PipeTop", rootPipeSpawnContainer);
-            _pipeBottom = GumHelper.InstanciateComponent("Pipes\\PipeBottom", rootPipeSpawnContainer);
+            _pipeTopContainer = rootPipeSpawnContainer.GetGraphicalUiElementByName("PipeTopContainer");
+            _pipeBottomContainer = rootPipeSpawnContainer.GetGraphicalUiElementByName("PipeBottomContainer");
+            _pipeTop = GumHelper.InstanciateComponent("Pipes\\PipeTop", _pipeTopContainer);
+            _pipeBottom = GumHelper.InstanciateComponent("Pipes\\PipeBottom", _pipeBottomContainer);
         }
 
         public void onScoringZoneTriggered()
@@ -85,10 +91,9 @@ namespace flappyrogue_mg.GameSpace
             Vector2 topleftPipeTop = new(_spawnPosition.X, _spawnPosition.Y);
             Vector2 topleftPipeBottom = new(_spawnPosition.X, _spawnPosition.Y + PIPE_HEIGHT + _gapBetweenPipes);
             Vector2 topleftScoringZone = new(_spawnPosition.X + CROP_SCORING_ZONE_WIDTH, _spawnPosition.Y + PIPE_HEIGHT);
-
-            PhysicsObjectPipeTop = PhysicsObjectFactory.Rect(entity: this, label: $"{_instanceNumber}/pipe_top", x: topleftPipeTop.X, y: topleftPipeTop.Y, collisionType: ColliderType.Moving, width: PIPE_WIDTH, height: PIPE_HEIGHT, graphicalUiElement: _pipeTop, rootGraphicalUiElement: _rootIngameWorld, debugColor: Color.Blue);
+            PhysicsObjectPipeTop = PhysicsObjectFactory.Rect(entity: this, label: $"{_instanceNumber}/pipe_top", x: topleftPipeTop.X, y: topleftPipeTop.Y, collisionType: ColliderType.Moving, width: PIPE_WIDTH, height: PIPE_HEIGHT, graphicalUiElement: _pipeTop, rootGraphicalUiElement: _pipeTopContainer, debugColor: Color.Blue);
             PhysicsObjectPipeTop.Gravity = Vector2.Zero;
-            PhysicsObjectPipeBottom = PhysicsObjectFactory.Rect(entity: this, label: $"{_instanceNumber}/pipe_top", x: topleftPipeBottom.X, y: topleftPipeBottom.Y, collisionType: ColliderType.Moving, width: PIPE_WIDTH, height: PIPE_HEIGHT, graphicalUiElement: _pipeBottom, rootGraphicalUiElement: _rootIngameWorld, debugColor: Color.DarkCyan);
+            PhysicsObjectPipeBottom = PhysicsObjectFactory.Rect(entity: this, label: $"{_instanceNumber}/pipe_top", x: topleftPipeBottom.X, y: topleftPipeBottom.Y, collisionType: ColliderType.Moving, width: PIPE_WIDTH, height: PIPE_HEIGHT, graphicalUiElement: _pipeBottom, rootGraphicalUiElement: _pipeBottomContainer, debugColor: Color.DarkCyan);
             PhysicsObjectPipeBottom.Gravity = Vector2.Zero;
             ScoringZoneTriggerOnceCollider = PhysicsObjectFactory.AreaRectTriggerOnce(entity: _entityScoringZone, label: $"{_instanceNumber}/scoring_zone", x: topleftScoringZone.X, y: topleftScoringZone.Y, width: SCORING_ZONE_WIDTH, height: _gapBetweenPipes, onTrigger: onScoringZoneTriggered, rootGraphicalUiElement: _rootIngameWorld);
         }
@@ -106,11 +111,17 @@ namespace flappyrogue_mg.GameSpace
             ScoringZoneTriggerOnceCollider.Update(gameTime);
         }
 
-        public void Kill()
+
+        public void Kill(bool isEndOfGame = false)
         {
             PhysicsObjectPipeTop.Kill();
             PhysicsObjectPipeBottom.Kill();
             ScoringZoneTriggerOnceCollider.Kill();
+            if (!isEndOfGame)
+            {
+                GumHelper.RemoveComponent(_pipeTopContainer, _pipeTop);
+                GumHelper.RemoveComponent(_pipeBottomContainer, _pipeBottom);
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)

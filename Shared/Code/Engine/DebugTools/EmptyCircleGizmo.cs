@@ -38,7 +38,7 @@ public class EmptyCircleGizmo : GumGizmo
 
     public void Deactivate()
     {
-        SystemManagers.Default.ShapeManager.Remove(_lineCircle);
+        //SystemManagers.Default.ShapeManager.Remove(_lineCircle);
     }
 
     public void SetPosition()

@@ -13,12 +13,10 @@ namespace GumFormsSample
 {
     public class GumTransparentButton : InteractiveGue
     {
-
-
-        public static GraphicalUiElement FindAndAttachButton(string name, GraphicalUiElement parentToExplore, Action actionClicked = null, Action actionPushed = null)
+        public static GraphicalUiElement AttachButton(string name, GraphicalUiElement parentToExplore, Action actionClicked = null, Action actionPushed = null, Color? overrideDebugColor = null)
         {
             var component = parentToExplore.GetGraphicalUiElementByName(name);
-            var button = new GumTransparentButton();
+            var button = new GumTransparentButton(overrideDebugColor: overrideDebugColor);
             if(actionClicked != null)
             {
                 button.Click += (o, e) => actionClicked();
@@ -31,22 +29,32 @@ namespace GumFormsSample
             return component;
         }
 
-        public static GraphicalUiElement AttachButton(GraphicalUiElement component, EventHandler onPushAction)
+        public static GraphicalUiElement AttachButton(GraphicalUiElement component, EventHandler onPushAction, Color? overrideDebugColor = null)
         {
-            var button = new GumTransparentButton();
+            var button = new GumTransparentButton(overrideDebugColor: overrideDebugColor);
             button.Push += onPushAction;
             component.Children.Add(button);
             return component;
         }
 
-        public static GraphicalUiElement AttachButton(GraphicalUiElement component, Action onPushAction)
+        public static GraphicalUiElement AttachButton(GraphicalUiElement component, Action actionClicked = null, Action actionPushed = null, Color? overrideDebugColor = null)
         {
-            return AttachButton(component, (o, e) => onPushAction());
+            return AttachButton(component, (o, e) => actionClicked(), overrideDebugColor: overrideDebugColor);
         }
 
         public readonly static Color TransparentRed = new Color(255, 0, 0, 123);
-        public GumTransparentButton(bool fullInstantiation = true, bool tryCreateFormsObject = true) : base(new InvisibleRenderable()) {
-            Color color = GizmosRegistry.Instance.IsDebugging ? TransparentRed : Color.Transparent;
+        public Color colorDebug = TransparentRed;
+        public GumTransparentButton(bool fullInstantiation = true, bool tryCreateFormsObject = true, Color? overrideDebugColor = null) : base(new InvisibleRenderable()) {
+            if (GizmosRegistry.Instance.IsDebugging)
+            {
+                colorDebug = overrideDebugColor ?? TransparentRed;
+            }
+            else
+            {
+                colorDebug = Color.Transparent;
+            }
+            
+            
             if (fullInstantiation)
             {
                 this.Width = 100f;
@@ -60,7 +68,7 @@ namespace GumFormsSample
                     WidthUnits = DimensionUnitType.Percentage,
                     HeightUnits = DimensionUnitType.Percentage,
                     Name = "ButtonBackground",
-                    Color = color,
+                    Color = colorDebug,
                 };
                 this.Children.Add(item);
                 AddCategory(new StateSaveCategory
@@ -76,7 +84,7 @@ namespace GumFormsSample
                             new VariableSave
                             {
                                 Name = "ButtonBackground.Color",
-                                Value = color,
+                                Value = colorDebug,
                             }
                         }
                     },
@@ -88,7 +96,7 @@ namespace GumFormsSample
                             new VariableSave
                             {
                                 Name = "ButtonBackground.Color",
-                                Value = color,
+                                Value = colorDebug,
                             }
                         }
                     },

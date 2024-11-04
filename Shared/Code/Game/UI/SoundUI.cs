@@ -1,62 +1,63 @@
 using flappyrogue_mg.GameSpace;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
 using Gum.Wireframe;
 using GumFormsSample;
 using System.Collections.Generic;
-using RenderingLibrary;
 
 public class SoundUI
 {
     private const int numberOfVolumeLevels = 3;
     private MainGameScreen _mainGameScreen;
-    private GraphicalUiElement _gumScreen;
+    private GraphicalUiElement _rootComponent;
+    private GraphicalUiElement _soundUIContainer;
     private List<GraphicalUiElement> musicBarSounds = new();
     private List<GraphicalUiElement> fxBarSounds = new();
 
     public int MusicVolume { get; private set; }
     public int FxVolume { get; private set; }
-    private bool _isActive;
-    public bool IsActive => _isActive;
-    public SoundUI(MainGameScreen mainGameScreen, GraphicalUiElement SoundUIScreen)
+    public SoundUI(MainGameScreen mainGameScreen, GraphicalUiElement screen)
     {
         _mainGameScreen = mainGameScreen;
-        _gumScreen = SoundUIScreen;
-        _isActive = false;
+        _soundUIContainer = screen.GetGraphicalUiElementByName("SoundUIContainer");
     }
 
     public void Activate()
     {
-        _gumScreen.AddToManagers(SystemManagers.Default, layer: null);
-        _isActive = true;
+        if(_rootComponent == null)
+        {
+            _rootComponent = GumHelper.InstanciateComponent("SoundUIComponent", _soundUIContainer);
+            Load();
+        }
+        else
+        {
+            _soundUIContainer.Children.Add(_rootComponent);
+        }
     }
 
     public void Deactivate()
     {
-        _gumScreen.RemoveFromManagers();
-        _isActive = false;
+        _soundUIContainer.Children.Remove(_rootComponent);
     }
 
-    public void Load()
+    private void Load()
     {
         MusicVolume = (int)(SoundManager.Instance.VolumeMusic * numberOfVolumeLevels);
         FxVolume = (int)(SoundManager.Instance.VolumeFX * numberOfVolumeLevels);
 
-        GumTransparentButton.AttachButton(_gumScreen.GetGraphicalUiElementByName("OkButton"), OnClickOk);
-        GumTransparentButton.AttachButton(_gumScreen.GetGraphicalUiElementByName("MenuButton"), OnClickMenu);
-        GumTransparentButton.AttachButton(_gumScreen.GetGraphicalUiElementByName("MusicMuteButton"), OnClickMusicMute);
-        GumTransparentButton.AttachButton(_gumScreen.GetGraphicalUiElementByName("MusicMinusButton"), OnClickMusicMinus);
-        GumTransparentButton.AttachButton(_gumScreen.GetGraphicalUiElementByName("MusicPlusButton"), OnClickMusicPlus);
-        GumTransparentButton.AttachButton(_gumScreen.GetGraphicalUiElementByName("FxMuteButton"), OnClickFxMute);
-        GumTransparentButton.AttachButton(_gumScreen.GetGraphicalUiElementByName("FxMinusButton"), OnClickFxMinus);
-        GumTransparentButton.AttachButton(_gumScreen.GetGraphicalUiElementByName("FxPlusButton"), OnClickFxPlus);
-        musicBarSounds.Add(_gumScreen.GetGraphicalUiElementByName("MusicBarSound1"));
-        musicBarSounds.Add(_gumScreen.GetGraphicalUiElementByName("MusicBarSound2"));
-        musicBarSounds.Add(_gumScreen.GetGraphicalUiElementByName("MusicBarSound3"));
-        fxBarSounds.Add(_gumScreen.GetGraphicalUiElementByName("FxBarSound1"));
-        fxBarSounds.Add(_gumScreen.GetGraphicalUiElementByName("FxBarSound2"));
-        fxBarSounds.Add(_gumScreen.GetGraphicalUiElementByName("FxBarSound3"));
+        GumTransparentButton.AttachButton(_rootComponent.GetGraphicalUiElementByName("OkButton"), OnClickOk);
+        GumTransparentButton.AttachButton(_rootComponent.GetGraphicalUiElementByName("MenuButton"), OnClickMenu);
+        GumTransparentButton.AttachButton(_rootComponent.GetGraphicalUiElementByName("MusicMuteButton"), OnClickMusicMute);
+        GumTransparentButton.AttachButton(_rootComponent.GetGraphicalUiElementByName("MusicMinusButton"), OnClickMusicMinus);
+        GumTransparentButton.AttachButton(_rootComponent.GetGraphicalUiElementByName("MusicPlusButton"), OnClickMusicPlus);
+        GumTransparentButton.AttachButton(_rootComponent.GetGraphicalUiElementByName("FxMuteButton"), OnClickFxMute);
+        GumTransparentButton.AttachButton(_rootComponent.GetGraphicalUiElementByName("FxMinusButton"), OnClickFxMinus);
+        GumTransparentButton.AttachButton(_rootComponent.GetGraphicalUiElementByName("FxPlusButton"), OnClickFxPlus);
+        musicBarSounds.Add(_rootComponent.GetGraphicalUiElementByName("MusicBarSound1"));
+        musicBarSounds.Add(_rootComponent.GetGraphicalUiElementByName("MusicBarSound2"));
+        musicBarSounds.Add(_rootComponent.GetGraphicalUiElementByName("MusicBarSound3"));
+        fxBarSounds.Add(_rootComponent.GetGraphicalUiElementByName("FxBarSound1"));
+        fxBarSounds.Add(_rootComponent.GetGraphicalUiElementByName("FxBarSound2"));
+        fxBarSounds.Add(_rootComponent.GetGraphicalUiElementByName("FxBarSound3"));
         RefreshStatusBars(musicBarSounds, MusicVolume);
         RefreshStatusBars(fxBarSounds, FxVolume);
     }
@@ -78,6 +79,7 @@ public class SoundUI
 
     public void OnClickOk()
     {
+        SoundManager.Instance.Save((float)FxVolume / (float)numberOfVolumeLevels, (float)MusicVolume / (float)numberOfVolumeLevels);
         _mainGameScreen.StateMachine.ChangeState(new PlayState(_mainGameScreen));
     }
     public void OnClickMenu()

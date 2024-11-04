@@ -20,4 +20,10 @@ public class GumHelper
         parentItemTarget.Children.Add(componentRuntime);
         return componentRuntime;
     }
+
+    public static void RemoveComponent(GraphicalUiElement parentItemTarget, GraphicalUiElement component)
+    {
+        parentItemTarget.Children.Remove(component);
+        //component.RemoveFromManagers();
+    }
 }
