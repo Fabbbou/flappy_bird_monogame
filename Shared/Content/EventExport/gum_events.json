@@ -2884,6 +2884,132 @@
         "ElementType": "Screens",
         "EventType": 6,
         "TimestampUtc": "2024-11-04T18:54:42.5938898Z"
+      },
+      {
+        "NewName": "GameOverScreen.MedalPanel",
+        "OldName": "GameOverScreen.Medal",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-11-04T19:20:50.070933Z"
+      },
+      {
+        "NewName": "GameOverScreen.SpriteInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T19:20:56.2863787Z"
+      },
+      {
+        "NewName": "GameOverScreen.SilverMedal",
+        "OldName": "GameOverScreen.SpriteInstance",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-11-04T19:21:40.8838955Z"
+      },
+      {
+        "NewName": "GameOverScreen.SilverMedal1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T19:21:46.622268Z"
+      },
+      {
+        "NewName": "GameOverScreen.NewSprite",
+        "OldName": "GameOverScreen.SilverMedal1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-11-04T19:21:52.1161809Z"
+      },
+      {
+        "NewName": "GameOverScreen.SilverMedal1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T19:22:15.5662557Z"
+      },
+      {
+        "NewName": "GameOverScreen.BronzeMedal",
+        "OldName": "GameOverScreen.SilverMedal1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-11-04T19:22:29.6679553Z"
+      },
+      {
+        "NewName": "GameOverScreen.GoldenMedal",
+        "OldName": "GameOverScreen.BronzeMedal",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-11-04T19:22:39.2438365Z"
+      },
+      {
+        "NewName": "GameOverScreen.GoldenMedal1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T19:23:06.3416083Z"
+      },
+      {
+        "NewName": "GameOverScreen.BronzeMedal",
+        "OldName": "GameOverScreen.GoldenMedal1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-11-04T19:23:12.2288438Z"
+      },
+      {
+        "NewName": "GameOverScreen.New",
+        "OldName": "GameOverScreen.NewSprite",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-11-04T19:23:25.8439067Z"
+      },
+      {
+        "NewName": "MainGameScreen.ScoreText1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T19:23:49.2710257Z"
+      },
+      {
+        "NewName": "GameOverScreen.ScoreText1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T19:23:52.4012615Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MainGameScreen.Text ScoreText1 in MainGameScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-11-04T19:23:57.0669597Z"
+      },
+      {
+        "NewName": "GameOverScreen.ScoreText",
+        "OldName": "GameOverScreen.ScoreText1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-11-04T19:24:12.4780926Z"
+      },
+      {
+        "NewName": "GameOverScreen.CurrentScoreText",
+        "OldName": "GameOverScreen.ScoreText",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-11-04T19:25:59.9245616Z"
+      },
+      {
+        "NewName": "GameOverScreen.CurrentScoreText1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T19:26:15.7158124Z"
+      },
+      {
+        "NewName": "GameOverScreen.BestScoreText",
+        "OldName": "GameOverScreen.CurrentScoreText1",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-11-04T19:26:32.4203234Z"
       }
     ]
   }

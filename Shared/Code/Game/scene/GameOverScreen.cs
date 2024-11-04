@@ -20,6 +20,26 @@ public class GameOverScreen : GameScreen
 
         GumTransparentButton.AttachButton("MenuButton", _gumScreen,  OnClickMenu);
         GumTransparentButton.AttachButton("PlayButton", _gumScreen, OnClickPlay);
+
+        _score = ScoreManager.Instance.SaveScores();
+        switch(_score.Rank)
+        {
+            case ScoreManager.ScoreRank.First:
+                _gumScreen.SetProperty("GoldenMedal.Visible", true);
+                break;
+            case ScoreManager.ScoreRank.Second:
+                _gumScreen.SetProperty("SilverMedal.Visible", true);
+                break;
+            case ScoreManager.ScoreRank.Third:
+                _gumScreen.SetProperty("BronzeMedal.Visible", true);
+                break;
+        }
+        if (_score.IsNewScore)
+        {
+            _gumScreen.SetProperty("New.Visible", true);
+        }
+        _gumScreen.SetProperty("CurrentScoreText.Text", _score.Value.ToString());
+        _gumScreen.SetProperty("BestScoreText.Text", _score.Best.ToString());
     }
     public override void Dispose()
     {

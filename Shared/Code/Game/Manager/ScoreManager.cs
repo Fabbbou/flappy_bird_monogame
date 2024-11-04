@@ -90,14 +90,14 @@ public class ScoreManager
 
     public class Score
     {
-        public ScoreRank ScoreRank { get; private set; }
+        public ScoreRank Rank { get; private set; }
         public bool IsNewScore { get; private set; }
         public int Value { get; private set; }
         //const with fields params
         public int Best;
         public Score(ScoreRank scoreRank, bool isNewScore, int value, int best)
         {
-            ScoreRank = scoreRank;
+            Rank = scoreRank;
             IsNewScore = isNewScore;
             Value = value;
             Best = best;
