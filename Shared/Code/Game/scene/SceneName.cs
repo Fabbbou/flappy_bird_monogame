@@ -4,6 +4,4 @@ public enum SceneName
     MenuScreen,
     MainGameScreen,
     GameOverScreen,
-    // Debug screens
-    ZoomedOutMainScreen
 }

@@ -5,7 +5,7 @@ using GumFormsSample;
 
 public class GameOverScreen : GameScreen
 {
-    private BackgroundGumWindowResizer _gumWindowResizer;
+    private BackgroundGumHandler _backgroundHandler;
     private GraphicalUiElement _gumScreen;
 
     private ScoreManager.Score _score;
@@ -15,19 +15,22 @@ public class GameOverScreen : GameScreen
     public override void Initialize()
     {
         _gumScreen = MainRegistry.I.ChangeScreen("GameOverScreen");
-        _gumWindowResizer = new BackgroundGumWindowResizer(Game.Window, _gumScreen);
-        _gumWindowResizer.InitAndResizeOnce();
+        _backgroundHandler = new BackgroundGumHandler(Game.Window, _gumScreen);
+        _backgroundHandler.InitAndResizeOnce();
 
         GumTransparentButton.AttachButton("MenuButton", _gumScreen,  OnClickMenu);
         GumTransparentButton.AttachButton("PlayButton", _gumScreen, OnClickPlay);
     }
     public override void Dispose()
     {
-        _gumWindowResizer.Dispose();
+        _backgroundHandler.Dispose();
         base.Dispose();
     }
 
-    public override void Update(GameTime gameTime) {}
+    public override void Update(GameTime gameTime) 
+    {
+        _backgroundHandler.AnimateParallax(gameTime);
+    }
     public override void Draw(GameTime gameTime){}
 
     private void OnClickPlay()

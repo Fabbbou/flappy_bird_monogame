@@ -5,7 +5,7 @@ using Gum.Wireframe;
 
 public class MenuScreen : GameScreen
 {
-    private BackgroundGumWindowResizer _gumWindowResizer;
+    private BackgroundGumHandler _backgroundHandler;
 
     private GraphicalUiElement _gumScreen;
 
@@ -15,18 +15,21 @@ public class MenuScreen : GameScreen
     public override void Initialize()
     {
         _gumScreen = MainRegistry.I.ChangeScreen("MenuScreen");
-        _gumWindowResizer = new BackgroundGumWindowResizer(Game.Window, _gumScreen);
-        _gumWindowResizer.InitAndResizeOnce();
+        _backgroundHandler = new BackgroundGumHandler(Game.Window, _gumScreen);
+        _backgroundHandler.InitAndResizeOnce();
         GumTransparentButton.AttachButton("PlayButton", _gumScreen, actionClicked: OnClickPlayButton);
     }
     private void OnClickPlayButton() => MainRegistry.I.SceneRegistry.LoadScene(SceneName.MainGameScreen);
 
-    public override void Update(GameTime gameTime){}
+    public override void Update(GameTime gameTime)
+    {
+        _backgroundHandler.AnimateParallax(gameTime);
+    }
     public override void Draw(GameTime gameTime){}
 
     public override void Dispose()
     {
-        _gumWindowResizer.Dispose();
+        _backgroundHandler.Dispose();
     }
 
     public override void UnloadContent(){}

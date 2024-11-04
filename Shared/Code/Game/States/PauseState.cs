@@ -15,6 +15,7 @@ public class PauseState(MainGameScreen mainGameScreen) : MainGameState(mainGameS
         MainGameScreen.Floor.IsPaused = true;
         MainGameScreen.ClickZone.Visible = false;
         MainGameScreen.ScoreText.Visible = false;
+        MainGameScreen.BackgroundHandler.IsParallaxPaused = true;
     }
 
     public override void Update(GameTime gameTime) {}
@@ -28,5 +29,6 @@ public class PauseState(MainGameScreen mainGameScreen) : MainGameState(mainGameS
         MainGameScreen.PipesSpawner.IsPaused = false;
         MainGameScreen.Floor.IsPaused = false;
         MainGameScreen.ScoreText.Visible = true;
+        MainGameScreen.BackgroundHandler.IsParallaxPaused = false;
     }
 }

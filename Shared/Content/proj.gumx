@@ -51,6 +51,11 @@
     <LinkType>ReferenceOriginal</LinkType>
   </ComponentReference>
   <ComponentReference>
+    <Name>ParallaxBackground</Name>
+    <ElementType>Component</ElementType>
+    <LinkType>ReferenceOriginal</LinkType>
+  </ComponentReference>
+  <ComponentReference>
     <Name>Pipes\ExtendedPipeTop</Name>
     <ElementType>Component</ElementType>
     <LinkType>ReferenceOriginal</LinkType>
@@ -62,11 +67,6 @@
   </ComponentReference>
   <ComponentReference>
     <Name>Pipes\PipeTop</Name>
-    <ElementType>Component</ElementType>
-    <LinkType>ReferenceOriginal</LinkType>
-  </ComponentReference>
-  <ComponentReference>
-    <Name>PortaitMarginColors</Name>
     <ElementType>Component</ElementType>
     <LinkType>ReferenceOriginal</LinkType>
   </ComponentReference>

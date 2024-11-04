@@ -19,6 +19,7 @@ public class DeathState : GameState
         _mainGameScreen.PipesSpawner.IsPaused = true;
         _mainGameScreen.Floor.IsPaused = true;
         _mainGameScreen.ClickZone.Visible = false;
+        _mainGameScreen.BackgroundHandler.IsParallaxPaused = true;
         SoundManager.Instance.PlayHitSound();
     }
 

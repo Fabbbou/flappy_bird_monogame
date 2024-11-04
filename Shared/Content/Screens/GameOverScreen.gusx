@@ -4,102 +4,6 @@
   <State>
     <Name>Default</Name>
     <Variable>
-      <Type>DimensionUnitType</Type>
-      <Name>BackgroundPic.Height Units</Name>
-      <Value xsi:type="xsd:int">3</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>string</Type>
-      <Name>BackgroundPic.Parent</Name>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <IsFile>true</IsFile>
-      <Type>string</Type>
-      <Name>BackgroundPic.SourceFile</Name>
-      <Value xsi:type="xsd:string">sprites\atlas.png</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>TextureAddress</Type>
-      <Name>BackgroundPic.Texture Address</Name>
-      <Value xsi:type="xsd:int">1</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>BackgroundPic.Texture Height</Name>
-      <Value xsi:type="xsd:int">256</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>BackgroundPic.Texture Left</Name>
-      <Value xsi:type="xsd:int">0</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>BackgroundPic.Texture Top</Name>
-      <Value xsi:type="xsd:int">0</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>int</Type>
-      <Name>BackgroundPic.Texture Width</Name>
-      <Value xsi:type="xsd:int">144</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>bool</Type>
-      <Name>BackgroundPic.Visible</Name>
-      <Value xsi:type="xsd:boolean">true</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>DimensionUnitType</Type>
-      <Name>BackgroundPic.Width Units</Name>
-      <Value xsi:type="xsd:int">3</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>BackgroundPic.X</Name>
-      <Value xsi:type="xsd:float">0</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>HorizontalAlignment</Type>
-      <Name>BackgroundPic.X Origin</Name>
-      <Value xsi:type="xsd:int">1</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>PositionUnitType</Type>
-      <Name>BackgroundPic.X Units</Name>
-      <Value xsi:type="xsd:int">6</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>float</Type>
-      <Name>BackgroundPic.Y</Name>
-      <Value xsi:type="xsd:float">0</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>VerticalAlignment</Type>
-      <Name>BackgroundPic.Y Origin</Name>
-      <Value xsi:type="xsd:int">1</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
-      <Type>PositionUnitType</Type>
-      <Name>BackgroundPic.Y Units</Name>
-      <Value xsi:type="xsd:int">7</Value>
-      <SetsValue>true</SetsValue>
-    </Variable>
-    <Variable>
       <Type>float</Type>
       <Name>GameOverTitle.Height</Name>
       <Value xsi:type="xsd:float">100</Value>
@@ -114,7 +18,7 @@
     <Variable>
       <Type>string</Type>
       <Name>GameOverTitle.Parent</Name>
-      <Value xsi:type="xsd:string">BackgroundPic</Value>
+      <Value xsi:type="xsd:string">ParallaxBackgroundInstance</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -217,7 +121,7 @@
     <Variable>
       <Type>string</Type>
       <Name>Medal.Parent</Name>
-      <Value xsi:type="xsd:string">BackgroundPic</Value>
+      <Value xsi:type="xsd:string">ParallaxBackgroundInstance</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -627,7 +531,7 @@
     <Variable>
       <Type>string</Type>
       <Name>PlayButton.Parent</Name>
-      <Value xsi:type="xsd:string">BackgroundPic</Value>
+      <Value xsi:type="xsd:string">ParallaxBackgroundInstance</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -808,13 +712,6 @@
       <IsHiddenInPropertyGrid>false</IsHiddenInPropertyGrid>
       <Value />
     </VariableList>
-    <VariableList xsi:type="VariableListSaveOfString">
-      <Type>string</Type>
-      <Name>BackgroundPic.AnimationFrames</Name>
-      <IsFile>false</IsFile>
-      <IsHiddenInPropertyGrid>false</IsHiddenInPropertyGrid>
-      <Value />
-    </VariableList>
   </State>
   <Instance>
     <Name>PortraitSkyAndTrees</Name>
@@ -842,11 +739,6 @@
     <DefinedByBase>false</DefinedByBase>
   </Instance>
   <Instance>
-    <Name>BackgroundPic</Name>
-    <BaseType>Sprite</BaseType>
-    <DefinedByBase>false</DefinedByBase>
-  </Instance>
-  <Instance>
     <Name>MobileTopSkyRectangle</Name>
     <BaseType>ColoredRectangle</BaseType>
     <DefinedByBase>false</DefinedByBase>
@@ -854,6 +746,11 @@
   <Instance>
     <Name>MobileBottomTreesRectangle</Name>
     <BaseType>ColoredRectangle</BaseType>
+    <DefinedByBase>false</DefinedByBase>
+  </Instance>
+  <Instance>
+    <Name>ParallaxBackgroundInstance</Name>
+    <BaseType>ParallaxBackground</BaseType>
     <DefinedByBase>false</DefinedByBase>
   </Instance>
   <Behaviors />

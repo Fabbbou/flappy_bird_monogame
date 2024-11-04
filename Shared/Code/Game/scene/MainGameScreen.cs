@@ -19,7 +19,7 @@ namespace flappyrogue_mg.GameSpace
         //gum
         public SoundUI SoundUI { get; private set; }
         public GraphicalUiElement MainGameScreenGum { get; private set; }
-        public BackgroundGumWindowResizer BackgroundGumWindowResizer { get; private set; }
+        public BackgroundGumHandler BackgroundHandler { get; private set; }
         public GraphicalUiElement FloorExtension { get; private set; }
         public GraphicalUiElement PauseButtonMobile { get; private set; }
         public GraphicalUiElement PauseButtonWidescreen { get; private set; }
@@ -60,8 +60,8 @@ namespace flappyrogue_mg.GameSpace
             PauseButtonMobile = GumTransparentButton.AttachButton("PauseButtonMobile", MainGameScreenGum, OnClickPause);
             PauseButtonWidescreen = GumTransparentButton.AttachButton("PauseButtonWidescreen", MainGameScreenGum, OnClickPause);
             FloorExtension = MainGameScreenGum.GetGraphicalUiElementByName("FloorExtension");
-            BackgroundGumWindowResizer = new BackgroundGumWindowResizer(Game.Window, MainGameScreenGum, OnWindowResize);
-            BackgroundGumWindowResizer.InitAndResizeOnce();
+            BackgroundHandler = new BackgroundGumHandler(Game.Window, MainGameScreenGum, OnWindowResize);
+            BackgroundHandler.InitAndResizeOnce();
 
             RootIngameWorld = MainGameScreenGum.GetGraphicalUiElementByName("WorldContainerCliper");
 
@@ -124,7 +124,7 @@ namespace flappyrogue_mg.GameSpace
             World.UnloadContent();
             PipesSpawner.Reset();
             GizmosRegistry.Instance.Clear();
-            BackgroundGumWindowResizer.Dispose();
+            BackgroundHandler.Dispose();
         }
 
         public override void Update(GameTime gameTime)
@@ -132,6 +132,7 @@ namespace flappyrogue_mg.GameSpace
             StateMachine.Update(gameTime);
             World.Update(gameTime);
             GizmosRegistry.Instance.Refresh();
+            BackgroundHandler.AnimateParallax(gameTime);
         }
 
         public void OnClickPause()

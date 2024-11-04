@@ -67,7 +67,7 @@
     <Variable>
       <Type>bool</Type>
       <Name>BackgroundPic.Visible</Name>
-      <Value xsi:type="xsd:boolean">true</Value>
+      <Value xsi:type="xsd:boolean">false</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -434,7 +434,7 @@
     <Variable>
       <Type>float</Type>
       <Name>FloorExtension.Y</Name>
-      <Value xsi:type="xsd:float">211</Value>
+      <Value xsi:type="xsd:float">210</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -951,6 +951,12 @@
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
+      <Type>string</Type>
+      <Name>ParallaxBackgroundInstance.Parent</Name>
+      <Value xsi:type="xsd:string">WorldContainerCliper</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
       <Type>DimensionUnitType</Type>
       <Name>PauseButtonMobile.Height Units</Name>
       <Value xsi:type="xsd:int">6</Value>
@@ -1158,13 +1164,13 @@
     <Variable>
       <Type>float</Type>
       <Name>PipeBottomContainer.Height</Name>
-      <Value xsi:type="xsd:float">100</Value>
+      <Value xsi:type="xsd:float">200</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
       <Name>PipeBottomContainer.Height Units</Name>
-      <Value xsi:type="xsd:int">1</Value>
+      <Value xsi:type="xsd:int">0</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -1176,13 +1182,13 @@
     <Variable>
       <Type>float</Type>
       <Name>PipeBottomContainer.Width</Name>
-      <Value xsi:type="xsd:float">100</Value>
+      <Value xsi:type="xsd:float">144</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
       <Name>PipeBottomContainer.Width Units</Name>
-      <Value xsi:type="xsd:int">1</Value>
+      <Value xsi:type="xsd:int">0</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -1260,13 +1266,13 @@
     <Variable>
       <Type>float</Type>
       <Name>PortraitSkyAndTrees.Height</Name>
-      <Value xsi:type="xsd:float">256</Value>
+      <Value xsi:type="xsd:float">100</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
       <Name>PortraitSkyAndTrees.Height Units</Name>
-      <Value xsi:type="xsd:int">0</Value>
+      <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -1277,13 +1283,13 @@
     <Variable>
       <Type>float</Type>
       <Name>PortraitSkyAndTrees.Width</Name>
-      <Value xsi:type="xsd:float">144</Value>
+      <Value xsi:type="xsd:float">100</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
       <Type>DimensionUnitType</Type>
       <Name>PortraitSkyAndTrees.Width Units</Name>
-      <Value xsi:type="xsd:int">0</Value>
+      <Value xsi:type="xsd:int">1</Value>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -1618,6 +1624,11 @@
       <Value />
     </VariableList>
   </State>
+  <Instance>
+    <Name>ParallaxBackgroundInstance</Name>
+    <BaseType>ParallaxBackground</BaseType>
+    <DefinedByBase>false</DefinedByBase>
+  </Instance>
   <Instance>
     <Name>BackgroundPic</Name>
     <BaseType>Sprite</BaseType>

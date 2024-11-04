@@ -2807,6 +2807,83 @@
         "ElementType": "Screens",
         "EventType": 7,
         "TimestampUtc": "2024-11-04T17:54:37.7725525Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "PortaitMarginColors",
+        "ElementType": "Components",
+        "EventType": 1,
+        "TimestampUtc": "2024-11-04T18:23:30.4179495Z"
+      },
+      {
+        "NewName": "ParallaxBackground",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-11-04T18:24:01.2891733Z"
+      },
+      {
+        "NewName": "ParallaxBackground (Container).SpriteInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T18:24:51.7943751Z"
+      },
+      {
+        "NewName": "ParallaxBackground (Container).Pic1",
+        "OldName": "ParallaxBackground (Container).SpriteInstance",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-11-04T18:25:24.2235746Z"
+      },
+      {
+        "NewName": "ParallaxBackground (Container).Pic2",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T18:27:43.9998181Z"
+      },
+      {
+        "NewName": "ParallaxBackground (Container).Pic3",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T18:27:45.5059346Z"
+      },
+      {
+        "NewName": "MainGameScreen.ParallaxBackgroundInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T18:31:05.3288334Z"
+      },
+      {
+        "NewName": "MenuScreen.ParallaxBackgroundInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T18:45:20.5410542Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MenuScreen.Sprite BackgroundPic in MenuScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-11-04T18:54:19.1383745Z"
+      },
+      {
+        "NewName": "GameOverScreen.ParallaxBackgroundInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-11-04T18:54:30.8506779Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "GameOverScreen.Sprite BackgroundPic in GameOverScreen",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-11-04T18:54:42.5938898Z"
       }
     ]
   }

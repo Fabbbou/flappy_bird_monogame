@@ -30,8 +30,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Entity\DrawableEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Game\Gum\GumTransparentButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\game\gum\GumWindowResizer.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)code\game\gum\BackgroundGumWindowResizer.cs" />
-    <Compile Include="..\Shared\code\game\gameentities\BackgroundPicture.cs" />
+    <Compile Include="..\Shared\code\game\gum\BackgroundGumHandler.cs" />
     <Compile Include="..\Shared\Code\Engine\Entity\FullscreenRectangleEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Code\Engine\Input\ClickableRegionHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)code\engine\input\ClickRegistry.cs" />
@@ -92,6 +91,9 @@
     <None Include="$(MSBuildThisFileDirectory)Content\Components\Gizmos\RectangleColoredBorder.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\Components\ParallaxBackground.gucx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="$(MSBuildThisFileDirectory)Content\Components\Pipes\ExtendedPipeTop.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -99,9 +101,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Content\Components\Pipes\PipeTop.gucx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)Content\Components\PortaitMarginColors.gucx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Content\Components\PortaitMarginColorsAnimations.ganx">
